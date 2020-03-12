@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { List, arrayMove } from "react-movable";
-import { Container } from "@material-ui/core";
+import Container from "@material-ui/core/Container";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 
@@ -10,11 +10,9 @@ import CheckboxTemplate from "./templates/CheckboxTemplate";
 
 function NewEdit({ questions }) {
   return (
-    <>
-      <Container>
-        <ButtonAppBar />
-        <ReorderableQuestions questions={questions} />
-      </Container>
+    <Container>
+      <ButtonAppBar />
+      <ReorderableQuestions questions={questions} />
       <Fab
         style={{ position: "fixed", bottom: 50, right: 50, zIndex: 999 }}
         color="primary"
@@ -22,7 +20,7 @@ function NewEdit({ questions }) {
       >
         <AddIcon />
       </Fab>
-    </>
+    </Container>
   );
 }
 
@@ -30,9 +28,8 @@ const ReorderableQuestions = props => {
   const [items, setItems] = useState(props.questions);
 
   return (
-    <Container className="main" maxWidth="md">
+    <Container maxWidth="sm">
       <List
-        className="drop-container-item"
         values={items}
         onChange={({ oldIndex, newIndex }) =>
           setItems(arrayMove(items, oldIndex, newIndex))
@@ -89,6 +86,6 @@ const ReorderableQuestions = props => {
       </button>
     </Container>
   );
-}
+};
 
 export default NewEdit;
