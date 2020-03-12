@@ -1,31 +1,16 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import ButtonAppBar from './components/ButtonAppBar';
 import LoginForm from './components/LoginForm';
 import UserHome from './components/UserHome';
-import StickyHeadTable from './components/StickyHeadTable';
-import { Container } from '@material-ui/core';
 import UserQuestionnaires from './components/UserQuestionnaires';
-import EditQuestionnaire from './components/EditQuestionnaire';
-import CustomizedDialogs from './components/CustomizedDialogs';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute';
-
 import history from './components/history';
-import MyQuestionnaires from './components/MyQuestionnaires';
 import NewEdit from './components/NewEdit';
-
-const users = [
-  {name: "john", password: "lennon", questionnaires: []},
-  {name: "paul", password: "mccartney", questionnaires: []},
-  {name: "ringo", password: "starr", questionnaires: []},
-]
 
 const questionnaire_test = [
   {
@@ -78,40 +63,7 @@ function App() {
     }
   ])
 
-  const [users, setUsers] = useState([
-      {name: "john", password: "lennon", questionnaires: []},
-      {name: "paul", password: "mccartney", questionnaires: []},
-      {name: "ringo", password: "starr", questionnaires: []},
-    ]);
-
-  const addQuestionnaire = (questionnaire) => {
-    // this.setState({
-    //   questionnaires: [...this.state.questionnaires, questionnaire]
-    // });
-    setQuestionnaires([questionnaires ,questionnaire])
-  }
-  const getQuestionnaire = (id) => {
-    // for (let i=0; i<this.state.questionnaires.length; i++) {
-    //   if (this.state.questionnaires[i].id === id) {
-    //     const x = this.state.questionnaires[i];
-    //     return x;
-    //   }
-    // }
-    // return null;
-    for (let i=0; i<questionnaires.length; i++) {
-      if (questionnaires[i].id === id) {
-        const x = questionnaires[i];
-        return x;
-      }
-    }
-    return null;
-  }
   return (
-    // <div className="App">
-    //   <EditQuestionnaire/>
-    //   <CustomizedDialogs/>
-    // </div>
-
     // <Router history={history}>
     //   <Switch>
     //     <Route exact path="/login" component={LoginForm} />
@@ -126,7 +78,7 @@ function App() {
     //     />
     //   </Switch>
     // </Router>
-    // <EditQuestionnaire />
+
     <NewEdit questions={questionnaire_test}/>
   );
 }

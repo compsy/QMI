@@ -1,9 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import { Container } from '@material-ui/core';
-import LoginForm from './LoginForm';
 import ButtonAppBar from './ButtonAppBar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -32,7 +29,7 @@ export default function UserHome() {
   const classes = useStyles();
 
   return (
-    <Container className={classes.container} maxWidth="false">
+    <Container className={classes.container}>
       <ButtonAppBar />
       <UserMenu />
     </Container>

@@ -1,58 +1,51 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
-import history from './history';
+import history from "./history";
 
 const users = [
-  {username: "john", password: "lennon", questionnaires: []},
-  {username: "paul", password: "mccartney", questionnaires: []},
-  {username: "ringo", password: "starr", questionnaires: []},
-]
-
-
+  { username: "john", password: "lennon", questionnaires: [] },
+  { username: "paul", password: "mccartney", questionnaires: [] },
+  { username: "ringo", password: "starr", questionnaires: [] }
+];
 
 const useStyles = makeStyles(theme => ({
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: 200,
+      width: 200
     },
     // position form in the middle
-    position: 'absolute', 
-    left: '50%', 
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
     // background: 'grey'
-    textAlign: 'center'
+    textAlign: "center"
   },
   element: {
-    margin: '10px',
+    margin: "10px"
   }
 }));
 
-const LoginForm = (props) => {
-
+const LoginForm = props => {
   const classes = useStyles();
 
-  // const handleLoginSubmit = (e) => {
-  //   e.preventDefault(); // prevent default submit behaviour (page refresh)
-  //   console.log("username: " + e.target.elements["username"].value);
-  //   console.log("password: " + e.target.elements["password"].value);
-  // }
-
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = e => {
     e.preventDefault();
     const xs = users.map(user => {
-      return (user.username === e.target.elements["username"].value && user.password === e.target.elements["password"].value) ? true : false;
+      return user.username === e.target.elements["username"].value &&
+        user.password === e.target.elements["password"].value
+        ? true
+        : false;
     });
     const orReducer = (acc, item) => {
       return acc || item;
     };
     const check = xs.reduce(orReducer, false);
-    // console.log(xs);
-    // console.log(check);
+
     if (check) {
       // this.setState({
       //   showMessage: true,
@@ -60,11 +53,14 @@ const LoginForm = (props) => {
       //   messageColor: "green-text"
       // });
       // localStorage.setItem("user", "token");
-      localStorage.setItem("user", {name: "john", password: "lennon", questionnaires: []});
-      history.push('/');
+      localStorage.setItem("user", {
+        name: "john",
+        password: "lennon",
+        questionnaires: []
+      });
+      history.push("/");
       console.log(check);
       window.location.reload();
-
     } else {
       // this.setState({
       //   showMessage: true,
@@ -72,16 +68,20 @@ const LoginForm = (props) => {
       //   messageColor: "red-text"
       // });
       console.log(check);
-
     }
-  }
+  };
 
-  const handleSignupClick = (e) => {
+  const handleSignupClick = e => {
     console.log("route to signup page");
-  }
+  };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off" onSubmit={handleLoginSubmit}>
+    <form
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+      onSubmit={handleLoginSubmit}
+    >
       <div>
         <TextField
           className={classes.element}
@@ -123,7 +123,6 @@ const LoginForm = (props) => {
       </div>
     </form>
   );
-
-}
+};
 
 export default LoginForm;
