@@ -89,6 +89,6 @@ const ReorderableQuestions = props => {
       </button>
     </Container>
   );
-};
+}
 
 export default NewEdit;
