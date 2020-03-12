@@ -1,35 +1,34 @@
-import React, { useState } from 'react';
-import { List, arrayMove } from 'react-movable';
-import { Container } from '@material-ui/core';
-import ButtonAppBar from './ButtonAppBar';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import React, { useState } from "react";
+import { List, arrayMove } from "react-movable";
+import { Container } from "@material-ui/core";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 
-import RadioTemplate from './RadioTemplate';
-import CheckboxTemplate from './CheckboxTemplate';
+import ButtonAppBar from "./ButtonAppBar";
+import RadioTemplate from "./templates/RadioTemplate";
+import CheckboxTemplate from "./templates/CheckboxTemplate";
 
-
-function NewEdit({questions}) {
-
+function NewEdit({ questions }) {
   return (
     <>
-      <Container maxWidth="false">
+      <Container>
         <ButtonAppBar />
-        <ReorderableQuestions questions={questions}/>
-        
+        <ReorderableQuestions questions={questions} />
       </Container>
-      <Fab style={{position: 'fixed', bottom: 50, right: 50, zIndex: 999}} color="primary" aria-label="add">
+      <Fab
+        style={{ position: "fixed", bottom: 50, right: 50, zIndex: 999 }}
+        color="primary"
+        aria-label="add"
+      >
         <AddIcon />
       </Fab>
     </>
   );
-
 }
 
-// send questions through props and use that as 
+// send questions through props and use that as
 // initial state in useState(init_param) hook
-const ReorderableQuestions = (props) => {
- 
+const ReorderableQuestions = props => {
   const [items, setItems] = useState(props.questions);
 
   return (
@@ -59,15 +58,27 @@ const ReorderableQuestions = (props) => {
               // margin: "0.5em 0em",
               listStyleType: "none",
               cursor: isDragged ? "grabbing" : "grab",
-              textAlign: "center",
+              textAlign: "center"
             }}
           >
             {(() => {
-              switch(value.type) {
-                case 'radio':
-                  return <RadioTemplate value={value} items={items} setItems={setItems}/>
-                case 'checkbox':
-                  return <CheckboxTemplate value={value} items={items} setItems={setItems}/>
+              switch (value.type) {
+                case "radio":
+                  return (
+                    <RadioTemplate
+                      question={value}
+                      items={items}
+                      setItems={setItems}
+                    />
+                  );
+                case "checkbox":
+                  return (
+                    <CheckboxTemplate
+                      question={value}
+                      items={items}
+                      setItems={setItems}
+                    />
+                  );
                 default:
                   return null;
               }
@@ -75,9 +86,10 @@ const ReorderableQuestions = (props) => {
           </li>
         )}
       />
-      <button onClick={() => console.log(JSON.stringify(items))}>click me</button>
+      <button onClick={() => console.log(JSON.stringify(items))}>
+        click me (and check console)
+      </button>
     </Container>
-    
   );
 };
 
