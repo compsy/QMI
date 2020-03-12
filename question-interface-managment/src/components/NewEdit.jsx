@@ -26,8 +26,6 @@ function NewEdit({ questions }) {
   );
 }
 
-// send questions through props and use that as
-// initial state in useState(init_param) hook
 const ReorderableQuestions = props => {
   const [items, setItems] = useState(props.questions);
 
