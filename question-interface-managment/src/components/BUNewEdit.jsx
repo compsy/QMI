@@ -108,7 +108,6 @@ const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions);
 
 
-
 const questionTypes = [
   {
     value: 'radio',
@@ -151,8 +150,6 @@ const ReorderableQuestions = (props) => {
 
   const [items, setItems] = useState(props.questions);
 
-  
-  
   const [open, setOpen] = React.useState(false);
   const [updating, setUpdating] = React.useState(null);
 
@@ -179,7 +176,7 @@ const ReorderableQuestions = (props) => {
     console.log(items);
 
 
-  }
+  };
 
   const [title, setTitle] = React.useState("title");
 
@@ -193,11 +190,11 @@ const ReorderableQuestions = (props) => {
     console.log(question);
     setUpdating(null);
     console.log(items);
-  }
+  };
 
   const handleTitleChange = e => {
     setTitle(e.target.value);
-  }
+  };
 
 
   const dialog = (
@@ -257,7 +254,7 @@ const ReorderableQuestions = (props) => {
           </Button>
         </DialogActions>
       </Dialog>
-  )
+  );
 
   return (
     <Container className="main" maxWidth="md">
@@ -292,9 +289,9 @@ const ReorderableQuestions = (props) => {
             {(() => {
               switch(value.type) {
                 case 'radio':
-                  return <RadioTemplate value={value} items={items}/>
+                  return <RadioTemplate value={value} items={items}/>;
                 case 'checkbox':
-                  return <CheckboxTemplate value={value} items={items}/>
+                  return <CheckboxTemplate value={value} items={items}/>;
                 default:
                   return null;
               }

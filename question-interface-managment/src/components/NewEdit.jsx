@@ -23,9 +23,47 @@ function NewEdit({ questions }) {
     </Container>
   );
 }
+/**
+ *
+ * */
 
 const ReorderableQuestions = props => {
   const [items, setItems] = useState(props.questions);
+
+  const renderQuestionTypeTemplates = (value) => {
+      switch (value.type) {
+        case "radio":
+          return (
+            <RadioTemplate
+              question={value}
+              items={items}
+              setItems={setItems}
+            />
+          );
+        case "checkbox":
+          return (
+            <CheckboxTemplate
+              question={value}
+              items={items}
+              setItems={setItems}
+            />
+          );
+        default:
+          return null;
+      }
+  };
+  const generateItemStyle = (isDragging, props) => {
+    return {
+      ...props.style,
+      padding: "0 0",
+      // padding: "1.5em",
+      margin: "1em 0em",
+      // margin: "0.5em 0em",
+      listStyleType: "none",
+      cursor: isDragging ? "grabbing" : "grab",
+      textAlign: "center"
+    }
+  };
 
   return (
     <Container maxWidth="sm">
@@ -45,39 +83,9 @@ const ReorderableQuestions = props => {
         renderItem={({ value, props, isDragged, isSelected }) => (
           <li
             {...props}
-            style={{
-              ...props.style,
-              padding: "0 0",
-              // padding: "1.5em",
-              margin: "1em 0em",
-              // margin: "0.5em 0em",
-              listStyleType: "none",
-              cursor: isDragged ? "grabbing" : "grab",
-              textAlign: "center"
-            }}
+            style={generateItemStyle(isDragged, props)}
           >
-            {(() => {
-              switch (value.type) {
-                case "radio":
-                  return (
-                    <RadioTemplate
-                      question={value}
-                      items={items}
-                      setItems={setItems}
-                    />
-                  );
-                case "checkbox":
-                  return (
-                    <CheckboxTemplate
-                      question={value}
-                      items={items}
-                      setItems={setItems}
-                    />
-                  );
-                default:
-                  return null;
-              }
-            })()}
+            {renderQuestionTypeTemplates(value)}
           </li>
         )}
       />
