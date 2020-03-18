@@ -37,7 +37,7 @@ const questionnaire_test = [
     title: 'Waar hadden de belangrijkste gebeurtenissen mee te maken?',
     options: ['hobby/sport', 'werk', 'vriendschap', 'romantische relatie', 'thuis']
   },
-]
+];
 
 function App() {
   const [questionnaires, setQuestionnaires] = useState([
