@@ -40,6 +40,7 @@ const CheckboxTemplate = ({ question, items, setItems }) => {
           </FormControl>
         </div>
       </CardContent>
+
       <CardActions>
         <CheckboxEditDialog
           question={question}
