@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormGroup from "@material-ui/core/FormGroup";
-import Radio from "@material-ui/core/Radio";
+import CardActions from "@material-ui/core/CardActions";
+import React, {useState} from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
 
-const RadioTemplate = ({ question, items, setItems }) => {
+const QuestionTypeTemplate = ({ question, items, setItems, questionType }) => {
   const options = question.options.map(option => (
-    <FormControlLabel disabled label={option} control={<Radio />} />
+    <FormControlLabel disabled label={option} control={questionType.control} />
   ));
 
   return (
@@ -42,12 +42,12 @@ const RadioTemplate = ({ question, items, setItems }) => {
       </CardContent>
 
       <CardActions>
-        <RadioEditDialog
+        <QuestionEditDialog
           question={question}
           items={items}
           setItems={setItems}
         />
-        <RadioRemoveDialog
+        <QuestionRemoveDialog
           question={question}
           items={items}
           setItems={setItems}
@@ -57,9 +57,9 @@ const RadioTemplate = ({ question, items, setItems }) => {
   );
 };
 
-export default RadioTemplate;
+export default QuestionTypeTemplate;
 
-const RadioEditDialog = ({ question, items, setItems }) => {
+const QuestionEditDialog = ({ question, items, setItems, questionType }) => {
   const [title, setTitle] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -114,7 +114,7 @@ const RadioEditDialog = ({ question, items, setItems }) => {
   );
 };
 
-const RadioRemoveDialog = ({ question, items, setItems }) => {
+const QuestionRemoveDialog = ({ question, items, setItems }) => {
   const [open, setOpen] = useState(false);
 
   const handleRemoveClick = () => {
