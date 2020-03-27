@@ -18,7 +18,7 @@ import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
 import { SettingsContext } from "../contexts/SettingsContext";
 import { NewQuestionContext } from "../contexts/NewQuestionContext";
 import ToggleGridAreasButton from "./buttons/ToggleGridAreasButton";
-import {TitleProperty} from "./QuestionnaireProperties";
+import { TitleProperty } from "./QuestionnaireProperties";
 
 const EditDialog = ({ question, open, setOpen }) => {
   const [optionAdded, setOptionAdded] = useState(false);
@@ -49,7 +49,7 @@ const EditDialog = ({ question, open, setOpen }) => {
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <ToggleGridAreasButton />
+      {/* <ToggleGridAreasButton /> */}
       <form onSubmit={handleSubmit} style={{ padding: "1em" }}>
         <Grid
           container
@@ -170,11 +170,11 @@ const DialogBody = ({ optionAdded, setOptionAdded }) => {
           opacity: settings.showGridAreas ? 0.9 : 1.0
         }}
       >
-
-
-
-        <TitleProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-
+        <TitleProperty
+          newQuestion={newQuestion}
+          newQuestionDispatch={newQuestionDispatch}
+          style={{ margin: "1em 0" }}
+        />
       </Grid>
       <Grid item xs={12} style={{ textAlign: "center", margin: "1em 0 0 0" }}>
         <Button onClick={handleAddOptionClick}>
@@ -199,7 +199,11 @@ const DialogBody = ({ optionAdded, setOptionAdded }) => {
                   : false
               }
               style={{ margin: "0.2em 0" }}
-              placeholder={newQuestion.type === "range" ? "label" : "option"}
+              placeholder={
+                newQuestion.type === "range"
+                  ? `label ${index + 1}`
+                  : `option ${index + 1}`
+              }
               type="text"
               fullWidth
               value={option}
@@ -234,6 +238,7 @@ const DialogFooter = ({ handleClose }) => {
         item
         xs
         style={{
+          margin: "0 0 0.5em 0",
           textAlign: "center",
           background: settings.showGridAreas ? "lightgreen" : "transparent",
           opacity: settings.showGridAreas ? 0.9 : 1.0
