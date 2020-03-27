@@ -16,13 +16,9 @@ import {
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { QuestionnaireContext } from "../../contexts/QuestionnaireContext";
-
-
-/*
-* TODO:
-*  Each property is a React component. It should be given what state it adjusts (e.g. SectionStartProperty(question)
-* */
-
+import NewQuestionContextProvider, {
+  NewQuestionContext
+} from "../../contexts/NewQuestionContext";
 
 const EditQuestionButton = ({ question }) => {
   const [open, setOpen] = useState(false);
@@ -34,7 +30,9 @@ const EditQuestionButton = ({ question }) => {
           <EditIcon />
         </IconButton>
       </Tooltip>
-      <EditDialog question={question} open={open} setOpen={setOpen} />
+      <NewQuestionContextProvider>
+        <EditDialog question={question} open={open} setOpen={setOpen} />
+      </NewQuestionContextProvider>
     </>
   );
 };
@@ -42,42 +40,48 @@ const EditQuestionButton = ({ question }) => {
 export default EditQuestionButton;
 
 const EditDialog = ({ question, open, setOpen }) => {
-  const [title, setTitle] = useState("");
-  const [options, setOptions] = useState([]);
   const [optionAdded, setOptionAdded] = useState(false);
   const { questions, dispatch } = useContext(QuestionnaireContext);
+  const { newQuestion, newQuestionDispatch } = useContext(NewQuestionContext);
 
   // load question to editor state on dialog open
   useEffect(() => {
-    setTitle(question.title);
-    setOptions([...question.options]);
-  }, [open, question.options, question.title]);
+    newQuestionDispatch({ type: "SET_QUESTION", question: question });
+  }, [open, newQuestionDispatch, question]);
 
   // dispatch action to questionnaireReducer to update question
   const handleSubmit = event => {
     event.preventDefault();
-    const newQuestion = { ...question, title: title, options: options };
     dispatch({ type: "UPDATE_QUESTION", id: question.id, new: newQuestion });
     setOpen(false);
-    setTitle("");
+    newQuestionDispatch({ type: "SET_QUESTION", question: {} });
   };
 
   // update correct option on text input changes
   const handleChange = (index, event) => {
-    let newOptions = [...options];
+    let newOptions = [...newQuestion.options];
     newOptions[index] = event.target.value;
-    setOptions(newOptions);
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion, options: newOptions }
+    });
   };
 
   const handleAddOptionClick = event => {
-    setOptions([...options, ""]);
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion, options: [...newQuestion.options, ""] }
+    });
     setOptionAdded(true);
   };
 
   const handleRemoveOptionClick = (index, event) => {
-    let newOptions = [...options];
+    let newOptions = [...newQuestion.options];
     newOptions.splice(index, 1);
-    setOptions(newOptions);
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion, options: newOptions }
+    });
   };
 
   const handleClose = () => {
@@ -102,8 +106,13 @@ const EditDialog = ({ question, open, setOpen }) => {
             label="Title"
             type="text"
             fullWidth
-            value={title}
-            onChange={e => setTitle(e.target.value)}
+            value={newQuestion.title}
+            onChange={e =>
+              newQuestionDispatch({
+                type: "SET_QUESTION",
+                question: { ...newQuestion, title: e.target.value }
+              })
+            }
           />
           <Grid container style={{ margin: "1em 0" }}>
             <Grid item xs={6}>
@@ -117,9 +126,15 @@ const EditDialog = ({ question, open, setOpen }) => {
               </Box>
             </Grid>
           </Grid>
-          {options.map((option, index) => (
+          {newQuestion.options.map((option, index) => (
             <TextField
-              autoFocus={optionAdded ? index === options.length - 1 : false}
+              autoFocus={
+                optionAdded
+                  ? index === newQuestion.options.length - 1
+                    ? true
+                    : false
+                  : false
+              }
               style={{ margin: "0.2em 0" }}
               placeholder="option"
               type="text"
