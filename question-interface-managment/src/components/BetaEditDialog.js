@@ -18,6 +18,7 @@ import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
 import { SettingsContext } from "../contexts/SettingsContext";
 import { NewQuestionContext } from "../contexts/NewQuestionContext";
 import ToggleGridAreasButton from "./buttons/ToggleGridAreasButton";
+import {TitleProperty} from "./QuestionnaireProperties";
 
 const EditDialog = ({ question, open, setOpen }) => {
   const [optionAdded, setOptionAdded] = useState(false);
@@ -169,23 +170,11 @@ const DialogBody = ({ optionAdded, setOptionAdded }) => {
           opacity: settings.showGridAreas ? 0.9 : 1.0
         }}
       >
-        <TextField
-          autoFocus
-          required
-          autoComplete="off"
-          margin="dense"
-          id="title"
-          label="Title"
-          type="text"
-          fullWidth
-          value={newQuestion.title}
-          onChange={e =>
-            newQuestionDispatch({
-              type: "SET_QUESTION",
-              question: { ...newQuestion, title: e.target.value }
-            })
-          }
-        />
+
+
+
+        <TitleProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+
       </Grid>
       <Grid item xs={12} style={{ textAlign: "center", margin: "1em 0 0 0" }}>
         <Button onClick={handleAddOptionClick}>
