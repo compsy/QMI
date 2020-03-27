@@ -3,6 +3,9 @@ import Switch from "@material-ui/core/Switch";
 import {DialogContent, FormControlLabel, IconButton, InputAdornment} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+
 
 const TextProperty = ({
   newQuestion,
@@ -11,6 +14,7 @@ const TextProperty = ({
   propertyName,
   ...props
 }) => {
+
   const handleChange = event => {
     newQuestion[propertyName] = event.target.value;
     newQuestionDispatch({
@@ -36,6 +40,7 @@ const TextProperty = ({
     />
   );
 };
+
 export const TitleProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
   return (
     <TextProperty
@@ -46,28 +51,6 @@ export const TitleProperty = ({ newQuestion, newQuestionDispatch, ...props }) =>
       {...props}
     />
   );
-};
-  return <TextField
-            autoFocus
-            required
-            variant="outlined"
-            autoComplete="off"
-            margin="dense"
-            type="text"
-            fullWidth
-            id={"outlined-basic"}
-            value={newQuestion[propertyName]}
-            onChange={handleChange}
-            label={name}
-  />
-}
-export const TitleProperty = ({newQuestion, newQuestionDispatch}) => {
-  return <TextProperty
-    newQuestion={newQuestion}
-    newQuestionDispatch={newQuestionDispatch}
-    propertyName = {"title"}
-    name = {"Title"}
-  />
 }
 
 const ArrayProperty = ({newQuestion, newQuestionDispatch, name, propertyName, type}) => {
