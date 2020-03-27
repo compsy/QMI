@@ -62,10 +62,7 @@ const EditDialog = ({ question, open, setOpen }) => {
           }}
         >
           <DialogHeader question={question} />
-          <DialogBody
-            optionAdded={optionAdded}
-            setOptionAdded={setOptionAdded}
-          />
+          <DialogBody/>
           <DialogFooter handleClose={handleClose} />
         </Grid>
       </form>
@@ -80,56 +77,63 @@ const DialogHeader = ({ question }) => {
   const { questions } = useContext(QuestionnaireContext);
   const { newQuestion, newQuestionDispatch } = useContext(NewQuestionContext);
 
-  return (
+  const GridItem = (props) => (
     <Grid
       item
       xs={12}
       style={{
-        textAlign: "right",
+        textAlign: props.textAlign,
         background: settings.showGridAreas ? "lightblue" : "transparent",
         opacity: settings.showGridAreas ? 0.9 : 1.0
       }}
     >
+      {props.children}
+    </Grid>
+  );
+
+  const TypeSelector = () => (
+    <Select
+    autoWidth
+    labelId="type-select-label"
+    value={newQuestion.type}
+    onChange={e =>
+      newQuestionDispatch({
+        type: "SET_QUESTION",
+        question: { ...newQuestion, type: e.target.value }
+      })
+    }
+    style={{ textAlign: "left" }}
+  >
+      {/*TODO: not everything is compatible for convert, so only show what's allowed.*/}
+    <MenuItem value="radio">Radio</MenuItem>
+    <MenuItem value="checkbox">Checkbox</MenuItem>
+    <MenuItem value="range">Range</MenuItem>
+    <MenuItem value="likert">Likert</MenuItem>
+  </Select>
+  );
+
+  const QuestionTitle = () => (
+    <Typography variant="h6">
+      Question {questions.indexOf(question) + 1}
+    </Typography>
+  );
+
+  return (
+    <GridItem textAlign="right">
       <FormControl>
         <InputLabel id="type-select-label">Type</InputLabel>
-        <Select
-          autoWidth
-          labelId="type-select-label"
-          value={newQuestion.type}
-          onChange={e =>
-            newQuestionDispatch({
-              type: "SET_QUESTION",
-              question: { ...newQuestion, type: e.target.value }
-            })
-          }
-          style={{ textAlign: "left" }}
-        >
-          <MenuItem value="radio">Radio</MenuItem>
-          <MenuItem value="checkbox">Checkbox</MenuItem>
-          <MenuItem value="range">Range</MenuItem>
-          <MenuItem value="likert">Likert</MenuItem>
-        </Select>
+        <TypeSelector/>
       </FormControl>
       <Grid container="row" justify="center" alignItems="center">
-        <Grid
-          item
-          xs={12}
-          style={{
-            textAlign: "left",
-            background: settings.showGridAreas ? "lightgreen" : "transparent",
-            opacity: settings.showGridAreas ? 0.9 : 1.0
-          }}
-        >
-          <Typography variant="h6">
-            Question {questions.indexOf(question) + 1}
-          </Typography>
-        </Grid>
+        <GridItem textAlign="left">
+          <QuestionTitle/>
+        </GridItem>
       </Grid>
-    </Grid>
+    </GridItem>
   );
 };
 
-const DialogBody = ({ optionAdded, setOptionAdded }) => {
+const DialogBody = () => {
   const { settings } = useContext(SettingsContext);
   const { newQuestion, newQuestionDispatch } = useContext(NewQuestionContext);
   return (
