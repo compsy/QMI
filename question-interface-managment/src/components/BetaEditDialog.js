@@ -49,7 +49,7 @@ const EditDialog = ({ question, open, setOpen }) => {
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <ToggleGridAreasButton />
+      {/* <ToggleGridAreasButton /> */}
       <form onSubmit={handleSubmit} style={{ padding: "1em" }}>
         <Grid
           container
@@ -142,7 +142,11 @@ const DialogBody = ({ optionAdded, setOptionAdded }) => {
           opacity: settings.showGridAreas ? 0.9 : 1.0
         }}
       >
-        <TitleProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+        <TitleProperty
+          newQuestion={newQuestion}
+          newQuestionDispatch={newQuestionDispatch}
+          style={{ margin: "1em 0" }}
+        />
       </Grid>
 
       <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
