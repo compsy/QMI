@@ -17,6 +17,13 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { QuestionnaireContext } from "../../contexts/QuestionnaireContext";
 
+
+/*
+* TODO:
+*  Each property is a React component. It should be given what state it adjusts (e.g. SectionStartProperty(question)
+* */
+
+
 const EditQuestionButton = ({ question }) => {
   const [open, setOpen] = useState(false);
 
@@ -112,13 +119,7 @@ const EditDialog = ({ question, open, setOpen }) => {
           </Grid>
           {options.map((option, index) => (
             <TextField
-              autoFocus={
-                optionAdded
-                  ? index === options.length - 1
-                    ? true
-                    : false
-                  : false
-              }
+              autoFocus={optionAdded ? index === options.length - 1 : false}
               style={{ margin: "0.2em 0" }}
               placeholder="option"
               type="text"
