@@ -14,11 +14,14 @@ import RemoveQuestionButton from "./buttons/RemoveQuestionButton";
 import EditQuestionButton from "./buttons/EditQuestionButton";
 import RadioCheckboxPreview from "./previews/RadioCheckboxPreview";
 import LikertPreview from "./previews/LikertPreview";
+import { useState } from "react";
 
 const Question = ({ question }) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <ExpansionPanel>
-      <Summary question={question} />
+    <ExpansionPanel expanded={open}>
+      <Summary onClick={() => setOpen(!open)} question={question} />
       <Divider />
       <Details question={question} />
     </ExpansionPanel>
@@ -27,12 +30,12 @@ const Question = ({ question }) => {
 
 export default Question;
 
-const Summary = ({ question }) => {
+const Summary = ({ question, ...props }) => {
   const { settings } = useContext(SettingsContext);
   const { questions } = useContext(QuestionnaireContext);
 
   return (
-    <ExpansionPanelSummary>
+    <ExpansionPanelSummary {...props}>
       <Grid
         container
         direction="row"
