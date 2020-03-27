@@ -18,7 +18,7 @@ import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
 import { SettingsContext } from "../contexts/SettingsContext";
 import { NewQuestionContext } from "../contexts/NewQuestionContext";
 import ToggleGridAreasButton from "./buttons/ToggleGridAreasButton";
-import {TitleProperty} from "./QuestionnaireProperties";
+import {TextOptionsProperty, TitleProperty} from "./QuestionnaireProperties";
 
 const EditDialog = ({ question, open, setOpen }) => {
   const [optionAdded, setOptionAdded] = useState(false);
@@ -132,34 +132,6 @@ const DialogHeader = ({ question }) => {
 const DialogBody = ({ optionAdded, setOptionAdded }) => {
   const { settings } = useContext(SettingsContext);
   const { newQuestion, newQuestionDispatch } = useContext(NewQuestionContext);
-
-  // update correct option on text input changes
-  const handleChange = (index, event) => {
-    let newOptions = [...newQuestion.options];
-    newOptions[index] = event.target.value;
-    newQuestionDispatch({
-      type: "SET_QUESTION",
-      question: { ...newQuestion, options: newOptions }
-    });
-  };
-
-  const handleAddOptionClick = event => {
-    newQuestionDispatch({
-      type: "SET_QUESTION",
-      question: { ...newQuestion, options: [...newQuestion.options, ""] }
-    });
-    setOptionAdded(true);
-  };
-
-  const handleRemoveOptionClick = (index, event) => {
-    let newOptions = [...newQuestion.options];
-    newOptions.splice(index, 1);
-    newQuestionDispatch({
-      type: "SET_QUESTION",
-      question: { ...newQuestion, options: newOptions }
-    });
-  };
-
   return (
     <Grid container direction="row" justify="center" alignItems="center">
       <Grid
@@ -170,56 +142,11 @@ const DialogBody = ({ optionAdded, setOptionAdded }) => {
           opacity: settings.showGridAreas ? 0.9 : 1.0
         }}
       >
-
-
-
         <TitleProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+      </Grid>
 
-      </Grid>
-      <Grid item xs={12} style={{ textAlign: "center", margin: "1em 0 0 0" }}>
-        <Button onClick={handleAddOptionClick}>
-          add {newQuestion.type === "range" ? "label" : "option"}
-        </Button>
-      </Grid>
       <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
-        <Box
-          fullWidth
-          // height="200px"
-          height="200px"
-          overflow="scroll"
-          style={{ margin: "0", overflowX: "hidden" }}
-        >
-          {newQuestion.options.map((option, index) => (
-            <TextField
-              autoFocus={
-                optionAdded
-                  ? index === newQuestion.options.length - 1
-                    ? true
-                    : false
-                  : false
-              }
-              style={{ margin: "0.2em 0" }}
-              placeholder={newQuestion.type === "range" ? "label" : "option"}
-              type="text"
-              fullWidth
-              value={option}
-              onChange={e => handleChange(index, e)}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end" margin="0">
-                    <IconButton
-                      edge="end"
-                      onClick={e => handleRemoveOptionClick(index, e)}
-                      style={{ margin: "0", padding: "0" }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </InputAdornment>
-                )
-              }}
-            />
-          ))}
-        </Box>
+        <TextOptionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
       </Grid>
     </Grid>
   );
@@ -228,30 +155,36 @@ const DialogBody = ({ optionAdded, setOptionAdded }) => {
 const DialogFooter = ({ handleClose }) => {
   const { settings } = useContext(SettingsContext);
 
+  const GridItem = (props) => (
+    <Grid
+    item
+    xs
+    style={{
+      textAlign: "center",
+      background: settings.showGridAreas ? "yellow" : "transparent",
+      opacity: settings.showGridAreas ? 0.9 : 1.0
+    }}
+  >{props.children}</Grid>
+  );
+
+
   return (
-    <>
-      <Grid
-        item
-        xs
-        style={{
-          textAlign: "center",
-          background: settings.showGridAreas ? "lightgreen" : "transparent",
-          opacity: settings.showGridAreas ? 0.9 : 1.0
-        }}
-      >
-        <Button type="submit">submit</Button>
-      </Grid>
-      <Grid
-        item
-        xs
-        style={{
-          textAlign: "center",
-          background: settings.showGridAreas ? "yellow" : "transparent",
-          opacity: settings.showGridAreas ? 0.9 : 1.0
-        }}
-      >
-        <Button onClick={handleClose}>cancel</Button>
-      </Grid>
-    </>
+    <Grid
+      container
+      direction="row"
+      alignItem="flex-start"
+      justify="flex-end"
+      style={{
+        padding: "2em",
+        background: settings.showGridAreas ? "lightgrey" : "transparent"
+      }}
+    >
+      <GridItem>
+        <Button variant="contained" color="secondary" onClick={handleClose}>cancel</Button>
+      </GridItem>
+      <GridItem>
+        <Button variant="contained" color="primary" type="submit">submit</Button>
+      </GridItem>
+    </Grid>
   );
 };

@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import Switch from "@material-ui/core/Switch";
-import {DialogContent, FormControlLabel, IconButton, InputAdornment} from "@material-ui/core";
+import {Box, Button, DialogContent, FormControlLabel, IconButton, InputAdornment} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
 
@@ -34,6 +34,103 @@ export const TitleProperty = ({newQuestion, newQuestionDispatch}) => {
     propertyName = {"title"}
     name = {"Title"}
   />
+}
+
+const ArrayProperty = ({newQuestion, newQuestionDispatch, name, propertyName, type}) => {
+  const handleChange = event => {
+    newQuestion[propertyName] = event.target.value;
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion}
+    });
+  };
+
+
+  return <TextField
+    autoFocus
+    required
+    variant="outlined"
+    autoComplete="off"
+    margin="dense"
+    type="text"
+    fullWidth
+    id={"outlined-basic"}
+    value={newQuestion[propertyName]}
+    onChange={handleChange}
+    label={name}
+  />
+};
+
+
+export const TextOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
+  const [optionAdded, setOptionAdded] = useState(false);
+
+  const handleChange = (index, event) => {
+    newQuestion.options[index] = event.target.value;
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion}
+    });
+  };
+
+  const handleAddOptionClick = event => {
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion, options: [...newQuestion.options, ""] }
+    });
+    setOptionAdded(true);
+  }
+
+  const handleRemoveOptionClick = (index, event) => {
+    let newOptions = [...newQuestion.options];
+    newOptions.splice(index, 1);
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion, options: newOptions }
+    });
+  };
+
+  const renderOptions = () => newQuestion.options.map((option, index) => (
+    <TextField
+      autoFocus={optionAdded ? index === newQuestion.options.length - 1 : false}
+      style={{ margin: "0.2em 0" }}
+      placeholder={newQuestion.type === "range" ? "label" : "option"}
+      type="text"
+      fullWidth
+      value={option}
+      onChange={e => handleChange(index, e)}
+      InputProps={getInputProps(index)}
+    />
+  ))
+
+  const getInputProps = (index) => ({
+    endAdornment: (
+      <InputAdornment position="end" margin="0">
+        <IconButton
+          edge="end"
+          onClick={e => handleRemoveOptionClick(index, e)}
+          style={{margin: "0", padding: "0"}}
+        >
+          <DeleteIcon/>
+        </IconButton>
+      </InputAdornment>
+    )
+  });
+
+  return <>
+    <Button onClick={handleAddOptionClick}>
+      add {newQuestion.type === "range" ? "label" : "option"}
+    </Button>
+    <Box
+      fullWidth
+      // height="200px"
+      height="200px"
+      overflow="scroll"
+      style={{ margin: "0", overflowX: "hidden" }}
+    >
+      {renderOptions()}
+    </Box>
+  </>
 }
 
 
