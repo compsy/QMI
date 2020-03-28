@@ -7,7 +7,8 @@ import {
   List,
   ListItem,
   ListItemText,
-  Box
+  Box,
+  ListItemIcon
 } from "@material-ui/core";
 import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
 import Question from "./Question";
@@ -16,7 +17,8 @@ import ToggleGridAreasButton from "./buttons/ToggleGridAreasButton";
 import AddQuestionButton2 from "./buttons/AddQuestionButton2";
 import StringifiedJSONCard from "./StringifiedJSONCard";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { v4 as uuid } from "uuid";
+import { QUESTION_TYPES } from "./QuestionTypes";
+
 
 const QuestionsPage = () => {
   const { questions, dispatch } = useContext(QuestionnaireContext);
@@ -117,22 +119,6 @@ const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
   );
 };
 
-const QUESTION_TYPES = [
-  { id: uuid(), label: "checkbox" },
-  { id: uuid(), label: "radio" },
-  { id: uuid(), label: "likert" },
-  { id: uuid(), label: "range" },
-  { id: uuid(), label: "raw" },
-  { id: uuid(), label: "textarea" },
-  { id: uuid(), label: "textfield" },
-  { id: uuid(), label: "number" },
-  { id: uuid(), label: "expandable" },
-  { id: uuid(), label: "time" },
-  { id: uuid(), label: "date" },
-  { id: uuid(), label: "unsubscribed" },
-  { id: uuid(), label: "dropdown" },
-  { id: uuid(), label: "drawing" }
-];
 
 const Toolbar = ({ items }) => {
   return (
@@ -166,6 +152,9 @@ const Toolbar = ({ items }) => {
                             button
                             className={snapshot.isDragging ? "dragging" : ""}
                           >
+                            <ListItemIcon>
+                              {item.icon}
+                            </ListItemIcon>
                             <ListItemText primary={item.label} />
                           </ListItem>
                         </div>

@@ -1,4 +1,6 @@
 import uuid from "uuid/v1";
+import { QUESTION_TYPES } from "../components/QuestionTypes";
+
 
 const reorder = (list, startIndex, endIndex) => {
   let newList = list.slice(0, list.length);
@@ -19,22 +21,6 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
   return newDestination;
 };
 
-const QUESTION_TYPES = [
-  { id: uuid(), label: "checkbox" },
-  { id: uuid(), label: "radio" },
-  { id: uuid(), label: "likert" },
-  { id: uuid(), label: "range" },
-  { id: uuid(), label: "raw" },
-  { id: uuid(), label: "textarea" },
-  { id: uuid(), label: "textfield" },
-  { id: uuid(), label: "number" },
-  { id: uuid(), label: "expandable" },
-  { id: uuid(), label: "time" },
-  { id: uuid(), label: "date" },
-  { id: uuid(), label: "unsubscribed" },
-  { id: uuid(), label: "dropdown" },
-  { id: uuid(), label: "drawing" }
-];
 
 export const questionnaireReducer = (state, action) => {
   switch (action.type) {
