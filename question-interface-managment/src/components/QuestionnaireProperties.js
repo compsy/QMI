@@ -40,7 +40,6 @@ const TextProperty = ({
     />
   );
 };
-
 export const TitleProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
   return (
     <TextProperty
@@ -52,6 +51,69 @@ export const TitleProperty = ({ newQuestion, newQuestionDispatch, ...props }) =>
     />
   );
 }
+
+export const HiddenProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <BooleanProperty
+    newQuestionDispatch={newQuestionDispatch}
+    newQuestion={newQuestion}
+    name={"Hidden"}
+    propertyName={"hidden"}
+    {...props}
+  />
+)
+
+
+export const ShowOtherwiseProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <BooleanProperty
+    newQuestionDispatch={newQuestionDispatch}
+    newQuestion={newQuestion}
+    name={"Show 'otherwise: ...'"}
+    propertyName={"show_otherwise"}
+    {...props}
+  />
+)
+
+export const RequiredProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <BooleanProperty
+    newQuestionDispatch={newQuestionDispatch}
+    newQuestion={newQuestion}
+    name={"Required"}
+    propertyName={"required"}
+    {...props}
+  />
+)
+
+
+const BooleanProperty = ({newQuestion, newQuestionDispatch,
+                           name,
+                           propertyName,
+                           ...props}) => {
+
+  const handleChange = event => {
+    newQuestion[propertyName] = event.target.checked;
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion }
+    });
+  };
+
+  const switchComponent = <Switch
+    checked={newQuestion[propertyName]}
+    color="primary"
+    onChange={handleChange}
+    name={propertyName}
+  />;
+
+
+  return (
+    <FormControlLabel
+      control={switchComponent}
+      label={name}
+      {...props}
+    />
+  );
+};
+
 
 const ArrayProperty = ({newQuestion, newQuestionDispatch, name, propertyName, type}) => {
   const handleChange = event => {
@@ -77,8 +139,6 @@ const ArrayProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ty
     label={name}
   />
 };
-
-
 export const TextOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
   const [optionAdded, setOptionAdded] = useState(false);
 
