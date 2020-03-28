@@ -9,6 +9,8 @@ const QuestionnaireContextProvider = (props) => {
     {id: 'v2', type: "checkbox", title: "untitled checkbox", options: ["option 1", "option 2", "option 3", "option 4"]},
     {id: 'v3', type: "range", title: "untitled range", options: ["option 1", "option 2", "option 3", "option 4"]},
     {id: 'v4', type: "likert", title: "untitled likert", options: ["option 1", "option 2", "option 3", "option 4"]},
+    {id: 'v5', type: "select", title: "untitled select", options: ["option 1", "option 2", "option 3", "option 4"]},
+    {id: 'v6', type: "textarea", title: "untitled textarea", options: ["option 1", "option 2", "option 3", "option 4"]},
   ]);
   return (
     <QuestionnaireContext.Provider value={{questions, dispatch}}>
@@ -16,5 +18,5 @@ const QuestionnaireContextProvider = (props) => {
     </QuestionnaireContext.Provider>
   );
 }
- 
+
 export default QuestionnaireContextProvider;
