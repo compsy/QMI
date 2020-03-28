@@ -8,15 +8,7 @@ const StringifiedJSONCard = () => {
   const { questions } = useContext(QuestionnaireContext);
   // formats the ids
   const toPrint = questions.map((question, index) => {
-    const obj =
-      question.type === "range"
-        ? {
-            id: `v${index + 1}`,
-            type: question.type,
-            title: question.title,
-            labels: question.options
-          }
-        : {
+    const obj = {
             ...question,
             id: `v${index + 1}`
           };

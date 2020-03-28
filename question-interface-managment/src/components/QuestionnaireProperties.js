@@ -6,6 +6,138 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import uuid from "uuid/v1";
+import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+
+export const PatternProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Regex pattern"}
+    propertyName={"pattern"}
+    {...props}
+  />
+);
+
+const RegexpProperty = ({
+                        newQuestion,
+                        newQuestionDispatch,
+                        name,
+                        propertyName,
+                        regexp,
+                        helperText,
+                        ...props
+                      }) => {
+
+  const [valid, setValid] = useState(true);
+
+  const handleChange = event => {
+    newQuestion[propertyName] = event.target.value;
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion }
+    });
+    setValid(regexp.test(event.target.value));
+  };
+
+  return (
+    <TextField
+      key={uuid()}
+      error={!valid}
+      autoFocus
+      variant="outlined"
+      margin="dense"
+      type="text"
+      fullWidth
+      id={"outlined-error-helper-text"}
+      helperText={valid ? "" : helperText}
+      value={newQuestion[propertyName]}
+      onChange={handleChange}
+      label={name}
+      {...props}
+    />
+  );
+};
+// todo: implement check
+export const ColorProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <RegexpProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Color (hex value)"}
+    propertyName={"color"}
+    regexp={RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")}
+    helperText="Use hex colors only (e.g. #007fff, #03d)"
+    {...props}
+  />
+);
+
+
+const DateProperty = ({
+                        newQuestion,
+                        newQuestionDispatch,
+                        name,
+                        propertyName,
+                        ...props
+                      }) => {
+
+  const handleChange = event => {
+    newQuestion[propertyName] = event.target.value;
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion }
+    });
+  };
+
+  return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <KeyboardDatePicker
+        key={uuid()}
+        disableToolbar
+        variant="inline"
+        format="dd/MM/yyyy"
+        margin="normal"
+        id="date-picker-inline"
+        label={name}
+        value={newQuestion[propertyName]}
+        onChange={handleChange}
+        KeyboardButtonProps={{
+          'aria-label': 'change date',
+        }}
+        {...props}
+      />
+    </MuiPickersUtilsProvider>
+
+  );
+};
+
+export const DefaultDateProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
+  <DateProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name="Default Date"
+    propertyName="default_date"
+    {...props}
+  />;
+
+export const MinDateProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
+  <DateProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name="Minimum Date"
+    propertyName="min"
+    {...props}
+  />;
+
+export const MaxDateProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
+  <DateProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name="Maximum Date"
+    propertyName="max"
+    {...props}
+  />;
+
+
 
 const TextProperty = ({
   newQuestion,
@@ -25,9 +157,9 @@ const TextProperty = ({
 
   return (
     <TextField
-      key={propertyName + uuid()}
-      variant="outlined"
+      key={uuid()}
       autoFocus
+      variant="outlined"
       margin="dense"
       type="text"
       fullWidth
@@ -153,6 +285,306 @@ const BooleanProperty = ({newQuestion, newQuestionDispatch,
 };
 
 
+// TODO: make it allow numbers only
+const NumericProperty = ({
+                                newQuestion,
+                                newQuestionDispatch,
+                                name,
+                                propertyName,
+                                ...props
+                              }) => {
+  return <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={name}
+    propertyName={propertyName}
+    {...props}
+  />
+};
+
+export const MinProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Minimum"}
+    propertyName={"min"}
+    {...props}
+  />
+);
+
+export const MaxProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Maximum"}
+    propertyName={"max"}
+    {...props}
+  />
+);
+
+export const StepProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Step size"}
+    propertyName={"step"}
+    {...props}
+  />
+);
+
+export const ContentProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    multiline
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Raw HTML"}
+    propertyName={"raw"}
+    {...props}
+  />
+);
+
+export const PlaceholderProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Placeholder"}
+    propertyName={"placeholder"}
+    {...props}
+  />
+);
+
+export const DefaultTextValueProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Default value"}
+    propertyName={"default_value"}
+    {...props}
+  />
+);
+
+
+
+
+export const HintProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Hint"}
+    propertyName={"hint"}
+    {...props}
+  />
+);
+
+export const MaxLengthProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Max length"}
+    propertyName={"max_length"}
+    {...props}
+  />
+);
+
+export const RemoveButtonLabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Remove-button label"}
+    propertyName={"remove_button_label"}
+    {...props}
+  />
+);
+
+export const AddButtonLabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Add-button label"}
+    propertyName={"add_button_label"}
+    {...props}
+  />
+);
+export const DefaultExpansionsProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Default amount of expansions"}
+    propertyName={"default_expansions"}
+    {...props}
+  />
+);
+export const MaxExpansionsProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Default amount of expansions"}
+    propertyName={"max_expansions"}
+    {...props}
+  />
+);
+
+export const HoursFromProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Hours from"}
+    propertyName={"hours_from"}
+    {...props}
+  />
+);
+
+export const HoursToProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Hours to"}
+    propertyName={"hours_to"}
+    {...props}
+  />
+);
+
+export const HoursStepProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Hours step count"}
+    propertyName={"hours_step"}
+    {...props}
+  />
+);
+
+export const HoursLabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Custom 'hours' text"}
+    propertyName={"hours_label"}
+    {...props}
+  />
+);
+export const MinutesLabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Custom 'minutes' label"}
+    propertyName={"minutes_label"}
+    {...props}
+  />
+);
+
+export const ButtonTextProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Button text"}
+    propertyName={"button_text"}
+    {...props}
+  />
+);
+
+export const LabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Label"}
+    propertyName={"label"}
+    {...props}
+  />
+);
+
+export const WidthProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Width"}
+    propertyName={"width"}
+    {...props}
+  />
+);
+export const HeightProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Height"}
+    propertyName={"height"}
+    {...props}
+  />
+);
+
+
+export const ImageProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  null
+);
+
+export const DataMethodProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  null
+);
+
+
+
+export const SectionStartProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Start section with..."}
+    propertyName={"section_start"}
+    {...props}
+  />
+);
+
+export const SectionEndProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"End section with..."}
+    propertyName={"section_end"}
+    {...props}
+  />
+);
+
+
+
+export const RadiusProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Radius"}
+    propertyName={"radius"}
+    {...props}
+  />
+);
+
+export const DensityProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <NumericProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Density"}
+    propertyName={"density"}
+    {...props}
+  />
+);
+
+
+
+
+export const TodayProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
+  <BooleanProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name={"Today"}
+    propertyName={"today"}
+    {...props}
+  />
+);
+
+
+/*
+* This will use the ArrayProperty component.
+* */
+export const LabelsProperty = () => null;
+
+
 const ArrayProperty = ({newQuestion, newQuestionDispatch, name, propertyName, type}) => {
   const handleChange = event => {
     newQuestion[propertyName] = event.target.value;
@@ -177,11 +609,12 @@ const ArrayProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ty
     label={name}
   />
 };
-export const TextOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
-  const [optionAdded, setOptionAdded] = useState(false);
+
+export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, propertyName}) => {
+  const [elementAdded, setElementAdded] = useState(false);
 
   const handleChange = (index, event) => {
-    newQuestion.options[index] = event.target.value;
+    newQuestion[propertyName][index] = event.target.value;
     newQuestionDispatch({
       type: "SET_QUESTION",
       question: { ...newQuestion}
@@ -189,27 +622,29 @@ export const TextOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
   };
 
   const handleAddOptionClick = event => {
+    newQuestion[propertyName] = [newQuestion[propertyName], ""];
     newQuestionDispatch({
       type: "SET_QUESTION",
-      question: { ...newQuestion, options: [...newQuestion.options, ""] }
+      question: { ...newQuestion}
     });
-    setOptionAdded(true);
+    setElementAdded(true);
   }
 
   const handleRemoveOptionClick = (index, event) => {
-    let newOptions = [...newQuestion.options];
-    newOptions.splice(index, 1);
+    let newElements = [...newQuestion[propertyName]];
+    newElements.splice(index, 1);
+    newQuestion[propertyName] = newElements;
     newQuestionDispatch({
       type: "SET_QUESTION",
-      question: { ...newQuestion, options: newOptions }
+      question: { ...newQuestion}
     });
   };
 
-  const renderOptions = () => newQuestion.options.map((option, index) => (
+  const renderElements = () => newQuestion[propertyName].map((option, index) => (
     <TextField
-      autoFocus={optionAdded ? index === newQuestion.options.length - 1 : false}
+      autoFocus={elementAdded ? index === newQuestion[propertyName].length - 1 : false}
       style={{ margin: "0.2em 0" }}
-      placeholder={newQuestion.type === "range" ? "label" : "option"}
+      placeholder={name}
       type="text"
       fullWidth
       value={option}
@@ -233,6 +668,7 @@ export const TextOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
   });
 
   return <>
+    <h5>{name}</h5>
     <Button onClick={handleAddOptionClick}>
       add {newQuestion.type === "range" ? "label" : "option"}
     </Button>
@@ -243,9 +679,26 @@ export const TextOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
       overflow="scroll"
       style={{ margin: "0", overflowX: "hidden" }}
     >
-      {renderOptions()}
+      {renderElements()}
     </Box>
   </>
+
 }
 
+
+export const TextOptionsProperty = ({newQuestion, newQuestionDispatch}) =>
+  <TextArrayProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name="Options"
+    propertyName="options"
+  />
+
+export const LabelOptionsProperty = ({newQuestion, newQuestionDispatch}) =>
+  <TextArrayProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    name="Labels"
+    propertyName="labels"
+  />
 

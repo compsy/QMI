@@ -11,6 +11,22 @@ const QuestionnaireContextProvider = (props) => {
     {id: 'v4', type: "likert", title: "untitled likert", options: ["option 1", "option 2", "option 3", "option 4"]},
     {id: 'v5', type: "select", title: "untitled select", options: ["option 1", "option 2", "option 3", "option 4"]},
     {id: 'v6', type: "textarea", title: "untitled textarea", options: ["option 1", "option 2", "option 3", "option 4"]},
+    {
+      section_start: 'De hoofddoelen',
+      hidden: true,
+      id: 'v2',
+      type: "range",
+      min: 0,
+      max: 100,
+      step: 1,
+      title: 'Was het voor jou duidelijk over wie je een vragenlijst invulde?',
+      tooltip: 'some tooltip',
+      labels: ['helemaal niet duidelijk', 'heel duidelijk'],
+
+      // only since for debug rendering purposes, delete in final
+      options: ['helemaal niet duidelijk', 'heel duidelijk'],
+      section_end: true
+    }
   ]);
   return (
     <QuestionnaireContext.Provider value={{questions, dispatch}}>
