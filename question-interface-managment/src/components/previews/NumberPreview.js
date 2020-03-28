@@ -10,8 +10,6 @@ const useStyles = makeStyles({
 
 function NumberPreview() {
     const classes = useStyles();
-
-
     return (
         <div >
             <form className={classes.root} noValidate autoComplete="off">
