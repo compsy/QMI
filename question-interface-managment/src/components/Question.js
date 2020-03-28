@@ -15,6 +15,7 @@ import EditQuestionButton from "./buttons/EditQuestionButton";
 import RadioCheckboxPreview from "./previews/RadioCheckboxPreview";
 import LikertPreview from "./previews/LikertPreview";
 import RangePreview from "./previews/RangePreview";
+import NumberPreview from "./previews/NumberPreview";
 
 const Question = ({question}) => {
     const [open, setOpen] = useState(false);
@@ -144,6 +145,8 @@ const Details = ({ question }) => {
                                         alignItems: "center",
                                     }}
                                 ><RangePreview question={question}/></div>;
+                            case "number":
+                                return <NumberPreview question={question}/>;
                             default:
                                 return <RadioCheckboxPreview question={question}/>;
                         }
