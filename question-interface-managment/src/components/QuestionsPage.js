@@ -20,27 +20,24 @@ import { v4 as uuid } from "uuid";
 
 const QuestionsPage = () => {
   const { questions, dispatch } = useContext(QuestionnaireContext);
-  const onDragEnd = React.useCallback(
-    result => {
-      const { source, destination } = result;
+  const onDragEnd = React.useCallback(result => {
+    const { source, destination } = result;
 
-      if (!destination) {
-        return;
-      }
+    if (!destination) {
+      return;
+    }
 
-      switch (source.droppableId) {
-        case "BAG":
-          dispatch({ type: "REORDER", source: source, destination: destination })
-          break;
-        case "SHOP":
-          dispatch({ type: "CLONE", source: source, destination: destination })
-          break;
-        default:
-          break;
-      }
-    },
-    []
-  );
+    switch (source.droppableId) {
+      case "BAG":
+        dispatch({ type: "REORDER", source: source, destination: destination });
+        break;
+      case "SHOP":
+        dispatch({ type: "CLONE", source: source, destination: destination });
+        break;
+      default:
+        break;
+    }
+  }, []);
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Toolbar items={QUESTION_TYPES} />
@@ -178,6 +175,7 @@ const Toolbar = ({ items }) => {
                 </React.Fragment>
               );
             })}
+            {provided.placeholder}
           </List>
         </Drawer>
       )}

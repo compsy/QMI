@@ -1,20 +1,22 @@
 import uuid from "uuid/v1";
 
 const reorder = (list, startIndex, endIndex) => {
-  const [removed] = list.splice(startIndex, 1);
-  list.splice(endIndex, 0, removed);
-  return list;
+  let newList = list.slice(0, list.length);
+  const [removed] = newList.splice(startIndex, 1);
+  newList.splice(endIndex, 0, removed);
+  return newList;
 };
 
 const copy = (source, destination, droppableSource, droppableDestination) => {
+  let newDestination = destination.slice(0, destination.length);
   const item = source[droppableSource.index];
-  destination.splice(droppableDestination.index, 0, {
+  newDestination.splice(droppableDestination.index, 0, {
     id: uuid(),
     type: item.label,
     title: `untitled ${item.label}`,
     options: ["option1", "option2", "option3", "option4"]
   });
-  return destination;
+  return newDestination;
 };
 
 const QUESTION_TYPES = [
