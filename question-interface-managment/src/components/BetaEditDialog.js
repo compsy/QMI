@@ -18,7 +18,13 @@ import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
 import { SettingsContext } from "../contexts/SettingsContext";
 import { NewQuestionContext } from "../contexts/NewQuestionContext";
 import ToggleGridAreasButton from "./buttons/ToggleGridAreasButton";
-import {TextOptionsProperty, TitleProperty} from "./QuestionnaireProperties";
+import {
+  HiddenProperty,
+  RequiredProperty,
+  ShowOtherwiseProperty,
+  TextOptionsProperty,
+  TitleProperty
+} from "./QuestionnaireProperties";
 
 const EditDialog = ({ question, open, setOpen }) => {
   const [optionAdded, setOptionAdded] = useState(false);
@@ -136,6 +142,14 @@ const DialogHeader = ({ question }) => {
 const DialogBody = () => {
   const { settings } = useContext(SettingsContext);
   const { newQuestion, newQuestionDispatch } = useContext(NewQuestionContext);
+
+  // Grid for boolean items. These are switches, checkboxes, etc.
+  const BooleanGrid = (props) =>
+    <Grid item xs={3}>
+        <h3>Misc.</h3>
+        {props.children}
+    </Grid>
+
   return (
     <Grid container direction="row" justify="center" alignItems="center">
       <Grid
@@ -152,6 +166,12 @@ const DialogBody = () => {
           style={{ margin: "1em 0" }}
         />
       </Grid>
+
+      <BooleanGrid>
+        <RequiredProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
+        <ShowOtherwiseProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
+        <HiddenProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
+      </BooleanGrid>
 
       <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
         <TextOptionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
