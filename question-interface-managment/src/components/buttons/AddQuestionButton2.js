@@ -7,12 +7,22 @@ import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import { QuestionnaireContext } from "../../contexts/QuestionnaireContext";
 import TuneIcon from '@material-ui/icons/Tune';
 import LinearScaleIcon from '@material-ui/icons/LinearScale';
+import Looks5TwoToneIcon from '@material-ui/icons/Looks5TwoTone';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import TextFormatIcon from '@material-ui/icons/TextFormat';
+import GestureIcon from '@material-ui/icons/Gesture';
 
 const actions = [
   { icon: <RadioButtonCheckedIcon />, name: "radio" },
   { icon: <CheckBoxIcon />, name: "checkbox" },
   { icon: <TuneIcon />, name: "range" },
   { icon: <LinearScaleIcon />, name: "likert" },
+  { icon: <Looks5TwoToneIcon />, name: "number" },
+  { icon: <DateRangeIcon />, name: "date"},
+  { icon: <ScheduleIcon />, name: "time"},
+  { icon: <TextFormatIcon />, name: "text field"},
+  { icon: <GestureIcon />, name: "draw"},
 ];
 
 const AddQuestionButton2 = () => {
@@ -23,16 +33,31 @@ const AddQuestionButton2 = () => {
     setOpen(false);
     switch (event.currentTarget.id) {
       case 'speeddial-action-0':
-        dispatch({ type: "ADD_QUESTION", questionType: "radio" })
+        dispatch({ type: "ADD_QUESTION", questionType: "radio" });
         break;
       case 'speeddial-action-1':
-        dispatch({ type: "ADD_QUESTION", questionType: "checkbox" })
+        dispatch({ type: "ADD_QUESTION", questionType: "checkbox" });
         break;
       case 'speeddial-action-2':
-        dispatch({ type: "ADD_QUESTION", questionType: "range" })
+        dispatch({ type: "ADD_QUESTION", questionType: "range" });
         break;
       case 'speeddial-action-3':
-        dispatch({ type: "ADD_QUESTION", questionType: "likert" })
+        dispatch({ type: "ADD_QUESTION", questionType: "likert" });
+        break;
+      case 'speeddial-action-4':
+        dispatch({ type: "ADD_QUESTION", questionType: "number" });
+        break;
+      case 'speeddial-action-5':
+        dispatch({ type: "ADD_QUESTION", questionType: "date" });
+        break;
+      case 'speeddial-action-6':
+        dispatch({ type: "ADD_QUESTION", questionType: "time" });
+        break;
+      case 'speeddial-action-7':
+        dispatch({ type: "ADD_QUESTION", questionType: "text field" });
+        break;
+      case 'speeddial-action-8':
+        dispatch({ type: "ADD_QUESTION", questionType: "draw" });
         break;
       default:
         break;
