@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-
+import uuid from "uuid/v1";
 
 const TextProperty = ({
   newQuestion,
@@ -25,10 +25,9 @@ const TextProperty = ({
 
   return (
     <TextField
-      autoFocus
-      required
+      key={propertyName + uuid()}
       variant="outlined"
-      autoComplete="off"
+      autoFocus
       margin="dense"
       type="text"
       fullWidth
@@ -40,6 +39,7 @@ const TextProperty = ({
     />
   );
 };
+
 export const TitleProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
   return (
     <TextProperty
@@ -52,6 +52,45 @@ export const TitleProperty = ({ newQuestion, newQuestionDispatch, ...props }) =>
   );
 }
 
+export const TooltipProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
+  return (
+    <TextProperty
+      newQuestion={newQuestion}
+      newQuestionDispatch={newQuestionDispatch}
+      propertyName={"tooltip"}
+      name={"Tooltip text"}
+      {...props}
+    />
+  );
+}
+
+export const OtherwiseLabelProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
+  return (
+    <TextProperty
+      newQuestion={newQuestion}
+      newQuestionDispatch={newQuestionDispatch}
+      propertyName={"otherwise_label"}
+      name={"Custom 'otherwise: ...' text"}
+      {...props}
+    />
+  );
+
+}
+export const OtherwiseTooltipProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
+  return (
+    <TextProperty
+      newQuestion={newQuestion}
+      newQuestionDispatch={newQuestionDispatch}
+      propertyName={"otherwise_tooltip"}
+      name={"'otherwise: ...' tooltip"}
+      {...props}
+    />
+  );
+}
+
+
+
+
 export const HiddenProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
   <BooleanProperty
     newQuestionDispatch={newQuestionDispatch}
@@ -61,7 +100,6 @@ export const HiddenProperty = ({newQuestion, newQuestionDispatch, ...props}) => 
     {...props}
   />
 )
-
 
 export const ShowOtherwiseProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
   <BooleanProperty
