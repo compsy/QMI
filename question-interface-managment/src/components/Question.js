@@ -13,6 +13,7 @@ import { SettingsContext } from "../contexts/SettingsContext";
 import RemoveQuestionButton from "./buttons/RemoveQuestionButton";
 import EditQuestionButton from "./buttons/EditQuestionButton";
 import RadioCheckboxPreview from "./previews/RadioCheckboxPreview";
+import RangePreview from "./previews/RangePreview";
 import LikertPreview from "./previews/LikertPreview";
 import { useState } from "react";
 
@@ -136,6 +137,9 @@ const Details = ({ question }) => {
                 return <RadioCheckboxPreview question={question} />;
               case "likert":
                 return <LikertPreview question={question} />;
+
+                case "range":
+                    return <RangePreview question={question} />;
               default:
                 return <RadioCheckboxPreview question={question} />;
             }
