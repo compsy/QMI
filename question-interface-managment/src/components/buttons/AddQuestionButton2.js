@@ -8,6 +8,12 @@ import { QuestionnaireContext } from "../../contexts/QuestionnaireContext";
 import TuneIcon from '@material-ui/icons/Tune';
 import LinearScaleIcon from '@material-ui/icons/LinearScale';
 import Looks5TwoToneIcon from '@material-ui/icons/Looks5TwoTone';
+import TextFieldsIcon from '@material-ui/icons/TextFields';
+import ViewListIcon from '@material-ui/icons/ViewList';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import TextFormatIcon from '@material-ui/icons/TextFormat';
+import GestureIcon from '@material-ui/icons/Gesture';
 
 const actions = [
   { icon: <RadioButtonCheckedIcon />, name: "radio" },
@@ -16,8 +22,7 @@ const actions = [
   { icon: <LinearScaleIcon />, name: "likert" },
   { icon: <ViewListIcon />, name: "select" },
   { icon: <TextFieldsIcon />, name: "textarea" },
-  { icon: <Looks5TwoToneIcon />, name: "number"}
-  { icon: <Looks5TwoToneIcon />, name: "number" },
+  { icon: <Looks5TwoToneIcon />, name: "number"},
   { icon: <DateRangeIcon />, name: "date"},
   { icon: <ScheduleIcon />, name: "time"},
   { icon: <TextFormatIcon />, name: "text field"},
@@ -44,10 +49,10 @@ const AddQuestionButton2 = () => {
         dispatch({ type: "ADD_QUESTION", questionType: "likert" });
         break;
       case 'speeddial-action-4':
-        dispatch({ type: "ADD_QUESTION", questionType: "select" })
+        dispatch({ type: "ADD_QUESTION", questionType: "select" });
         break;
       case 'speeddial-action-5':
-        dispatch({ type: "ADD_QUESTION", questionType: "textarea" })
+        dispatch({ type: "ADD_QUESTION", questionType: "textarea" });
         break;
       case 'speeddial-action-6':
         dispatch({ type: "ADD_QUESTION", questionType: "number" });
