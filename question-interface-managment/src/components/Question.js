@@ -16,6 +16,10 @@ import RadioCheckboxPreview from "./previews/RadioCheckboxPreview";
 import LikertPreview from "./previews/LikertPreview";
 import RangePreview from "./previews/RangePreview";
 import NumberPreview from "./previews/NumberPreview";
+import DatePickerPreview from "./previews/DatePickerPreview";
+import TimePickerPreview from "./previews/TimePickerPreview";
+import TextFieldPreview from "./previews/TextFieldPreview";
+import DrawingPreview from "./previews/DrawingPreview";
 
 const Question = ({question}) => {
     const [open, setOpen] = useState(false);
@@ -147,6 +151,20 @@ const Details = ({ question }) => {
                                 ><RangePreview question={question}/></div>;
                             case "number":
                                 return <NumberPreview question={question}/>;
+                            case "date":
+                                return <DatePickerPreview question={question}/>;
+                            case "time":
+                                return <TimePickerPreview question={question}/>;
+                            case "text field":
+                                return <TextFieldPreview question={question}/>;
+                            case "draw":
+                                return <div
+                                        style={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                        }}
+                                ><DrawingPreview question={question}/></div>;
                             default:
                                 return <RadioCheckboxPreview question={question}/>;
                         }

@@ -1,4 +1,5 @@
 import * as React from "react";
+import {makeStyles} from "@material-ui/core/styles";
 
 const styles = {
     canvas : {
@@ -25,8 +26,9 @@ const styles = {
         yellow : {'backgroundColor' : 'yellow'},
         green : {'backgroundColor' : 'green'},
         blue : {'backgroundColor' : 'blue'},
-    }
+    },
 };
+
 
 //simple draw component made in react
 class DrawingPreview extends React.Component {
@@ -122,18 +124,17 @@ class DrawingPreview extends React.Component {
     render() {
         return (
             <div style={styles.maindiv}>
-                <h3 >Drawing Area</h3>
                 <canvas ref="canvas" width="300" height="300" style={styles.canvas}
                         onMouseMove={(e)=>this.drawing(e)}
                         onMouseDown={(e)=>this.penDown(e)}
                         onMouseUp={(e)=>this.penUp(e)}>
                 </canvas>
                 <div>
-                    <button onClick={(e)=>this.draw(e)} style={styles.btn, styles.button}>Draw</button>
-                    <button onClick={(e)=>this.erase(e)} style={styles.btn, styles.button}>Erase</button>
-                    <button onClick={(e)=>this.penSizeUp()} style={styles.btn, styles.button}>Pen Size +</button>
-                    <button onClick={(e)=>this.penSizeDown()} style={styles.btn, styles.button}>Pen Size -</button>
-                    <button onClick={()=>this.reset()} style={styles.btn, styles.button}>Reset</button>
+                    <button onClick={(e)=>this.draw(e)} style={styles.button}>Draw</button>
+                    <button onClick={(e)=>this.erase(e)} style={styles.button}>Erase</button>
+                    <button onClick={(e)=>this.penSizeUp()} style={styles.button}>Pen Size +</button>
+                    <button onClick={(e)=>this.penSizeDown()} style={styles.button}>Pen Size -</button>
+                    <button onClick={()=>this.reset()} style={styles.button}>Reset</button>
                 </div>
                 <div>
                     <button style={Object.assign({}, styles.colorSwatches.red, styles.button)} onClick={()=>this.setColor('red')}>Red</button>
