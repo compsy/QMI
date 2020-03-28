@@ -1,47 +1,33 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import VolumeDown from '@material-ui/icons/VolumeDown';
-import VolumeUp from '@material-ui/icons/VolumeUp';
 
 const useStyles = makeStyles({
     root: {
-        width: 200,
+        width: 300,
     },
 });
 
 function RangePreview() {
     const classes = useStyles();
-    const [value, setValue] = React.useState(30);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
 
     return (
         <div className={classes.root}>
-            <Typography id="continuous-slider" gutterBottom>
-                Volume
+            <Typography id="discrete-slider" gutterBottom>
+                Dummy Text
             </Typography>
-            <Grid container spacing={2}>
-                <Grid item>
-                    <VolumeDown />
-                </Grid>
-                <Grid item xs>
-                    <Slider value={value} onChange={handleChange} aria-labelledby="continuous-slider" />
-                </Grid>
-                <Grid item>
-                    <VolumeUp />
-                </Grid>
-            </Grid>
-            <Typography id="disabled-slider" gutterBottom>
-                Disabled slider
-            </Typography>
-            <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
+            <Slider
+                defaultValue={30}
+                aria-labelledby="discrete-slider"
+                valueLabelDisplay="auto"
+                step={1}
+                marks
+                min={0}
+                max={100}
+            />
         </div>
     );
 }
 
-export default RangePreview
+export default RangePreview;
