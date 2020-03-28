@@ -115,6 +115,7 @@ const DialogHeader = ({ question }) => {
     <MenuItem value="checkbox">Checkbox</MenuItem>
     <MenuItem value="range">Range</MenuItem>
     <MenuItem value="likert">Likert</MenuItem>
+
   </Select>
   );
 

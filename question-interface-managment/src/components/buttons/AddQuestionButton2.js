@@ -7,6 +7,8 @@ import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import { QuestionnaireContext } from "../../contexts/QuestionnaireContext";
 import TuneIcon from '@material-ui/icons/Tune';
 import LinearScaleIcon from '@material-ui/icons/LinearScale';
+import ViewListIcon from '@material-ui/icons/ViewList';
+import TextFieldsIcon from '@material-ui/icons/TextFields';
 import Looks5TwoToneIcon from '@material-ui/icons/Looks5TwoTone';
 
 const actions = [
@@ -14,6 +16,8 @@ const actions = [
   { icon: <CheckBoxIcon />, name: "checkbox" },
   { icon: <TuneIcon />, name: "range" },
   { icon: <LinearScaleIcon />, name: "likert" },
+  { icon: <ViewListIcon />, name: "select" },
+  { icon: <TextFieldsIcon />, name: "textarea" },
   { icon: <Looks5TwoToneIcon />, name: "number"}
 ];
 
@@ -25,18 +29,24 @@ const AddQuestionButton2 = () => {
     setOpen(false);
     switch (event.currentTarget.id) {
       case 'speeddial-action-0':
-        dispatch({ type: "ADD_QUESTION", questionType: "radio" });
+        dispatch({ type: "ADD_QUESTION", questionType: "radio" })
         break;
       case 'speeddial-action-1':
-        dispatch({ type: "ADD_QUESTION", questionType: "checkbox" });
+        dispatch({ type: "ADD_QUESTION", questionType: "checkbox" })
         break;
       case 'speeddial-action-2':
-        dispatch({ type: "ADD_QUESTION", questionType: "range" });
+        dispatch({ type: "ADD_QUESTION", questionType: "range" })
         break;
       case 'speeddial-action-3':
-        dispatch({ type: "ADD_QUESTION", questionType: "likert" });
+        dispatch({ type: "ADD_QUESTION", questionType: "likert" })
         break;
       case 'speeddial-action-4':
+        dispatch({ type: "ADD_QUESTION", questionType: "select" })
+        break;
+      case 'speeddial-action-5':
+        dispatch({ type: "ADD_QUESTION", questionType: "textarea" })
+        break;
+      case 'speeddial-action-6':
         dispatch({ type: "ADD_QUESTION", questionType: "number" });
         break;
       default:
