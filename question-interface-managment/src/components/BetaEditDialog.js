@@ -19,11 +19,11 @@ import { SettingsContext } from "../contexts/SettingsContext";
 import { NewQuestionContext } from "../contexts/NewQuestionContext";
 import ToggleGridAreasButton from "./buttons/ToggleGridAreasButton";
 import {
-  HiddenProperty,
+  HiddenProperty, OtherwiseLabelProperty, OtherwiseTooltipProperty,
   RequiredProperty,
   ShowOtherwiseProperty,
   TextOptionsProperty,
-  TitleProperty
+  TitleProperty, TooltipProperty
 } from "./QuestionnaireProperties";
 
 const EditDialog = ({ question, open, setOpen }) => {
@@ -120,8 +120,8 @@ const DialogHeader = ({ question }) => {
   );
 
   const QuestionTitle = () => (
-    <Typography variant="h6">
-      Question {questions.indexOf(question) + 1}
+    <Typography variant="h5">
+      Edit Question {questions.indexOf(question) + 1}
     </Typography>
   );
 
@@ -146,13 +146,13 @@ const DialogBody = () => {
 
   // Grid for boolean items. These are switches, checkboxes, etc.
   const BooleanGrid = (props) =>
-    <Grid item xs={3}>
-        <h3>Misc.</h3>
-        {props.children}
+    <Grid item xs={4}>
+      <h3>Misc.</h3>
+      {props.children}
     </Grid>
 
   return (
-    <Grid container direction="row" justify="center" alignItems="center">
+    <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
       <Grid
         item
         xs={12}
@@ -162,6 +162,7 @@ const DialogBody = () => {
         }}
       >
         <TitleProperty
+          required
           newQuestion={newQuestion}
           newQuestionDispatch={newQuestionDispatch}
           style={{ margin: "1em 0" }}
@@ -171,7 +172,17 @@ const DialogBody = () => {
       <BooleanGrid>
         <RequiredProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
         <ShowOtherwiseProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
+        {newQuestion.show_otherwise ?
+          <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
+            <OtherwiseLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+            <OtherwiseTooltipProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+          </Grid>
+          : null}
+
         <HiddenProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
+        <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
+          <TooltipProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+        </Grid>
       </BooleanGrid>
 
       <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
