@@ -1,33 +1,23 @@
-import React, { useContext } from "react";
-import { v1 as uuidv1 } from "uuid";
-import {
-  Container,
-  Typography,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Box,
-  ListItemIcon
-} from "@material-ui/core";
-import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
+import React, {useContext} from "react";
+import {v1 as uuidv1} from "uuid";
+import {Box, Container, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography} from "@material-ui/core";
+import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
 import Question from "./Question";
-import AddQuestionButton from "./buttons/AddQuestionButton";
 import ToggleGridAreasButton from "./buttons/ToggleGridAreasButton";
 import AddQuestionButton2 from "./buttons/AddQuestionButton2";
 import StringifiedJSONCard from "./StringifiedJSONCard";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { QUESTION_TYPES } from "./QuestionTypes";
-
+import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
+import {QUESTION_TYPES} from "./QuestionTypes";
+import './index.css';
 
 const QuestionsPage = () => {
-  const { questions, dispatch } = useContext(QuestionnaireContext);
-  const onDragEnd = React.useCallback(result => {
-    const { source, destination } = result;
+    const {questions, dispatch} = useContext(QuestionnaireContext);
+    const onDragEnd = React.useCallback(result => {
+        const {source, destination} = result;
 
-    if (!destination) {
-      return;
-    }
+        if (!destination) {
+            return;
+        }
 
     switch (source.droppableId) {
       case "BAG":
@@ -72,24 +62,24 @@ const BottomSection = ({ items }) => {
         Questions
       </Typography>
       <Droppable droppableId="BAG">
-        {(provided, snapshot) => (
-          <Box ref={provided.innerRef} className="shopping-bag">
-            {questions.map((question, index) => (
-              <Draggable
-                key={question.id}
-                draggableId={question.id}
-                index={index}
-              >
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={provided.draggableProps.style}
-                  >
-                    <Question key={uuidv1()} question={question} />
-                  </div>
-                )}
+          {(provided) => (
+              <Box ref={provided.innerRef} className="shopping-bag">
+                  {questions.map((question, index) => (
+                      <Draggable
+                          key={question.id}
+                          draggableId={question.id}
+                          index={index}
+                      >
+                          {(provided) => (
+                              <div
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  style={provided.draggableProps.style}
+                              >
+                                  <Question key={uuidv1()} question={question}/>
+                              </div>
+                          )}
               </Draggable>
             ))}
             {provided.placeholder}
@@ -128,20 +118,23 @@ const Toolbar = ({ items }) => {
       isDropDisabled={true}
     >
       {(provided, snapshot) => (
-        <Drawer ref={provided.innerRef} variant="permanent" anchor="left">
-          <List>
-            {items.map((item, index) => {
-              const shouldRenderClone =
-                item.id === snapshot.draggingFromThisWith;
-              return (
-                <React.Fragment key={item.id}>
-                  {shouldRenderClone ? (
-                    <ListItem button key={item.label}>
-                      <ListItemText primary={item.label} />
-                    </ListItem>
-                  ) : (
-                    <Draggable draggableId={item.id} index={index}>
-                      {(provided, snapshot) => (
+          <Drawer ref={provided.innerRef} style={{width: 50}} variant="permanent" anchor="right">
+              <List>
+                  {items.map((item, index) => {
+                      const shouldRenderClone =
+                          item.id === snapshot.draggingFromThisWith;
+                      return (
+                          <React.Fragment style={{textAlign: 'left'}} key={item.id}>
+                              {shouldRenderClone ? (
+                                  <ListItem button key={item.label}>
+                                      <ListItemIcon>
+                                          {item.icon}
+                                      </ListItemIcon>
+                                      <ListItemText primary={item.label} style={{textAlign: 'left'}}/>
+                                  </ListItem>
+                              ) : (
+                                  <Draggable draggableId={item.id} index={index}>
+                                      {(provided, snapshot) => (
                         <div
                           key={item.label}
                           ref={provided.innerRef}
