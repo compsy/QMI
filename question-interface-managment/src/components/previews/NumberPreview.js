@@ -1,6 +1,5 @@
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField";
-import React from "react";
 
 const useStyles = makeStyles({
     root: {
@@ -10,6 +9,7 @@ const useStyles = makeStyles({
 
 function NumberPreview() {
     const classes = useStyles();
+
 
     return (
         <div >
