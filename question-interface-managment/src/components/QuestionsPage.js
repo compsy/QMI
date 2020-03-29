@@ -116,13 +116,22 @@ const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
       style={provided.draggableProps.style}
       // className={snapshot.isDragging ? "dragging" : ""}
     >
-      <Grid container direction="column">
-        <Grid item xs justify="center" alignItems="stretch" style={{textAlign:"center"}}>
-          <Paper>
-            <Typography variant="h5">{`new ${item.label}`}</Typography>
-          </Paper>
+      <Paper style={{ padding: "1em" }}>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          style={{ textAlign: "center" }}
+        >
+          <Grid item xs={12}>
+            {item.icon}
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="body1">{item.label}</Typography>
+          </Grid>
         </Grid>
-      </Grid>
+      </Paper>
     </div>
   );
 };
