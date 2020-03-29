@@ -11,12 +11,26 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function TextFieldPreview() {
+const TextFieldPreview = ({question}) => {
     const classes = useStyles();
 
     return (
         <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="outlined-basic" label="Question" variant="outlined" />
+            <TextField
+                section_start = {question.section_start}
+                hidden = {question.hidden}
+                id = {question.id}
+                type={ question.type}
+                title={question.title}
+                tooltip={question.tooltip}
+                default_value={question.default_value}
+                pattern={question.pattern}
+                hint={question.hint}
+                placeholder={question.placeholder}
+                section_end={question.section_end}
+            />
         </form>
     );
 }
+
+export default TextFieldPreview
