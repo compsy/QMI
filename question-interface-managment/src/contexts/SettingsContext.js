@@ -4,11 +4,12 @@ import { settingsReducer } from "../reducers/settingsReducer";
 export const SettingsContext = createContext();
 
 const SettingsContextProvider = props => {
-  const [settings, dispatch] = useReducer(settingsReducer, {
-    showGridAreas: false
+  const [settings, settingsDispatch] = useReducer(settingsReducer, {
+    showGridAreas: false,
+    destinationIndex: -1
   });
   return (
-    <SettingsContext.Provider value={{ settings, dispatch }}>
+    <SettingsContext.Provider value={{ settings, settingsDispatch }}>
       {props.children}
     </SettingsContext.Provider>
   );

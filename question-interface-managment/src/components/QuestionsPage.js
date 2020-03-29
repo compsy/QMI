@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { v1 as uuidv1 } from "uuid";
 import {
+  makeStyles,
   Box,
   Container,
   Drawer,
@@ -9,9 +10,11 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
-  ExpansionPanelSummary,
   Grid,
-  Paper
+  Paper,
+  AppBar,
+  Toolbar,
+  CssBaseline
 } from "@material-ui/core";
 import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
 import Question from "./Question";
@@ -20,38 +23,122 @@ import AddQuestionButton2 from "./buttons/AddQuestionButton2";
 import StringifiedJSONCard from "./StringifiedJSONCard";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { QUESTION_TYPES } from "./QuestionTypes";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "./index.css";
+import { SettingsContext } from "../contexts/SettingsContext";
+import { useState } from "react";
+import { useEffect } from "react";
+
+const drawerWidth = 240;
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex"
+  },
+  // appBar: {
+  //   width: `calc(100% - ${drawerWidth}px)`,
+  //   marginRight: drawerWidth,
+  // },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1
+  },
+  drawer: {
+    // width: drawerWidth,
+    flexShrink: 0
+  },
+  drawerPaper: {
+    // width: drawerWidth,
+  },
+  // necessary for content to be below app bar
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3)
+  }
+}));
 
 const QuestionsPage = () => {
+  const { settings, settingsDispatch } = useContext(SettingsContext);
   const { questions, dispatch } = useContext(QuestionnaireContext);
   const onDragEnd = React.useCallback(result => {
     const { source, destination } = result;
-
     if (!destination) {
       return;
     }
-
+    settingsDispatch({ type: "SET_DESTINATION_INDEX", destinationIndex: destination.index});
+    console.log(settings.destinationIndex, destination.index);
     switch (source.droppableId) {
       case "BAG":
         dispatch({ type: "REORDER", source: source, destination: destination });
         break;
       case "SHOP":
         dispatch({ type: "CLONE", source: source, destination: destination });
+        console.log(destination);
+        console.log(questions[destination.index]);
         break;
       default:
         break;
     }
   }, []);
+  const classes = useStyles();
+
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Toolbar items={QUESTION_TYPES} />
-      <Container maxWidth="sm">
-        <TopSection />
-        <BottomSection items={questions} />
-      </Container>
-    </DragDropContext>
+    <div className={classes.root}>
+      <CssBaseline />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <AppBar color="default" position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" noWrap>
+              Clipped drawer
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Sidebar items={QUESTION_TYPES} />
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="stretch"
+            style={{
+              margin: "0",
+              background: settings.showGridAreas ? "lightgrey" : "transparent"
+            }}
+          >
+            {/* <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <Grid
+                item
+                xs={6}
+                style={{
+                  background: settings.showGridAreas
+                    ? "lightblue"
+                    : "transparent"
+                }}
+              >
+              </Grid>
+              <Grid
+                item
+                xs={6}
+                style={{
+                  background: settings.showGridAreas
+                  ? "lightgreen"
+                  : "transparent"
+                }}
+              >
+              </Grid>
+            </Grid> */}
+            <TopSection />
+            <BottomSection items={questions} />
+          </Grid>
+        </main>
+      </DragDropContext>
+    </div>
   );
 };
 
@@ -68,6 +155,8 @@ const TopSection = () => {
 };
 
 const BottomSection = ({ items }) => {
+  const { settings } = useContext(SettingsContext);
+  const [added, setAdded] = useState(null);
   const { questions } = useContext(QuestionnaireContext);
 
   return (
@@ -75,7 +164,7 @@ const BottomSection = ({ items }) => {
       <Typography variant="h4" style={{ margin: "1em 0" }}>
         Questions
       </Typography>
-      <Droppable droppableId="BAG">
+      <Droppable droppableId="BAG" style={{ textAlign: "center" }}>
         {(provided, snapshot) => (
           <Box ref={provided.innerRef} className="shopping-bag">
             {questions.map((question, index) => (
@@ -100,34 +189,56 @@ const BottomSection = ({ items }) => {
           </Box>
         )}
       </Droppable>
-      <AddQuestionButton2 />
+      {/* <AddQuestionButton2 /> */}
     </Container>
   );
 };
 
+function getStyle(style, snapshot) {
+  if (!snapshot.isDropAnimating) {
+    return style;
+  }
+  return {
+    ...style,
+    // cannot be 0, but make it super tiny
+    transitionDuration: `0.00001s`,
+  };
+}
+
 // This method is needed for rendering clones of draggables
 const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
   const item = items[rubric.source.index];
+  const style = {
+    //backgroundColor: snapshot.isDragging ? 'blue' : 'white',
+    // fontSize: 18,
+    ...provided.draggableProps.style,
+  };
   return (
     <Paper
       className={snapshot.isDragging ? "dragging1" : "not-dragging1"}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
       ref={provided.innerRef}
-      style={provided.draggableProps.style}
+      // style={provided.draggableProps.style}
+      style={getStyle(provided.draggableProps.style, snapshot)}
       // style={{ padding: "1em", color: "white" }}
     >
       <ListItem>
         <ListItemIcon style={{ color: "white" }}>{item.icon}</ListItemIcon>
         <ListItemText>
-          <Typography variant="body1" style={{ color: "white" }}>{item.label}</Typography>
+          <Typography variant="body1" style={{ color: "white" }}>
+            {item.label}
+          </Typography>
         </ListItemText>
       </ListItem>
     </Paper>
   );
 };
 
-const Toolbar = ({ items }) => {
+const Sidebar = ({ items }) => {
+  const { settings } = useContext(SettingsContext);
+  const classes = useStyles();
+
   return (
     <Droppable
       renderClone={getRenderItem(items, "")}
@@ -136,12 +247,20 @@ const Toolbar = ({ items }) => {
     >
       {(provided, snapshot) => (
         <Drawer
+          className={classes.drawer}
+          classes={{
+            paper: classes.drawerPaper
+          }}
           ref={provided.innerRef}
-          style={{ width: 50 }}
           variant="permanent"
           anchor="right"
         >
-          <List>
+          <div className={classes.toolbar} />
+          <List
+            style={{
+              background: settings.showGridAreas ? "lightgrey" : "transparent"
+            }}
+          >
             {items.map((item, index) => {
               const shouldRenderClone =
                 item.id === snapshot.draggingFromThisWith;
@@ -158,20 +277,17 @@ const Toolbar = ({ items }) => {
                   ) : (
                     <Draggable draggableId={item.id} index={index}>
                       {(provided, snapshot) => (
-                        <div
+                        <ListItem
                           key={item.label}
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
+                          button
+                          className={snapshot.isDragging ? "dragging" : ""}
                         >
-                          <ListItem
-                            button
-                            className={snapshot.isDragging ? "dragging" : ""}
-                          >
-                            <ListItemIcon>{item.icon}</ListItemIcon>
-                            <ListItemText primary={item.label} />
-                          </ListItem>
-                        </div>
+                          <ListItemIcon>{item.icon}</ListItemIcon>
+                          <ListItemText primary={item.label} />
+                        </ListItem>
                       )}
                     </Draggable>
                   )}
