@@ -33,14 +33,16 @@ import { useEffect } from "react";
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   // appBar: {
   //   width: `calc(100% - ${drawerWidth}px)`,
   //   marginRight: drawerWidth,
   // },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 1,
+    color: 'white',
+    alignItems: 'center',
   },
   drawer: {
     // width: drawerWidth,
@@ -87,9 +89,9 @@ const QuestionsPage = () => {
     <div className={classes.root}>
       <CssBaseline />
       <DragDropContext onDragEnd={onDragEnd}>
-        <AppBar color="default" position="fixed" className={classes.appBar}>
+        <AppBar className={classes.appBar}>
           <Toolbar>
-            <Typography variant="h6" noWrap>
+            <Typography variant="h5" noWrap>
               Questionnaire Editor
             </Typography>
           </Toolbar>
