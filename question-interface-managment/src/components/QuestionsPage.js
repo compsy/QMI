@@ -109,32 +109,21 @@ const BottomSection = ({ items }) => {
 const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
   const item = items[rubric.source.index];
   return (
-    <div
+    <Paper
+      className={snapshot.isDragging ? "dragging1" : "not-dragging1"}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
       ref={provided.innerRef}
       style={provided.draggableProps.style}
+      // style={{ padding: "1em", color: "white" }}
     >
-      <Paper
-        style={{ padding: "1em", color: "white" }}
-        className={snapshot.isDragging ? "dragging1" : "not-dragging1"}
-      >
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-          style={{ textAlign: "center" }}
-        >
-          <Grid item xs={12}>
-            {item.icon}
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="body1">{item.label}</Typography>
-          </Grid>
-        </Grid>
-      </Paper>
-    </div>
+      <ListItem>
+        <ListItemIcon style={{ color: "white" }}>{item.icon}</ListItemIcon>
+        <ListItemText>
+          <Typography variant="body1" style={{ color: "white" }}>{item.label}</Typography>
+        </ListItemText>
+      </ListItem>
+    </Paper>
   );
 };
 
