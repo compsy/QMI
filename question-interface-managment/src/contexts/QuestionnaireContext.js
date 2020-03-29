@@ -51,12 +51,13 @@ const QuestionnaireContextProvider = (props) => {
       placeholder: 'Place holder',
       section_end: true,
     },
+    {id: 'v9', type: "number", title: "untitled number", placeholder: 5132, min: 10, max: 100, maxlength: 4}
   ]);
   return (
     <QuestionnaireContext.Provider value={{questions, dispatch}}>
       {props.children}
     </QuestionnaireContext.Provider>
   );
-}
+};
 
 export default QuestionnaireContextProvider;
