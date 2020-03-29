@@ -37,7 +37,7 @@ const LikertPreview = ({ question }) => {
     <Grid
       item
       xs={"auto"}
-
+      key={option}
       style={{
         background: settings.showGridAreas ? "yellow" : "transparent",
         opacity: settings.showGridAreas ? "0.8" : "1.0"
