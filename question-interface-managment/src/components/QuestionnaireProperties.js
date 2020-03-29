@@ -578,40 +578,10 @@ export const TodayProperty = ({newQuestion, newQuestionDispatch, ...props}) => (
   />
 );
 
-
-/*
-* This will use the ArrayProperty component.
-* */
-export const LabelsProperty = () => null;
-
-
-const ArrayProperty = ({newQuestion, newQuestionDispatch, name, propertyName, type}) => {
-  const handleChange = event => {
-    newQuestion[propertyName] = event.target.value;
-    newQuestionDispatch({
-      type: "SET_QUESTION",
-      question: { ...newQuestion}
-    });
-  };
-
-
-  return <TextField
-    autoFocus
-    required
-    variant="outlined"
-    autoComplete="off"
-    margin="dense"
-    type="text"
-    fullWidth
-    id={"outlined-basic"}
-    value={newQuestion[propertyName]}
-    onChange={handleChange}
-    label={name}
-  />
-};
-
 export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, propertyName}) => {
   const [elementAdded, setElementAdded] = useState(false);
+
+  if(newQuestion[propertyName] === undefined) newQuestion[propertyName] = [];
 
   const handleChange = (index, event) => {
     newQuestion[propertyName][index] = event.target.value;
@@ -622,7 +592,7 @@ export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, prope
   };
 
   const handleAddOptionClick = event => {
-    newQuestion[propertyName] = [newQuestion[propertyName], ""];
+    newQuestion[propertyName] = [...newQuestion[propertyName], "option " + (newQuestion[propertyName].length + 1)];
     newQuestionDispatch({
       type: "SET_QUESTION",
       question: { ...newQuestion}
@@ -668,9 +638,9 @@ export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, prope
   });
 
   return <>
-    <h5>{name}</h5>
+    <h4>{name}</h4>
     <Button onClick={handleAddOptionClick}>
-      add {newQuestion.type === "range" ? "label" : "option"}
+      add {name}
     </Button>
     <Box
       fullWidth

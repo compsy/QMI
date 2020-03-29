@@ -33,7 +33,7 @@ import {
   HoursLabelProperty,
   HoursStepProperty,
   HoursToProperty,
-  ImageProperty,
+  ImageProperty, LabelOptionsProperty,
   LabelProperty, MaxDateProperty,
   MaxExpansionsProperty,
   MaxLengthProperty,
@@ -45,7 +45,7 @@ import {
   PatternProperty, PlaceholderProperty,
   RadiusProperty,
   RemoveButtonLabelProperty,
-  RequiredProperty,
+  RequiredProperty, SectionEndProperty, SectionStartProperty,
   ShowOtherwiseProperty, StepProperty,
   TextOptionsProperty,
   TitleProperty,
@@ -201,6 +201,8 @@ const DialogBody = () => {
       {/*todo: check if this property is valid for BOTH raw and unsubscribe.*/}
       <ContentProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
       <PlaceholderProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
+      <SectionStartProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
+      <SectionEndProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
     </CustomGrid>
   };
   const DrawingSpecificVariables = () => {
@@ -249,6 +251,7 @@ const DialogBody = () => {
       </Grid>;
     return <CustomGrid>
       <StepProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+      <LabelOptionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
     </CustomGrid>
   }
   const ExpandableSpecificVariables = () => {
@@ -315,7 +318,7 @@ const DialogBody = () => {
   }
 
   return (
-    <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
+    <Grid container direction="row" justify="center" alignItems="center" spacing={4}>
       <Grid
         item
         xs={12}
