@@ -14,7 +14,7 @@ const QuestionnaireContextProvider = (props) => {
     {
       section_start: 'De hoofddoelen',
       hidden: true,
-      id: 'v2',
+      id: 'v7',
       type: "range",
       min: 0,
       max: 100,
