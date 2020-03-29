@@ -52,7 +52,7 @@ const LikertPreview = ({ question }) => {
         {renderBox()}
         {renderText(option)}
       </Grid>
-    </Grid>
+    </Grid>;
 
   return (
     <Grid

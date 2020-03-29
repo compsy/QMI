@@ -180,7 +180,7 @@ const DialogBody = () => {
         <h3>Misc.</h3>
         <p><i>These items are available in <b>multiple</b> other question types.</i></p>
         {props.children}
-      </Grid>
+      </Grid>;
     return <CustomGrid>
       <RequiredProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
       <ShowOtherwiseProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
@@ -232,7 +232,7 @@ const DialogBody = () => {
       <PatternProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
       <HintProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
     </CustomGrid>
-  }
+  };
   const NumberSpecificVariables = () => {
     const CustomGrid = (props) =>
       <Grid item xs={4}>
@@ -242,7 +242,7 @@ const DialogBody = () => {
     return <CustomGrid>
       <MaxLengthProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
     </CustomGrid>
-  }
+  };
   const RangeSpecificVariables = () => {
     const CustomGrid = (props) =>
       <Grid item xs={4}>
@@ -253,7 +253,7 @@ const DialogBody = () => {
       <StepProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
       <LabelOptionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
     </CustomGrid>
-  }
+  };
   const ExpandableSpecificVariables = () => {
     const CustomGrid = (props) =>
       <Grid item xs={4}>
@@ -266,7 +266,7 @@ const DialogBody = () => {
       <DefaultExpansionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
       <MaxExpansionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
     </CustomGrid>
-  }
+  };
   const TimeSpecificVariables = () => {
     const CustomGrid = (props) =>
       <Grid item xs={4}>
@@ -280,7 +280,7 @@ const DialogBody = () => {
       <HoursLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
       <MinutesLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
     </CustomGrid>
-  }
+  };
   const DateSpecificVariables = () => {
     const CustomGrid = (props) =>
       <Grid item xs={4}>
@@ -294,7 +294,7 @@ const DialogBody = () => {
       <MaxDateProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
 
     </CustomGrid>
-  }
+  };
   const UnsubscribeSpecificVariables = () => {
     const CustomGrid = (props) =>
       <Grid item xs={4}>
@@ -305,7 +305,7 @@ const DialogBody = () => {
       <ButtonTextProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
       <DataMethodProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
     </CustomGrid>
-  }
+  };
   const DropdownSpecificVariables = () => {
     const CustomGrid = (props) =>
       <Grid item xs={4}>
@@ -315,7 +315,7 @@ const DialogBody = () => {
     return <CustomGrid>
       <LabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
     </CustomGrid>
-  }
+  };
 
   return (
     <Grid container direction="row" justify="center" alignItems="center" spacing={4}>
