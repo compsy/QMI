@@ -62,7 +62,7 @@ const BottomSection = ({ items }) => {
         Questions
       </Typography>
       <Droppable droppableId="BAG">
-          {(provided) => (
+          {(provided, snapshot) => (
               <Box ref={provided.innerRef} className="shopping-bag">
                   {questions.map((question, index) => (
                       <Draggable
@@ -70,7 +70,7 @@ const BottomSection = ({ items }) => {
                           draggableId={question.id}
                           index={index}
                       >
-                          {(provided) => (
+                          {(provided, snapshot) => (
                               <div
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
@@ -95,7 +95,7 @@ const BottomSection = ({ items }) => {
 const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
   const item = items[rubric.source.index];
   return (
-    <React.Fragment>
+    <div>
       <li
         {...provided.draggableProps}
         {...provided.dragHandleProps}
@@ -103,9 +103,9 @@ const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
         style={provided.draggableProps.style}
         className={snapshot.isDragging ? "dragging" : ""}
       >
-        {item.label}
+        {JSON.stringify(item)}
       </li>
-    </React.Fragment>
+    </div>
   );
 };
 
