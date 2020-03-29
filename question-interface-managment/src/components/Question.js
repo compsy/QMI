@@ -23,11 +23,11 @@ import TimePickerPreview from "./previews/TimePickerPreview";
 import TextFieldPreview from "./previews/TextFieldPreview";
 import DrawingPreview from "./previews/DrawingPreview";
 
-const Question = ({question}) => {
+const Question = ({question, ...props}) => {
     const [open, setOpen] = useState(false);
 
     return (
-        <ExpansionPanel expanded={open}>
+        <ExpansionPanel expanded={open} {...props}>
             <Summary onClick={() => setOpen(!open)} question={question} />
             <Divider />
             <Details question={question} />
