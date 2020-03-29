@@ -5,7 +5,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 const RemoveQuestionButton = ({ question }) => {
   const { dispatch } = useContext(QuestionnaireContext);
-  
   return (
     <Tooltip title="remove">
       <IconButton

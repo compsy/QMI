@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function TextArea() {
+const TextArea = ({ question }) => {
     const classes = useStyles();
     const [value, setValue] = React.useState();
 
@@ -23,12 +23,14 @@ function TextArea() {
         <form className={classes.root} noValidate autoComplete="off">
             <div>
                 <TextField
-                    id="standard-multiline-flexible"
-                    label="Multiline"
-                    multiline
-                    rowsMax="4"
-                    value={value}
-                    onChange={handleChange}
+                    section_start = {question.section_start}
+                    hidden = {question.hidden}
+                    id = {question.id}
+                    type = {question.type}
+                    title = {question.title}
+                    tooltip = {question.tooltip}
+                    placeholder={question.placeholder}
+                    section_end = {question.section_end}
                 />
 
             </div>
