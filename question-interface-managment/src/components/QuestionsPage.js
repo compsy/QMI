@@ -14,7 +14,8 @@ import {
   Paper,
   AppBar,
   Toolbar,
-  CssBaseline
+  CssBaseline,
+  Divider
 } from "@material-ui/core";
 import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
 import Question from "./Question";
@@ -89,7 +90,7 @@ const QuestionsPage = () => {
         <AppBar color="default" position="fixed" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" noWrap>
-              Clipped drawer
+              Questionnaire Editor
             </Typography>
           </Toolbar>
         </AppBar>
@@ -146,9 +147,9 @@ export default QuestionsPage;
 
 const TopSection = () => {
   return (
-    <Container style={{ textAlign: "center", margin: "2em auto" }}>
+    <Container style={{ textAlign: "center", margin: "1em auto" }} maxWidth="md">
       {/* <AddQuestionButton /> */}
-      <ToggleGridAreasButton />
+      {/* <ToggleGridAreasButton /> */}
       <StringifiedJSONCard />
     </Container>
   );
@@ -156,11 +157,10 @@ const TopSection = () => {
 
 const BottomSection = ({ items }) => {
   const { settings } = useContext(SettingsContext);
-  const [added, setAdded] = useState(null);
   const { questions } = useContext(QuestionnaireContext);
 
   return (
-    <Container style={{ textAlign: "center", margin: "1em auto" }}>
+    <Container style={{ textAlign: "center"}} maxWidth="md">
       <Typography variant="h4" style={{ margin: "1em 0" }}>
         Questions
       </Typography>
@@ -236,7 +236,7 @@ const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
 };
 
 const Sidebar = ({ items }) => {
-  const { settings } = useContext(SettingsContext);
+  const { settings, settingsDispatch } = useContext(SettingsContext);
   const classes = useStyles();
 
   return (
@@ -294,7 +294,12 @@ const Sidebar = ({ items }) => {
                 </React.Fragment>
               );
             })}
-            {provided.placeholder}
+            {/* {provided.placeholder} */}
+            <div className={classes.toolbar} />
+            <Divider/>
+            <ListItem button onClick={() => settingsDispatch({ type: "TOGGLE_GRID_AREAS" })}>
+              <ListItemText primary="toggle grid areas" />
+            </ListItem>
           </List>
         </Drawer>
       )}
