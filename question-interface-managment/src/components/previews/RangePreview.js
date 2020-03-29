@@ -1,4 +1,3 @@
-
 import React, {useContext} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
@@ -47,7 +46,7 @@ const PrettoSlider = withStyles({
 
 
 
-export default function RangePreview({ question }) {
+const  RangePreview = ({ question }) => {
     const classes = useStyles();
 
     return (
@@ -68,3 +67,5 @@ export default function RangePreview({ question }) {
         </div>
     );
 }
+
+export default RangePreview
