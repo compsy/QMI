@@ -114,9 +114,11 @@ const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
       {...provided.dragHandleProps}
       ref={provided.innerRef}
       style={provided.draggableProps.style}
-      // className={snapshot.isDragging ? "dragging" : ""}
     >
-      <Paper style={{ padding: "1em" }}>
+      <Paper
+        style={{ padding: "1em", color: "white" }}
+        className={snapshot.isDragging ? "dragging1" : "not-dragging1"}
+      >
         <Grid
           container
           direction="row"
