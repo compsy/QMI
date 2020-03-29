@@ -158,7 +158,7 @@ const DialogHeader = ({ question }) => {
         <InputLabel id="type-select-label">Type</InputLabel>
         <TypeSelector/>
       </FormControl>
-      <Grid container="row" justify="center" alignItems="center">
+      <Grid container direction="row" justify="center" alignItems="center">
         <GridItem textAlign="left">
           <QuestionTitle/>
         </GridItem>
@@ -379,7 +379,7 @@ const DialogFooter = ({ handleClose }) => {
     <Grid
       container
       direction="row"
-      alignItem="flex-start"
+      alignItems="flex-start"
       justify="flex-end"
       style={{
         padding: "2em",
