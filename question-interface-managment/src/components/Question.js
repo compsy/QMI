@@ -28,18 +28,24 @@ const Question = ({question, ...props}) => {
 
     return (
         <ExpansionPanel expanded={open} {...props}>
-            <Summary onClick={() => setOpen(!open)} question={question} />
-            <Divider />
-            <Details question={question} />
+            <Summary onClick={() => setOpen(!open)} question={question}/>
+            <Divider/>
+            <Details question={question}/>
         </ExpansionPanel>
     );
 };
 
+const style = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+};
+
 export default Question;
 
-const Summary = ({ question, ...props }) => {
-    const { settings } = useContext(SettingsContext);
-    const { questions } = useContext(QuestionnaireContext);
+const Summary = ({question, ...props}) => {
+    const {settings} = useContext(SettingsContext);
+    const {questions} = useContext(QuestionnaireContext);
 
     return (
         <ExpansionPanelSummary {...props}>
@@ -162,13 +168,7 @@ const Details = ({ question }) => {
                                 ><SelectPreview question={question}/>
                                 </div>;
                             case "textarea":
-                                return <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}
-                                ><TextArea question={question}/>
+                                return <div style={style}><TextArea question={question}/>
                                 </div>;
                             case "number":
                                 return <NumberPreview question={question}/>;
@@ -179,13 +179,7 @@ const Details = ({ question }) => {
                             case "text field":
                                 return <TextFieldPreview question={question}/>;
                             case "draw":
-                                return <div
-                                        style={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                        }}
-                                ><DrawingPreview question={question}/></div>;
+                                return <div style={style}><DrawingPreview question={question}/></div>;
                             default:
                                 return <RadioCheckboxPreview question={question}/>;
                         }
