@@ -34,7 +34,7 @@ import {
   HoursStepProperty,
   HoursToProperty,
   ImageProperty, LabelOptionsProperty,
-  LabelProperty, MaxDateProperty,
+  LabelProperty, LinksToExpandableProperty, MaxDateProperty,
   MaxExpansionsProperty,
   MaxLengthProperty,
   MaxProperty, MinDateProperty,
@@ -241,6 +241,7 @@ const DialogBody = () => {
       </Grid>;
     return <CustomGrid>
       <MaxLengthProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+      <LinksToExpandableProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
     </CustomGrid>
   };
   const RangeSpecificVariables = () => {

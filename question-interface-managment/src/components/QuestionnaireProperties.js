@@ -15,6 +15,10 @@ const DateProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, ..
 
   const handleChange = date => {
     newQuestion[propertyName] = date;
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion}
+    });
   };
 
   return (
@@ -39,35 +43,38 @@ const DateProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, ..
   );
 };
 const RegexpProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, regexp, helperText, ...props}) => {
-  const validate = (input) => input === "" || input === undefined || regexp.test(input);
+  const validate = (input) =>{
+      if(input === "" || input === undefined) return true;
+      const output = input.match(regexp);
+      if (output == null) return false;
+      return output[0] === input;
+  };
+  const id = uuidv4();
 
-  const [valid, setValid] = useState(validate(newQuestion[propertyName]));
-
+  const [state, setState] = useState({valid: validate(newQuestion[propertyName])});
+  const getNewState = () => ({valid: validate(newQuestion[propertyName])});
   const handleChange = event => {
     newQuestion[propertyName] = event.target.value;
-    setValid(validate(event.target.value));
+    setState(getNewState());
   };
-
-
 
   return (
     <TextField
-      key={uuidv4()}
-      error={!valid}
+      autoFocus
+      key={id}
+      error={!state.valid}
       variant="outlined"
       margin="dense"
-      type="text"
       fullWidth
       id={"outlined-error-helper-text"}
       value={newQuestion[propertyName]}
-      helperText={valid ? "" : helperText}
+      helperText={state.valid ? "" : helperText}
       onChange={handleChange}
       label={name}
       {...props}
    />
   );
 };
-
 const TextProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ...props}) => {
 
   const handleChange = event => {
@@ -77,7 +84,6 @@ const TextProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ...
   return (
     <TextField
       key={uuidv4()}
-
       variant="outlined"
       margin="dense"
       type="text"
@@ -90,7 +96,6 @@ const TextProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ...
     />
   );
 };
-
 const BooleanProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ...props}) => {
 
   const handleChange = event => {
@@ -117,7 +122,6 @@ const BooleanProperty = ({newQuestion, newQuestionDispatch, name, propertyName, 
     />
   );
 };
-// TODO: make it allow numbers only (use regex?)
 const NumericProperty = ({ newQuestion,newQuestionDispatch, name, propertyName, ...props }) => {
   return <RegexpProperty
     newQuestion={newQuestion}
@@ -206,7 +210,6 @@ export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, prope
   </>
 
 }
-
 export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   const [elementAdded, setElementAdded] = useState(false);
 
@@ -318,7 +321,6 @@ export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, .
   </>
 
 };
-// Regexp properties
 export const PatternProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -330,7 +332,6 @@ export const PatternProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
     />
   );
 }
-// todo: implement check
 export const ColorProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <RegexpProperty
@@ -746,21 +747,30 @@ export const SectionEndProperty = ({newQuestion, newQuestionDispatch, ...props})
     />
   );
 }
-
-// Not configured yet
 export const ImageProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
-  return null;
+  return <TextProperty
+    newQuestion={newQuestion}
+    newQuestionDispatch={newQuestionDispatch}
+    propertyName={"image"}
+    name={"Image URL"}
+    {...props}
+  />
 }
+// not in use yet
 export const DataMethodProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return null;
 }
 
-
-
-export const LinksToExpandableProperty = ({newQuestion, newQuestionDispatch, ...props}) => null;
+export const LinksToExpandableProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
+  return <TextProperty
+    newQuestionDispatch={newQuestionDispatch}
+    newQuestion={newQuestion}
+    propertyName={"links_to_expandable"}
+    name={"ID of expandable using input"}
+    {...props}
+  />
+};
 export const ExpandableContentProperty = ({newQuestion, newQuestionDispatch, ...props}) => null;
-
-
 
 // TextArray properties
 export const TextOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
