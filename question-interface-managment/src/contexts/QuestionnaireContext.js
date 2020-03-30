@@ -14,7 +14,7 @@ const QuestionnaireContextProvider = (props) => {
         { title: 'werk', numeric_value: 25 },
         { title: 'vriendschap', numeric_value: 50 }
         ]},
-    {id: 'v5', type: "select", title: "untitled select",
+    {id: 'v5', type: "dropdown", title: "untitled dropdown",
       options: [
         { title: 'hobby/sport', numeric_value: 0 },
         { title: 'werk', numeric_value: 25 },

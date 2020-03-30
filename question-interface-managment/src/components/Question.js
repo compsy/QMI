@@ -16,7 +16,7 @@ import EditQuestionButton from "./buttons/EditQuestionButton";
 import RadioCheckboxPreview from "./previews/RadioCheckboxPreview";
 import LikertPreview from "./previews/LikertPreview";
 import RangePreview from "./previews/RangePreview";
-import SelectPreview from "./previews/SelectPreview";
+import DropdownPreview from "./previews/DropdownPreview";
 import TextArea from "./previews/TextArea";
 import NumberPreview from "./previews/NumberPreview";
 import DatePickerPreview from "./previews/DatePickerPreview";
@@ -192,7 +192,7 @@ const Details = ({ question }) => {
                     <RangePreview question={question} />
                   </div>
                 );
-              case "select":
+              case "dropdown":
                 return (
                   <div
                     style={{
@@ -201,7 +201,7 @@ const Details = ({ question }) => {
                       alignItems: "center"
                     }}
                   >
-                    <SelectPreview question={question} />
+                    <DropdownPreview question={question} />
                   </div>
                 );
               case "textarea":

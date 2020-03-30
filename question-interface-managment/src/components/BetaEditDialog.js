@@ -46,7 +46,7 @@ import {
   RadiusProperty,
   RemoveButtonLabelProperty,
   RequiredProperty, SectionEndProperty, SectionStartProperty,
-  ShowOtherwiseProperty, StepProperty, TextOptionsPriorityProperty,
+  ShowOtherwiseProperty, StepProperty, PrioritizedTextOptionsProperty,
   TextOptionsProperty,
   TitleProperty,
   TodayProperty,
@@ -54,7 +54,7 @@ import {
   WidthProperty
 } from "./QuestionnaireProperties";
 import { v4 as uuidv4 } from 'uuid';
-import {PROPERTIES_BY_QUESTION_TYPE} from "./QuestionTypes";
+import {PROPERTIES_BY_QUESTION_TYPE, SPECIAL_CONVERSION_CASES} from "./QuestionTypes";
 
 const EditDialog = ({ question, open, setOpen }) => {
   const { settings } = useContext(SettingsContext);
@@ -126,17 +126,36 @@ const DialogHeader = ({ question }) => {
     </Grid>
   );
 
+  const changeType = (newType) => {
+    // handling special conversions
+    if(newQuestion.type in SPECIAL_CONVERSION_CASES && newType in SPECIAL_CONVERSION_CASES[newQuestion.type]) {
+      // array containing special conversions
+      const specialConversions = SPECIAL_CONVERSION_CASES[newQuestion.type][newType];
+
+      console.table(specialConversions);
+
+      specialConversions.map((specialConversion) => {
+        const property = specialConversion.property;
+        const conversionFunction = specialConversion.conversionFunction;
+        console.log(property);
+        console.log(conversionFunction);
+        newQuestion[property] =
+          conversionFunction(newQuestion[property]);
+      });
+    }
+
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion, type: newType }
+    });
+  };
+
   const TypeSelector = () => (
     <Select
     autoWidth
     labelId="type-select-label"
     value={newQuestion.type}
-    onChange={e =>
-      newQuestionDispatch({
-        type: "SET_QUESTION",
-        question: { ...newQuestion, type: e.target.value }
-      })
-    }
+    onChange={e => changeType(e.target.value)}
     style={{ textAlign: "left" }}
   >
       {/*TODO: not everything is compatible for convert, so only show what's allowed.*/}
