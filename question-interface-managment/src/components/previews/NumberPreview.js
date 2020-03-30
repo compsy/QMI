@@ -20,7 +20,7 @@ const NumberPreview = ({ question }) => {
                     required = {question.required}
                     value={inputtedNumber}
                     onChange={(e) => setValue(e.target.value)}
-                    error = {inputtedNumber < question.min || inputtedNumber > question.max}
+                    error = {inputtedNumber.length !== 0 && (inputtedNumber < question.min || inputtedNumber > question.max)}
                 />
             </form>
         </div>
