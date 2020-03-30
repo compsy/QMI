@@ -76,14 +76,15 @@ const RegexpProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, 
   );
 };
 const TextProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ...props}) => {
-
+  const [text, setText] = useState();
   const handleChange = event => {
     newQuestion[propertyName] = event.target.value;
+    setText(newQuestion[propertyName]);
   };
 
   return (
     <TextField
-      key={uuidv4()}
+      key={propertyName}
       variant="outlined"
       margin="dense"
       type="text"
@@ -381,17 +382,6 @@ export const MaxDateProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
   />;
 
 }
-export const TitleProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
-  return (
-    <TextProperty
-      newQuestion={newQuestion}
-      newQuestionDispatch={newQuestionDispatch}
-      propertyName={"title"}
-      name={"Title"}
-      {...props}
-    />
-  );
-}
 export const TooltipProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
   return (
     <TextProperty
@@ -596,6 +586,17 @@ export const DensityProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
 }
 
 // Text properties
+export const TitleProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
+  return (
+    <TextProperty
+      newQuestion={newQuestion}
+      newQuestionDispatch={newQuestionDispatch}
+      propertyName={"title"}
+      name={"Title"}
+      {...props}
+    />
+  );
+}
 export const OtherwiseLabelProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
   return (
     <TextProperty
