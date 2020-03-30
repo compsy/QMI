@@ -42,6 +42,7 @@ const DateProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, ..
 
   );
 };
+
 const RegexpProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, regexp, helperText, ...props}) => {
   const validate = (input) =>{
       if(input === "" || input === undefined) return true;
@@ -50,7 +51,6 @@ const RegexpProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, 
       return output[0] === input;
   };
   const id = uuidv4();
-
   const [state, setState] = useState({valid: validate(newQuestion[propertyName])});
   const getNewState = () => ({valid: validate(newQuestion[propertyName])});
   const handleChange = event => {
@@ -60,8 +60,8 @@ const RegexpProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, 
 
   return (
     <TextField
-      autoFocus
       key={id}
+      autoFocus
       error={!state.valid}
       variant="outlined"
       margin="dense"
@@ -168,7 +168,7 @@ export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, prope
   const renderElements = () => newQuestion[propertyName].map((option, index) => (
     <TextField
       key={index}
-      autoFocus={elementAdded ? index === newQuestion[propertyName].length - 1 : false}
+      autoFocus
       style={{ margin: "0.2em 0" }}
       placeholder={name}
       type="text"
@@ -212,7 +212,6 @@ export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, prope
 }
 export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   const [elementAdded, setElementAdded] = useState(false);
-
   if(newQuestion.options === undefined) newQuestion.options = [];
 
   const handleTitleChange = (index, event) => {
@@ -222,7 +221,6 @@ export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, .
       question: { ...newQuestion}
     });
   };
-
   const handleNumericValueChange = (index, event) => {
     newQuestion.options[index].numeric_value = event.target.value;
     newQuestionDispatch({
@@ -230,9 +228,7 @@ export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, .
       question: { ...newQuestion}
     });
   };
-
   const createEmptyOption = () => ({title: "new option", numeric_value: 0});
-
   const handleAddOptionClick = event => {
     newQuestion.options = [...newQuestion.options, createEmptyOption()];
     newQuestionDispatch({
@@ -241,7 +237,6 @@ export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, .
     });
     setElementAdded(true);
   }
-
   const handleRemoveOptionClick = (index, event) => {
     let newElements = [...newQuestion.options];
     newElements.splice(index, 1);
@@ -252,34 +247,44 @@ export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, .
     });
   };
 
+  const OptionTitleField = ({option, index, ...props}) => {
+    return <TextField
+      key={option.title}
+      autoFocus
+      style={{margin: "0.2em 0"}}
+      placeholder={"Options"}
+      type="text"
+      fullWidth
+      value={option.title}
+      onChange={e => handleTitleChange(index, e)}
+      InputProps={getInputProps(index)}
+    />
+  }
+
+  const OptionNumericValueField = ({option, index, ...props}) => {
+    return <TextField
+      autoFocus
+      key={index + 'numeric_value'}
+      id="standard-number"
+      placeholder={"Numeric value"}
+      type="number"
+      style={{ margin: "0.2em 0" }}
+      InputLabelProps={{
+        shrink: true,
+      }}
+      onChange={e => handleNumericValueChange(index, e)}
+      value={option.numeric_value}
+    />
+  }
+
+
   const renderElements = () => newQuestion.options.map((option, index) => (
     <>
       <Grid item xs={10}>
-        <TextField
-          key={index}
-          autoFocus={elementAdded ? index === newQuestion.options.length - 1 : false}
-          style={{ margin: "0.2em 0" }}
-          placeholder={"Options"}
-          type="text"
-          fullWidth
-          value={option.title}
-          onChange={e => handleTitleChange(index, e)}
-          InputProps={getInputProps(index)}
-        />
+        <OptionTitleField option={option} index={index}/>
       </Grid>
       <Grid item xs={2}>
-        <TextField
-          key={index}
-          id="standard-number"
-          placeholder={"Numeric value"}
-          type="number"
-          style={{ margin: "0.2em 0" }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={e => handleNumericValueChange(index, e)}
-          value={option.numeric_value}
-        />
+        <OptionNumericValueField option={option} index={index}/>
       </Grid>
     </>
   ))
@@ -349,6 +354,7 @@ export const ColorProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
 // Date properties
 export const DefaultDateProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return <DateProperty
+    disabled={newQuestion.today}
     newQuestion={newQuestion}
     newQuestionDispatch={newQuestionDispatch}
     name="Default Date"
@@ -788,4 +794,23 @@ export const LabelOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
     name="Labels"
     propertyName="labels"
   />
+}
+
+
+// Composite properties. These consists of smaller properties, depending on each other:
+export const OtherwiseProperty = ({newQuestion, newQuestionDispatch}) => {
+  return <>
+    <ShowOtherwiseProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
+    {newQuestion.show_otherwise ?
+      <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
+        <OtherwiseLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+        <OtherwiseTooltipProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+      </Grid>
+      : null}
+    </>
+}
+
+export const DefaultDateCompositionProperty = ({newQuestion, newQuestionDispatch}) => {
+
+
 }

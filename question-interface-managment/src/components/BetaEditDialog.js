@@ -53,6 +53,8 @@ import {
   TooltipProperty,
   WidthProperty
 } from "./QuestionnaireProperties";
+import { v4 as uuidv4 } from 'uuid';
+import {PROPERTIES_BY_QUESTION_TYPE} from "./QuestionTypes";
 
 const EditDialog = ({ question, open, setOpen }) => {
   const { settings } = useContext(SettingsContext);
@@ -171,152 +173,14 @@ const DialogBody = () => {
   const { settings } = useContext(SettingsContext);
   const { newQuestion, newQuestionDispatch } = useContext(NewQuestionContext);
 
-  // Grid for boolean items. These are switches, checkboxes, etc.
+  const renderProperties = () => {
+    const elements = [];
+    PROPERTIES_BY_QUESTION_TYPE[newQuestion.type.toUpperCase()].map(property =>
+      elements.push(React.createElement(property,
+        {newQuestion: newQuestion, newQuestionDispatch: newQuestionDispatch})));
+    return elements;
+  };
 
-
-  const MiscProperties = () => {
-    const CustomGrid = (props) =>
-      <Grid item xs={4}>
-        <h3>Misc.</h3>
-        <p><i>These items are available in <b>multiple</b> other question types.</i></p>
-        {props.children}
-      </Grid>;
-    return <CustomGrid>
-      <RequiredProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-      <ShowOtherwiseProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-      {newQuestion.show_otherwise ?
-        <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
-          <OtherwiseLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-          <OtherwiseTooltipProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-        </Grid>
-        : null}
-      <HiddenProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-      <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
-        <TooltipProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      </Grid>
-
-      <MinProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-      <MaxProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-
-      {/*todo: check if this property is valid for BOTH raw and unsubscribe.*/}
-      <ContentProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-      <PlaceholderProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-      <SectionStartProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-      <SectionEndProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-    </CustomGrid>
-  };
-  const DrawingSpecificVariables = () => {
-    const DrawingGrid = (props) =>
-      <Grid item xs={4}>
-        <h3>Drawing-specific.</h3>
-        {props.children}
-      </Grid>;
-
-   return <DrawingGrid>
-      <WidthProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <HeightProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <ImageProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <ColorProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <RadiusProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <DensityProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    </DrawingGrid>
-  }
-  const TextFieldSpecificVariables = () => {
-    const CustomGrid = (props) =>
-      <Grid item xs={4}>
-        <h3>Textfield-specific.</h3>
-        {props.children}
-      </Grid>;
-    return <CustomGrid>
-      <DefaultTextValueProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <PatternProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <HintProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    </CustomGrid>
-  };
-  const NumberSpecificVariables = () => {
-    const CustomGrid = (props) =>
-      <Grid item xs={4}>
-        <h3>Number-specific.</h3>
-        {props.children}
-      </Grid>;
-    return <CustomGrid>
-      <MaxLengthProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <LinksToExpandableProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    </CustomGrid>
-  };
-  const RangeSpecificVariables = () => {
-    const CustomGrid = (props) =>
-      <Grid item xs={4}>
-        <h3>Range-specific.</h3>
-        {props.children}
-      </Grid>;
-    return <CustomGrid>
-      <StepProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <LabelOptionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    </CustomGrid>
-  };
-  const ExpandableSpecificVariables = () => {
-    const CustomGrid = (props) =>
-      <Grid item xs={4}>
-        <h3>Expandable-specific.</h3>
-        {props.children}
-      </Grid>;
-    return <CustomGrid>
-      <AddButtonLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <RemoveButtonLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <DefaultExpansionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <MaxExpansionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    </CustomGrid>
-  };
-  const TimeSpecificVariables = () => {
-    const CustomGrid = (props) =>
-      <Grid item xs={4}>
-        <h3>Time-specific.</h3>
-        {props.children}
-      </Grid>;
-    return <CustomGrid>
-      <HoursFromProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <HoursToProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <HoursStepProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <HoursLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <MinutesLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    </CustomGrid>
-  };
-  const DateSpecificVariables = () => {
-    const CustomGrid = (props) =>
-      <Grid item xs={4}>
-        <h3>Date-specific.</h3>
-        {props.children}
-      </Grid>;
-    return <CustomGrid>
-      <TodayProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <DefaultDateProperty disabled={newQuestion.today} newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <MinDateProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <MaxDateProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-
-    </CustomGrid>
-  };
-  const UnsubscribeSpecificVariables = () => {
-    const CustomGrid = (props) =>
-      <Grid item xs={4}>
-        <h3>Unsubscribe-specific.</h3>
-        {props.children}
-      </Grid>;
-    return <CustomGrid>
-      <ButtonTextProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      <DataMethodProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    </CustomGrid>
-  };
-  const DropdownSpecificVariables = () => {
-    const CustomGrid = (props) =>
-      <Grid item xs={4}>
-        <h3>Dropdown-specific.</h3>
-        {props.children}
-      </Grid>;
-    return <CustomGrid>
-      <LabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    </CustomGrid>
-  };
 
   return (
     <Grid container direction="row" justify="center" alignItems="center" spacing={4}>
@@ -328,33 +192,11 @@ const DialogBody = () => {
           opacity: settings.showGridAreas ? 0.9 : 1.0
         }}
       >
-        <TitleProperty
-          required
-          newQuestion={newQuestion}
-          newQuestionDispatch={newQuestionDispatch}
-          style={{ margin: "1em 0" }}
-        />
       </Grid>
-
-
       <Grid item xs={12}>
-        <h5>All other properties (debug)</h5>
         <Grid container direction="row">
-          <MiscProperties/>
-          <DateSpecificVariables/>
-          <DrawingSpecificVariables/>
-          <DropdownSpecificVariables/>
-          <ExpandableSpecificVariables/>
-          <NumberSpecificVariables/>
-          <RangeSpecificVariables/>
-          <TextFieldSpecificVariables/>
-          <TimeSpecificVariables/>
-          <UnsubscribeSpecificVariables/>
+          {renderProperties()}
         </Grid>
-      </Grid>
-
-      <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
-        <TextOptionsPriorityProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
       </Grid>
     </Grid>
   );
