@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import {
+  Box,
   Divider,
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -24,27 +25,32 @@ import TextFieldPreview from "./previews/TextFieldPreview";
 import DrawingPreview from "./previews/DrawingPreview";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import "./index.css";
+import DragHandleIcon from "@material-ui/icons/DragHandle";
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <ExpansionPanel expanded={open} {...props}>
-      <Draggable key={question.id} draggableId={question.id} index={index}>
-        {(provided, snapshot) => (
-          <div
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            style={provided.draggableProps.style}
-          >
-            <Summary onClick={() => setOpen(!open)} question={question} />
-          </div>
-        )}
-      </Draggable>
-      <Divider />
-      <Details question={question} />
-    </ExpansionPanel>
+    <Draggable key={question.id} draggableId={question.id} index={index}>
+      {(provided, snapshot) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          style={provided.draggableProps.style}
+        >
+          <ExpansionPanel expanded={open} {...props}>
+            <Summary
+              onClick={() => setOpen(!open)}
+              question={question}
+              provided={provided}
+            />
+            {/* <Summary onClick={() => setOpen(!open)} question={question} onMouseDown={() => setOpen(!open)}/> */}
+            <Divider />
+            <Details question={question} />
+          </ExpansionPanel>
+        </div>
+      )}
+    </Draggable>
   );
 };
 
@@ -56,7 +62,7 @@ const style = {
 
 export default Question;
 
-const Summary = ({ question, ...props }) => {
+const Summary = ({ question, provided, ...props }) => {
   const { settings } = useContext(SettingsContext);
   const { questions } = useContext(QuestionnaireContext);
 
@@ -73,6 +79,18 @@ const Summary = ({ question, ...props }) => {
           opacity: settings.showGridAreas ? "0.8" : "1.0"
         }}
       >
+        <Grid
+          item
+          xs
+          style={{
+            textAlign: "left",
+            background: settings.showGridAreas ? "lightgreen" : "transparent",
+            opacity: settings.showGridAreas ? "0.8" : "1.0"
+          }}
+          {...provided.dragHandleProps}
+        >
+          <DragHandleIcon />
+        </Grid>
         <Grid
           item
           xs
@@ -101,7 +119,7 @@ const Summary = ({ question, ...props }) => {
         </Grid>
         <Grid
           item
-          xs
+          xs={2}
           style={{
             textAlign: "right",
             background: settings.showGridAreas ? "lightcoral" : "transparent",
