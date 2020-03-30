@@ -39,13 +39,16 @@ const DateProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, ..
   );
 };
 const RegexpProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, regexp, helperText, ...props}) => {
+  const validate = (input) => input === "" || input === undefined || regexp.test(input);
 
-  const [valid, setValid] = useState(true);
+  const [valid, setValid] = useState(validate(newQuestion[propertyName]));
 
   const handleChange = event => {
     newQuestion[propertyName] = event.target.value;
-    setValid(regexp.test(event.target.value));
+    setValid(validate(event.target.value));
   };
+
+
 
   return (
     <TextField
@@ -56,19 +59,19 @@ const RegexpProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, 
       type="text"
       fullWidth
       id={"outlined-error-helper-text"}
-      helperText={valid ? "" : helperText}
       value={newQuestion[propertyName]}
+      helperText={valid ? "" : helperText}
       onChange={handleChange}
       label={name}
       {...props}
-    />
+   />
   );
 };
+
 const TextProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ...props}) => {
 
   const handleChange = event => {
     newQuestion[propertyName] = event.target.value;
-
   };
 
   return (
@@ -116,11 +119,13 @@ const BooleanProperty = ({newQuestion, newQuestionDispatch, name, propertyName, 
 };
 // TODO: make it allow numbers only (use regex?)
 const NumericProperty = ({ newQuestion,newQuestionDispatch, name, propertyName, ...props }) => {
-  return <TextProperty
+  return <RegexpProperty
     newQuestion={newQuestion}
     newQuestionDispatch={newQuestionDispatch}
     name={name}
     propertyName={propertyName}
+    regexp={RegExp("^[0-9]*$")}
+    helperText={"Please use only numbers"}
     {...props}
   />
 };
@@ -245,8 +250,8 @@ export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, .
   };
 
   const renderElements = () => newQuestion.options.map((option, index) => (
-    <Grid container direction="row">
-      <Grid item xs={9}>
+    <>
+      <Grid item xs={10}>
         <TextField
           key={index}
           autoFocus={elementAdded ? index === newQuestion.options.length - 1 : false}
@@ -259,22 +264,21 @@ export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, .
           InputProps={getInputProps(index)}
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <TextField
           key={index}
-          id="outlined-number"
-          label="Numeric Value"
+          id="standard-number"
+          placeholder={"Numeric value"}
           type="number"
           style={{ margin: "0.2em 0" }}
           InputLabelProps={{
             shrink: true,
           }}
           onChange={e => handleNumericValueChange(index, e)}
-          variant="outlined"
           value={option.numeric_value}
         />
       </Grid>
-    </Grid>
+    </>
   ))
 
   const getInputProps = (index) => ({
@@ -296,13 +300,20 @@ export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, .
     <Button onClick={handleAddOptionClick}>
       add {"Options"}
     </Button>
+
+    <Grid container direction="row" spacing={2}>
+      <Grid item xs={10}>Title</Grid><Grid item xs={2}>Numeric value</Grid>
+    </Grid>
+
     <Box
-      fullWidth
-      height="200px"
-      overflow="scroll"
-      style={{ margin: "0", overflowX: "hidden" }}
-    >
-      {renderElements()}
+        fullWidth
+        height="200px"
+        overflow="scroll"
+        style={{ margin: "0", overflowX: "hidden" }}
+      >
+        <Grid container direction="row" spacing={2}>
+          {renderElements()}
+        </Grid>
     </Box>
   </>
 
