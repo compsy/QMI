@@ -80,7 +80,7 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
     TooltipProperty, PrioritizedTextOptionsProperty],
 
   RANGE: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty,
-    TooltipProperty, MinProperty, MaxProperty, StepProperty, TextOptionsProperty, LabelOptionsProperty],
+    TooltipProperty, MinProperty, MaxProperty, StepProperty, LabelOptionsProperty],
 
   RAW: [SectionStartProperty, SectionEndProperty, ContentProperty],
 
