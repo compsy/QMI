@@ -8,8 +8,18 @@ const QuestionnaireContextProvider = (props) => {
     {id: 'v1', type: "radio", title: "untitled radio", options: ["option 1", "option 222", "option 3", "option 4"]},
     {id: 'v2', type: "checkbox", title: "untitled checkbox", options: ["option 1", "option 2", "option 3", "option 4"]},
     {id: 'v3', type: "range", title: "untitled range", options: ["option 1", "option 2", "option 3", "option 4"]},
-    {id: 'v4', type: "likert", title: "untitled likert", options: ["option 1", "option 2", "option 3", "option 4"]},
-    {id: 'v5', type: "select", title: "untitled select", options: ["option 1", "option 2", "option 3", "option 4"]},
+    {id: 'v4', type: "likert", title: "untitled likert",
+      options: [
+        { title: 'hobby/sport', numeric_value: 0 },
+        { title: 'werk', numeric_value: 25 },
+        { title: 'vriendschap', numeric_value: 50 }
+        ]},
+    {id: 'v5', type: "select", title: "untitled select",
+      options: [
+        { title: 'hobby/sport', numeric_value: 0 },
+        { title: 'werk', numeric_value: 25 },
+        { title: 'vriendschap', numeric_value: 50 }
+      ]},
 
     { section_start: 'Tot slot',
       hidden: true,
