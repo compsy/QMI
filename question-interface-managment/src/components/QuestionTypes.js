@@ -43,7 +43,7 @@ import {
   SectionStartProperty,
   ShowOtherwiseProperty,
   StepProperty,
-  TextOptionsPriorityProperty,
+  PrioritizedTextOptionsProperty,
   TextOptionsProperty,
   TitleProperty, TodayProperty,
   TooltipProperty,
@@ -77,7 +77,7 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
     TooltipProperty, TextOptionsProperty, OtherwiseProperty],
 
   LIKERT: [HiddenProperty ,TitleProperty, SectionStartProperty, SectionEndProperty,
-    TooltipProperty, TextOptionsPriorityProperty],
+    TooltipProperty, PrioritizedTextOptionsProperty],
 
   RANGE: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty,
     TooltipProperty, MinProperty, MaxProperty, StepProperty, TextOptionsProperty, LabelOptionsProperty],
@@ -102,12 +102,66 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
 
   UNSUBSCRIBE: [TitleProperty, ContentProperty, ButtonTextProperty],
 
-  DROPDOWN: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, TextOptionsPriorityProperty,
+  DROPDOWN: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PrioritizedTextOptionsProperty,
   LabelProperty],
 
   DRAWING: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, WidthProperty, HeightProperty,
   ImageProperty, ColorProperty, RadiusProperty, DensityProperty]
 };
+
+
+
+/*
+* Because of the slight difference in storing options between radio/checkboxes and likert/dropdown, a conversion
+* needs to be done. This function adds a numeric_value (index by default) to the elements of a given textOptions.
+*
+* parameter: textOptions: an array of strings
+* returns: an array of JSON containing the converted options.
+* */
+export function TextOptionsToPrioritizedTextOptions(textOptions){
+  return textOptions.map((option, index) => ({title: option, numeric_value: index}));
+}
+/*
+* The opposite to the function above. This converts a JSON array of prioritized text to a simple string array
+* containing the titles of those (previously) prioritized options.
+* */
+export function PrioritizedTextOptionsToTextOptions(prioritizedTextOptions){
+  return prioritizedTextOptions.map((json) => json.title);
+}
+
+/*
+* A map containing special conversion cases.
+* As explained in TextOptionsToPrioritizedTextOptions, some properties in question types share the same name
+* but are differently defined per type. This map stores those exception as follows:
+*
+* - Identified by the current type (uppercase)
+* - JSON containing each type that, if the current type will be converted to this, has special conversion cases.
+* - specialConversions: an array holding the actual conversion data:
+*     - property: the property to be converted
+*     - conversionFunction: the function that handles the special conversion.
+* */
+
+const TEXT_OPTION_TO_PRIORITIZED_CASE =  {
+  likert: [{property: 'options', conversionFunction: TextOptionsToPrioritizedTextOptions}],
+  dropdown: [{property: 'options', conversionFunction: TextOptionsToPrioritizedTextOptions}],
+};
+
+const PRIORITIZED_TO_TEXT_OPTION_CASE =  {
+  radio: [{property: 'options', conversionFunction: PrioritizedTextOptionsToTextOptions}],
+  checkbox: [{property: 'options', conversionFunction: PrioritizedTextOptionsToTextOptions}],
+};
+
+export const SPECIAL_CONVERSION_CASES = {
+  radio: TEXT_OPTION_TO_PRIORITIZED_CASE,
+  checkbox: TEXT_OPTION_TO_PRIORITIZED_CASE,
+  likert: PRIORITIZED_TO_TEXT_OPTION_CASE,
+  dropdown: PRIORITIZED_TO_TEXT_OPTION_CASE
+
+  // todo: add special case: min/max for numberic and date
+};
+
+
+
 /*
 const MiscProperties = () => {
   const CustomGrid = (props) =>

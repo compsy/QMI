@@ -124,15 +124,34 @@ const BooleanProperty = ({newQuestion, newQuestionDispatch, name, propertyName, 
   );
 };
 const NumericProperty = ({ newQuestion,newQuestionDispatch, name, propertyName, ...props }) => {
-  return <RegexpProperty
-    newQuestion={newQuestion}
-    newQuestionDispatch={newQuestionDispatch}
-    name={name}
-    propertyName={propertyName}
-    regexp={RegExp("^[0-9]*$")}
-    helperText={"Please use only numbers"}
-    {...props}
-  />
+  const validate = (input) =>{
+    return !isNaN(parseInt(input));
+  };
+  const id = uuidv4();
+  const [state, setState] = useState({valid: validate(newQuestion[propertyName])});
+  const getNewState = () => ({valid: validate(newQuestion[propertyName])});
+  const handleChange = event => {
+    newQuestion[propertyName] = event.target.value;
+    setState(getNewState());
+  };
+
+  return (
+    <TextField
+      key={id}
+      autoFocus
+      error={!state.valid}
+      variant="outlined"
+      margin="dense"
+      type="number"
+      fullWidth
+      id={"outlined-error-helper-text"}
+      value={newQuestion[propertyName]}
+      helperText={state.valid ? "" : "Please use numbers only."}
+      onChange={handleChange}
+      label={name}
+      {...props}
+    />
+  );
 };
 export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, propertyName}) => {
   const [elementAdded, setElementAdded] = useState(false);
@@ -211,7 +230,7 @@ export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, prope
   </>
 
 }
-export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
+export const PrioritizedTextOptionsProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   const [elementAdded, setElementAdded] = useState(false);
   if(newQuestion.options === undefined) newQuestion.options = [];
 
@@ -250,7 +269,7 @@ export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, .
 
   const OptionTitleField = ({option, index, ...props}) => {
     return <TextField
-      key={option.title}
+      key={option.title + index}
       autoFocus
       style={{margin: "0.2em 0"}}
       placeholder={"Options"}
@@ -265,7 +284,7 @@ export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, .
   const OptionNumericValueField = ({option, index, ...props}) => {
     return <TextField
       autoFocus
-      key={index + 'numeric_value'}
+      key={option.numeric_value + index}
       id="standard-number"
       placeholder={"Numeric value"}
       type="number"

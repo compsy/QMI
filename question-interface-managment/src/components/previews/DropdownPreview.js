@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function SelectPreview() {
+function DropdownPreview() {
     const classes = useStyles();
     const [age, setAge] = React.useState("");
     const [open, setOpen] = React.useState(false);
@@ -62,4 +62,4 @@ function SelectPreview() {
     );
 }
 
-export default SelectPreview
+export default DropdownPreview
