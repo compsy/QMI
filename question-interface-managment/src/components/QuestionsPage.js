@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import {v4 as uuidv1} from 'uuid';
+import { v4 as uuidv1 } from "uuid";
 import {
   makeStyles,
   Box,
@@ -23,9 +23,9 @@ import ToggleGridAreasButton from "./buttons/ToggleGridAreasButton";
 import AddQuestionButton2 from "./buttons/AddQuestionButton2";
 import StringifiedJSONCard from "./StringifiedJSONCard";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import "./index.css";
 import { QUESTION_TYPES } from "./QuestionTypes";
 
-import "./index.css";
 import { SettingsContext } from "../contexts/SettingsContext";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -33,7 +33,7 @@ import { useEffect } from "react";
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
+    display: "flex"
   },
   // appBar: {
   //   width: `calc(100% - ${drawerWidth}px)`,
@@ -41,8 +41,8 @@ const useStyles = makeStyles(theme => ({
   // },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    color: 'white',
-    alignItems: 'center',
+    color: "white",
+    alignItems: "center"
   },
   drawer: {
     // width: drawerWidth,
@@ -68,7 +68,10 @@ const QuestionsPage = () => {
     if (!destination) {
       return;
     }
-    settingsDispatch({ type: "SET_DESTINATION_INDEX", destinationIndex: destination.index});
+    settingsDispatch({
+      type: "SET_DESTINATION_INDEX",
+      destinationIndex: destination.index
+    });
     console.log(settings.destinationIndex, destination.index);
     switch (source.droppableId) {
       case "BAG":
@@ -149,7 +152,10 @@ export default QuestionsPage;
 
 const TopSection = () => {
   return (
-    <Container style={{ textAlign: "center", margin: "1em auto" }} maxWidth="md">
+    <Container
+      style={{ textAlign: "center", margin: "1em auto" }}
+      maxWidth="md"
+    >
       {/* <AddQuestionButton /> */}
       {/* <ToggleGridAreasButton /> */}
       <StringifiedJSONCard />
@@ -162,7 +168,7 @@ const BottomSection = ({ items }) => {
   const { questions } = useContext(QuestionnaireContext);
 
   return (
-    <Container style={{ textAlign: "center"}} maxWidth="md">
+    <Container style={{ textAlign: "center" }} maxWidth="md">
       <Typography variant="h4" style={{ margin: "1em 0" }}>
         Questions
       </Typography>
@@ -170,22 +176,7 @@ const BottomSection = ({ items }) => {
         {(provided, snapshot) => (
           <Box ref={provided.innerRef} className="shopping-bag">
             {questions.map((question, index) => (
-              <Draggable
-                key={question.id}
-                draggableId={question.id}
-                index={index}
-              >
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={provided.draggableProps.style}
-                  >
-                    <Question key={uuidv1()} question={question} />
-                  </div>
-                )}
-              </Draggable>
+              <Question index={index} key={uuidv1()} question={question} />
             ))}
             {provided.placeholder}
           </Box>
@@ -203,7 +194,7 @@ function getStyle(style, snapshot) {
   return {
     ...style,
     // cannot be 0, but make it super tiny
-    transitionDuration: `0.00001s`,
+    transitionDuration: `0.00001s`
   };
 }
 
@@ -213,7 +204,7 @@ const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
   const style = {
     //backgroundColor: snapshot.isDragging ? 'blue' : 'white',
     // fontSize: 18,
-    ...provided.draggableProps.style,
+    ...provided.draggableProps.style
   };
   return (
     <Paper
@@ -298,8 +289,11 @@ const Sidebar = ({ items }) => {
             })}
             {/* {provided.placeholder} */}
             <div className={classes.toolbar} />
-            <Divider/>
-            <ListItem button onClick={() => settingsDispatch({ type: "TOGGLE_GRID_AREAS" })}>
+            <Divider />
+            <ListItem
+              button
+              onClick={() => settingsDispatch({ type: "TOGGLE_GRID_AREAS" })}
+            >
               <ListItemText primary="toggle grid areas" />
             </ListItem>
           </List>
