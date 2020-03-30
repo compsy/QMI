@@ -70,29 +70,42 @@ export const QUESTION_TYPES = [
 
 // todo: add ShowAfterProperty, this one is allowed for every type.
 export const PROPERTIES_BY_QUESTION_TYPE = {
-  CHECKBOX: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty, TitleProperty,
+  CHECKBOX: [RequiredProperty, HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty,
               TooltipProperty, TextOptionsProperty, OtherwiseProperty],
-  RADIO: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty, TitleProperty,
+
+  RADIO: [ RequiredProperty, HiddenProperty, TitleProperty,, SectionStartProperty, SectionEndProperty,
     TooltipProperty, TextOptionsProperty, OtherwiseProperty],
-  LIKERT: [HiddenProperty, SectionStartProperty, SectionEndProperty, TitleProperty,
+
+  LIKERT: [HiddenProperty ,TitleProperty, SectionStartProperty, SectionEndProperty,
     TooltipProperty, TextOptionsPriorityProperty],
-  RANGE: [HiddenProperty, SectionStartProperty, SectionEndProperty, TitleProperty,
+
+  RANGE: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty,
     TooltipProperty, MinProperty, MaxProperty, StepProperty, TextOptionsProperty, LabelOptionsProperty],
+
   RAW: [SectionStartProperty, SectionEndProperty, ContentProperty],
-  TEXTAREA: [HiddenProperty, TitleProperty, SectionStartProperty, TooltipProperty, SectionEndProperty, PlaceholderProperty],
+
+  TEXTAREA: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PlaceholderProperty],
+
   TEXTFIELD: [HiddenProperty, SectionStartProperty, TitleProperty, TooltipProperty, SectionEndProperty, PlaceholderProperty,
     DefaultTextValueProperty, PatternProperty, HintProperty],
-  NUMBER: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty, TitleProperty, TooltipProperty,
+
+  NUMBER: [RequiredProperty, HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
   MinProperty, MaxProperty, PlaceholderProperty, MaxLengthProperty, LinksToExpandableProperty],
-  EXPANDABLE: [SectionStartProperty, RemoveButtonLabelProperty, AddButtonLabelProperty, DefaultExpansionsProperty,
+
+  EXPANDABLE: [SectionStartProperty, AddButtonLabelProperty, RemoveButtonLabelProperty, DefaultExpansionsProperty,
   MaxExpansionsProperty],
+
   TIME: [TitleProperty, HoursFromProperty, HoursToProperty, HoursStepProperty, HoursLabelProperty, MinutesLabelProperty],
-  DATE: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty, TitleProperty, TooltipProperty,
-  MinDateProperty, MaxDateProperty, PlaceholderProperty, DefaultDateProperty],
+
+  DATE: [RequiredProperty, HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
+  MinDateProperty, MaxDateProperty, PlaceholderProperty, TodayProperty, DefaultDateProperty],
+
   UNSUBSCRIBE: [TitleProperty, ContentProperty, ButtonTextProperty],
-  DROPDOWN: [HiddenProperty, SectionStartProperty, SectionEndProperty, TitleProperty, TooltipProperty, TextOptionsPriorityProperty,
+
+  DROPDOWN: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, TextOptionsPriorityProperty,
   LabelProperty],
-  DRAWING: [HiddenProperty, SectionStartProperty, SectionEndProperty, TitleProperty, TooltipProperty, WidthProperty, HeightProperty,
+
+  DRAWING: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, WidthProperty, HeightProperty,
   ImageProperty, ColorProperty, RadiusProperty, DensityProperty]
 };
 /*
