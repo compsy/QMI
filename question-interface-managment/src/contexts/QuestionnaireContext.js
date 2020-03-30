@@ -61,7 +61,17 @@ const QuestionnaireContextProvider = (props) => {
       placeholder: 'Place holder',
       section_end: true,
     },
-    {id: 'v9', type: "number", title: "untitled number", placeholder: 5132, min: 10, max: 100, maxlength: 4}
+    {id: 'v9', type: "number", title: "untitled number", placeholder: 5132, min: 10, max: 100, maxlength: 4},
+
+    {
+      id: 'v10',
+      type: 'time',
+      hours_from: 3,
+      hours_to: 6,
+      hours_step: 1,
+      title: 'Hoeveel tijd heb je deze week besteed aan de begeleiding van deze student movai pilon?',
+    },
+
   ]);
   return (
     <QuestionnaireContext.Provider value={{questions, dispatch}}>

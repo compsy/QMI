@@ -6,7 +6,10 @@ import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
 } from '@material-ui/pickers';
-export default function TimerPickerPreview() {
+import TextField from "@material-ui/core/TextField";
+
+
+const TimerPickerPreview = ({question}) => {
     const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
     const handleDateChange = date => {
         setSelectedDate(date);
@@ -14,17 +17,38 @@ export default function TimerPickerPreview() {
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container justify="space-around">
-                <KeyboardTimePicker
-                    margin="normal"
-                    id="time-picker"
-                    label="Time picker"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change time',
+                {/*<KeyboardTimePicker*/}
+                {/*    margin="normal"*/}
+                {/*    id={question.id}*/}
+                {/*    type="time"*/}
+                {/*    defaultValue = "3"*/}
+                {/*    hours_to = {question.hours_to}*/}
+                {/*    hours_step = {question.hours_step}*/}
+                {/*    title = {question.title}*/}
+
+
+                {/*    onChange={handleDateChange}*/}
+                {/*    KeyboardButtonProps={{*/}
+                {/*        'aria-label': 'change time',*/}
+                {/*    }}*/}
+
+                {/*/>*/}
+                <TextField
+                    id="time"
+                    type="time"
+                    color = "primary"
+                    size = "large"
+                    defaultValue="10:10"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    inputProps={{
+                        step: 300, // 5 min
+                        style: {fontSize: 25}
                     }}
                 />
             </Grid>
         </MuiPickersUtilsProvider>
     );
 }
+export default TimerPickerPreview
