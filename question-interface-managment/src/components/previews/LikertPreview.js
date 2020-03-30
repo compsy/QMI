@@ -30,14 +30,14 @@ const LikertPreview = ({ question }) => {
       opacity: settings.showGridAreas ? "0.8" : "1.0"
     }}
   >
-    <Typography variant="body1">{option}</Typography>
+    <Typography variant="body1">{option.title + " (" + option.numeric_value + ")"}</Typography>
   </Grid>;
 
   const renderOption = (option) =>
     <Grid
       item
       xs={"auto"}
-      key={option}
+      key={option.numeric_value}
       style={{
         background: settings.showGridAreas ? "yellow" : "transparent",
         opacity: settings.showGridAreas ? "0.8" : "1.0"

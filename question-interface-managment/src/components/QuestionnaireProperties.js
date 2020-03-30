@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import { v4 as uuidv4 } from 'uuid';
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import Grid from "@material-ui/core/Grid";
 
 // Overarching properties (templates)
 const DateProperty = ({ newQuestion, newQuestionDispatch, name, propertyName, ...props}) => {
@@ -86,6 +87,7 @@ const TextProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ...
     />
   );
 };
+
 const BooleanProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ...props}) => {
 
   const handleChange = event => {
@@ -200,6 +202,111 @@ export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, prope
 
 }
 
+export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
+  const [elementAdded, setElementAdded] = useState(false);
+
+  if(newQuestion.options === undefined) newQuestion.options = [];
+
+  const handleTitleChange = (index, event) => {
+    newQuestion.options[index].title = event.target.value;
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion}
+    });
+  };
+
+  const handleNumericValueChange = (index, event) => {
+    newQuestion.options[index].numeric_value = event.target.value;
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion}
+    });
+  };
+
+  const createEmptyOption = () => ({title: "new option", numeric_value: 0});
+
+  const handleAddOptionClick = event => {
+    newQuestion.options = [...newQuestion.options, createEmptyOption()];
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion}
+    });
+    setElementAdded(true);
+  }
+
+  const handleRemoveOptionClick = (index, event) => {
+    let newElements = [...newQuestion.options];
+    newElements.splice(index, 1);
+    newQuestion.options = newElements;
+    newQuestionDispatch({
+      type: "SET_QUESTION",
+      question: { ...newQuestion}
+    });
+  };
+
+  const renderElements = () => newQuestion.options.map((option, index) => (
+    <Grid container direction="row">
+      <Grid item xs={9}>
+        <TextField
+          key={index}
+          autoFocus={elementAdded ? index === newQuestion.options.length - 1 : false}
+          style={{ margin: "0.2em 0" }}
+          placeholder={"Options"}
+          type="text"
+          fullWidth
+          value={option.title}
+          onChange={e => handleTitleChange(index, e)}
+          InputProps={getInputProps(index)}
+        />
+      </Grid>
+      <Grid item xs={3}>
+        <TextField
+          key={index}
+          id="outlined-number"
+          label="Numeric Value"
+          type="number"
+          style={{ margin: "0.2em 0" }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={e => handleNumericValueChange(index, e)}
+          variant="outlined"
+          value={option.numeric_value}
+        />
+      </Grid>
+    </Grid>
+  ))
+
+  const getInputProps = (index) => ({
+    endAdornment: (
+      <InputAdornment position="end" margin="0">
+        <IconButton
+          edge="end"
+          onClick={e => handleRemoveOptionClick(index, e)}
+          style={{margin: "0", padding: "0"}}
+        >
+          <DeleteIcon/>
+        </IconButton>
+      </InputAdornment>
+    )
+  });
+
+  return <>
+    <h4>{"Options"}</h4>
+    <Button onClick={handleAddOptionClick}>
+      add {"Options"}
+    </Button>
+    <Box
+      fullWidth
+      height="200px"
+      overflow="scroll"
+      style={{ margin: "0", overflowX: "hidden" }}
+    >
+      {renderElements()}
+    </Box>
+  </>
+
+};
 // Regexp properties
 export const PatternProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
@@ -636,7 +743,9 @@ export const ImageProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
 export const DataMethodProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return null;
 }
-export const TextOptionsPriorityProperty = ({newQuestion, newQuestionDispatch, ...props}) => null;
+
+
+
 export const LinksToExpandableProperty = ({newQuestion, newQuestionDispatch, ...props}) => null;
 export const ExpandableContentProperty = ({newQuestion, newQuestionDispatch, ...props}) => null;
 

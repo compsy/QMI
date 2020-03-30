@@ -46,7 +46,7 @@ import {
   RadiusProperty,
   RemoveButtonLabelProperty,
   RequiredProperty, SectionEndProperty, SectionStartProperty,
-  ShowOtherwiseProperty, StepProperty,
+  ShowOtherwiseProperty, StepProperty, TextOptionsPriorityProperty,
   TextOptionsProperty,
   TitleProperty,
   TodayProperty,
@@ -353,7 +353,7 @@ const DialogBody = () => {
       </Grid>
 
       <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
-        <TextOptionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
+        <TextOptionsPriorityProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
       </Grid>
     </Grid>
   );
