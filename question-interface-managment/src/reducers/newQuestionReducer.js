@@ -6,4 +6,4 @@ export const newQuestionReducer = (state, action) => {
     default:
       return state;
   }
-}
+};

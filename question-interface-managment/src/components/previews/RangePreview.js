@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 
@@ -66,6 +66,6 @@ const  RangePreview = ({ question }) => {
             />
         </div>
     );
-}
+};
 
 export default RangePreview

@@ -1,8 +1,6 @@
-import React from 'react'
-import { useContext } from 'react';
-import { QuestionnaireContext } from '../contexts/QuestionnaireContext';
-import { Card, Typography } from '@material-ui/core';
-import { useEffect } from 'react';
+import React, {useContext} from 'react'
+import {QuestionnaireContext} from '../contexts/QuestionnaireContext';
+import {Card, Typography} from '@material-ui/core';
 
 const StringifiedJSONCard = () => {
   const { questions } = useContext(QuestionnaireContext);

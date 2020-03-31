@@ -1,5 +1,5 @@
-import React, { createContext, useReducer } from "react";
-import { newQuestionReducer } from "../reducers/newQuestionReducer";
+import React, {createContext, useReducer} from "react";
+import {newQuestionReducer} from "../reducers/newQuestionReducer";
 
 export const NewQuestionContext = createContext();
 

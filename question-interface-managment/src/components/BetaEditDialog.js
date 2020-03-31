@@ -1,59 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
-import {
-  Box,
-  Dialog,
-  IconButton,
-  TextField,
-  Button,
-  InputAdornment,
-  Grid,
-  Typography,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
-import { SettingsContext } from "../contexts/SettingsContext";
-import { NewQuestionContext } from "../contexts/NewQuestionContext";
-import ToggleGridAreasButton from "./buttons/ToggleGridAreasButton";
-import {
-  AddButtonLabelProperty,
-  ButtonTextProperty,
-  ColorProperty, ContentProperty,
-  DataMethodProperty, DefaultDateProperty,
-  DefaultExpansionsProperty,
-  DefaultTextValueProperty,
-  DensityProperty,
-  HeightProperty,
-  HiddenProperty,
-  HintProperty,
-  HoursFromProperty,
-  HoursLabelProperty,
-  HoursStepProperty,
-  HoursToProperty,
-  ImageProperty, LabelOptionsProperty,
-  LabelProperty, LinksToExpandableProperty, MaxDateProperty,
-  MaxExpansionsProperty,
-  MaxLengthProperty,
-  MaxProperty, MinDateProperty,
-  MinProperty,
-  MinutesLabelProperty,
-  OtherwiseLabelProperty,
-  OtherwiseTooltipProperty,
-  PatternProperty, PlaceholderProperty,
-  RadiusProperty,
-  RemoveButtonLabelProperty,
-  RequiredProperty, SectionEndProperty, SectionStartProperty,
-  ShowOtherwiseProperty, StepProperty, PrioritizedTextOptionsProperty,
-  TextOptionsProperty,
-  TitleProperty,
-  TodayProperty,
-  TooltipProperty,
-  WidthProperty
-} from "./QuestionnaireProperties";
-import { v4 as uuidv4 } from 'uuid';
+import React, {useContext, useEffect} from "react";
+import {Button, Dialog, FormControl, Grid, InputLabel, MenuItem, Select, Typography} from "@material-ui/core";
+import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
+import {SettingsContext} from "../contexts/SettingsContext";
+import {NewQuestionContext} from "../contexts/NewQuestionContext";
 import {PROPERTIES_BY_QUESTION_TYPE, SPECIAL_CONVERSION_CASES} from "./QuestionTypes";
 
 const EditDialog = ({ question, open, setOpen }) => {

@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { Grid, Typography, Radio, Checkbox } from "@material-ui/core";
-import { SettingsContext } from "../../contexts/SettingsContext";
+import React, {useContext} from "react";
+import {Checkbox, Grid, Radio, Typography} from "@material-ui/core";
+import {SettingsContext} from "../../contexts/SettingsContext";
 
 const RadioCheckboxPreview = ({ question }) => {
   const { settings } = useContext(SettingsContext);

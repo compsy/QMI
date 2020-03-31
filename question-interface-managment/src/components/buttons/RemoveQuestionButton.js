@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { QuestionnaireContext } from "../../contexts/QuestionnaireContext";
-import { Tooltip, IconButton } from "@material-ui/core";
+import React, {useContext} from "react";
+import {QuestionnaireContext} from "../../contexts/QuestionnaireContext";
+import {IconButton, Tooltip} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const RemoveQuestionButton = ({ question }) => {

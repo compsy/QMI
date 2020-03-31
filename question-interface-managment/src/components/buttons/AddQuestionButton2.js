@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useState} from "react";
 import SpeedDial from "@material-ui/lab/SpeedDial";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import { QuestionnaireContext } from "../../contexts/QuestionnaireContext";
+import {QuestionnaireContext} from "../../contexts/QuestionnaireContext";
 import TuneIcon from '@material-ui/icons/Tune';
 import LinearScaleIcon from '@material-ui/icons/LinearScale';
 import Looks5TwoToneIcon from '@material-ui/icons/Looks5TwoTone';
