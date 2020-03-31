@@ -1,34 +1,30 @@
-import React, { useContext } from "react";
-import { v4 as uuidv1 } from "uuid";
+import React, {useContext} from "react";
+import {v4 as uuidv1} from "uuid";
 import {
-  makeStyles,
+  AppBar,
   Box,
   Container,
+  CssBaseline,
+  Divider,
   Drawer,
+  Grid,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Typography,
-  Grid,
+  makeStyles,
   Paper,
-  AppBar,
   Toolbar,
-  CssBaseline,
-  Divider
+  Typography
 } from "@material-ui/core";
-import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
+import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
 import Question from "./Question";
-import ToggleGridAreasButton from "./buttons/ToggleGridAreasButton";
-import AddQuestionButton2 from "./buttons/AddQuestionButton2";
 import StringifiedJSONCard from "./StringifiedJSONCard";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 import "./index.css";
-import { QUESTION_TYPES } from "./QuestionTypes";
+import {QUESTION_TYPES} from "./QuestionTypes";
 
-import { SettingsContext } from "../contexts/SettingsContext";
-import { useState } from "react";
-import { useEffect } from "react";
+import {SettingsContext} from "../contexts/SettingsContext";
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({

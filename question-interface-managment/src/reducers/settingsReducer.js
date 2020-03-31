@@ -7,4 +7,4 @@ export const settingsReducer = (state, action) => {
     default:
       return state;
   }
-}
+};

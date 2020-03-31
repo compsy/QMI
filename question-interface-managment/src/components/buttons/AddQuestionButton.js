@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { QuestionnaireContext } from "../../contexts/QuestionnaireContext";
-import { Button } from "@material-ui/core";
+import React, {useContext} from "react";
+import {QuestionnaireContext} from "../../contexts/QuestionnaireContext";
+import {Button} from "@material-ui/core";
 
 const AddQuestionButton = () => {
   const { dispatch } = useContext(QuestionnaireContext);

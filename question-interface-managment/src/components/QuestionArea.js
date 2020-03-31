@@ -1,5 +1,5 @@
 import React from "react";
-import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
+import {Draggable, Droppable} from "react-beautiful-dnd";
 
 const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
     const item = items[rubric.source.index];
@@ -33,7 +33,7 @@ function QuestionArea(props) {
                         return (
                             <React.Fragment key={item.id}>
                                 {shouldRenderClone ? (
-                                    <li className="react-beatiful-dnd-copy">{item.label}</li>
+                                    <li>{item.label}</li>
                                 ) : (
                                     <Draggable draggableId={item.id} index={index}>
                                         {(provided, snapshot) => (

@@ -1,5 +1,5 @@
-import React, { createContext, useReducer } from "react";
-import { settingsReducer } from "../reducers/settingsReducer";
+import React, {createContext, useReducer} from "react";
+import {settingsReducer} from "../reducers/settingsReducer";
 
 export const SettingsContext = createContext();
 

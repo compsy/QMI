@@ -1,5 +1,5 @@
-import React, { createContext, useReducer } from 'react';
-import { questionnaireReducer } from '../reducers/questionnaireReducer';
+import React, {createContext, useReducer} from 'react';
+import {questionnaireReducer} from '../reducers/questionnaireReducer';
 
 export const QuestionnaireContext = createContext();
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
@@ -31,6 +31,6 @@ const TextFieldPreview = ({question}) => {
             />
         </form>
     );
-}
+};
 
 export default TextFieldPreview

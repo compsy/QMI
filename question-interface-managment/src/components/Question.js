@@ -1,16 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useState} from "react";
 import {
-  Box,
-  Divider,
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
-  Grid,
-  Typography
+    Divider,
+    ExpansionPanel,
+    ExpansionPanelDetails,
+    ExpansionPanelSummary,
+    Grid,
+    Typography
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
-import { SettingsContext } from "../contexts/SettingsContext";
+import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
+import {SettingsContext} from "../contexts/SettingsContext";
 import RemoveQuestionButton from "./buttons/RemoveQuestionButton";
 import EditQuestionButton from "./buttons/EditQuestionButton";
 import RadioCheckboxPreview from "./previews/RadioCheckboxPreview";
@@ -23,7 +22,7 @@ import DatePickerPreview from "./previews/DatePickerPreview";
 import TimePickerPreview from "./previews/TimePickerPreview";
 import TextFieldPreview from "./previews/TextFieldPreview";
 import DrawingPreview from "./previews/DrawingPreview";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import {Draggable} from "react-beautiful-dnd";
 import "./index.css";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
 

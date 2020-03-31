@@ -1,11 +1,11 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import Switch from "@material-ui/core/Switch";
-import {DialogContent, FormControlLabel, IconButton, InputAdornment} from "@material-ui/core";
+import {FormControlLabel, IconButton, InputAdornment} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import Grid from "@material-ui/core/Grid";
@@ -173,7 +173,7 @@ export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, prope
       question: { ...newQuestion}
     });
     setElementAdded(true);
-  }
+  };
 
   const handleRemoveOptionClick = (index, event) => {
     let newElements = [...newQuestion[propertyName]];
@@ -197,7 +197,7 @@ export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, prope
       onChange={e => handleChange(index, e)}
       InputProps={getInputProps(index)}
     />
-  ))
+  ));
 
   const getInputProps = (index) => ({
     endAdornment: (
@@ -229,7 +229,7 @@ export const TextArrayProperty = ({newQuestion, newQuestionDispatch, name, prope
     </Box>
   </>
 
-}
+};
 export const PrioritizedTextOptionsProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   const [elementAdded, setElementAdded] = useState(false);
   if(newQuestion.options === undefined) newQuestion.options = [];
@@ -256,7 +256,7 @@ export const PrioritizedTextOptionsProperty = ({newQuestion, newQuestionDispatch
       question: { ...newQuestion}
     });
     setElementAdded(true);
-  }
+  };
   const handleRemoveOptionClick = (index, event) => {
     let newElements = [...newQuestion.options];
     newElements.splice(index, 1);
@@ -279,7 +279,7 @@ export const PrioritizedTextOptionsProperty = ({newQuestion, newQuestionDispatch
       onChange={e => handleTitleChange(index, e)}
       InputProps={getInputProps(index)}
     />
-  }
+  };
 
   const OptionNumericValueField = ({option, index, ...props}) => {
     return <TextField
@@ -295,7 +295,7 @@ export const PrioritizedTextOptionsProperty = ({newQuestion, newQuestionDispatch
       onChange={e => handleNumericValueChange(index, e)}
       value={option.numeric_value}
     />
-  }
+  };
 
 
   const renderElements = () => newQuestion.options.map((option, index) => (
@@ -307,7 +307,7 @@ export const PrioritizedTextOptionsProperty = ({newQuestion, newQuestionDispatch
         <OptionNumericValueField option={option} index={index}/>
       </Grid>
     </>
-  ))
+  ));
 
   const getInputProps = (index) => ({
     endAdornment: (
@@ -356,7 +356,7 @@ export const PatternProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
       {...props}
     />
   );
-}
+};
 export const ColorProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <RegexpProperty
@@ -369,7 +369,7 @@ export const ColorProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
       {...props}
     />
   );
-}
+};
 
 // Date properties
 export const DefaultDateProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
@@ -381,7 +381,7 @@ export const DefaultDateProperty = ({newQuestion, newQuestionDispatch, ...props}
     propertyName="default_date"
     {...props}
   />;
-}
+};
 export const MinDateProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return <DateProperty
     newQuestion={newQuestion}
@@ -390,7 +390,7 @@ export const MinDateProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
     propertyName="min"
     {...props}
   />;
-}
+};
 export const MaxDateProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return <DateProperty
     newQuestion={newQuestion}
@@ -400,7 +400,7 @@ export const MaxDateProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
     {...props}
   />;
 
-}
+};
 export const TooltipProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
   return (
     <TextProperty
@@ -411,7 +411,7 @@ export const TooltipProperty = ({ newQuestion, newQuestionDispatch, ...props }) 
       {...props}
     />
   );
-}
+};
 
 // Boolean properties
 export const HiddenProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
@@ -424,7 +424,7 @@ export const HiddenProperty = ({newQuestion, newQuestionDispatch, ...props}) => 
       {...props}
     />
   )
-}
+};
 export const ShowOtherwiseProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <BooleanProperty
@@ -435,7 +435,7 @@ export const ShowOtherwiseProperty = ({newQuestion, newQuestionDispatch, ...prop
       {...props}
     />
   )
-}
+};
 export const RequiredProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <BooleanProperty
@@ -446,7 +446,7 @@ export const RequiredProperty = ({newQuestion, newQuestionDispatch, ...props}) =
       {...props}
     />
   )
-}
+};
 export const TodayProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <BooleanProperty
@@ -457,7 +457,7 @@ export const TodayProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
       {...props}
     />
   );
-}
+};
 
 // Numeric properties
 export const MinProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
@@ -470,7 +470,7 @@ export const MinProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
       {...props}
     />
   );
-}
+};
 export const MaxProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -481,7 +481,7 @@ export const MaxProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
       {...props}
     />
   );
-}
+};
 export const StepProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -492,7 +492,7 @@ export const StepProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
       {...props}
     />
   );
-}
+};
 export const MaxLengthProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -503,7 +503,7 @@ export const MaxLengthProperty = ({newQuestion, newQuestionDispatch, ...props}) 
       {...props}
     />
   );
-}
+};
 export const DefaultExpansionsProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -514,7 +514,7 @@ export const DefaultExpansionsProperty = ({newQuestion, newQuestionDispatch, ...
       {...props}
     />
   );
-}
+};
 export const MaxExpansionsProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -525,7 +525,7 @@ export const MaxExpansionsProperty = ({newQuestion, newQuestionDispatch, ...prop
       {...props}
     />
   );
-}
+};
 export const HoursFromProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -546,7 +546,7 @@ export const HoursToProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
       {...props}
     />
   );
-}
+};
 export const HoursStepProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -557,7 +557,7 @@ export const HoursStepProperty = ({newQuestion, newQuestionDispatch, ...props}) 
       {...props}
     />
   );
-}
+};
 export const WidthProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -568,7 +568,7 @@ export const WidthProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
       {...props}
     />
   );
-}
+};
 export const HeightProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -580,7 +580,7 @@ export const HeightProperty = ({newQuestion, newQuestionDispatch, ...props}) => 
     />
   );
 
-}
+};
 export const RadiusProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -591,7 +591,7 @@ export const RadiusProperty = ({newQuestion, newQuestionDispatch, ...props}) => 
       {...props}
     />
   );
-}
+};
 export const DensityProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <NumericProperty
@@ -602,7 +602,7 @@ export const DensityProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
       {...props}
     />
   );
-}
+};
 
 // Text properties
 export const TitleProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
@@ -615,7 +615,7 @@ export const TitleProperty = ({ newQuestion, newQuestionDispatch, ...props }) =>
       {...props}
     />
   );
-}
+};
 export const OtherwiseLabelProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
   return (
     <TextProperty
@@ -627,7 +627,7 @@ export const OtherwiseLabelProperty = ({ newQuestion, newQuestionDispatch, ...pr
     />
   );
 
-}
+};
 export const OtherwiseTooltipProperty = ({ newQuestion, newQuestionDispatch, ...props }) => {
   return (
     <TextProperty
@@ -638,7 +638,7 @@ export const OtherwiseTooltipProperty = ({ newQuestion, newQuestionDispatch, ...
       {...props}
     />
   );
-}
+};
 export const ContentProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -650,7 +650,7 @@ export const ContentProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
       {...props}
     />
   );
-}
+};
 export const PlaceholderProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -661,7 +661,7 @@ export const PlaceholderProperty = ({newQuestion, newQuestionDispatch, ...props}
       {...props}
     />
   );
-}
+};
 export const DefaultTextValueProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -673,7 +673,7 @@ export const DefaultTextValueProperty = ({newQuestion, newQuestionDispatch, ...p
     />
   );
 
-}
+};
 export const HintProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -684,7 +684,7 @@ export const HintProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
       {...props}
     />
   );
-}
+};
 export const RemoveButtonLabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -695,7 +695,7 @@ export const RemoveButtonLabelProperty = ({newQuestion, newQuestionDispatch, ...
       {...props}
     />
   );
-}
+};
 export const AddButtonLabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -706,7 +706,7 @@ export const AddButtonLabelProperty = ({newQuestion, newQuestionDispatch, ...pro
       {...props}
     />
   );
-}
+};
 export const HoursLabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -717,7 +717,7 @@ export const HoursLabelProperty = ({newQuestion, newQuestionDispatch, ...props})
       {...props}
     />
   );
-}
+};
 export const MinutesLabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -728,7 +728,7 @@ export const MinutesLabelProperty = ({newQuestion, newQuestionDispatch, ...props
       {...props}
     />
   );
-}
+};
 export const ButtonTextProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -739,7 +739,7 @@ export const ButtonTextProperty = ({newQuestion, newQuestionDispatch, ...props})
       {...props}
     />
   );
-}
+};
 export const LabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -750,7 +750,7 @@ export const LabelProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
       {...props}
     />
   );
-}
+};
 export const SectionStartProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -761,7 +761,7 @@ export const SectionStartProperty = ({newQuestion, newQuestionDispatch, ...props
       {...props}
     />
   );
-}
+};
 export const SectionEndProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
     <TextProperty
@@ -772,7 +772,7 @@ export const SectionEndProperty = ({newQuestion, newQuestionDispatch, ...props})
       {...props}
     />
   );
-}
+};
 export const ImageProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return <TextProperty
     newQuestion={newQuestion}
@@ -781,11 +781,11 @@ export const ImageProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
     name={"Image URL"}
     {...props}
   />
-}
+};
 // not in use yet
 export const DataMethodProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return null;
-}
+};
 
 export const LinksToExpandableProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return <TextProperty
@@ -806,7 +806,7 @@ export const TextOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
     name="Options"
     propertyName="options"
   />
-}
+};
 export const LabelOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
   return <TextArrayProperty
     newQuestion={newQuestion}
@@ -814,7 +814,7 @@ export const LabelOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
     name="Labels"
     propertyName="labels"
   />
-}
+};
 
 
 // Composite properties. These consists of smaller properties, depending on each other:
@@ -828,9 +828,9 @@ export const OtherwiseProperty = ({newQuestion, newQuestionDispatch}) => {
       </Grid>
       : null}
     </>
-}
+};
 
 export const DefaultDateCompositionProperty = ({newQuestion, newQuestionDispatch}) => {
 
 
-}
+};

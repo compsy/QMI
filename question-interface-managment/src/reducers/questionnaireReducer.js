@@ -1,5 +1,5 @@
 import uuid from "uuid/v1";
-import { QUESTION_TYPES } from "../components/QuestionTypes";
+import {QUESTION_TYPES} from "../components/QuestionTypes";
 
 
 const reorder = (list, startIndex, endIndex) => {

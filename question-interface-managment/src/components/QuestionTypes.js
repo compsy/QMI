@@ -1,5 +1,5 @@
 import React from 'react';
-import { v4 as uuid } from "uuid";
+import {v4 as uuid} from "uuid";
 import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import TuneIcon from '@material-ui/icons/Tune';
@@ -11,9 +11,11 @@ import ScheduleIcon from '@material-ui/icons/Schedule';
 import TextFormatIcon from '@material-ui/icons/TextFormat';
 import GestureIcon from '@material-ui/icons/Gesture';
 import {
-  AddButtonLabelProperty, ButtonTextProperty,
+  AddButtonLabelProperty,
+  ButtonTextProperty,
   ColorProperty,
-  ContentProperty, DataMethodProperty, DefaultDateProperty,
+  ContentProperty,
+  DefaultDateProperty,
   DefaultExpansionsProperty,
   DefaultTextValueProperty,
   DensityProperty,
@@ -25,31 +27,32 @@ import {
   HoursStepProperty,
   HoursToProperty,
   ImageProperty,
-  LabelOptionsProperty, LabelProperty,
-  LinksToExpandableProperty, MaxDateProperty,
+  LabelOptionsProperty,
+  LabelProperty,
+  LinksToExpandableProperty,
+  MaxDateProperty,
   MaxExpansionsProperty,
   MaxLengthProperty,
-  MaxProperty, MinDateProperty,
-  MinProperty, MinutesLabelProperty,
-  OtherwiseLabelProperty,
+  MaxProperty,
+  MinDateProperty,
+  MinProperty,
+  MinutesLabelProperty,
   OtherwiseProperty,
-  OtherwiseTooltipProperty,
   PatternProperty,
   PlaceholderProperty,
+  PrioritizedTextOptionsProperty,
   RadiusProperty,
   RemoveButtonLabelProperty,
   RequiredProperty,
   SectionEndProperty,
   SectionStartProperty,
-  ShowOtherwiseProperty,
   StepProperty,
-  PrioritizedTextOptionsProperty,
   TextOptionsProperty,
-  TitleProperty, TodayProperty,
+  TitleProperty,
+  TodayProperty,
   TooltipProperty,
   WidthProperty
 } from "./QuestionnaireProperties";
-import {Grid, Tooltip} from "@material-ui/core";
 
 export const QUESTION_TYPES = [
   { id: uuid(), label: "radio", icon: <RadioButtonCheckedIcon /> },
@@ -157,7 +160,7 @@ export const SPECIAL_CONVERSION_CASES = {
   likert: PRIORITIZED_TO_TEXT_OPTION_CASE,
   dropdown: PRIORITIZED_TO_TEXT_OPTION_CASE
 
-  // todo: add special case: min/max for numberic and date
+  // todo: add special case: min/max for numeric and date
 };
 
 
