@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {v4 as uuidv1} from "uuid";
 import {
   AppBar,
@@ -83,6 +83,15 @@ const QuestionsPage = () => {
     }
   }, []);
   const classes = useStyles();
+  useEffect(() => {
+    const x = localStorage.getItem("qmi-data");
+    if (x !== null) {
+      dispatch({ type: "SET_QUESTIONS", questions: JSON.parse(x)})
+    }
+  }, [])
+  useEffect(() => {
+    localStorage.setItem("qmi-data", JSON.stringify(questions))
+  }, [questions])
 
   return (
     <div className={classes.root}>
