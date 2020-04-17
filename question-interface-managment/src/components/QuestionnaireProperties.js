@@ -346,30 +346,7 @@ export const PrioritizedTextOptionsProperty = ({newQuestion, newQuestionDispatch
   </>
 
 };
-export const PatternProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
-  return (
-    <TextProperty
-      newQuestion={newQuestion}
-      newQuestionDispatch={newQuestionDispatch}
-      name={"Regex pattern"}
-      propertyName={"pattern"}
-      {...props}
-    />
-  );
-};
-export const ColorProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
-  return (
-    <RegexpProperty
-      newQuestion={newQuestion}
-      newQuestionDispatch={newQuestionDispatch}
-      name={"Color (hex value)"}
-      propertyName={"color"}
-      regexp={RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")}
-      helperText="Use hex colors only (e.g. #007fff, #03d)"
-      {...props}
-    />
-  );
-};
+
 
 // Date properties
 export const DefaultDateProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
@@ -764,10 +741,10 @@ export const SectionStartProperty = ({newQuestion, newQuestionDispatch, ...props
 };
 export const SectionEndProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
-    <TextProperty
+    <BooleanProperty
       newQuestion={newQuestion}
       newQuestionDispatch={newQuestionDispatch}
-      name={"End section with..."}
+      name={"Question marks a section end"}
       propertyName={"section_end"}
       {...props}
     />
@@ -782,10 +759,6 @@ export const ImageProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
     {...props}
   />
 };
-// not in use yet
-export const DataMethodProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
-  return null;
-};
 
 export const LinksToExpandableProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return <TextProperty
@@ -796,7 +769,32 @@ export const LinksToExpandableProperty = ({newQuestion, newQuestionDispatch, ...
     {...props}
   />
 };
-export const ExpandableContentProperty = ({newQuestion, newQuestionDispatch, ...props}) => null;
+
+// Not organised yet
+export const PatternProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
+  return (
+    <TextProperty
+      newQuestion={newQuestion}
+      newQuestionDispatch={newQuestionDispatch}
+      name={"Regex pattern"}
+      propertyName={"pattern"}
+      {...props}
+    />
+  );
+};
+export const ColorProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
+  return (
+    <RegexpProperty
+      newQuestion={newQuestion}
+      newQuestionDispatch={newQuestionDispatch}
+      name={"Color (hex value)"}
+      propertyName={"color"}
+      regexp={RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")}
+      helperText="Use hex colors only (e.g. #007fff, #03d)"
+      {...props}
+    />
+  );
+};
 
 // TextArray properties
 export const TextOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
@@ -816,6 +814,11 @@ export const LabelOptionsProperty = ({newQuestion, newQuestionDispatch}) => {
   />
 };
 
+// not in use yet
+export const DataMethodProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
+  return null;
+};
+export const ExpandableContentProperty = ({newQuestion, newQuestionDispatch, ...props}) => null;
 
 // Composite properties. These consists of smaller properties, depending on each other:
 export const OtherwiseProperty = ({newQuestion, newQuestionDispatch}) => {
@@ -829,7 +832,6 @@ export const OtherwiseProperty = ({newQuestion, newQuestionDispatch}) => {
       : null}
     </>
 };
-
 export const DefaultDateCompositionProperty = ({newQuestion, newQuestionDispatch}) => {
 
 
