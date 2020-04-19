@@ -77,7 +77,7 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
   CHECKBOX: [RequiredProperty, HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty,
               TooltipProperty, TextOptionsProperty, OtherwiseProperty],
 
-  RADIO: [ RequiredProperty, HiddenProperty, TitleProperty,, SectionStartProperty, SectionEndProperty,
+  RADIO: [ RequiredProperty, HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty,
     TooltipProperty, TextOptionsProperty, OtherwiseProperty],
 
   LIKERT: [HiddenProperty ,TitleProperty, SectionStartProperty, SectionEndProperty,

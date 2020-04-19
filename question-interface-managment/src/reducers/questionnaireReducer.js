@@ -16,7 +16,7 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
     id: uuid(),
     type: item.label,
     title: `untitled ${item.label}`,
-    options: ["option1", "option2", "option3", "option4"]
+    labels: ["option1", "option2", "option3", "option4"]
   });
   return newDestination;
 };
@@ -38,7 +38,7 @@ export const questionnaireReducer = (state, action) => {
           id: uniq,
           type: action.questionType.toLowerCase(),
           title: "untitled " + action.questionType,
-          options: ["option 1", "option 2", "option 3", "option 4"]
+          labels: ["option 1", "option 2", "option 3", "option 4"]
         }
       ];
     case "REMOVE_QUESTION":
