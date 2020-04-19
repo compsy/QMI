@@ -12,27 +12,31 @@ const reorder = (list, startIndex, endIndex) => {
 const copy = (source, destination, droppableSource, droppableDestination) => {
   let newDestination = destination.slice(0, destination.length);
   const item = source[droppableSource.index];
-  if (item.label === "radio" || item.label === "checkbox" || item.label === "likert" || item.label === "dropdown") {
+
+  var options = ["option 1" , "option 2","option 31" , "option 24"];
+  if (item.label === "range"){
     newDestination.splice(droppableDestination.index, 0, {
       id: uuid(),
       type: item.label,
       title: `untitled ${item.label}`,
-      options: ["option1", "option2", "option3", "option4"]
+      labels: options
     });
-  } else if (item.label === "range") {
+  } else if (item.label === "likert" || item.label === "dropdown" || item.label === "checkbox" || item.label === "radio"){
     newDestination.splice(droppableDestination.index, 0, {
       id: uuid(),
       type: item.label,
       title: `untitled ${item.label}`,
-      labels: ["option1", "option2", "option3", "option4"]
+      options: options
     });
-  } else {
+  }
+  else{
     newDestination.splice(droppableDestination.index, 0, {
       id: uuid(),
       type: item.label,
       title: `untitled ${item.label}`,
     });
   }
+
 
   return newDestination;
 };
@@ -48,41 +52,31 @@ export const questionnaireReducer = (state, action) => {
       return action.questions;
     case "ADD_QUESTION":
       const uniq = uuid();
-      let question_type = action.questionType.toLowerCase();
-      if (question_type === "range") {
+      if (action.type === "range"){
         return [
-          ...state,
-          {
+          ...state, {
             id: uniq,
             type: action.questionType.toLowerCase(),
             title: "untitled " + action.questionType,
             labels: ["option 1", "option 2", "option 3", "option 4"]
-          }
-        ];
-      }
-      if (question_type === "radio" || question_type === "checkbox" || question_type === "likert" || question_type === "dropdown") {
+          }]
+      } else if (action.type === "likert" || action.type === "dropdown" || action.type === "checkbox" || action.type === "radio"){
         return [
-          ...state,
-          {
+          ...state, {
             id: uniq,
             type: action.questionType.toLowerCase(),
             title: "untitled " + action.questionType,
             options: ["option 1", "option 2", "option 3", "option 4"]
-          }
-        ];
-      } else {
+          }]
+      }
+      else {
         return [
-          ...state,
-          {
+          ...state, {
             id: uniq,
             type: action.questionType.toLowerCase(),
             title: "untitled " + action.questionType,
-            // labels: ["option 1", "option 2", "option 3", "option 4"]
-          }
-        ];
+          }];
       }
-
-
     case "REMOVE_QUESTION":
       return state.filter(question => question.id !== action.id);
     case "UPDATE_QUESTION":
