@@ -55,13 +55,14 @@ const  RangePreview = ({ question }) => {
             <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider"
                           defaultValue={30}
                           aria-labelledby="discrete-slider"
-                          step={question.step}
+                          // step={question.step}
                           marks
                           min={question.min}
                           max={question.max}
+                          step = "5"
                           title = {question.title}
                           // tooltip = {question.tooltip}
-                          labels = {question.labels}
+                          labels = {"question.labels"}
                           section_end = {question.section_end}
             />
         </div>

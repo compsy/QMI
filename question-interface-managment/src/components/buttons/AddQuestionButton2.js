@@ -14,6 +14,7 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import TextFormatIcon from '@material-ui/icons/TextFormat';
 import GestureIcon from '@material-ui/icons/Gesture';
+import Crop54Icon from '@material-ui/icons/Crop54';
 
 const actions = [
   { icon: <RadioButtonCheckedIcon />, name: "radio" },
@@ -25,8 +26,9 @@ const actions = [
   { icon: <Looks5TwoToneIcon />, name: "number"},
   { icon: <DateRangeIcon />, name: "date"},
   { icon: <ScheduleIcon />, name: "time"},
-  { icon: <TextFormatIcon />, name: "text field"},
+  { icon: <TextFormatIcon />, name: "textfield"},
   { icon: <GestureIcon />, name: "draw"},
+  { icon: <Crop54Icon />, name: "raw"},
 ];
 
 const AddQuestionButton2 = () => {
@@ -64,10 +66,13 @@ const AddQuestionButton2 = () => {
         dispatch({ type: "ADD_QUESTION", questionType: "time" });
         break;
       case 'speeddial-action-9':
-        dispatch({ type: "ADD_QUESTION", questionType: "text field" });
+        dispatch({ type: "ADD_QUESTION", questionType: "textfield" });
         break;
       case 'speeddial-action-10':
         dispatch({ type: "ADD_QUESTION", questionType: "draw" });
+        break;
+      case 'speeddial-action-11':
+        dispatch({ type: "ADD_QUESTION", questionType: "raw" });
         break;
       default:
         break;

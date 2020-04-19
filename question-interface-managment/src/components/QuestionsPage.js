@@ -38,7 +38,8 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     color: "white",
-    alignItems: "center"
+    alignItems: "center",
+    background: 'linear-gradient(45deg, #7c4dff 30%, #80deea 90%)',
   },
   drawer: {
     // width: drawerWidth,
@@ -51,7 +52,10 @@ const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
+    // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+// #80deea
+    background: 'linear-gradient(45deg, #7c4dff 30%, #80deea 90%)',
+    // backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3)
   }
 }));
@@ -300,6 +304,13 @@ const Sidebar = ({ items }) => {
               onClick={() => settingsDispatch({ type: "TOGGLE_GRID_AREAS" })}
             >
               <ListItemText primary="toggle grid areas" />
+            </ListItem>
+            <ListItem
+              button
+              onClick={() => {localStorage.clear();
+                          window.location.reload(true)}}
+              >
+              <ListItemText primary="delete data"/>
             </ListItem>
           </List>
         </Drawer>
