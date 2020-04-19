@@ -303,7 +303,8 @@ const Sidebar = ({ items }) => {
             </ListItem>
             <ListItem
               button
-              onClick={() => localStorage.clear()}
+              onClick={() => {localStorage.clear();
+                          window.location.reload(true)}}
               >
               <ListItemText primary="delete data"/>
             </ListItem>
