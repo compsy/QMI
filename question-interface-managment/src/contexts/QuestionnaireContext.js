@@ -5,7 +5,7 @@ export const QuestionnaireContext = createContext();
 
 const QuestionnaireContextProvider = (props) => {
   const [questions, dispatch] = useReducer(questionnaireReducer, [
-    {id: 'v1', type: "radio", title: "Bye KPJ", options: ["option 1", "option 222", "option 3", "option 4"]},
+    {id: 'v1', type: "radio", title: "Hello Kitty", options: ["option 1", "option 222", "option 3", "option 4"]},
     {id: 'v2', type: "checkbox", title: "untitled checkbox", options: ["option 1", "option 2", "option 3", "option 4"]},
     {
       section_start: 'De hoofddoelen',
