@@ -38,7 +38,8 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     color: "white",
-    alignItems: "center"
+    alignItems: "center",
+    background: 'linear-gradient(45deg, #7c4dff 30%, #80deea 90%)',
   },
   drawer: {
     // width: drawerWidth,
