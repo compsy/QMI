@@ -5,7 +5,7 @@ export const QuestionnaireContext = createContext();
 
 const QuestionnaireContextProvider = (props) => {
   const [questions, dispatch] = useReducer(questionnaireReducer, [
-    {title: "Panda", type: "raw", content: '<p class="flow-text">Zie het voorbeeld hieronder:</p><img src="/images/begeleiders/omgeving.png" class="questionnaire-image" /><p class="flow-text">Geef voor de volgende antwoordopties aan of ze moeilijk of makkelijk te begrijpen waren.</p>'}
+    {id: 'v20', title: "Panda", type: "raw", content: '<p class="flow-text">Zie het voorbeeld hieronder:</p><img src="/images/begeleiders/omgeving.png" class="questionnaire-image" /><p class="flow-text">Geef voor de volgende antwoordopties aan of ze moeilijk of makkelijk te begrijpen waren.</p>'}
     // {id: 'v1', type: "range", title: "Hello BOI", labels: ["option 1", "option 222", "option 3", "option 4"]},
     // {id: 'v12', type: "radio", title: "Hello Kitty", options: ["option 1", "option 222", "option 3", "option 4"]},
     // {id: 'v2', type: "checkbox", title: "untitled checkbox", options: ["option 1", "option 2", "option 3", "option 4"]},
