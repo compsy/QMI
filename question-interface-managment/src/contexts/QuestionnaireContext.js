@@ -67,7 +67,7 @@ const QuestionnaireContextProvider = (props) => {
       section_start: 'Tot slot',
       hidden: true,
       id: 'v8',
-      type: "text field",
+      type: "textfield",
       title: 'Wat zou jij willen verbeteren aan de webapp die je de afgelopen drie weken hebt gebruikt?',
       tooltip: 'some tooltip',
       default_value: 'Niks',
