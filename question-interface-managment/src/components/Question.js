@@ -16,10 +16,10 @@ import RadioCheckboxPreview from "./previews/RadioCheckboxPreview";
 import LikertPreview from "./previews/LikertPreview";
 import RangePreview from "./previews/RangePreview";
 import DropdownPreview from "./previews/DropdownPreview";
-import TextArea from "./previews/TextArea";
 import NumberPreview from "./previews/NumberPreview";
 import DatePickerPreview from "./previews/DatePickerPreview";
 import TimePickerPreview from "./previews/TimePickerPreview";
+import TextArea from "./previews/TextArea";
 import TextFieldPreview from "./previews/TextFieldPreview";
 import DrawingPreview from "./previews/DrawingPreview";
 import {Draggable} from "react-beautiful-dnd";
@@ -215,7 +215,7 @@ const Details = ({ question }) => {
                 return <DatePickerPreview question={question} />;
               case "time":
                 return <TimePickerPreview question={question} />;
-              case "text field":
+              case "textfield":
                 return <TextFieldPreview question={question} />;
               case "draw":
                 return (
