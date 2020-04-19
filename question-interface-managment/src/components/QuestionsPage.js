@@ -301,6 +301,12 @@ const Sidebar = ({ items }) => {
             >
               <ListItemText primary="toggle grid areas" />
             </ListItem>
+            <ListItem
+              button
+              onClick={() => localStorage.clear()}
+              >
+              <ListItemText primary="delete data"/>
+            </ListItem>
           </List>
         </Drawer>
       )}
