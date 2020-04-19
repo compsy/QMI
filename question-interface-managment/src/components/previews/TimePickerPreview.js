@@ -21,7 +21,7 @@ const TimerPickerPreview = ({question}) => {
                 {/*    defaultValue = "3"*/}
                 {/*    hours_to = {question.hours_to}*/}
                 {/*    hours_step = {question.hours_step}*/}
-                {/*    title = {question.title}*/}
+
 
 
                 {/*    onChange={handleDateChange}*/}
@@ -33,7 +33,10 @@ const TimerPickerPreview = ({question}) => {
                 <TextField
                     id="time"
                     type="time"
+                    // title = "hello"
                     color = "primary"
+                    hours_from = "0"
+                    hours_to = "11"
                     size = "large"
                     defaultValue="10:10"
                     InputLabelProps={{

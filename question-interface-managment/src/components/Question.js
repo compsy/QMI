@@ -16,15 +16,16 @@ import RadioCheckboxPreview from "./previews/RadioCheckboxPreview";
 import LikertPreview from "./previews/LikertPreview";
 import RangePreview from "./previews/RangePreview";
 import DropdownPreview from "./previews/DropdownPreview";
-import TextArea from "./previews/TextArea";
 import NumberPreview from "./previews/NumberPreview";
 import DatePickerPreview from "./previews/DatePickerPreview";
 import TimePickerPreview from "./previews/TimePickerPreview";
+import TextArea from "./previews/TextArea";
 import TextFieldPreview from "./previews/TextFieldPreview";
 import DrawingPreview from "./previews/DrawingPreview";
 import {Draggable} from "react-beautiful-dnd";
 import "./index.css";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
+import RawPreview from "./previews/RawPreview";
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -215,7 +216,7 @@ const Details = ({ question }) => {
                 return <DatePickerPreview question={question} />;
               case "time":
                 return <TimePickerPreview question={question} />;
-              case "text field":
+              case "textfield":
                 return <TextFieldPreview question={question} />;
               case "draw":
                 return (
@@ -223,6 +224,8 @@ const Details = ({ question }) => {
                     <DrawingPreview question={question} />
                   </div>
                 );
+              case "raw":
+                return <RawPreview question={question} />;
               default:
                 return <RadioCheckboxPreview question={question} />;
             }
