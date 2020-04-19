@@ -25,6 +25,7 @@ import DrawingPreview from "./previews/DrawingPreview";
 import {Draggable} from "react-beautiful-dnd";
 import "./index.css";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
+import RawPreview from "./previews/RawPreview";
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -223,6 +224,8 @@ const Details = ({ question }) => {
                     <DrawingPreview question={question} />
                   </div>
                 );
+              case "raw":
+                return <RawPreview question={question} />;
               default:
                 return <RadioCheckboxPreview question={question} />;
             }

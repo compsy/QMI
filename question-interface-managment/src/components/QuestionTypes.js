@@ -11,6 +11,7 @@ import ScheduleIcon from '@material-ui/icons/Schedule';
 import TextFormatIcon from '@material-ui/icons/TextFormat';
 import GestureIcon from '@material-ui/icons/Gesture';
 import SelectIcon from '@material-ui/icons/ViewList';
+import Crop54Icon from '@material-ui/icons/Crop54';
 import {
   AddButtonLabelProperty,
   ButtonTextProperty,
@@ -69,7 +70,8 @@ export const QUESTION_TYPES = [
   // { id: uuid(), label: "raw" },
   // { id: uuid(), label: "expandable" },
   // { id: uuid(), label: "unsubscribed" },
-  {id: uuid(), label: "dropdown", icon: <SelectIcon/>}
+  {id: uuid(), label: "dropdown", icon: <SelectIcon/>},
+  {id: uuid(), label: "raw", icon: <Crop54Icon/>}
 ];
 
 // todo: add ShowAfterProperty, this one is allowed for every type.
