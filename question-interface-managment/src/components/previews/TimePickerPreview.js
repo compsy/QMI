@@ -34,6 +34,8 @@ const TimerPickerPreview = ({question}) => {
                     id="time"
                     type="time"
                     color = "primary"
+                    hours_from = "0"
+                    hours_to = "11"
                     size = "large"
                     defaultValue="10:10"
                     InputLabelProps={{

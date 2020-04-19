@@ -5,6 +5,7 @@ export const QuestionnaireContext = createContext();
 
 const QuestionnaireContextProvider = (props) => {
   const [questions, dispatch] = useReducer(questionnaireReducer, [
+    {id: 'v1', type: "range", title: "Hello BOI", labels: ["option 1", "option 222", "option 3", "option 4"]},
     {id: 'v1', type: "radio", title: "Hello Kitty", options: ["option 1", "option 222", "option 3", "option 4"]},
     {id: 'v2', type: "checkbox", title: "untitled checkbox", options: ["option 1", "option 2", "option 3", "option 4"]},
     {
@@ -20,14 +21,14 @@ const QuestionnaireContextProvider = (props) => {
       labels: ['helemaal niet duidelijk', 'heel duidelijk'],
 
       // only since for debug rendering purposes, delete in final
-      options: ['helemaal niet duidelijk', 'heel duidelijk'],
+      // options: ['helemaal niet duidelijk', 'heel duidelijk'],
       section_end: true
     },
     {id: 'v4', type: "likert", title: "untitled likert",
       options: [
-        { title: 'hobby/sport', numeric_value: 0 },
-        { title: 'werk', numeric_value: 25 },
-        { title: 'vriendschap', numeric_value: 50 }
+        { title: 'hobby/sport'},
+        { title: 'werk'},
+        { title: 'vriendschap'}
         ]},
     {id: 'v5', type: "dropdown", title: "untitled dropdown",
       options: [
@@ -59,7 +60,7 @@ const QuestionnaireContextProvider = (props) => {
       labels: ['helemaal niet duidelijk', 'heel duidelijk'],
 
       // only since for debug rendering purposes, delete in final
-      options: ['helemaal niet duidelijk', 'heel duidelijk'],
+      // options: ['helemaal niet duidelijk', 'heel duidelijk'],
       section_end: true
     },
 
