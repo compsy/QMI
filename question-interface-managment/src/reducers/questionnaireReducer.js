@@ -12,12 +12,28 @@ const reorder = (list, startIndex, endIndex) => {
 const copy = (source, destination, droppableSource, droppableDestination) => {
   let newDestination = destination.slice(0, destination.length);
   const item = source[droppableSource.index];
-  newDestination.splice(droppableDestination.index, 0, {
-    id: uuid(),
-    type: item.label,
-    title: `untitled ${item.label}`,
-    labels: ["option1", "option2", "option3", "option4"]
-  });
+  if (item.label === "radio" || item.label === "checkbox" || item.label === "likert" || item.label === "dropdown") {
+    newDestination.splice(droppableDestination.index, 0, {
+      id: uuid(),
+      type: item.label,
+      title: `untitled ${item.label}`,
+      options: ["option1", "option2", "option3", "option4"]
+    });
+  } else if (item.label === "range") {
+    newDestination.splice(droppableDestination.index, 0, {
+      id: uuid(),
+      type: item.label,
+      title: `untitled ${item.label}`,
+      labels: ["option1", "option2", "option3", "option4"]
+    });
+  } else {
+    newDestination.splice(droppableDestination.index, 0, {
+      id: uuid(),
+      type: item.label,
+      title: `untitled ${item.label}`,
+    });
+  }
+
   return newDestination;
 };
 
@@ -32,15 +48,41 @@ export const questionnaireReducer = (state, action) => {
       return action.questions;
     case "ADD_QUESTION":
       const uniq = uuid();
-      return [
-        ...state,
-        {
-          id: uniq,
-          type: action.questionType.toLowerCase(),
-          title: "untitled " + action.questionType,
-          labels: ["option 1", "option 2", "option 3", "option 4"]
-        }
-      ];
+      let question_type = action.questionType.toLowerCase();
+      if (question_type === "range") {
+        return [
+          ...state,
+          {
+            id: uniq,
+            type: action.questionType.toLowerCase(),
+            title: "untitled " + action.questionType,
+            labels: ["option 1", "option 2", "option 3", "option 4"]
+          }
+        ];
+      }
+      if (question_type === "radio" || question_type === "checkbox" || question_type === "likert" || question_type === "dropdown") {
+        return [
+          ...state,
+          {
+            id: uniq,
+            type: action.questionType.toLowerCase(),
+            title: "untitled " + action.questionType,
+            options: ["option 1", "option 2", "option 3", "option 4"]
+          }
+        ];
+      } else {
+        return [
+          ...state,
+          {
+            id: uniq,
+            type: action.questionType.toLowerCase(),
+            title: "untitled " + action.questionType,
+            // labels: ["option 1", "option 2", "option 3", "option 4"]
+          }
+        ];
+      }
+
+
     case "REMOVE_QUESTION":
       return state.filter(question => question.id !== action.id);
     case "UPDATE_QUESTION":
