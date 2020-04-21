@@ -218,7 +218,7 @@ const Details = ({ question }) => {
                 return <TimePickerPreview question={question} />;
               case "textfield":
                 return <TextFieldPreview question={question} />;
-              case "draw":
+              case "drawing":
                 return (
                   <div style={style}>
                     <DrawingPreview question={question} />
