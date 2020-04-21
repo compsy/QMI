@@ -74,45 +74,93 @@ export const QUESTION_TYPES = [
   {id: uuid(), label: "raw", icon: <Crop54Icon/>}
 ];
 
+
 // todo: add ShowAfterProperty, this one is allowed for every type.
 export const PROPERTIES_BY_QUESTION_TYPE = {
-  CHECKBOX: [RequiredProperty, HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty,
-              TooltipProperty, TextOptionsProperty, OtherwiseProperty],
+  CHECKBOX: {
+    requiredProperties: [TitleProperty, TextOptionsProperty],
+    optionalProperties: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty,
+      TooltipProperty, OtherwiseProperty]
+  },
 
-  RADIO: [ RequiredProperty, HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty,
-    TooltipProperty, TextOptionsProperty, OtherwiseProperty],
+  RADIO:{
+    requiredProperties: [TitleProperty, TextOptionsProperty],
+    optionalProperties: [ RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty,
+      TooltipProperty,OtherwiseProperty]
+  },
 
-  LIKERT: [HiddenProperty ,TitleProperty, SectionStartProperty, SectionEndProperty,
-    TooltipProperty, PrioritizedTextOptionsProperty],
+  LIKERT: {
+    requiredProperties: [TitleProperty, PrioritizedTextOptionsProperty],
+    optionalProperties:[HiddenProperty, SectionStartProperty, SectionEndProperty,
+      TooltipProperty]
+  },
 
-  RANGE: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty,
-    TooltipProperty, MinProperty, MaxProperty, StepProperty, LabelOptionsProperty],
+  RANGE: {
+    requiredProperties: [TitleProperty, LabelOptionsProperty],
+    optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty,
+      TooltipProperty, MinProperty, MaxProperty, StepProperty]
+  },
 
-  RAW: [SectionStartProperty, SectionEndProperty, ContentProperty],
 
-  TEXTAREA: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PlaceholderProperty],
+  RAW: {
+    requiredProperties: [ContentProperty],
+    optionalProperties: [SectionStartProperty, SectionEndProperty]
+  },
 
-  TEXTFIELD: [HiddenProperty, SectionStartProperty, TitleProperty, TooltipProperty, SectionEndProperty, PlaceholderProperty,
-    DefaultTextValueProperty, PatternProperty, HintProperty],
 
-  NUMBER: [RequiredProperty, HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
-  MinProperty, MaxProperty, PlaceholderProperty, MaxLengthProperty, LinksToExpandableProperty],
+  TEXTAREA:{
+    requiredProperties: [TitleProperty],
+    optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PlaceholderProperty]
+  },
 
-  EXPANDABLE: [SectionStartProperty, AddButtonLabelProperty, RemoveButtonLabelProperty, DefaultExpansionsProperty,
-  MaxExpansionsProperty],
+  TEXTFIELD: {
+    requiredProperties: [TitleProperty],
+    optionalProperties:  [HiddenProperty, SectionStartProperty, TooltipProperty, SectionEndProperty, PlaceholderProperty,
+      DefaultTextValueProperty, PatternProperty, HintProperty]
+  },
 
-  TIME: [TitleProperty, HoursFromProperty, HoursToProperty, HoursStepProperty, HoursLabelProperty, MinutesLabelProperty],
+  NUMBER: {
+    requiredProperties: [TitleProperty],
+    optionalProperties: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
+      MinProperty, MaxProperty, PlaceholderProperty, MaxLengthProperty, LinksToExpandableProperty]
+  },
 
-  DATE: [RequiredProperty, HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
-  MinDateProperty, MaxDateProperty, PlaceholderProperty, TodayProperty, DefaultDateProperty],
+  EXPANDABLE: {
+    requiredProperties: [],
+    optionalProperties:  [SectionStartProperty, AddButtonLabelProperty, RemoveButtonLabelProperty, DefaultExpansionsProperty,
+      MaxExpansionsProperty]
+  },
 
-  UNSUBSCRIBE: [TitleProperty, ContentProperty, ButtonTextProperty],
+  TIME:{
+    requiredProperties: [TitleProperty],
+    optionalProperties:  [HoursFromProperty, HoursToProperty, HoursStepProperty, HoursLabelProperty, MinutesLabelProperty]
+  },
 
-  DROPDOWN: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PrioritizedTextOptionsProperty,
-  LabelProperty],
+  DATE: {
+    requiredProperties: [TitleProperty],
+    optionalProperties: [RequiredProperty, HiddenProperty , SectionStartProperty, SectionEndProperty, TooltipProperty,
+      MinDateProperty, MaxDateProperty, PlaceholderProperty, TodayProperty, DefaultDateProperty]
+  },
 
-  DRAWING: [HiddenProperty, TitleProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, WidthProperty, HeightProperty,
-  ImageProperty, ColorProperty, RadiusProperty, DensityProperty]
+
+  UNSUBSCRIBE: {
+    requiredProperties: [],
+    optionalProperties: [TitleProperty, ContentProperty, ButtonTextProperty]
+  },
+
+  DROPDOWN: {
+    requiredProperties: [TitleProperty, PrioritizedTextOptionsProperty],
+    optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
+      LabelProperty],
+  },
+
+
+  DRAWING: {
+    requiredProperties: [TitleProperty, WidthProperty, HeightProperty, ImageProperty, ColorProperty],
+    optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
+      RadiusProperty, DensityProperty]
+  },
+
 };
 
 
@@ -166,150 +214,3 @@ export const SPECIAL_CONVERSION_CASES = {
   // todo: add special case: min/max for numeric and date
 };
 
-
-
-/*
-const MiscProperties = () => {
-  const CustomGrid = (props) =>
-    <Grid item xs={4}>
-      <h3>Misc.</h3>
-      <p><i>These items are available in <b>multiple</b> other question types.</i></p>
-      {props.children}
-    </Grid>;
-  return <CustomGrid>
-    <RequiredProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-    <ShowOtherwiseProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-    {newQuestion.show_otherwise ?
-      <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
-        <OtherwiseLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-        <OtherwiseTooltipProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-      </Grid>
-      : null}
-    <HiddenProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-    <Grid item xs style={{ textAlign: "center", margin: "1em 0" }}>
-      <TooltipProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    </Grid>
-
-    <MinProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-    <MaxProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-
-    {}
-    <ContentProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-    <PlaceholderProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-    <SectionStartProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-    <SectionEndProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch} />
-  </CustomGrid>
-};
-const DrawingSpecificVariables = () => {
-  const DrawingGrid = (props) =>
-    <Grid item xs={4}>
-      <h3>Drawing-specific.</h3>
-      {props.children}
-    </Grid>;
-
-  return <DrawingGrid>
-    <WidthProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <HeightProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <ImageProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <ColorProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <RadiusProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <DensityProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-  </DrawingGrid>
-}
-const TextFieldSpecificVariables = () => {
-  const CustomGrid = (props) =>
-    <Grid item xs={4}>
-      <h3>Textfield-specific.</h3>
-      {props.children}
-    </Grid>;
-  return <CustomGrid>
-    <DefaultTextValueProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <PatternProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <HintProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-  </CustomGrid>
-};
-const NumberSpecificVariables = () => {
-  const CustomGrid = (props) =>
-    <Grid item xs={4}>
-      <h3>Number-specific.</h3>
-      {props.children}
-    </Grid>;
-  return <CustomGrid>
-    <MaxLengthProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <LinksToExpandableProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-  </CustomGrid>
-};
-const RangeSpecificVariables = () => {
-  const CustomGrid = (props) =>
-    <Grid item xs={4}>
-      <h3>Range-specific.</h3>
-      {props.children}
-    </Grid>;
-  return <CustomGrid>
-    <StepProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <LabelOptionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-  </CustomGrid>
-};
-const ExpandableSpecificVariables = () => {
-  const CustomGrid = (props) =>
-    <Grid item xs={4}>
-      <h3>Expandable-specific.</h3>
-      {props.children}
-    </Grid>;
-  return <CustomGrid>
-    <AddButtonLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <RemoveButtonLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <DefaultExpansionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <MaxExpansionsProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-  </CustomGrid>
-};
-const TimeSpecificVariables = () => {
-  const CustomGrid = (props) =>
-    <Grid item xs={4}>
-      <h3>Time-specific.</h3>
-      {props.children}
-    </Grid>;
-  return <CustomGrid>
-    <HoursFromProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <HoursToProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <HoursStepProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <HoursLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <MinutesLabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-  </CustomGrid>
-};
-const DateSpecificVariables = () => {
-  const CustomGrid = (props) =>
-    <Grid item xs={4}>
-      <h3>Date-specific.</h3>
-      {props.children}
-    </Grid>;
-  return <CustomGrid>
-    <TodayProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <DefaultDateProperty disabled={newQuestion.today} newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <MinDateProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <MaxDateProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-
-  </CustomGrid>
-};
-const UnsubscribeSpecificVariables = () => {
-  const CustomGrid = (props) =>
-    <Grid item xs={4}>
-      <h3>Unsubscribe-specific.</h3>
-      {props.children}
-    </Grid>;
-  return <CustomGrid>
-    <ButtonTextProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-    <DataMethodProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-  </CustomGrid>
-};
-const DropdownSpecificVariables = () => {
-  const CustomGrid = (props) =>
-    <Grid item xs={4}>
-      <h3>Dropdown-specific.</h3>
-      {props.children}
-    </Grid>;
-  return <CustomGrid>
-    <LabelProperty newQuestion={newQuestion} newQuestionDispatch={newQuestionDispatch}/>
-  </CustomGrid>
-};
-*/
