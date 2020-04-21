@@ -125,7 +125,7 @@ const BooleanProperty = ({newQuestion, newQuestionDispatch, name, propertyName, 
 };
 const NumericProperty = ({ newQuestion,newQuestionDispatch, name, propertyName, ...props }) => {
   const validate = (input) =>{
-    return !isNaN(parseInt(input));
+    return input === "" || input === undefined || input === null || !isNaN(parseInt(input));
   };
   const id = uuidv4();
   const [state, setState] = useState({valid: validate(newQuestion[propertyName])});
@@ -784,13 +784,12 @@ export const PatternProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
 };
 export const ColorProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
   return (
-    <RegexpProperty
+    <TextProperty
       newQuestion={newQuestion}
       newQuestionDispatch={newQuestionDispatch}
-      name={"Color (hex value)"}
+      name={"Color"}
       propertyName={"color"}
-      regexp={RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")}
-      helperText="Use hex colors only (e.g. #007fff, #03d)"
+      type="color"
       {...props}
     />
   );
