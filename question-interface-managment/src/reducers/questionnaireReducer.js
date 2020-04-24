@@ -61,6 +61,44 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
     return newDestination;
 };
 
+const getQuestionTemplateByAction = (action, state) =>{
+    const uniq = uuid();
+    switch(action.type){
+        case "range":
+            return [
+                ...state, {
+                    id: uniq,
+                    type: action.questionType.toLowerCase(),
+                    title: "untitled " + action.questionType,
+                    labels: ["option 1", "option 2", "option 3", "option 4"]
+                }]
+        case "checkbox":
+        case "radio":
+            return [
+                ...state, {
+                    id: uniq,
+                    type: action.questionType.toLowerCase(),
+                    title: "untitled " + action.questionType,
+                    options: initialTextOptions
+                }]
+        case "likert":
+        case "dropdown":
+            return [
+                ...state, {
+                    id: uniq,
+                    type: action.questionType.toLowerCase(),
+                    title: "untitled " + action.questionType,
+                    options: initialPrioritizedTextOptions
+                }]
+        default:
+            return [
+                ...state, {
+                    id: uniq,
+                    type: action.questionType.toLowerCase(),
+                    title: "untitled " + action.questionType,
+                }];
+    }
+}
 
 export const questionnaireReducer = (state, action) => {
     switch (action.type) {
@@ -71,32 +109,7 @@ export const questionnaireReducer = (state, action) => {
         case "SET_QUESTIONS":
             return action.questions;
         case "ADD_QUESTION":
-            const uniq = uuid();
-            if (action.type === "range"){
-                return [
-                    ...state, {
-                        id: uniq,
-                        type: action.questionType.toLowerCase(),
-                        title: "untitled " + action.questionType,
-                        labels: ["option 1", "option 2", "option 3", "option 4"]
-                    }]
-            } else if (action.type === "likert" || action.type === "dropdown" || action.type === "checkbox" || action.type === "radio"){
-                return [
-                    ...state, {
-                        id: uniq,
-                        type: action.questionType.toLowerCase(),
-                        title: "untitled " + action.questionType,
-                        options: ["option 1", "option 2", "option 3", "option 4"]
-                    }]
-            }
-            else {
-                return [
-                    ...state, {
-                        id: uniq,
-                        type: action.questionType.toLowerCase(),
-                        title: "untitled " + action.questionType,
-                    }];
-            }
+            return getQuestionTemplateByAction(action, state);
         case "REMOVE_QUESTION":
             return state.filter(question => question.id !== action.id);
         case "REMOVE_ALL":
@@ -105,6 +118,7 @@ export const questionnaireReducer = (state, action) => {
             return state.map(question =>
                 question.id === action.id ? action.new : question
             );
+
         default:
             return state;
     }

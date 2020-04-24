@@ -26,6 +26,8 @@ import {Draggable} from "react-beautiful-dnd";
 import "./index.css";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
 import RawPreview from "./previews/RawPreview";
+import TextField from "@material-ui/core/TextField";
+import EditQuestionTitleField from "./EditDialogTitle";
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -41,7 +43,6 @@ const Question = ({ index, question, ...props }) => {
           <ExpansionPanel expanded={open} {...props}>
             <Summary
               onClick={() => setOpen(!open)}
-              onDoubleClick={() => console.log("double clicked!")}
               question={question}
               provided={provided}
             />
@@ -55,6 +56,7 @@ const Question = ({ index, question, ...props }) => {
   );
 };
 
+
 const style = {
   display: "flex",
   justifyContent: "center",
@@ -66,24 +68,20 @@ export default Question;
 const Summary = ({ question, provided, ...props }) => {
   const { settings } = useContext(SettingsContext);
   const { questions } = useContext(QuestionnaireContext);
+  const [editTitle, setEditTitle] = useState(false);
 
   return (
     <ExpansionPanelSummary {...props}>
 
       <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-        spacing={1}
+        container direction="row" justify="center" alignItems="center" spacing={1}
         style={{
           background: settings.showGridAreas ? "lightgrey" : "transparent",
           opacity: settings.showGridAreas ? "0.8" : "1.0"
         }}
       >
         <Grid
-          item
-          xs
+          item xs
           style={{
             textAlign: "left",
             background: settings.showGridAreas ? "lightgreen" : "transparent",
@@ -117,7 +115,12 @@ const Summary = ({ question, provided, ...props }) => {
             opacity: settings.showGridAreas ? "0.8" : "1.0"
           }}
         >
-          <Typography variant="h5">{question.title}</Typography>
+          {editTitle ?
+              <EditQuestionTitleField question={question} onComplete={() => setEditTitle(false)}/>
+                :
+                <Typography onDoubleClick={() => setEditTitle(true)} variant="h5">{question.title}</Typography>
+          }
+
         </Grid>
         <Grid
           item
