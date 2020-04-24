@@ -4,6 +4,11 @@ import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
 import {SettingsContext} from "../contexts/SettingsContext";
 import {NewQuestionContext} from "../contexts/NewQuestionContext";
 import {PROPERTIES_BY_QUESTION_TYPE, SPECIAL_CONVERSION_CASES} from "./QuestionTypes";
+import Card from "@material-ui/core/Card";
+import {IOptions as classes} from "glob";
+import CardContent from "@material-ui/core/CardContent";
+import {borderColor} from "@material-ui/system";
+import {WidthProperty} from "./QuestionnaireProperties";
 
 const EditDialog = ({ question, open, setOpen }) => {
   const { settings } = useContext(SettingsContext);
@@ -18,6 +23,12 @@ const EditDialog = ({ question, open, setOpen }) => {
   // dispatch action to questionnaireReducer to update question
   const handleSubmit = event => {
     event.preventDefault();
+
+    /*
+    * TODO: add verification function to check if all required properties are set.
+    * */
+
+
     dispatch({ type: "UPDATE_QUESTION", id: question.id, new: newQuestion });
     console.table(question);
     setOpen(false);
@@ -141,14 +152,32 @@ const DialogBody = () => {
   const { settings } = useContext(SettingsContext);
   const { newQuestion, newQuestionDispatch } = useContext(NewQuestionContext);
 
-  const renderProperties = () => {
+  const renderProperties = (renderRequired) => {
     const elements = [];
-    PROPERTIES_BY_QUESTION_TYPE[newQuestion.type.toUpperCase()].map(property =>
+    PROPERTIES_BY_QUESTION_TYPE[newQuestion.type.toUpperCase()]
+      // deciding what properties should be rendered (what JSON element we should look at)
+      [(renderRequired ? "requiredProperties" : "optionalProperties")].map(property =>
       elements.push(React.createElement(property,
         {newQuestion: newQuestion, newQuestionDispatch: newQuestionDispatch})));
+    elements.forEach(element => console.log(element));
     return elements;
   };
 
+
+  const PropertyCategory = (props) => {
+    const style = (props.renderRequired ?
+      {color: "#FF9999", title:"Required"} : {color: "#BABAF1", title:"Optional"});
+
+    return<Grid item xs={12}>
+        <Card style={{borderColor: style.color}} variant="outlined">
+          <CardContent>
+            <Typography>
+              {style.title}
+            </Typography>
+            {renderProperties(props.renderRequired)}
+          </CardContent>
+        </Card>
+      </Grid>}
 
   return (
     <Grid container direction="row" justify="center" alignItems="center" spacing={4}>
@@ -162,8 +191,9 @@ const DialogBody = () => {
       >
       </Grid>
       <Grid item xs={12}>
-        <Grid container direction="row">
-          {renderProperties()}
+        <Grid container direction="row"  spacing={5}>
+          <PropertyCategory renderRequired/>
+          <PropertyCategory renderRequired={false}/>
         </Grid>
       </Grid>
     </Grid>
