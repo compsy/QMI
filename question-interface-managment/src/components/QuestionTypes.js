@@ -67,8 +67,6 @@ export const QUESTION_TYPES = [
   {id: uuid(), label: "time", icon: <ScheduleIcon/>},
   {id: uuid(), label: "textfield", icon: <TextFormatIcon/>},
   {id: uuid(), label: "draw", icon: <GestureIcon/>},
-  // { id: uuid(), label: "raw" },
-  // { id: uuid(), label: "expandable" },
   // { id: uuid(), label: "unsubscribed" },
   {id: uuid(), label: "dropdown", icon: <SelectIcon/>},
   {id: uuid(), label: "raw", icon: <Crop54Icon/>}

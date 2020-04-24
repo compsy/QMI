@@ -55,7 +55,6 @@ const useStyles = makeStyles(theme => ({
     // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
 // #80deea
     background: 'linear-gradient(45deg, #7c4dff 30%, #80deea 90%)',
-    // backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3)
   }
 }));
@@ -92,13 +91,13 @@ const QuestionsPage = () => {
     if (x !== null) {
       dispatch({ type: "SET_QUESTIONS", questions: JSON.parse(x)})
     }
-  }, [])
+  }, []);
   useEffect(() => {
     localStorage.setItem("qmi-data", JSON.stringify(questions))
-  }, [questions])
+  }, [questions]);
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} >
       <CssBaseline />
       <DragDropContext onDragEnd={onDragEnd}>
         <AppBar className={classes.appBar}>
@@ -237,9 +236,17 @@ const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
   );
 };
 
-const Sidebar = ({ items }) => {
+const Sidebar = ({ question, items }) => {
+  const { dispatch } = useContext(QuestionnaireContext);
   const { settings, settingsDispatch } = useContext(SettingsContext);
   const classes = useStyles();
+
+  function myFunction() {
+    // }
+    // console.log(question.id);
+    // while(question.length > 0){
+       dispatch({ type: "REMOVE_ALL"});
+  }
 
   return (
     <Droppable
@@ -312,9 +319,26 @@ const Sidebar = ({ items }) => {
               >
               <ListItemText primary="delete data"/>
             </ListItem>
+
+            <ListItem
+                button
+
+                onClick={myFunction}
+            >
+              <ListItemText primary="erase questionnaire" />
+            </ListItem>
+
+
           </List>
         </Drawer>
       )}
     </Droppable>
   );
 };
+
+// const [questions, dispatch] = useReducer(questionnaireReducer, [
+//   {id: 'v1', type: "range", title: "Hello BOI", labels: ["option 1", "option 222", "option 3", "option 4"]},
+//   {id: 'v12', type: "radio", title: "Hello Kitty", options: ["option 1", "option 222", "option 3", "option 4"]},
+//   {id: 'v2', type: "checkbox", title: "untitled checkbox", options: ["option 1", "option 2", "option 3", "option 4"]},
+//
+// ]);

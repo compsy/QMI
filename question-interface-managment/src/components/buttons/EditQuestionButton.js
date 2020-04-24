@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {IconButton, Tooltip} from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import NewQuestionContextProvider from "../../contexts/NewQuestionContext";
-import EditDialog from "../BetaEditDialog";
+import EditDialog from "../EditDialog";
 
 const EditQuestionButton = ({ question }) => {
   const [open, setOpen] = useState(false);

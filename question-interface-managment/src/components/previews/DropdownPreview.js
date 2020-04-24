@@ -53,9 +53,7 @@ function DropdownPreview() {
                     <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>Dummy</MenuItem>
-                    <MenuItem value={20}>Dummy</MenuItem>
-                    <MenuItem value={30}>Dummy</MenuItem>
+
                 </Select>
             </FormControl>
         </div>

@@ -3,10 +3,11 @@ import SettingsContextProvider from "./contexts/SettingsContext";
 import QuestionnaireContextProvider from "./contexts/QuestionnaireContext";
 import QuestionsPage from "./components/QuestionsPage";
 import './components/background.css'
+import "typeface-roboto";
 
 function App() {
     return (
-        <div className="App" style={{backgroundColor: "black"}}>
+        <div className="App">
             <div
                 style={{
                     position: "absolute",
@@ -18,7 +19,7 @@ function App() {
             >
                 <SettingsContextProvider>
                     <QuestionnaireContextProvider>
-                        <QuestionsPage/>
+                        <QuestionsPage />
                     </QuestionnaireContextProvider>
                 </SettingsContextProvider>
             </div>
