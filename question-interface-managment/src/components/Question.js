@@ -26,7 +26,6 @@ import {Draggable} from "react-beautiful-dnd";
 import "./index.css";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
 import RawPreview from "./previews/RawPreview";
-import EditQuestionTitle from "./buttons/EditQuestionTitle";
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -42,6 +41,7 @@ const Question = ({ index, question, ...props }) => {
           <ExpansionPanel expanded={open} {...props}>
             <Summary
               onClick={() => setOpen(!open)}
+              onDblClick={() => console.log("double clicked!")}
               question={question}
               provided={provided}
             />
@@ -128,7 +128,7 @@ const Summary = ({ question, provided, ...props }) => {
             opacity: settings.showGridAreas ? "0.8" : "1.0"
           }}
         >
-            <EditQuestionTitle question={question} />
+
           <ExpandMoreIcon />
         </Grid>
       </Grid>
