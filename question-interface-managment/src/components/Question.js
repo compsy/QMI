@@ -41,7 +41,7 @@ const Question = ({ index, question, ...props }) => {
           <ExpansionPanel expanded={open} {...props}>
             <Summary
               onClick={() => setOpen(!open)}
-              onDblClick={() => console.log("double clicked!")}
+              onDoubleClick={() => console.log("double clicked!")}
               question={question}
               provided={provided}
             />
