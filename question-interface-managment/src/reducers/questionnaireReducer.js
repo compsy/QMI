@@ -79,6 +79,8 @@ export const questionnaireReducer = (state, action) => {
             }
         case "REMOVE_QUESTION":
             return state.filter(question => question.id !== action.id);
+        case "REMOVE_ALL":
+            return state.filter(question => question.id === action.id);
         case "UPDATE_QUESTION":
             return state.map(question =>
                 question.id === action.id ? action.new : question

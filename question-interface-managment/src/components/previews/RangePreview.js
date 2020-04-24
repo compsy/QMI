@@ -59,7 +59,7 @@ const  RangePreview = ({ question }) => {
                           marks
                           min={question.min}
                           max={question.max}
-                          step = "5"
+                          step = {question.step}
                           title = {question.title}
                           // tooltip = {question.tooltip}
                           labels = {"question.labels"}

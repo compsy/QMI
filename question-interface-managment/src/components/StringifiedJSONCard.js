@@ -8,7 +8,7 @@ const StringifiedJSONCard = () => {
   const toPrint = questions.map((question, index) => {
     const obj = {
             ...question,
-            id: `v${index + 1}`
+            id: question.type === "raw"? undefined: `v${index + 1}`
           };
     return obj;
   });
