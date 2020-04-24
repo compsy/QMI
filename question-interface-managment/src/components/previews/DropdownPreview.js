@@ -59,47 +59,11 @@ const DropdownPreview = ({ question }) => {
                     <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
-                    <Grid
-                        container
-                        direction="column"
-                        style={{
-                            background: settings.showGridAreas ? "pink" : "transparent",
-                            opacity: settings.showGridAreas ? "0.8" : "1.0"
-                        }}
-                        spacing={1}
-                    >
-                        {question.options.map(option => (
-                            <Grid
-                                item
-                                xs
-                                key={option}
-                                style={{
-                                    background: settings.showGridAreas ? "yellow" : "transparent",
-                                    opacity: settings.showGridAreas ? "0.8" : "1.0"
-                                }}
-                            >
-                                <Grid
-                                    container
-                                    direction="row"
-                                    justify="flex-start"
-                                    alignItems="center"
-                                >
-                                    <Grid
-                                        item
-                                        xs={2}
-                                        style={{
-                                            textAlign: "center",
-                                            background: settings.showGridAreas ? "grey" : "transparent",
-                                            opacity: settings.showGridAreas ? "0.8" : "1.0"
-                                        }}
-                                    >
-
-                                    </Grid>
-                                        <Typography variant="body1">{option}</Typography>
-                                </Grid>
-                            </Grid>
-                        ))}
-                    </Grid>
+                    {question.options.map(option =>
+                        <MenuItem key={option.title+option.numeric_value} value={option.numeric_value}>
+                            <em>{option.title}</em>
+                        </MenuItem>
+                    )}
 
 
                 </Select>
