@@ -151,7 +151,6 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
       LabelProperty],
   },
 
-
   DRAWING: {
     requiredProperties: [TitleProperty, WidthProperty, HeightProperty, ImageProperty, ColorProperty],
     optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,

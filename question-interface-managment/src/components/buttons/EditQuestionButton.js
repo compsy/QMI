@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {IconButton, Tooltip} from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import NewQuestionContextProvider from "../../contexts/NewQuestionContext";
-import EditDialog from "../EditDialog";
+import BetaEditDialog from "../EditDialog";
 
 const EditQuestionButton = ({ question }) => {
   const [open, setOpen] = useState(false);
@@ -15,7 +15,7 @@ const EditQuestionButton = ({ question }) => {
         </IconButton>
       </Tooltip>
       <NewQuestionContextProvider>
-        <EditDialog question={question} open={open} setOpen={setOpen} />
+        <BetaEditDialog question={question} open={open} setOpen={setOpen} />
       </NewQuestionContextProvider>
     </>
   );
