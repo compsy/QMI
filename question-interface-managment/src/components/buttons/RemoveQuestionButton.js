@@ -8,8 +8,7 @@ const RemoveQuestionButton = ({ question }) => {
   return (
     <Tooltip title="remove">
       <IconButton
-        onClick={() => dispatch({ type: "REMOVE_QUESTION", id: question.id })}
-      >
+        onClick={() => dispatch({ type: "REMOVE_QUESTION", id: question.id })}>
         <DeleteIcon />
       </IconButton>
     </Tooltip>
