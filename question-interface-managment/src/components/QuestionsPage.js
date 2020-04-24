@@ -274,7 +274,7 @@ const Sidebar = ({ question, items }) => {
               const shouldRenderClone =
                 item.id === snapshot.draggingFromThisWith;
               return (
-                <React.Fragment style={{ textAlign: "left" }} key={item.id}>
+                <React.Fragment key={item.id}>
                   {shouldRenderClone ? (
                     <ListItem button key={item.label}>
                       <ListItemIcon>{item.icon}</ListItemIcon>
