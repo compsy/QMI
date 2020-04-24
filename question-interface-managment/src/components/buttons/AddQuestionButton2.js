@@ -27,7 +27,7 @@ const actions = [
   { icon: <DateRangeIcon />, name: "date"},
   { icon: <ScheduleIcon />, name: "time"},
   { icon: <TextFormatIcon />, name: "textfield"},
-  { icon: <GestureIcon />, name: "draw"},
+  { icon: <GestureIcon />, name: "drawing"},
   { icon: <Crop54Icon />, name: "raw"},
 ];
 
@@ -69,7 +69,7 @@ const AddQuestionButton2 = () => {
         dispatch({ type: "ADD_QUESTION", questionType: "textfield" });
         break;
       case 'speeddial-action-10':
-        dispatch({ type: "ADD_QUESTION", questionType: "draw" });
+        dispatch({ type: "ADD_QUESTION", questionType: "drawing" });
         break;
       case 'speeddial-action-11':
         dispatch({ type: "ADD_QUESTION", questionType: "raw" });
