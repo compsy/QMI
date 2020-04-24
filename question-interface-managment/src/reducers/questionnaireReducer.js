@@ -9,34 +9,54 @@ const reorder = (list, startIndex, endIndex) => {
     return newList;
 };
 
+const initialTextOptions = ["option 1" , "option 2","option 3" , "option 4"];
+const initialPrioritizedTextOptions = [
+    { title: 'option 1', numeric_value: 1 },
+    { title: 'option 2', numeric_value: 2 },
+    { title: 'option 3', numeric_value: 3 },
+    { title: 'option 4', numeric_value: 4 }
+];
+
 const copy = (source, destination, droppableSource, droppableDestination) => {
     let newDestination = destination.slice(0, destination.length);
     const item = source[droppableSource.index];
 
-    var options = ["option 1" , "option 2","option 31" , "option 24"];
-    if (item.label === "range"){
-        newDestination.splice(droppableDestination.index, 0, {
-            id: uuid(),
-            type: item.label,
-            title: `untitled ${item.label}`,
-            labels: options
-        });
-    } else if (item.label === "likert" || item.label === "dropdown" || item.label === "checkbox" || item.label === "radio"){
-        newDestination.splice(droppableDestination.index, 0, {
-            id: uuid(),
-            type: item.label,
-            title: `untitled ${item.label}`,
-            options: options
-        });
+    // initialising question JSONs.
+    switch(item.label){
+        case "range":
+            newDestination.splice(droppableDestination.index, 0, {
+                id: uuid(),
+                type: item.label,
+                title: `untitled ${item.label}`,
+                labels: initialTextOptions
+            });
+            break;
+        case "checkbox":
+        case "radio":
+            newDestination.splice(droppableDestination.index, 0, {
+                id: uuid(),
+                type: item.label,
+                title: `untitled ${item.label}`,
+                options: initialTextOptions
+            });
+            break;
+        case "likert":
+        case "dropdown":
+            newDestination.splice(droppableDestination.index, 0, {
+                id: uuid(),
+                type: item.label,
+                title: `untitled ${item.label}`,
+                options: initialPrioritizedTextOptions
+            });
+            break;
+        default:
+            newDestination.splice(droppableDestination.index, 0, {
+                id: uuid(),
+                type: item.label,
+                title: `untitled ${item.label}`,
+            });
+            break;
     }
-    else{
-        newDestination.splice(droppableDestination.index, 0, {
-            id: uuid(),
-            type: item.label,
-            title: `untitled ${item.label}`,
-        });
-    }
-
 
     return newDestination;
 };
