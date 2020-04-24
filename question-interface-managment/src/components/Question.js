@@ -116,7 +116,7 @@ const Summary = ({ question, provided, ...props }) => {
           }}
         >
           {editTitle ?
-              <EditQuestionTitleField question={question} onComplete={() => setEditTitle(false)}/>
+              <EditQuestionTitleField question={question} onComplete={() => setEditTitle(false) }/>
                 :
                 <Typography onDoubleClick={() => setEditTitle(true)} variant="h5">{question.title}</Typography>
           }

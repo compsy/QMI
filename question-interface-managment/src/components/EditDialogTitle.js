@@ -6,7 +6,7 @@ const EditQuestionTitleField = ({question, onComplete}) =>{
   const [title, setTitle] = useState(question.title);
   const { dispatch } = useContext(QuestionnaireContext);
 
-  const handleKeyDown = event => {
+  function handleKeyDown(event){
     switch (event.code) {
       case "Enter":
         updateTitle();
@@ -16,20 +16,26 @@ const EditQuestionTitleField = ({question, onComplete}) =>{
   }
   document.addEventListener("keydown", handleKeyDown);
 
-  const updateTitle = () =>{
-    question.title = title;
+  function updateGlobal(){
     dispatch({ type: "UPDATE_QUESTION", id: question.id, new: question });
+  }
+  function updateTitle(){
+    if(title === question.title) return;
+    question.title = title;
+    updateGlobal();
   }
 
   const handleChange = (e) => setTitle(e.target.value)
 
   const close = () => {
-    onComplete();
-
     // To free up memory, as after the field is closed, keystrokes should not be handled with handleKeyDown anymore.
     document.removeEventListener("keydown", handleKeyDown);
+    onComplete();
   }
 
-  return <TextField defaultValue={question.title} onChange={handleChange}>{question.title}</TextField>
+  return <TextField autoFocus id="standard-full-width" fullWidth
+                    defaultValue={question.title} onChange={handleChange}>
+    {question.title}
+  </TextField>
 }
 export default EditQuestionTitleField;
