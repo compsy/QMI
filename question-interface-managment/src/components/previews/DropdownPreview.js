@@ -4,9 +4,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import Button from "@material-ui/core/Button";
 import {SettingsContext} from "../../contexts/SettingsContext";
-import {Grid, Typography} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -22,12 +20,12 @@ const useStyles = makeStyles(theme => ({
 const DropdownPreview = ({ question }) => {
     const { settings } = useContext(SettingsContext);
     const classes = useStyles();
-    const [age, setAge] = React.useState("");
+    const [option, setOption] = React.useState("");
     const [open, setOpen] = React.useState(false);
 
 
     const handleChange = event => {
-        setAge(event.target.value);
+        setOption(event.target.value);
     };
 
     const handleClose = () => {
@@ -38,30 +36,27 @@ const DropdownPreview = ({ question }) => {
         setOpen(true);
     };
 
-
+    let index = 1;
 
     return (
         <div>
-            <Button className={classes.button} onClick={handleOpen}>
-                Open the select
-            </Button>
             <FormControl className={classes.formControl}>
-                <InputLabel id="demo-controlled-open-select-label">test</InputLabel>
+                <InputLabel id="demo-controlled-open-select-label">{question.label}</InputLabel>
                 <Select
                     labelId="demo-controlled-open-select-label"
                     id="demo-controlled-open-select"
                     open={open}
                     onClose={handleClose}
                     onOpen={handleOpen}
-                    value={age}
+                    value={option}
                     onChange={handleChange}
                 >
-                    <MenuItem value="">
+                    <MenuItem value={0}>
                         <em>None</em>
                     </MenuItem>
-                    {question.options.map(option =>
-                        <MenuItem key={option.title+option.numeric_value} value={option.numeric_value}>
-                            <em>{option.title}</em>
+                    {question.options.map((option, index) =>
+                        <MenuItem value = {index + 1}>
+                            <em>{option}</em>
                         </MenuItem>
                     )}
 

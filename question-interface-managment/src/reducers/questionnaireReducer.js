@@ -10,12 +10,6 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 const initialTextOptions = ["option 1" , "option 2","option 3" , "option 4"];
-const initialPrioritizedTextOptions = [
-    { title: 'option 1', numeric_value: 1 },
-    { title: 'option 2', numeric_value: 2 },
-    { title: 'option 3', numeric_value: 3 },
-    { title: 'option 4', numeric_value: 4 }
-];
 
 const copy = (source, destination, droppableSource, droppableDestination) => {
     let newDestination = destination.slice(0, destination.length);
@@ -46,7 +40,7 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
                 id: uuid(),
                 type: item.label,
                 title: `untitled ${item.label}`,
-                options: initialPrioritizedTextOptions
+                options: initialTextOptions
             });
             break;
         case "raw":
@@ -95,7 +89,7 @@ const getQuestionTemplateByAction = (action, state) =>{
                     id: uniq,
                     type: action.questionType.toLowerCase(),
                     title: "untitled " + action.questionType,
-                    options: initialPrioritizedTextOptions
+                    options: initialTextOptions
                 }];
         case "raw":
             return [
