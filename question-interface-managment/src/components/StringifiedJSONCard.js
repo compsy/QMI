@@ -6,12 +6,12 @@ const StringifiedJSONCard = () => {
   const { questions } = useContext(QuestionnaireContext);
   // formats the ids
   const toPrint = questions.map((question, index) => {
-    const obj = {
-            ...question,
-            id: question.type === "raw"? undefined: `v${index + 1}`
-          };
-    return obj;
+      return {
+          ...question,
+          id: question.type === "raw" ? undefined : `v${index + 1}`
+      };
   });
+
   return (
     <Card
       variant="outlined"
