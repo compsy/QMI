@@ -49,6 +49,13 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
                 options: initialPrioritizedTextOptions
             });
             break;
+        case "raw":
+            newDestination.splice(droppableDestination.index, 0, {
+                type: item.label,
+                title: `untitled ${item.label}`,
+                content: "<p>This is untitled raw question</p>"
+            });
+            break;
         default:
             newDestination.splice(droppableDestination.index, 0, {
                 id: uuid(),
@@ -89,6 +96,13 @@ const getQuestionTemplateByAction = (action, state) =>{
                     type: action.questionType.toLowerCase(),
                     title: "untitled " + action.questionType,
                     options: initialPrioritizedTextOptions
+                }];
+        case "raw":
+            return [
+                ...state, {
+                    type: action.questionType.toLowerCase(),
+                    title: "untitled " + action.questionType,
+                    content: "<p>This is untitled raw question</p>p>"
                 }];
         default:
             return [

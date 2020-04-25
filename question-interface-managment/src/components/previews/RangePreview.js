@@ -54,7 +54,6 @@ const  RangePreview = ({ question }) => {
     const max = typeof question.max === "undefined" ? 100 : parseInt(question.max, 10);
     const step = typeof question.step === "undefined" ? 1 : parseInt(question.step, 10);
     const labelStep = labelsNumber <= 1 ? 0 : ~~((max - min)/(labelsNumber - 1));
-
     let pos = labelsNumber === 1 ? ~~((max - min)/2) : min;
 
     for (let i = 0; i < labelsNumber; i++) {
