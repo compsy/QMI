@@ -45,24 +45,37 @@ const PrettoSlider = withStyles({
 })(Slider);
 
 
-
 const  RangePreview = ({ question }) => {
     const classes = useStyles();
+
+    const marks = [];
+    const labelsNumber = question.labels.length;
+    const min =  typeof question.min === "undefined" ? 0 : parseInt(question.min, 10);
+    const max = typeof question.max === "undefined" ? 100 : parseInt(question.max, 10);
+    const step = typeof question.step === "undefined" ? 1 : parseInt(question.step, 10);
+    const labelStep = labelsNumber <= 1 ? 0 : ~~((max - min)/(labelsNumber - 1));
+
+    let pos = labelsNumber === 1 ? ~~((max - min)/2) : min;
+
+    for (let i = 0; i < labelsNumber; i++) {
+        marks.push({
+            value: pos,
+            label: question.labels[i],
+        });
+        pos += labelStep;
+    }
 
     return (
         <div className={classes.root}>
             <Typography gutterBottom>Pretto</Typography>
             <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider"
-                          defaultValue={30}
+                          defaultValue={0}
                           aria-labelledby="discrete-slider"
-                          // step={question.step}
-                          marks
-                          min={question.min}
-                          max={question.max}
-                          step = {question.step}
+                          marks = {marks}
+                          min={min}
+                          max={max}
+                          step = {step}
                           title = {question.title}
-                          // tooltip = {question.tooltip}
-                          labels = {"question.labels"}
                           section_end = {question.section_end}
             />
         </div>

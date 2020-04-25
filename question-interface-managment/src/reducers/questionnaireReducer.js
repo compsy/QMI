@@ -71,7 +71,7 @@ const getQuestionTemplateByAction = (action, state) =>{
                     type: action.questionType.toLowerCase(),
                     title: "untitled " + action.questionType,
                     labels: ["option 1", "option 2", "option 3", "option 4"]
-                }]
+                }];
         case "checkbox":
         case "radio":
             return [
@@ -80,7 +80,7 @@ const getQuestionTemplateByAction = (action, state) =>{
                     type: action.questionType.toLowerCase(),
                     title: "untitled " + action.questionType,
                     options: initialTextOptions
-                }]
+                }];
         case "likert":
         case "dropdown":
             return [
@@ -89,7 +89,7 @@ const getQuestionTemplateByAction = (action, state) =>{
                     type: action.questionType.toLowerCase(),
                     title: "untitled " + action.questionType,
                     options: initialPrioritizedTextOptions
-                }]
+                }];
         default:
             return [
                 ...state, {
@@ -98,7 +98,7 @@ const getQuestionTemplateByAction = (action, state) =>{
                     title: "untitled " + action.questionType,
                 }];
     }
-}
+};
 
 export const questionnaireReducer = (state, action) => {
     switch (action.type) {

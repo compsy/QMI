@@ -1,9 +1,8 @@
 export const newQuestionReducer = (state, action) => {
-  switch(action.type) {
-    case "SET_QUESTION":
-      if(Object.is(state, action.question)) return state;
-      return action.question;
-    default:
-      return state;
+  if (action.type === "SET_QUESTION") {
+    if(Object.is(state, action.question)) return state;
+    return action.question;
+  } else {
+    return state;
   }
 };
