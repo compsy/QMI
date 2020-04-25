@@ -102,7 +102,7 @@ const getQuestionTemplateByAction = (action, state) =>{
                 ...state, {
                     type: action.questionType.toLowerCase(),
                     title: "untitled " + action.questionType,
-                    content: "<p>This is untitled raw question</p>p>"
+                    content: "<p>This is untitled raw question</p>"
                 }];
         default:
             return [
