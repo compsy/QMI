@@ -22,6 +22,9 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
                 id: uuid(),
                 type: item.label,
                 title: `untitled ${item.label}`,
+                min: "0",
+                max: "100",
+                step: "1",
                 labels: initialTextOptions
             });
             break;
@@ -71,6 +74,9 @@ const getQuestionTemplateByAction = (action, state) =>{
                     id: uniq,
                     type: action.questionType.toLowerCase(),
                     title: "untitled " + action.questionType,
+                    min: "0",
+                    max: "100",
+                    step: "1",
                     labels: ["option 1", "option 2", "option 3", "option 4"]
                 }];
         case "checkbox":

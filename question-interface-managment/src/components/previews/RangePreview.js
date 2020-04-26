@@ -50,6 +50,8 @@ const  RangePreview = ({ question }) => {
 
     const marks = [];
     const labelsNumber = question.labels.length;
+    // Here min, max, step are checked for undefined,
+    // as default question from QuestionnaireContext doesn't always initialize these fields
     const min =  typeof question.min === "undefined" ? 0 : parseInt(question.min, 10);
     const max = typeof question.max === "undefined" ? 100 : parseInt(question.max, 10);
     const step = typeof question.step === "undefined" ? 1 : parseInt(question.step, 10);
