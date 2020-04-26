@@ -5,10 +5,7 @@ import {SettingsContext} from "../contexts/SettingsContext";
 import {NewQuestionContext} from "../contexts/NewQuestionContext";
 import {PROPERTIES_BY_QUESTION_TYPE, SPECIAL_CONVERSION_CASES} from "./QuestionTypes";
 import Card from "@material-ui/core/Card";
-import {IOptions as classes} from "glob";
 import CardContent from "@material-ui/core/CardContent";
-import {borderColor} from "@material-ui/system";
-import {WidthProperty} from "./QuestionnaireProperties";
 
 const EditDialog = ({ question, open, setOpen }) => {
   const { settings } = useContext(SettingsContext);
@@ -177,7 +174,7 @@ const DialogBody = () => {
             {renderProperties(props.renderRequired)}
           </CardContent>
         </Card>
-      </Grid>}
+      </Grid>};
 
   return (
     <Grid container direction="row" justify="center" alignItems="center" spacing={4}>

@@ -240,13 +240,6 @@ const Sidebar = ({ question, items }) => {
   const { settings, settingsDispatch } = useContext(SettingsContext);
   const classes = useStyles();
 
-  function myFunction() {
-    // }
-    // console.log(question.id);
-    // while(question.length > 0){
-       dispatch({ type: "REMOVE_ALL"});
-  }
-
   return (
     <Droppable
       renderClone={getRenderItem(items, "")}
@@ -322,7 +315,9 @@ const Sidebar = ({ question, items }) => {
             <ListItem
                 button
 
-                onClick={myFunction}
+                onClick={() => {
+                  dispatch({ type: "REMOVE_ALL"});
+                }}
             >
               <ListItemText primary="erase questionnaire" />
             </ListItem>

@@ -31,7 +31,7 @@ const EditQuestionTitleField = ({question, onComplete}) =>{
     // To free up memory, as after the field is closed, keystrokes should not be handled with handleKeyDown anymore.
     document.removeEventListener("keydown", handleKeyDown);
     onComplete();
-  }
+  };
 
   return <TextField autoFocus id="standard-full-width" fullWidth
                     defaultValue={question.title} onChange={handleChange}>
