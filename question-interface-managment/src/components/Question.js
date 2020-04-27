@@ -48,7 +48,7 @@ const Question = ({ index, question, ...props }) => {
             />
             {/* <Summary onClick={() => setOpen(!open)} question={question} onMouseDown={() => setOpen(!open)}/> */}
             <Divider />
-            <Details question={question} />
+            <Details question={question} index={index} />
           </ExpansionPanel>
         </div>
       )}
@@ -139,7 +139,7 @@ const Summary = ({ question, provided, ...props }) => {
   );
 };
 
-const Details = ({ question }) => {
+const Details = ({ question, index }) => {
   const { settings } = useContext(SettingsContext);
 
   return (
