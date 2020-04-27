@@ -28,6 +28,7 @@ import DragHandleIcon from "@material-ui/icons/DragHandle";
 import RawPreview from "./previews/RawPreview";
 import TextField from "@material-ui/core/TextField";
 import EditQuestionTitleField from "./EditDialogTitle";
+import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -248,6 +249,7 @@ const Details = ({ question, index }) => {
         >
           <RemoveQuestionButton question={question} />
           <EditQuestionButton question={question} index={index} />
+          <DuplicateQuestionButton question={question} index={index} />
         </Grid>
       </Grid>
     </ExpansionPanelDetails>
