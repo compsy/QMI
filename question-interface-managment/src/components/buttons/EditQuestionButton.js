@@ -3,8 +3,10 @@ import {IconButton, Tooltip} from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import NewQuestionContextProvider from "../../contexts/NewQuestionContext";
 import BetaEditDialog from "../EditDialog";
+import EditDialog2 from "../BetaEditDialog2";
 
-const EditQuestionButton = ({ question }) => {
+
+const EditQuestionButton = ({ question, index }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -15,7 +17,8 @@ const EditQuestionButton = ({ question }) => {
         </IconButton>
       </Tooltip>
       <NewQuestionContextProvider>
-        <BetaEditDialog question={question} open={open} setOpen={setOpen} />
+        {/* <BetaEditDialog question={question} open={open} setOpen={setOpen} /> */}
+        {open && <EditDialog2 question={question} index={index} open={open} setOpen={setOpen} />}
       </NewQuestionContextProvider>
     </>
   );
