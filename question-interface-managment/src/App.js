@@ -3,7 +3,7 @@ import SettingsContextProvider from "./contexts/SettingsContext";
 import QuestionnaireContextProvider from "./contexts/QuestionnaireContext";
 import QuestionsPage from "./components/QuestionsPage";
 import "./components/background.css";
-import "typeface-roboto";
+// import "typeface-roboto";
 import useTheme from "./hooks/useTheme";
 import { ThemeProvider } from "@material-ui/core";
 

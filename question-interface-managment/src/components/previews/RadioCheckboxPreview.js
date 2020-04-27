@@ -53,7 +53,7 @@ const RadioCheckboxPreview = ({ question }) => {
                                 opacity: settings.showGridAreas ? "0.8" : "1.0"
                             }}
                         >
-                            <Typography variant="body1">{option}</Typography>
+                            <Typography variant="body1">{typeof(option) === "string" ? option : option.title}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
