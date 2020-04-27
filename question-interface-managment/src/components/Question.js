@@ -247,7 +247,7 @@ const Details = ({ question }) => {
           }}
         >
           <RemoveQuestionButton question={question} />
-          <EditQuestionButton question={question} />
+          <EditQuestionButton question={question} index={index} />
         </Grid>
       </Grid>
     </ExpansionPanelDetails>
