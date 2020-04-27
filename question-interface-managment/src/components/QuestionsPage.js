@@ -31,16 +31,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
-  // appBar: {
-  //   width: `calc(100% - ${drawerWidth}px)`,
-  //   marginRight: drawerWidth,
-  // },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: "white",
-    alignItems: "center",
-    background: 'linear-gradient(45deg, #7c4dff 30%, #80deea 90%)',
-  },
   drawer: {
     // width: drawerWidth,
     flexShrink: 0
@@ -48,8 +38,6 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     // width: drawerWidth,
   },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -99,16 +87,8 @@ const QuestionsPage = () => {
     <div className={classes.root} >
       <CssBaseline />
       <DragDropContext onDragEnd={onDragEnd}>
-        <AppBar className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="h5" noWrap>
-              Questionnaire Editor
-            </Typography>
-          </Toolbar>
-        </AppBar>
         <Sidebar items={QUESTION_TYPES} />
         <main className={classes.content}>
-          <div className={classes.toolbar} />
           <Grid
             container
             direction="column"
@@ -159,15 +139,17 @@ export default QuestionsPage;
 
 const TopSection = () => {
   return (
-    <Container
-      style={{ textAlign: "center", margin: "1em auto" }}
-      maxWidth="md"
-    >
-      {/* <AddQuestionButton /> */}
-      {/* <ToggleGridAreasButton /> */}
-      <StringifiedJSONCard />
-    </Container>
-  );
+      <div>
+        <Container
+            style={{ textAlign: "center", margin: "1em auto"}}
+            maxWidth="md"
+        >
+          {/* <AddQuestionButton /> */}
+          {/* <ToggleGridAreasButton /> */}
+          <StringifiedJSONCard />
+        </Container>
+      </div>
+  )
 };
 
 const BottomSection = ({ items }) => {
@@ -176,7 +158,7 @@ const BottomSection = ({ items }) => {
 
   return (
     <Container style={{ textAlign: "center" }} maxWidth="md">
-      <Typography variant="h4" style={{ margin: "1em 0" }}>
+      <Typography variant="h4" style={{ margin: "1em 0"}}>
         Questions
       </Typography>
       <Droppable droppableId="BAG" style={{ textAlign: "center" }}>
