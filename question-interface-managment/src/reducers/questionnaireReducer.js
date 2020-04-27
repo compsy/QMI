@@ -114,6 +114,14 @@ const getQuestionTemplateByAction = (action, state) =>{
     }
 };
 
+const duplicateQuestion = (action, state) => {
+    return [
+        ...state, {
+            ...action.question,
+            id: uuid()
+        }];
+};
+
 export const questionnaireReducer = (state, action) => {
     switch (action.type) {
         case "REORDER":
@@ -124,6 +132,8 @@ export const questionnaireReducer = (state, action) => {
             return action.questions;
         case "ADD_QUESTION":
             return getQuestionTemplateByAction(action, state);
+        case "DUPLICATE_QUESTION":
+            return duplicateQuestion(action, state);
         case "REMOVE_QUESTION":
             return state.filter(question => question.id !== action.id);
         case "REMOVE_ALL":
