@@ -48,6 +48,7 @@ const useStyles = makeStyles(theme => ({
 function App() {
     const [theme, toggleDarkMode] =  useDarkMode();
     const themeConfig = createMuiTheme(theme);
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const classes = useStyles();
     return (

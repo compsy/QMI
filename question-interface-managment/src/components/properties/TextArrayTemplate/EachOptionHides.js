@@ -1,41 +1,7 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectProperty,
-  setTextArrayField,
-  setTextArrayElement,
-  setProperty,
-  removeOption,
-} from "../../features/questionProperties/questionSlice";
-import {
-  TextField,
-  InputAdornment,
-  IconButton,
-  Button,
-  Box,
-  Menu,
-  MenuItem,
-  makeStyles,
-  FormControl,
-  InputLabel,
-  FilledInput,
-  Paper,
-  Slide,
-  Grid,
-  Typography,
-  Tooltip,
-  FormControlLabel,
-  Switch,
-} from "@material-ui/core";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import DeleteIcon from "@material-ui/icons/Delete";
-import AddIcon from "@material-ui/icons/Add";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import { CLEAN_SUPER_OPTION } from "../../utils";
 // import store from "../../app/store";
-import { useContext } from "react";
-import { QuestionnaireContext } from "../../contexts/QuestionnaireContext";
+import React, {useContext} from "react";
+import {Button, makeStyles, Menu, MenuItem,} from "@material-ui/core";
+import {QuestionnaireContext} from "../../contexts/QuestionnaireContext";
 
 const useStyles = makeStyles((theme) => ({
   boxy: {

@@ -7,6 +7,7 @@ const EditQuestionTitleField = ({question, onComplete}) =>{
   const { dispatch } = useContext(QuestionnaireContext);
 
   function handleKeyDown(event){
+    // noinspection FallThroughInSwitchStatementJS
     switch (event.code) {
       case "Enter":
         updateTitle();
@@ -25,7 +26,7 @@ const EditQuestionTitleField = ({question, onComplete}) =>{
     updateGlobal();
   }
 
-  const handleChange = (e) => setTitle(e.target.value)
+  const handleChange = (e) => setTitle(e.target.value);
 
   const close = () => {
     // To free up memory, as after the field is closed, keystrokes should not be handled with handleKeyDown anymore.
@@ -37,5 +38,5 @@ const EditQuestionTitleField = ({question, onComplete}) =>{
                     defaultValue={question.title} onChange={handleChange}>
     {question.title}
   </TextField>
-}
+};
 export default EditQuestionTitleField;

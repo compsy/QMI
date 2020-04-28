@@ -1,26 +1,20 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  InputAdornment,
-  IconButton,
-  makeStyles,
-  FormControl,
-  InputLabel,
-  FilledInput,
-  Slide,
-} from "@material-ui/core";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {FilledInput, FormControl, IconButton, InputAdornment, InputLabel, makeStyles,} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EachOptionMenu from "./EachOptionMenu";
+import {removeOption, setTextArrayElement, setTextArrayField} from "../../../features/questionProperties/questionSlice";
+import {CLEAN_SUPER_OPTION} from "../../../utils";
 
 const useStyles = makeStyles((theme) => ({
-  boxy: {
-    borderRadius: 0,
-  },
+    boxy: {
+        borderRadius: 0,
+    },
 }));
 
-const EachOption = ({ propertyName, index }) => {
-  return (
-    // <Slide in direction="right">
+const EachOption = ({propertyName, index}) => {
+    return (
+        // <Slide in direction="right">
     <OptionInputField propertyName={propertyName} index={index} />
     // </Slide>
   );

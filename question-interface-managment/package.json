@@ -27,7 +27,9 @@
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
     "typeface-roboto": "0.0.75",
-    "uuid": "^7.0.2"
+    "uuid": "^7.0.2",
+    "@material-ui/system": "latest",
+    "glob": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

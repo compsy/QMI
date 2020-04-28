@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { makeStyles, Box, Grid, Paper, Typography } from "@material-ui/core";
-import {
-  selectProperty,
-  setProperty,
-} from "../../../features/questionProperties/questionSlice";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Box, Grid, makeStyles, Paper, Typography} from "@material-ui/core";
+import {selectProperty, setProperty,} from "../../../features/questionProperties/questionSlice";
 import EachOption from "./EachOption";
+import AddOptionButton from "./AddOptionButton";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
