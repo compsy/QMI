@@ -70,6 +70,7 @@ const Summary = ({ question, provided, ...props }) => {
   const { questions } = useContext(QuestionnaireContext);
   const [editTitle, setEditTitle] = useState(false);
 
+
   return (
     <ExpansionPanelSummary {...props}>
       <Grid
@@ -253,9 +254,27 @@ const Details = ({ question, index }) => {
             opacity: settings.showGridAreas ? "0.8" : "1.0"
           }}
         >
-          <RemoveQuestionButton question={question} />
-          <EditQuestionButton question={question} index={index} />
-          <DuplicateQuestionButton question={question} index={index} />
+
+            {(() => {
+                switch (question.type) {
+                    case "raw":
+                        return
+
+                    default:
+                        return (
+                            <div>
+                                <RemoveQuestionButton question={question} />
+                                <EditQuestionButton question={question} index={index} />
+                                <DuplicateQuestionButton question={question} index={index} />
+                            </div>
+                        )
+
+                }
+            })()}
+
+          {/*<RemoveQuestionButton question={question} />*/}
+          {/*<EditQuestionButton question={question} index={index} />*/}
+          {/*<DuplicateQuestionButton question={question} index={index} />*/}
         </Grid>
       </Grid>
     </ExpansionPanelDetails>
