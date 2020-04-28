@@ -55,7 +55,6 @@ export const initial0 = {
   // options: ["option 1", "option 2", "option 3", "option 4"],
   options: [],
 };
-
 export const initial1 = {
   section_start: "De hoofddoelen",
   hidden: false,
@@ -70,7 +69,6 @@ export const initial1 = {
   otherwise_tooltip: "some tooltip",
   section_end: true,
 };
-
 export const initial2 = {
   section_start: "Capitals",
   hidden: false,
@@ -85,7 +83,6 @@ export const initial2 = {
   otherwise_tooltip: "some tooltip",
   section_end: true,
 };
-
 export const initial3 = [
   //   {id: 'v20', title: "Panda", type: "raw", content: '<p class="flow-text">Zie het voorbeeld hieronder:</p><img src="/images/begeleiders/omgeving.png" class="questionnaire-image" /><p class="flow-text">Geef voor de volgende antwoordopties aan of ze moeilijk of makkelijk te begrijpen waren.</p>'}
   {
@@ -223,7 +220,6 @@ export const QUESTION_TYPES = [
   { type: "dropdown", disabled: false },
   { type: "drawing", disabled: false },
 ];
-
 export const TYPE_ICONS = {
   checkbox: <CheckBoxIcon />,
   radio: <RadioButtonCheckedIcon />,
