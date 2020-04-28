@@ -188,7 +188,6 @@ const Details = ({ question, index }) => {
           {(() => {
             switch (question.type) {
               case "radio":
-                return <RadioCheckboxPreview question={question} />;
               case "checkbox":
                 return <RadioCheckboxPreview question={question} />;
               case "likert":

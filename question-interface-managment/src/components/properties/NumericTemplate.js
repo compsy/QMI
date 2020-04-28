@@ -11,37 +11,36 @@ export const NumericProperty = ({ name, propertyName, ...props }) => {
   const property = useSelector(selectProperty(propertyName));
   const dispatch = useDispatch();
 
+  /*
   const [valid, setValid] = useState(false);
 
+  const validate = () => !isNaN(parseInt(property)) ||
+    property === undefined ||
+    property === "";
+*/
+
   useEffect(() => {
-    if (
-      Number.isFinite(property) ||
-      property === undefined ||
-      property === ""
-    ) {
-      setValid(true);
-    } else {
-      setValid(false);
-    }
+    //setValid(validate());
   }, [property]);
 
   const handleChange = (event) => {
     dispatch(
       setProperty({ property: propertyName, value: event.target.value })
     );
+    //setValid(valid);
   };
 
   return (
     <TextField
       key={propertyName}
-      error={valid}
+      //error={!valid}
       variant="filled"
       // margin="dense"
       type="number"
       fullWidth
-      id={"outlined-error-helper-text"}
+      //id={"outlined-error-helper-text"}
       value={property || ""}
-      helperText={valid ? "" : "Please use numbers only."}
+      //helperText={valid ? "" : "Please use numbers only."}
       onChange={handleChange}
       label={name}
       {...props}
