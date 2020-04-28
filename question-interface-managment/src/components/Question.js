@@ -42,7 +42,11 @@ const Question = ({ index, question, ...props }) => {
         >
           <ExpansionPanel expanded={open} {...props}>
             <Summary
-              onClick={() => setOpen(!open)}
+                onClick={() => {
+                    if(question.type !== "raw") {
+                        setOpen(!open)
+                    }
+                }}
               question={question}
               provided={provided}
             />
@@ -69,6 +73,8 @@ const Summary = ({ question, provided, ...props }) => {
   const { settings } = useContext(SettingsContext);
   const { questions } = useContext(QuestionnaireContext);
   const [editTitle, setEditTitle] = useState(false);
+
+
 
 
   return (
@@ -257,7 +263,7 @@ const Details = ({ question, index }) => {
             {(() => {
                 switch (question.type) {
                     case "raw":
-                        return
+                        return;
 
                     default:
                         return (
