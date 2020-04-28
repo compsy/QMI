@@ -8,6 +8,7 @@ import {
     Typography
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
 import {SettingsContext} from "../contexts/SettingsContext";
 import RemoveQuestionButton from "./buttons/RemoveQuestionButton";
@@ -28,6 +29,9 @@ import DragHandleIcon from "@material-ui/icons/DragHandle";
 import RawPreview from "./previews/RawPreview";
 import EditQuestionTitleField from "./EditDialogTitle";
 import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import Fab from "@material-ui/core/Fab";
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -50,7 +54,6 @@ const Question = ({ index, question, ...props }) => {
               question={question}
               provided={provided}
             />
-            {/* <Summary onClick={() => setOpen(!open)} question={question} onMouseDown={() => setOpen(!open)}/> */}
             <Divider />
             <Details question={question} index={index} />
           </ExpansionPanel>
@@ -59,6 +62,9 @@ const Question = ({ index, question, ...props }) => {
     </Draggable>
   );
 };
+
+
+
 
 
 const style = {
@@ -74,8 +80,61 @@ const Summary = ({ question, provided, ...props }) => {
   const { questions } = useContext(QuestionnaireContext);
   const [editTitle, setEditTitle] = useState(false);
 
+  const HiddenQuestionIndicator = () => {
+    return question.hidden ?
+      <Tooltip title="This question will be hidden from the user.">
+        <IconButton aria-label="This question will be hidden from the user">
+          <VisibilityOffIcon/>
+        </IconButton>
+      </Tooltip>
+      : null
+  }
 
 
+  const SmallLeftGridItem = ({...props}) =>{
+    return <Grid
+      item
+      xs
+      style={{
+        textAlign: "left",
+        background: settings.showGridAreas ? "lightgreen" : "transparent",
+        opacity: settings.showGridAreas ? "0.8" : "1.0",
+      }}
+      {...props}
+    >
+      {props.children}
+    </Grid>
+
+  }
+
+  // For some reason, this does not make double clicking work
+  const QuestionTitle = () => {
+    return editTitle ? (
+        <EditQuestionTitleField
+          question={question}
+          onComplete={() => setEditTitle(false)}
+        />
+      ) : (
+        <Typography onDoubleClick={() => setEditTitle(true)} variant="h5">
+          {question.type === "raw" ? question.content : question.title}
+        </Typography>
+      )
+  }
+
+
+  const ExpandMoreGridItem = () => {
+    return <Grid
+      item
+      xs
+      style={{
+        textAlign: "right",
+        background: settings.showGridAreas ? "lightcoral" : "transparent",
+        opacity: settings.showGridAreas ? "0.8" : "1.0",
+      }}
+    >
+      <ExpandMoreIcon />
+    </Grid>
+  }
 
   return (
     <ExpansionPanelSummary {...props}>
@@ -90,31 +149,17 @@ const Summary = ({ question, provided, ...props }) => {
           opacity: settings.showGridAreas ? "0.8" : "1.0",
         }}
       >
-        <Grid
-          item
-          xs
-          style={{
-            textAlign: "left",
-            background: settings.showGridAreas ? "lightgreen" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0",
-          }}
-          {...provided.dragHandleProps}
-        >
+
+        <SmallLeftGridItem  {...provided.dragHandleProps} >
           <DragHandleIcon />
-        </Grid>
-        <Grid
-          item
-          xs
-          style={{
-            textAlign: "left",
-            background: settings.showGridAreas ? "lightgreen" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0",
-          }}
-        >
+        </SmallLeftGridItem>
+
+        <SmallLeftGridItem>
           <Typography variant="h5">
             {questions.indexOf(question) + 1}
           </Typography>
-        </Grid>
+        </SmallLeftGridItem>
+
         <Grid
           item
           xs={8}
@@ -136,19 +181,14 @@ const Summary = ({ question, provided, ...props }) => {
               {question.type === "raw" ? question.content : question.title}
             </Typography>
           )}
+
         </Grid>
-        <Grid
-          item
-          xs={2}
-          style={{
-            textAlign: "right",
-            background: settings.showGridAreas ? "lightcoral" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0",
-          }}
-        >
-          <ExpandMoreIcon />
-        </Grid>
+
+
+        <ExpandMoreGridItem/>
+
       </Grid>
+      <HiddenQuestionIndicator/>
     </ExpansionPanelSummary>
   );
 };

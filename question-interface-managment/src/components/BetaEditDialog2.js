@@ -57,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
 const EditDialog2 = ({ question, index, open, setOpen }) => {
   // const newQuestion = useSelector((state) => state.question);
   const dispatch2 = useDispatch();
@@ -145,9 +144,9 @@ const DialogBody = () => {
       <Typography variant="subtitle2" style={{ userSelect: "none" }}>{title}</Typography>
       {PROPERTIES_BY_QUESTION_TYPE[type.toUpperCase()][
         propertyGroupName
-        ].map((el) => (
+        ].map((property) => (
         <Box className={classes.mtb} p={0}>
-          {createElement(el)}
+          {createElement(property)}
         </Box>
       ))}
     </Paper>
