@@ -17,6 +17,10 @@ const LikertPreview = ({ question }) => {
     <Radio disabled />
   </Grid>;
 
+    const printOption = (option) => {
+        return option.numeric_value === undefined ? option : option.title + " (" + option.numeric_value + ")"
+    };
+
   const renderText = (option) =>
     <Grid
     item
@@ -30,8 +34,10 @@ const LikertPreview = ({ question }) => {
       opacity: settings.showGridAreas ? "0.8" : "1.0"
     }}
   >
-    <Typography variant="body1">{option.title + " (" + option.numeric_value + ")"}</Typography>
+    <Typography variant="body1">{ printOption(option) }</Typography>
   </Grid>;
+
+
 
   const renderOption = (option) =>
     <Grid
