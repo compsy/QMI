@@ -73,20 +73,24 @@ const Summary = ({ question, provided, ...props }) => {
 
   return (
     <ExpansionPanelSummary {...props}>
-
       <Grid
-        container direction="row" justify="center" alignItems="center" spacing={1}
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        spacing={1}
         style={{
           background: settings.showGridAreas ? "lightgrey" : "transparent",
-          opacity: settings.showGridAreas ? "0.8" : "1.0"
+          opacity: settings.showGridAreas ? "0.8" : "1.0",
         }}
       >
         <Grid
-          item xs
+          item
+          xs
           style={{
             textAlign: "left",
             background: settings.showGridAreas ? "lightgreen" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0"
+            opacity: settings.showGridAreas ? "0.8" : "1.0",
           }}
           {...provided.dragHandleProps}
         >
@@ -98,7 +102,7 @@ const Summary = ({ question, provided, ...props }) => {
           style={{
             textAlign: "left",
             background: settings.showGridAreas ? "lightgreen" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0"
+            opacity: settings.showGridAreas ? "0.8" : "1.0",
           }}
         >
           <Typography variant="h5">
@@ -113,15 +117,19 @@ const Summary = ({ question, provided, ...props }) => {
             wordWrap: "break-word",
             wordBreak: "break-word",
             background: settings.showGridAreas ? "lightblue" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0"
+            opacity: settings.showGridAreas ? "0.8" : "1.0",
           }}
         >
-          {editTitle ?
-              <EditQuestionTitleField question={question} onComplete={() => setEditTitle(false) }/>
-                :
-                <Typography onDoubleClick={() => setEditTitle(true)} variant="h5">{question.title}</Typography>
-          }
-
+          {editTitle ? (
+            <EditQuestionTitleField
+              question={question}
+              onComplete={() => setEditTitle(false)}
+            />
+          ) : (
+            <Typography onDoubleClick={() => setEditTitle(true)} variant="h5">
+              {question.type === "raw" ? question.content : question.title}
+            </Typography>
+          )}
         </Grid>
         <Grid
           item
@@ -129,10 +137,9 @@ const Summary = ({ question, provided, ...props }) => {
           style={{
             textAlign: "right",
             background: settings.showGridAreas ? "lightcoral" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0"
+            opacity: settings.showGridAreas ? "0.8" : "1.0",
           }}
         >
-
           <ExpandMoreIcon />
         </Grid>
       </Grid>
