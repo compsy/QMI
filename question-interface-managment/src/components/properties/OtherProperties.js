@@ -40,10 +40,7 @@ export const OtherwiseProperty = () => {
   );
 };
 
-export const DefaultDateCompositionProperty = ({
-  newQuestion,
-  newQuestionDispatch,
-}) => {};
+
 
 export const CustomMinMaxStepProperty = () => {
   return (
@@ -149,6 +146,7 @@ export const RadiusDensityComposite = () => {
     </Grid>
   );
 };
+
 
 
 export const HiddenRequiredComposite = () => {
