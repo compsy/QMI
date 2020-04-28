@@ -39,7 +39,7 @@ const RadioCheckboxPreview = ({ question }) => {
                                 opacity: settings.showGridAreas ? "0.8" : "1.0"
                             }}
                         >
-                            {question.type === "checkbox" ? <Checkbox disabled /> : <Radio disabled />}
+                            {question.type === "checkbox" ? <Checkbox  /> : <Radio  />}
                         </Grid>
                         <Grid
                             item
