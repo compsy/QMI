@@ -162,7 +162,7 @@ const Summary = ({ question, provided, ...props }) => {
 
         <Grid
           item
-          xs={8}
+          xs={7}
           style={{
             textAlign: "left",
             wordWrap: "break-word",
@@ -184,11 +184,13 @@ const Summary = ({ question, provided, ...props }) => {
 
         </Grid>
 
+        <SmallLeftGridItem>
+          <HiddenQuestionIndicator/>
+        </SmallLeftGridItem>
 
         <ExpandMoreGridItem/>
 
       </Grid>
-      <HiddenQuestionIndicator/>
     </ExpansionPanelSummary>
   );
 };
