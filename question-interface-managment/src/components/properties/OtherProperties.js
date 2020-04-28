@@ -1,32 +1,28 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { ShowOtherwiseProperty, HiddenProperty, RequiredProperty } from "./BooleanProperties";
+import {HiddenProperty, RequiredProperty, ShowOtherwiseProperty} from "./BooleanProperties";
+import {OtherwiseLabelProperty, OtherwiseTooltipProperty,} from "./TextProperties";
 import {
-  OtherwiseLabelProperty,
-  OtherwiseTooltipProperty,
-} from "./TextProperties";
-import {
-  MinProperty,
-  MaxProperty,
-  StepProperty,
-  HoursFromProperty,
-  HoursToProperty,
-  HoursStepProperty,
-  MaxLengthProperty,
-  WidthProperty,
-  HeightProperty,
-  RadiusProperty,
   DensityProperty,
+  HeightProperty,
+  HoursFromProperty,
+  HoursStepProperty,
+  HoursToProperty,
+  MaxLengthProperty,
+  MaxProperty,
+  MinProperty,
+  RadiusProperty,
+  StepProperty,
+  WidthProperty,
 } from "./NumericProperties";
-import { makeStyles } from "@material-ui/core";
-import { useSelector } from "react-redux";
-import { selectProperty } from "../../features/questionProperties/questionSlice";
+import {useSelector} from "react-redux";
+import {selectProperty} from "../../features/questionProperties/questionSlice";
 
 // not in use yet
-export const DataMethodProperty = ({ ...props }) => {
+export const DataMethodProperty = ({...props}) => {
   return null;
 };
-export const ExpandableContentProperty = ({ ...props }) => null;
+export const ExpandableContentProperty = ({...props}) => null;
 
 // Composite properties. These consists of smaller properties, depending on each other:
 export const OtherwiseProperty = () => {
@@ -158,17 +154,17 @@ export const RadiusDensityComposite = () => {
 export const HiddenRequiredComposite = () => {
   return (
     <Grid
-    container
-    direction="row"
-    justify="flex-start"
-    alignItems="center"
-  >
-    <Grid item>
-      <HiddenProperty />
+        container
+        direction="row"
+        justify="flex-start"
+        alignItems="center"
+    >
+      <Grid item>
+        <HiddenProperty/>
+      </Grid>
+      <Grid item xs>
+        <RequiredProperty/>
+      </Grid>
     </Grid>
-    <Grid item xs>
-      <RequiredProperty />
-    </Grid>
-  </Grid>
   );
-}
+};

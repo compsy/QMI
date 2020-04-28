@@ -10,65 +10,43 @@ import ScheduleIcon from "@material-ui/icons/Schedule";
 import TextFormatIcon from "@material-ui/icons/TextFormat";
 import GestureIcon from "@material-ui/icons/Gesture";
 import SelectIcon from "@material-ui/icons/ViewList";
-import { startOfDay } from "date-fns/esm";
+
+import {HiddenProperty, SectionEndProperty, TodayProperty,} from "../components/properties/BooleanProperties";
+
+import {DefaultDateProperty, MaxDateProperty, MinDateProperty,} from "../components/properties/DateProperties";
+
+import {DefaultExpansionsProperty, MaxExpansionsProperty,} from "../components/properties/NumericProperties";
+
+import {LabelOptionsProperty, TextOptionsProperty,} from "../components/properties/TextArrayProperties";
 
 import {
-  HiddenProperty,
-  ShowOtherwiseProperty,
-  RequiredProperty,
-  TodayProperty,
-  SectionEndProperty,
-} from "../components/properties/BooleanProperties";
-
-import {
-  DefaultDateProperty,
-  MinDateProperty,
-  MaxDateProperty,
-} from "../components/properties/DateProperties";
-
-import {
-  MinProperty,
-  MaxProperty,
-  StepProperty,
-  MaxLengthProperty,
-  DefaultExpansionsProperty,
-  MaxExpansionsProperty,
-  HoursFromProperty,
-  HoursToProperty,
-  HoursStepProperty,
-  WidthProperty,
-  HeightProperty,
-  RadiusProperty,
-  DensityProperty,
-} from "../components/properties/NumericProperties";
-
-import {
-  TextOptionsProperty,
-  LabelOptionsProperty,
-} from "../components/properties/TextArrayProperties";
-
-import {
-  TitleProperty,
-  TooltipProperty,
-  OtherwiseLabelProperty,
-  OtherwiseTooltipProperty,
+  AddButtonLabelProperty,
+  ButtonTextProperty,
+  ColorProperty,
   ContentProperty,
-  PlaceholderProperty,
   DefaultTextValueProperty,
   HintProperty,
-  RemoveButtonLabelProperty,
-  AddButtonLabelProperty,
   HoursLabelProperty,
-  MinutesLabelProperty,
-  ButtonTextProperty,
-  LabelProperty,
-  SectionStartProperty,
   ImageProperty,
+  LabelProperty,
   LinksToExpandableProperty,
+  MinutesLabelProperty,
   PatternProperty,
-  ColorProperty,
+  PlaceholderProperty,
+  RemoveButtonLabelProperty,
+  SectionStartProperty,
+  TitleProperty,
+  TooltipProperty,
 } from "../components/properties/TextProperties";
-import { CustomMinMaxStepProperty, HoursCompositeProperty, NumberTypeComposite, WidthHeightComposite, RadiusDensityComposite, HiddenRequiredComposite, OtherwiseProperty } from "../components/properties/OtherProperties";
+import {
+  CustomMinMaxStepProperty,
+  HiddenRequiredComposite,
+  HoursCompositeProperty,
+  NumberTypeComposite,
+  OtherwiseProperty,
+  RadiusDensityComposite,
+  WidthHeightComposite
+} from "../components/properties/OtherProperties";
 
 export const initial0 = {
   id: "v1",
@@ -350,7 +328,7 @@ export const CLEAN_SUPER_OPTION = {
   shows_questions: undefined,
   hides_questions: undefined,
   numeric_value: undefined,
-}
+};
 
 // Question Preprocessing before edit
 // handles defaults and undefineds

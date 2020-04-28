@@ -92,7 +92,7 @@ const postprocessRaw = (question) => {
     section_start: question.section_start !== undefined ? question.section_start : undefined,
     section_end: question.section_end !== undefined ? question.section_end : undefined,
   }
-}
+};
 
 const postprocessTextarea = (question) => {
   // prettier-ignore

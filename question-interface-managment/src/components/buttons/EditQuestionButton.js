@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {IconButton, Tooltip} from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import NewQuestionContextProvider from "../../contexts/NewQuestionContext";
-import BetaEditDialog from "../EditDialog";
 import EditDialog2 from "../BetaEditDialog2";
 
 

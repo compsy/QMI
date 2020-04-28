@@ -1,17 +1,16 @@
 import React from "react";
-import { DateProperty } from "./DateTemplate";
-import { useSelector } from "react-redux";
-import { selectProperty } from "../../features/questionProperties/questionSlice";
+import {DateProperty} from "./DateTemplate";
+import {useSelector} from "react-redux";
 
 // Date properties
-export const DefaultDateProperty = ({ ...props }) => {
+export const DefaultDateProperty = ({...props}) => {
   const today = useSelector((state) => state.question.today);
   return (
-    <DateProperty
-      disabled={today || false}
-      name="Default Date"
-      propertyName="default_date"
-      {...props}
+      <DateProperty
+          disabled={today || false}
+          name="Default Date"
+          propertyName="default_date"
+          {...props}
     />
   );
 };

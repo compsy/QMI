@@ -1,45 +1,12 @@
-import React, { useContext, useEffect } from "react";
-import {
-  Button,
-  Dialog,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-  Paper,
-  Box,
-  makeStyles,
-  Divider,
-} from "@material-ui/core";
-import { QuestionnaireContext } from "../contexts/QuestionnaireContext";
-import { SettingsContext } from "../contexts/SettingsContext";
-import { NewQuestionContext } from "../contexts/NewQuestionContext";
-import {
-  PROPERTIES_BY_QUESTION_TYPE,
-  SPECIAL_CONVERSION_CASES,
-  CLEAN_SUPER_QUESTION,
-  preprocessQuestion,
-} from "../utils";
-import Card from "@material-ui/core/Card";
-import { IOptions as classes } from "glob";
-import CardContent from "@material-ui/core/CardContent";
-import { borderColor } from "@material-ui/system";
-import { WidthProperty } from "./QuestionnaireProperties";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setQuestion,
-  resetAll,
-  questionSlice,
-} from "../features/questionProperties/questionSlice";
-import { setQuestionAtIndex } from "../features/questions/questionsSlice";
-import { useState } from "react";
+import React, {createElement, useContext, useEffect} from "react";
+import {Box, Button, Dialog, Divider, Grid, makeStyles, Paper, Typography,} from "@material-ui/core";
+import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
+import {CLEAN_SUPER_QUESTION, PROPERTIES_BY_QUESTION_TYPE,} from "../utils";
+import {useDispatch, useSelector} from "react-redux";
+import {setQuestion,} from "../features/questionProperties/questionSlice";
 import TypeProperty from "./properties/TypeProperty";
-import { createElement } from "react";
 import store from "../app/store";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import { postprocessQuestion } from "./properties/postprocessor";
+import {postprocessQuestion} from "./properties/postprocessor";
 
 const useStyles = makeStyles((theme) => ({
   body: {

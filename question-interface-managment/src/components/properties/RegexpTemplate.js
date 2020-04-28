@@ -1,14 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
+import TextField from "@material-ui/core/TextField";
 
 export const RegexpProperty = ({
-  newQuestion,
-  newQuestionDispatch,
-  name,
-  propertyName,
-  regexp,
-  helperText,
-  ...props
-}) => {
+                                 newQuestion,
+                                 newQuestionDispatch,
+                                 name,
+                                 propertyName,
+                                 regexp,
+                                 helperText,
+                                 ...props
+                               }) => {
   const validate = (input) => {
     if (input === "" || input === undefined) return true;
     const output = input.match(regexp);

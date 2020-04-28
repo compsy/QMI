@@ -26,7 +26,6 @@ import {Draggable} from "react-beautiful-dnd";
 import "./index.css";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
 import RawPreview from "./previews/RawPreview";
-import TextField from "@material-ui/core/TextField";
 import EditQuestionTitleField from "./EditDialogTitle";
 import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
 
