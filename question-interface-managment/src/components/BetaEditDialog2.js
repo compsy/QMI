@@ -139,28 +139,24 @@ const DialogHeader = ({ index, ...props }) => {
 const DialogBody = () => {
   const type = useSelector((state) => state.question.type);
   const classes = useStyles();
+
+  const PropertyGroup = ({title, propertyGroupName}) => {
+    return <Paper variant="outlined" className={classes.required}>
+      <Typography variant="subtitle2" style={{ userSelect: "none" }}>{title}</Typography>
+      {PROPERTIES_BY_QUESTION_TYPE[type.toUpperCase()][
+        propertyGroupName
+        ].map((el) => (
+        <Box className={classes.mtb} p={0}>
+          {createElement(el)}
+        </Box>
+      ))}
+    </Paper>
+  }
+
   return (
     <div className={classes.body}>
-      <Paper variant="outlined" className={classes.required}>
-        <Typography variant="subtitle2" style={{ userSelect: "none" }}>Required</Typography>
-        {PROPERTIES_BY_QUESTION_TYPE[type.toUpperCase()][
-          "requiredProperties"
-        ].map((el) => (
-          <Box className={classes.mtb} p={0}>
-            {createElement(el)}
-          </Box>
-        ))}
-      </Paper>
-      <Paper variant="outlined">
-        <Typography variant="subtitle2" style={{ userSelect: "none" }}>Optional</Typography>
-        {PROPERTIES_BY_QUESTION_TYPE[type.toUpperCase()][
-          "optionalProperties"
-        ].map((el) => (
-          <Box className={classes.mtb} p={0}>
-            {createElement(el)}
-          </Box>
-        ))}
-      </Paper>
+      <PropertyGroup title="Required" propertyGroupName="requiredProperties"/>
+      <PropertyGroup title="Optional" propertyGroupName="optionalProperties"/>
     </div>
   );
 };
