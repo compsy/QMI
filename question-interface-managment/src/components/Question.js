@@ -28,6 +28,7 @@ import DragHandleIcon from "@material-ui/icons/DragHandle";
 import RawPreview from "./previews/RawPreview";
 import EditQuestionTitleField from "./EditDialogTitle";
 import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
+import index from "react-html-parser/lib/elementTypes";
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -60,14 +61,14 @@ const Question = ({ index, question, ...props }) => {
   );
 };
 
-function Greeting(question) {
+function Greeting(question, index) {
     const type = question.type;
     if (type !== "raw") {
         return <ExpandMoreIcon />;
     }
     return <div>
-        <DuplicateQuestionButton question = {question}/>
-        <RemoveQuestionButton question = {question}/>
+        <DuplicateQuestionButton question={question}/>
+        <RemoveQuestionButton question={question} index={index}/>
         </div>
 }
 
@@ -156,7 +157,7 @@ const Summary = ({ question, provided, ...props }) => {
             opacity: settings.showGridAreas ? "0.8" : "1.0",
           }}
         >
-            <Greeting type={question.type}/>
+            {Greeting(question, index)}
         </Grid>
       </Grid>
     </ExpansionPanelSummary>
