@@ -63,11 +63,11 @@ const Question = ({ index, question, ...props }) => {
 };
 
 function Greeting(question, index) {
-    const type = question.type;
-    if (type !== "raw") {
+    if (question.type !== "raw") {
         return <ExpandMoreIcon />;
     }
-    return <div>
+    return <div id = "foo">
+        <EditQuestionButton question={question} index={index} />
         <DuplicateQuestionButton question={question}/>
         <RemoveQuestionButton question={question} index={index}/>
         </div>
@@ -273,19 +273,14 @@ const Details = ({ question, index }) => {
         >
 
             {(() => {
-                switch (question.type) {
-                    case "raw":
-                        return;
-
-                    default:
-                        return (
-                            <div>
-                                <RemoveQuestionButton question={question} />
-                                <EditQuestionButton question={question} index={index} />
-                                <DuplicateQuestionButton question={question} index={index} />
-                            </div>
-                        )
-
+                if (question.type !== "raw") {
+                    return (
+                        <div>
+                            <RemoveQuestionButton question={question} />
+                            <EditQuestionButton question={question} index={index} />
+                            <DuplicateQuestionButton question={question} index={index} />
+                        </div>
+                    )
                 }
             })()}
 
