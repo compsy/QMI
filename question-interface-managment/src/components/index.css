@@ -67,3 +67,7 @@ background: whitesmoke;
     color: black;
   }
 }
+
+#foo {
+  width: 160px;
+}
