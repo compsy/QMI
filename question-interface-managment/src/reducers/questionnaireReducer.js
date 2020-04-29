@@ -49,7 +49,6 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
         case "raw":
             newDestination.splice(droppableDestination.index, 0, {
                 type: item.label,
-                title: `untitled ${item.label}`,
                 content: "<p>This is untitled raw question</p>"
             });
             break;
@@ -101,7 +100,6 @@ const getQuestionTemplateByAction = (action, state) =>{
             return [
                 ...state, {
                     type: action.questionType.toLowerCase(),
-                    title: "untitled " + action.questionType,
                     content: "<p>This is untitled raw question</p>"
                 }];
         default:
