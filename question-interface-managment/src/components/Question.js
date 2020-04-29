@@ -144,7 +144,7 @@ const Summary = ({ question, provided, ...props }) => {
               onComplete={() => setEditTitle(false)}
             />
           ) : (
-            <Typography onDoubleClick={() => setEditTitle(true)} variant="h5">
+            <Typography onDoubleClick={() => { if (question.type !== "raw") { setEditTitle(true) } }} variant="h5">
               {question.type === "raw" ? ReactHtmlParser (question.content) : question.title}
             </Typography>
           )}
