@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 
 // main file for src/components/properties/TextArrayTemplate
 const TextArrayTemplate = ({ name, propertyName }) => {
-  // react-redux hooks for accessing state.question.options or state.question.labels
   const property = useSelector(selectProperty(propertyName));
   const dispatch = useDispatch();
 
@@ -31,10 +30,20 @@ const TextArrayTemplate = ({ name, propertyName }) => {
     }
   }, [property]);
 
+  // no need to add as {title: ""} (handled in ./EachOption.js)
+  const handleAddOptionClick = () => {
+    dispatch(
+      setProperty({
+        property: propertyName,
+        value: [...property, ""],
+      })
+    );
+  };
+
   const classes = useStyles();
   return (
     <>
-      <Paper className={classes.paper} variant="outlined" elevation={0}>
+      <Paper elevation={0} variant="outlined" className={classes.paper}>
         {property.length > 0 ? (
           property.map((_, index) => (
             <EachOption propertyName={propertyName} index={index} />

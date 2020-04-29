@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import { setTextArrayElement } from "../../../features/questionProperties/questionSlice";
+import { createElement } from "react";
 
 const useStyles = makeStyles((theme) => ({
   menuItem: {
@@ -41,10 +42,7 @@ const EachOptionMenu = ({ propertyName, index }) => {
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
-        {/* switch case without break for options */}
-        <NumericValueMenuItem propertyName={propertyName} index={index} />
-        <OptionTooltipMenuItem propertyName={propertyName} index={index} />
-        <StopSubscriptionMenuItem propertyName={propertyName} index={index} />
+        <MenuElements propertyName={propertyName} index={index}/>
       </Menu>
     </>
   );
@@ -160,5 +158,23 @@ const StopSubscriptionMenuItem = ({ propertyName, index }) => {
         }
       />
     </MenuItem>
+  );
+};
+
+const menuElementsByType = {
+  checkbox: [OptionTooltipMenuItem, StopSubscriptionMenuItem],
+  radio: [
+    OptionTooltipMenuItem,
+    StopSubscriptionMenuItem,
+    NumericValueMenuItem,
+  ],
+  likert: [NumericValueMenuItem],
+  dropdown: [NumericValueMenuItem],
+};
+
+const MenuElements = ({ propertyName, index }) => {
+  const type = useSelector((state) => state.question.type);
+  return menuElementsByType[type].map((e) =>
+    createElement(e, { propertyName, index }, null)
   );
 };
