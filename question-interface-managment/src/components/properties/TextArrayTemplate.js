@@ -31,6 +31,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 import {CLEAN_SUPER_OPTION} from "../../utils";
 import {QuestionnaireContext} from "../../contexts/QuestionnaireContext";
+import EachOption from "./TextArrayTemplate/EachOption";
 
 const useStyles = makeStyles((theme) => ({
     boxy: {
@@ -84,7 +85,7 @@ export const TextArrayProperty = ({ name, propertyName }) => {
       <Paper elevation={0} variant="outlined" className={classes.paper}>
         {property.length > 0 ? (
           property.map((_, index) => (
-            <EachOptioni
+            <EachOption
               index={index}
               name={name}
               propertyName={propertyName}

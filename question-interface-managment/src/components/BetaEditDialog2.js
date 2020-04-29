@@ -140,7 +140,7 @@ const DialogBody = () => {
   const classes = useStyles();
 
   const PropertyGroup = ({title, propertyGroupName}) => {
-    return <Paper variant="outlined" className={classes.required}>
+    return <Paper variant="outlined" className={classes[title.toLowerCase()]}>
       <Typography variant="subtitle2" style={{ userSelect: "none" }}>{title}</Typography>
       {PROPERTIES_BY_QUESTION_TYPE[type.toUpperCase()][
         propertyGroupName
