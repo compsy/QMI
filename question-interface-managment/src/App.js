@@ -71,7 +71,6 @@ function App() {
                             <Grid item>Dark Mode</Grid>
                         </Grid>
                     </Typography>
-                    <SearchBar/>
                 </Toolbar>
             </AppBar>
                 <SettingsContextProvider>

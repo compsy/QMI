@@ -29,6 +29,7 @@ import RawPreview from "./previews/RawPreview";
 import EditQuestionTitleField from "./EditDialogTitle";
 import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
 import index from "react-html-parser/lib/elementTypes";
+import ReactHtmlParser from "react-html-parser";
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -144,7 +145,7 @@ const Summary = ({ question, provided, ...props }) => {
             />
           ) : (
             <Typography onDoubleClick={() => setEditTitle(true)} variant="h5">
-              {question.type === "raw" ? question.content : question.title}
+              {question.type === "raw" ? ReactHtmlParser (question.content) : question.title}
             </Typography>
           )}
         </Grid>
