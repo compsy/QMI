@@ -161,7 +161,7 @@ const StopSubscriptionMenuItem = ({ propertyName, index }) => {
   );
 };
 
-const optionMenuElements = {
+const menuElementsByType = {
   checkbox: [OptionTooltipMenuItem, StopSubscriptionMenuItem],
   radio: [
     OptionTooltipMenuItem,
@@ -174,7 +174,7 @@ const optionMenuElements = {
 
 const MenuElements = ({ propertyName, index }) => {
   const type = useSelector((state) => state.question.type);
-  return optionMenuElements[type].map((e) =>
+  return menuElementsByType[type].map((e) =>
     createElement(e, { propertyName, index }, null)
   );
 };
