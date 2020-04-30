@@ -85,6 +85,7 @@ const postprocessLikert = (question) => {
 const postprocessRaw = (question) => {
   // prettier-ignore
   return {
+    id: question.id,
     type: question.type,
     // required
     content: question.content !== undefined ? question.content : "no raw content",

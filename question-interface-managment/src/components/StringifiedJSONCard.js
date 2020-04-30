@@ -5,11 +5,25 @@ import {Card, Typography} from '@material-ui/core';
 const StringifiedJSONCard = () => {
   const { questions } = useContext(QuestionnaireContext);
   // formats the ids
+  let count = 0;
   const toPrint = questions.map((question, index) => {
+    // subtract cumulative count of raws  
+    if (question.type === "raw") {
+      count++;
       return {
-          ...question,
-          id: question.type === "raw" ? undefined : `v${index + 1}`
+        ...question,
+        id: undefined,
       };
+    } else {
+      return {
+        ...question,
+        id: `v${index + 1 - count}`
+      }
+    }
+    // return {
+    //     ...question,
+    //     id: question.type === "raw" ? undefined : `v${index + 1}`
+    // };
   });
 
   return (
