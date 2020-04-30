@@ -63,11 +63,11 @@ const Question = ({ index, question, ...props }) => {
 };
 
 function Greeting(question, index) {
-    if (question.type !== "raw") {
+    const type = question.type;
+    if (type !== "raw") {
         return <ExpandMoreIcon />;
     }
-    return <div id = "foo">
-        <EditQuestionButton question={question} index={index} />
+    return <div>
         <DuplicateQuestionButton question={question}/>
         <RemoveQuestionButton question={question} index={index}/>
         </div>
@@ -85,8 +85,6 @@ const Summary = ({ question, provided, ...props }) => {
   const { settings } = useContext(SettingsContext);
   const { questions } = useContext(QuestionnaireContext);
   const [editTitle, setEditTitle] = useState(false);
-
-
 
 
   return (
@@ -144,7 +142,8 @@ const Summary = ({ question, provided, ...props }) => {
               onComplete={() => setEditTitle(false)}
             />
           ) : (
-            <Typography onDoubleClick={() => { if (question.type !== "raw") { setEditTitle(true) } }} variant="h5">
+            <Typography onDoubleClick={() => question.type === "raw" ? setEditTitle(false) : setEditTitle(true)} variant="h5">
+
               {question.type === "raw" ? ReactHtmlParser (question.content) : question.title}
             </Typography>
           )}
@@ -273,14 +272,19 @@ const Details = ({ question, index }) => {
         >
 
             {(() => {
-                if (question.type !== "raw") {
-                    return (
-                        <div>
-                            <RemoveQuestionButton question={question} />
-                            <EditQuestionButton question={question} index={index} />
-                            <DuplicateQuestionButton question={question} index={index} />
-                        </div>
-                    )
+                switch (question.type) {
+                    case "raw":
+                        return;
+
+                    default:
+                        return (
+                            <div>
+                                <RemoveQuestionButton question={question} />
+                                <EditQuestionButton question={question} index={index} />
+                                <DuplicateQuestionButton question={question} index={index} />
+                            </div>
+                        )
+
                 }
             })()}
 
