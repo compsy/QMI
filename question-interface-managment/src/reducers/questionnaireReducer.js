@@ -48,6 +48,7 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
             break;
         case "raw":
             newDestination.splice(droppableDestination.index, 0, {
+                id: uuid(),
                 type: item.label,
                 content: "<p>This is untitled raw question</p>"
             });
@@ -99,6 +100,7 @@ const getQuestionTemplateByAction = (action, state) =>{
         case "raw":
             return [
                 ...state, {
+                    id: uniq,
                     type: action.questionType.toLowerCase(),
                     content: "<p>This is untitled raw question</p>"
                 }];
