@@ -1,5 +1,4 @@
-[![CircleCI](https://circleci.com/gh/AlexFyod/QMI.svg?style=svg)](https://circleci.com/gh/AlexFyod/QMI) 
-
+[![CircleCI](https://circleci.com/gh/AlexFyod/QMI.svg?style=shield&circle-token=0404cd32f16e9f84c1a7e3e4ee31bc52d0508afa)](https://circleci.com/gh/AlexFyod/QMI) 
  # Questionnaire Managment Interface
  
  ## Table of contents
@@ -59,10 +58,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 ## Features
-* Vibrant colors
-* Popup message once someone wins, with the winner's information
-* Sound effects
-* Cool and smooth UI with vibrant colors
+* Drag and Drop
+* Duplicating questions
+* Editing questions
 
 ## Status
 Project is: **In progress**
