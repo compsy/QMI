@@ -79,15 +79,14 @@ const HiddenQuestionIndicator = ({question}) => {
 function renderButtons(question, index) {
     const type = question.type;
     const elements = [];
-    elements.push(<HiddenQuestionIndicator question={question}/>);
+    elements.push(<HiddenQuestionIndicator key={elements.length} question={question}/>);
     if (type !== "raw") {
-      elements.push(<ExpandMoreIcon />);
+      elements.push(<ExpandMoreIcon key={elements.length} />);
     }else{
-      elements.push(<EditQuestionButton question={question} index={index} />)
-      elements.push(<DuplicateQuestionButton question={question}/>);
-      elements.push(<RemoveQuestionButton question={question} index={index}/>);
+      elements.push(<EditQuestionButton key={elements.length} question={question} index={index} />)
+      elements.push(<DuplicateQuestionButton key={elements.length} question={question}/>);
+      elements.push(<RemoveQuestionButton key={elements.length} question={question} index={index}/>);
     }
-
     return <div>{elements}</div>
 }
 
@@ -105,22 +104,26 @@ const Summary = ({ question, provided, ...props }) => {
   const [editTitle, setEditTitle] = useState(false);
 
 
+  const SmallGridItem = () =>{
+    return  <Grid item xs style={{
+                    textAlign: "left",
+                    background: settings.showGridAreas ? "lightgreen" : "transparent",
+                    opacity: settings.showGridAreas ? "0.8" : "1.0",
+                  }}
+                  {...props}>
+      {props.children}
+    </Grid>
+  }
+
   return (
     <ExpansionPanelSummary {...props}>
-      <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-        spacing={1}
+      <Grid container direction="row" justify="center" alignItems="center" spacing={1}
         style={{
           background: settings.showGridAreas ? "lightgrey" : "transparent",
           opacity: settings.showGridAreas ? "0.8" : "1.0",
         }}
       >
-        <Grid
-          item
-          xs
+        <Grid item xs
           style={{
             textAlign: "left",
             background: settings.showGridAreas ? "lightgreen" : "transparent",
@@ -130,6 +133,8 @@ const Summary = ({ question, provided, ...props }) => {
         >
           <DragHandleIcon />
         </Grid>
+
+
         <Grid
           item
           xs
