@@ -13,8 +13,7 @@ workflows:
       - welcome/run
       steps:
       - checkout
-
-      # Download and cache dependencies
+      working_directory: ~/repo
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -27,10 +26,18 @@ workflows:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      
+      - snyk/scan:
+          fail-on-issues: false
+          monitor-on-build: false
+          severity-threshold: high
+      
+      - run: yarn lint
 
-      # run tests!
+      - run: yarn size
+      
       - run: yarn test
 
-      - run: yarn build
+      - run: yarn ci:cypress-run
 
-      - run: yarn netlify:deploy
+      - run: yarn build
