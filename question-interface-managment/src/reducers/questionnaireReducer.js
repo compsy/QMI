@@ -50,7 +50,7 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
             newDestination.splice(droppableDestination.index, 0, {
                 id: uuid(),
                 type: item.label,
-                content: "<p>This is untitled raw question</p>"
+                content: "<p>This is an untitled raw question</p>"
             });
             break;
         default:
@@ -102,7 +102,7 @@ const getQuestionTemplateByAction = (action, state) =>{
                 ...state, {
                     id: uniq,
                     type: action.questionType.toLowerCase(),
-                    content: "<p>This is untitled raw question</p>"
+                    content: "<p>This an is untitled raw question</p>"
                 }];
         default:
             return [

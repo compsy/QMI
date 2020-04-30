@@ -30,6 +30,9 @@ import EditQuestionTitleField from "./EditDialogTitle";
 import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
 import index from "react-html-parser/lib/elementTypes";
 import ReactHtmlParser from "react-html-parser";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -62,15 +65,30 @@ const Question = ({ index, question, ...props }) => {
   );
 };
 
-function Greeting(question, index) {
+const HiddenQuestionIndicator = ({question}) => {
+  return question.hidden ?
+    <Tooltip title="This question will be hidden from the user.">
+      <IconButton aria-label="This question will be hidden from the user">
+        <VisibilityOffIcon/>
+      </IconButton>
+    </Tooltip>
+    : null
+}
+
+
+function renderButtons(question, index) {
     const type = question.type;
+    const elements = [];
+    elements.push(<HiddenQuestionIndicator question={question}/>);
     if (type !== "raw") {
-        return <ExpandMoreIcon />;
+      elements.push(<ExpandMoreIcon />);
+    }else{
+      elements.push(<EditQuestionButton question={question} index={index} />)
+      elements.push(<DuplicateQuestionButton question={question}/>);
+      elements.push(<RemoveQuestionButton question={question} index={index}/>);
     }
-    return <div>
-        <DuplicateQuestionButton question={question}/>
-        <RemoveQuestionButton question={question} index={index}/>
-        </div>
+
+    return <div>{elements}</div>
 }
 
 const style = {
@@ -127,7 +145,7 @@ const Summary = ({ question, provided, ...props }) => {
         </Grid>
         <Grid
           item
-          xs={8}
+          xs={7}
           style={{
             textAlign: "left",
             wordWrap: "break-word",
@@ -150,14 +168,14 @@ const Summary = ({ question, provided, ...props }) => {
         </Grid>
         <Grid
           item
-          xs={2}
+          xs={3}
           style={{
             textAlign: "right",
             background: settings.showGridAreas ? "lightcoral" : "transparent",
             opacity: settings.showGridAreas ? "0.8" : "1.0",
           }}
         >
-            {Greeting(question, index)}
+            {renderButtons(question, index)}
         </Grid>
       </Grid>
     </ExpansionPanelSummary>
