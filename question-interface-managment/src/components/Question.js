@@ -102,7 +102,7 @@ const Summary = ({ question, provided, ...props }) => {
   const { settings } = useContext(SettingsContext);
   const { questions } = useContext(QuestionnaireContext);
   const [editTitle, setEditTitle] = useState(false);
-
+  const index = questions.indexOf(question);
 
   const SmallGridItem = () =>{
     return  <Grid item xs style={{
