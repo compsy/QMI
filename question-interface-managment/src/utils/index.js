@@ -95,7 +95,7 @@ export const initial3 = [
     id: "v12",
     type: "radio",
     title: "Hello Kitty",
-    options: ["option 1", "option 222", "option 3", "option 4"],
+    options: ["option 1", "option 22", "option 3", "option 4"],
   },
   {
     id: "v2",
