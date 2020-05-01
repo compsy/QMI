@@ -832,6 +832,4 @@ export const OtherwiseProperty = ({newQuestion, newQuestionDispatch}) => {
     </>
 };
 export const DefaultDateCompositionProperty = ({newQuestion, newQuestionDispatch}) => {
-
-
 };

@@ -14,7 +14,7 @@ const LikertPreview = ({ question }) => {
       opacity: settings.showGridAreas ? "0.8" : "1.0"
     }}
   >
-    <Radio disabled />
+    <Radio  disabled/>
   </Grid>;
 
     const printOption = (option) => {
@@ -36,7 +36,6 @@ const LikertPreview = ({ question }) => {
   >
     <Typography variant="body1">{ printOption(option) }</Typography>
   </Grid>;
-
 
 
   const renderOption = (option) =>

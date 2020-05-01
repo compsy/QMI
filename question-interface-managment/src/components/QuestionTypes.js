@@ -98,7 +98,6 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
       TooltipProperty, MinProperty, MaxProperty, StepProperty]
   },
 
-
   RAW: {
     requiredProperties: [ContentProperty],
     optionalProperties: [SectionStartProperty, SectionEndProperty]
