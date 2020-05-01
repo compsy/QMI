@@ -1,7 +1,6 @@
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import React from "react";
 
-
 function BoxArea(props) {
     return (
         <Droppable droppableId="BAG">

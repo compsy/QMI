@@ -4,7 +4,6 @@ import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
 import {DragDropContext} from "react-beautiful-dnd";
 import "./index.css";
 import {QUESTION_TYPES} from "./QuestionTypes";
-
 import {SettingsContext} from "../contexts/SettingsContext";
 import {Sidebar} from "../Sidebar";
 import {BottomSection} from "../BottomSection";
