@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/AlexFyod/QMI.svg?style=shield&circle-token=0404cd32f16e9f84c1a7e3e4ee31bc52d0508afa)](https://circleci.com/gh/AlexFyod/QMI) 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d54d385e-0333-4eb0-aa79-4a53de937e9c/deploy-status)](https://app.netlify.com/sites/qmi/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/434fd58f-4250-47a2-b6ce-abf995ad02aa/deploy-status)](https://app.netlify.com/sites/qmi/deploys)
  # Questionnaire Managment Interface
  
  ## Table of contents
