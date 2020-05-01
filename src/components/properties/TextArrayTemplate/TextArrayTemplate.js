@@ -46,7 +46,7 @@ const TextArrayTemplate = ({ name, propertyName }) => {
       <Paper elevation={0} variant="outlined" className={classes.paper}>
         {property.length > 0 ? (
           property.map((_, index) => (
-            <EachOption propertyName={propertyName} index={index} />
+            <EachOption key={index} propertyName={propertyName} index={index} />
           ))
         ) : (
           <NoElementsSign propertyName={propertyName} />
