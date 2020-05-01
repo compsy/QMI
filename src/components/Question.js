@@ -28,7 +28,6 @@ import DragHandleIcon from "@material-ui/icons/DragHandle";
 import RawPreview from "./previews/RawPreview";
 import EditQuestionTitleField from "./EditDialogTitle";
 import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
-import index from "react-html-parser/lib/elementTypes";
 import ReactHtmlParser from "react-html-parser";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
@@ -293,7 +292,6 @@ const Details = ({ question, index }) => {
             opacity: settings.showGridAreas ? "0.8" : "1.0"
           }}
         >
-
             {(() => {
                 switch (question.type) {
                     case "raw":
@@ -310,10 +308,6 @@ const Details = ({ question, index }) => {
 
                 }
             })()}
-
-          {/*<RemoveQuestionButton question={question} />*/}
-          {/*<EditQuestionButton question={question} index={index} />*/}
-          {/*<DuplicateQuestionButton question={question} index={index} />*/}
         </Grid>
       </Grid>
     </ExpansionPanelDetails>
