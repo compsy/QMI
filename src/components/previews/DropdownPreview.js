@@ -52,7 +52,7 @@ const DropdownPreview = ({ question }) => {
                     onChange={handleChange}
                 >
                     {question.options.map((option, index) =>
-                        <MenuItem value = {index + 1}>
+                        <MenuItem key={option+(index+1)} value = {index + 1}>
                             <em>{option}</em>
                         </MenuItem>
                     )}

@@ -145,7 +145,7 @@ const DialogBody = () => {
       {PROPERTIES_BY_QUESTION_TYPE[type.toUpperCase()][
         propertyGroupName
         ].map((property) => (
-        <Box className={classes.mtb} p={0}>
+        <Box key={property.name} className={classes.mtb} p={0}>
           {createElement(property)}
         </Box>
       ))}
