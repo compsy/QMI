@@ -8,7 +8,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import {AntSwitch} from './AntSwitch';
+import Nav from './components/buttons/nav';
 import SearchBar from "./SearchBar";
+import PrivateRoute from "./components/PrivateRoute";
+
+
 
 const themeObject = {
     palette: {
@@ -55,6 +59,7 @@ function App() {
         <MuiThemeProvider  theme={themeConfig}>
             <div style={{display: "flex", flexDirection: "column"}}>
             <AppBar className={classes.appBar}>
+                <Nav/>
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon/>
@@ -77,10 +82,8 @@ function App() {
                     <QuestionnaireContextProvider>
                         <QuestionsPage />
                     </QuestionnaireContextProvider>
-
                 </SettingsContextProvider>
             </div>
-
         </MuiThemeProvider>
     );
 }
