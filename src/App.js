@@ -2,13 +2,11 @@ import React, {useState} from "react";
 import SettingsContextProvider from "./contexts/SettingsContext";
 import QuestionnaireContextProvider from "./contexts/QuestionnaireContext";
 import QuestionsPage from "./components/QuestionsPage";
-import "./components/background.css";
 import {AppBar, createMuiTheme, makeStyles, MuiThemeProvider, Toolbar, Typography} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import {AntSwitch} from './AntSwitch';
-import SearchBar from "./SearchBar";
 
 const themeObject = {
     palette: {
@@ -49,7 +47,6 @@ function App() {
     const [theme, toggleDarkMode] =  useDarkMode();
     const themeConfig = createMuiTheme(theme);
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const classes = useStyles();
     return (
         <MuiThemeProvider  theme={themeConfig}>

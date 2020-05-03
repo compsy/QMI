@@ -16,7 +16,6 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    background: 'linear-gradient(45deg, #7c4dff 30%, #80deea 90%)',
     padding: theme.spacing(3)
   },
 }));

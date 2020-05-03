@@ -45,8 +45,6 @@ const useStyles = makeStyles(theme => ({
     toolbar: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
-        // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        background: 'linear-gradient(45deg, #7c4dff 30%, #80deea 90%)',
         padding: theme.spacing(3)
     },
 }));
@@ -147,6 +145,17 @@ export const Sidebar = ({question, items}) => {
                         >
                             <ListItemText primary="erase questionnaire"/>
                         </ListItem>
+                        <ListItem
+                            button
+
+                            onClick={() => {
+                                let x = localStorage.getItem("qmi-data");
+                                x = Buffer.from(x).toString("base64");
+                                window.open("http://app.u-can-act.nl/questionnaire/interactive?content=" + x);
+                            }}
+                        >
+                            <ListItemText primary="Render Questionnaire"/>
+                        </ListItem>
 
                         <div>
                             <Dialog
@@ -155,7 +164,8 @@ export const Sidebar = ({question, items}) => {
                                 aria-labelledby="alert-dialog-title"
                                 aria-describedby="alert-dialog-description"
                             >
-                                <DialogTitle id="alert-dialog-title">{"Do you want to erase questionnaire?"}</DialogTitle>
+                                <DialogTitle
+                                    id="alert-dialog-title">{"Do you want to erase questionnaire?"}</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-description">
                                         The questionnaire will be deleted without restoration.
