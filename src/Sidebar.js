@@ -13,6 +13,12 @@ import {
     Paper,
     Typography
 } from "@material-ui/core";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
 
 function getStyle(style, snapshot) {
     if (!snapshot.isDropAnimating) {
@@ -49,6 +55,16 @@ export const Sidebar = ({question, items}) => {
     const {dispatch} = useContext(QuestionnaireContext);
     const {settings, settingsDispatch} = useContext(SettingsContext);
     const classes = useStyles();
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Droppable
@@ -127,12 +143,34 @@ export const Sidebar = ({question, items}) => {
                         <ListItem
                             button
 
-                            onClick={() => {
-                                dispatch({type: "REMOVE_ALL"});
-                            }}
+                            onClick={handleClickOpen}
                         >
                             <ListItemText primary="erase questionnaire"/>
                         </ListItem>
+
+                        <div>
+                            <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="alert-dialog-title"
+                                aria-describedby="alert-dialog-description"
+                            >
+                                <DialogTitle id="alert-dialog-title">{"Do you want to erase questionnaire?"}</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">
+                                        The questionnaire will be deleted without restoration.
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleClose} color="primary">
+                                        No
+                                    </Button>
+                                    <Button onClick={() => { setOpen(false); dispatch({type: "REMOVE_ALL"}); } } color="primary" autoFocus>
+                                        Yes
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </div>
 
 
                     </List>
