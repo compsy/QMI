@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import {AntSwitch} from './AntSwitch';
+import './background.css';
 
 const themeObject = {
     palette: {
@@ -49,36 +50,36 @@ function App() {
 
     const classes = useStyles();
     return (
-        <MuiThemeProvider  theme={themeConfig}>
-            <div style={{display: "flex", flexDirection: "column"}}>
-            <AppBar className={classes.appBar}>
-                <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        Questionnaire Interface
-                    </Typography>
-                    <Typography component="div">
-                        <Grid component="label" container alignItems="center" spacing={1}>
-                            <Grid item>Light Mode</Grid>
-                            <Grid item>
-                                <AntSwitch onChange={toggleDarkMode} value="checkedC"/>
-                            </Grid>
-                            <Grid item>Dark Mode</Grid>
-                        </Grid>
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-                <SettingsContextProvider>
-                    <QuestionnaireContextProvider>
-                        <QuestionsPage />
-                    </QuestionnaireContextProvider>
-
-                </SettingsContextProvider>
-            </div>
-
-        </MuiThemeProvider>
+        <div className="content">
+            <MuiThemeProvider theme={themeConfig}>
+                <div style={{display: "flex", flexDirection: "column"}}>
+                    <AppBar className={classes.appBar}>
+                        <Toolbar>
+                            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                                <MenuIcon/>
+                            </IconButton>
+                            <Typography variant="h6" className={classes.title}>
+                                Questionnaire Interface
+                            </Typography>
+                            <Typography component="div">
+                                <Grid component="label" container alignItems="center" spacing={1}>
+                                    <Grid item>Light Mode</Grid>
+                                    <Grid item>
+                                        <AntSwitch onChange={toggleDarkMode} value="checkedC"/>
+                                    </Grid>
+                                    <Grid item>Dark Mode</Grid>
+                                </Grid>
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                    <SettingsContextProvider>
+                        <QuestionnaireContextProvider>
+                            <QuestionsPage/>
+                        </QuestionnaireContextProvider>
+                    </SettingsContextProvider>
+                </div>
+            </MuiThemeProvider>
+        </div>
     );
 }
 export default App;

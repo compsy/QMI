@@ -1,8 +1,10 @@
-body {
-    background-size: cover;
+body, html {
+    height: 100%;
     background: linear-gradient(45deg, #7c4dff 30%, #80deea 90%) center;
 }
 
-html, body {
-    height: 100vh;
+.content {
+    position: relative;
+    background: linear-gradient(45deg, #7c4dff 30%, #80deea 90%) no-repeat center center;
+
 }
