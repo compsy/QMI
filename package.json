@@ -30,13 +30,16 @@
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
     "typeface-roboto": "0.0.75",
-    "uuid": "^7.0.2"
+    "uuid": "^7.0.2",
+    "snyk": "^1.317.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -56,5 +59,6 @@
   "devDependencies": {
     "@material-ui/pickers": "^3.2.10",
     "redux-devtools": "^3.5.0"
-  }
+  },
+  "snyk": true
 }
