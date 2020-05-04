@@ -11668,18 +11668,6 @@ react-movable@^2.4.2:
   resolved "https://registry.yarnpkg.com/react-movable/-/react-movable-2.5.0.tgz#2e9e67354c0a6fbd4c2d1ee2b6f5adc928f1a5aa"
   integrity sha512-9gxd146oC/idSU37dZXJMZ8s3bzyzR8LJvsfQkhtoAcI6AJ9ThpD1uXQXt1ycBS7F5LI+b7oI0DyTKzIB5kp3g==
 
-react-parallax@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/react-parallax/-/react-parallax-3.0.3.tgz#5550f1e81bf040b240045348cb3b039b73a735ef"
-  integrity sha512-kdoMjg5B9nQFh3mTFrnzkr7AoG89L/tq1c98ho3g+11UwfeYePji9D3oeqN/oDtJemWKypnB8OYrzQ/BTazrNA==
-
-react-particles-js@^2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/react-particles-js/-/react-particles-js-2.7.1.tgz#3d5ad39a9e8cfc2052b3ba8ac1fbe28e66b4713e"
-  integrity sha512-H3lnlcnc35HRismahWl8n/1IBNvP1u78r1YdS+QigDYwGkv4Bxqjdp3qLkQOkQnGLzaO5iu+Z4TWnyLVxOKPtA==
-  dependencies:
-    lodash "^4.17.11"
-
 react-redux@^7.1.1, react-redux@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.0.tgz#f970f62192b3981642fec46fd0db18a074fe879d"
