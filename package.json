@@ -16,7 +16,6 @@
     "date-fns": "^2.11.1",
     "glob": "latest",
     "netlify-cli": "^2.48.0",
-    "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-beautiful-dnd": "^13.0.0",

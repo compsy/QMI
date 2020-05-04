@@ -6,8 +6,6 @@ patch:
   SNYK-JS-LODASH-567746:
     - '@testing-library/jest-dom > lodash':
         patched: '2020-05-04T16:53:54.576Z'
-    - node-sass > lodash:
-        patched: '2020-05-04T16:53:54.576Z'
     - react-particles-js > lodash:
         patched: '2020-05-04T16:53:54.576Z'
     - netlify-cli > @oclif/plugin-not-found > lodash:
@@ -17,8 +15,6 @@ patch:
     - netlify-cli > http-proxy-middleware > lodash:
         patched: '2020-05-04T16:53:54.576Z'
     - netlify-cli > inquirer > lodash:
-        patched: '2020-05-04T16:53:54.576Z'
-    - node-sass > sass-graph > lodash:
         patched: '2020-05-04T16:53:54.576Z'
     - react-scripts > @babel/core > lodash:
         patched: '2020-05-04T16:53:54.576Z'
@@ -37,8 +33,6 @@ patch:
     - netlify-cli > @oclif/plugin-not-found > cli-ux > lodash:
         patched: '2020-05-04T16:53:54.576Z'
     - netlify-cli > @oclif/plugin-plugins > cli-ux > lodash:
-        patched: '2020-05-04T16:53:54.576Z'
-    - node-sass > gaze > globule > lodash:
         patched: '2020-05-04T16:53:54.576Z'
     - react-scripts > @babel/core > @babel/types > lodash:
         patched: '2020-05-04T16:53:54.576Z'
