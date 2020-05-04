@@ -70,7 +70,7 @@ const LikertPreview = ({ question }) => {
       }}
       spacing={1}
     >
-      {question.options.map(option => (renderOption(option)))}
+      {question.options.map(option => (renderOption(typeof(option) === "string" ? option : option.title)))}
     </Grid>
   );
 };
