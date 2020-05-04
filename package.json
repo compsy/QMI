@@ -16,7 +16,6 @@
     "date-fns": "^2.11.1",
     "glob": "latest",
     "netlify-cli": "^2.48.0",
-    "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-beautiful-dnd": "^13.0.0",
@@ -29,7 +28,6 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
-    "snyk": "^1.317.0",
     "typeface-roboto": "0.0.75",
     "uuid": "^7.0.2"
   },
@@ -37,9 +35,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -59,6 +55,5 @@
   "devDependencies": {
     "@material-ui/pickers": "^3.2.10",
     "redux-devtools": "^3.5.0"
-  },
-  "snyk": true
+  }
 }
