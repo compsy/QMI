@@ -1,36 +1,43 @@
-import React, {useContext, useState} from "react";
-import TextField from "@material-ui/core/TextField";
-import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
+import React, {useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { UPDATE_QUESTION } from "../features/questions/questionsSlice";
+import store from "../app/store";
+import {CLEAN_SUPER_QUESTION} from "../utils";
+import {postprocessQuestion} from "./properties/postprocessor";
+import {TitleProperty} from "./properties/TextProperties";
+import {setQuestion} from "../features/question/questionSlice";
 
+
+/**
+ * In general, this is a stripped down version of the edit dialog, containing one property: title.
+ * */
 const EditQuestionTitleField = ({question, onComplete}) =>{
-  const [title, setTitle] = useState(question.title);
-  // const { dispatch } = useContext(QuestionnaireContext);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setQuestion({ ...CLEAN_SUPER_QUESTION, ...question }));
+  }, []);
+  document.addEventListener("keydown", handleKeyDown);
 
   function handleKeyDown(event){
     // noinspection FallThroughInSwitchStatementJS
     switch (event.code) {
       case "Enter":
-        updateTitle();
+        updateTitle(event);
+      // eslint-disable-next-line no-fallthrough
       case "Escape":
         close();
+      // eslint-disable-next-line no-fallthrough
+      default:
+        break;
     }
   }
-  document.addEventListener("keydown", handleKeyDown);
 
-  function updateGlobal(){
-    // dispatch({ type: "UPDATE_QUESTION", id: question.id, new: question });
-    dispatch(UPDATE_QUESTION({ id: question.id, new: question }))
+  function updateTitle(event){
+    event.preventDefault();
+    const state = store.getState();
+    const newQuestion = postprocessQuestion(state.question);
+    dispatch(UPDATE_QUESTION({ id: question.id, new: newQuestion }))
   }
-  function updateTitle(){
-    if(title === question.title) return;
-    question.title = title;
-    updateGlobal();
-  }
-
-  const handleChange = (e) => setTitle(e.target.value);
 
   const close = () => {
     // To free up memory, as after the field is closed, keystrokes should not be handled with handleKeyDown anymore.
@@ -38,9 +45,6 @@ const EditQuestionTitleField = ({question, onComplete}) =>{
     onComplete();
   };
 
-  return <TextField autoFocus id="standard-full-width" fullWidth
-                    defaultValue={question.title} onChange={handleChange}>
-    {question.title}
-  </TextField>
+  return <TitleProperty/>
 };
 export default EditQuestionTitleField;
