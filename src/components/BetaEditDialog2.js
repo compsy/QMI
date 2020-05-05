@@ -34,12 +34,13 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.background.paper,
     position: "sticky",
     top: 0,
-    zIndex: 1
+    zIndex: 2,
   },
   stickyBot: {
     background: theme.palette.background.paper,
     position: "sticky",
     bottom: 0,
+    zIndex: 2,
   },
   mtb: {
     marginTop: theme.spacing(2),

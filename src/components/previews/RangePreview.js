@@ -68,7 +68,6 @@ const  RangePreview = ({ question }) => {
 
     return (
         <div className={classes.root}>
-            <Typography gutterBottom>Pretto</Typography>
             <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider"
                           defaultValue={0}
                           aria-labelledby="discrete-slider"

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import SettingsContextProvider from "./contexts/SettingsContext";
-import QuestionnaireContextProvider from "./contexts/QuestionnaireContext";
 import QuestionsPage from "./components/QuestionsPage";
 import {
   AppBar,
@@ -17,7 +15,10 @@ import { AntSwitch } from "./AntSwitch";
 import "./background.css";
 import { Provider } from "react-redux";
 import store from "./app/store";
-import Nav from './components/buttons/nav'
+import Nav from "./components/buttons/nav";
+import { Auth0Provider } from "./components/react-auth0-spa";
+import config from "./auth_config.json";
+import history from "./utils/history";
 
 const themeObject = {
   palette: {
@@ -56,54 +57,68 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// A function that routes the user to the right place
+// after login
+const onRedirectCallback = (appState) => {
+  history.push(
+    appState && appState.targetUrl
+      ? appState.targetUrl
+      : window.location.pathname
+  );
+};
+
 function App() {
   const [theme, toggleDarkMode] = useDarkMode();
   const themeConfig = createMuiTheme(theme);
 
   const classes = useStyles();
   return (
-    <Provider store={store}>
-      <div className="content">
-        <MuiThemeProvider theme={themeConfig}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <AppBar className={classes.appBar}>
-              <Toolbar>
-                <Nav/>
-                <IconButton
-                  edge="start"
-                  className={classes.menuButton}
-                  color="inherit"
-                  aria-label="menu"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" className={classes.title}>
-                  Questionnaire Interface
-                </Typography>
-                <Typography component="div">
-                  <Grid
-                    component="label"
-                    container
-                    alignItems="center"
-                    spacing={1}
+    <Auth0Provider
+      domain={config.domain}
+      client_id={config.clientId}
+      redirect_uri={window.location.origin}
+      onRedirectCallback={onRedirectCallback}
+    >
+      <Provider store={store}>
+        <div className="content">
+          <MuiThemeProvider theme={themeConfig}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <AppBar className={classes.appBar}>
+                <Toolbar>
+                  <Nav />
+                  <IconButton
+                    edge="start"
+                    className={classes.menuButton}
+                    color="inherit"
+                    aria-label="menu"
                   >
-                    <Grid item>Light Mode</Grid>
-                    <Grid item>
-                      <AntSwitch onChange={toggleDarkMode} value="checkedC" />
+                    <MenuIcon />
+                  </IconButton>
+                  <Typography variant="h6" className={classes.title}>
+                    Questionnaire Interface
+                  </Typography>
+                  <Typography component="div">
+                    <Grid
+                      component="label"
+                      container
+                      alignItems="center"
+                      spacing={1}
+                    >
+                      <Grid item>Light Mode</Grid>
+                      <Grid item>
+                        <AntSwitch onChange={toggleDarkMode} value="checkedC" />
+                      </Grid>
+                      <Grid item>Dark Mode</Grid>
                     </Grid>
-                    <Grid item>Dark Mode</Grid>
-                  </Grid>
-                </Typography>
-              </Toolbar>
-            </AppBar>
-            <QuestionsPage />
-            {/* <SettingsContextProvider>
-              <QuestionnaireContextProvider></QuestionnaireContextProvider>
-            </SettingsContextProvider> */}
-          </div>
-        </MuiThemeProvider>
-      </div>
-    </Provider>
+                  </Typography>
+                </Toolbar>
+              </AppBar>
+              <QuestionsPage />
+            </div>
+          </MuiThemeProvider>
+        </div>
+      </Provider>
+    </Auth0Provider>
   );
 }
 export default App;
