@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const QuestionsPage = () => {
-  const { settings, settingsDispatch } = useContext(SettingsContext);
+  // const { settings, settingsDispatch } = useContext(SettingsContext);
   // const { questions, dispatch } = useContext(QuestionnaireContext);
   const questions = useSelector(state => state.questions);
   const dispatch = useDispatch();
@@ -32,11 +32,6 @@ const QuestionsPage = () => {
     if (!destination) {
       return;
     }
-    settingsDispatch({
-      type: "SET_DESTINATION_INDEX",
-      destinationIndex: destination.index
-    });
-    console.log(settings.destinationIndex, destination.index);
     switch (source.droppableId) {
       case "BAG":
         // dispatch({ type: "REORDER", source: source, destination: destination });
@@ -77,36 +72,8 @@ const QuestionsPage = () => {
             alignItems="stretch"
             style={{
               margin: "0",
-              background: settings.showGridAreas ? "lightgrey" : "transparent"
             }}
           >
-            {/* <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-            >
-              <Grid
-                item
-                xs={6}
-                style={{
-                  background: settings.showGridAreas
-                    ? "lightblue"
-                    : "transparent"
-                }}
-              >
-              </Grid>
-              <Grid
-                item
-                xs={6}
-                style={{
-                  background: settings.showGridAreas
-                  ? "lightgreen"
-                  : "transparent"
-                }}
-              >
-              </Grid>
-            </Grid> */}
             <TopSection />
             <BottomSection items={questions} />
           </Grid>

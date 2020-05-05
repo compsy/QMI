@@ -54,7 +54,6 @@ const useStyles = makeStyles(theme => ({
 export const Sidebar = ({question, items}) => {
     // const {dispatch} = useContext(QuestionnaireContext);
     const dispatch = useDispatch();
-    const {settings, settingsDispatch} = useContext(SettingsContext);
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
@@ -84,11 +83,7 @@ export const Sidebar = ({question, items}) => {
                     anchor="right"
                 >
                     <div className={classes.toolbar}/>
-                    <List
-                        style={{
-                            background: settings.showGridAreas ? "lightgrey" : "transparent"
-                        }}
-                    >
+                    <List>
                         {items.map((item, index) => {
                             const shouldRenderClone =
                                 item.id === snapshot.draggingFromThisWith;
@@ -125,12 +120,6 @@ export const Sidebar = ({question, items}) => {
                         {/* {provided.placeholder} */}
                         <div className={classes.toolbar}/>
                         <Divider/>
-                        <ListItem
-                            button
-                            onClick={() => settingsDispatch({type: "TOGGLE_GRID_AREAS"})}
-                        >
-                            <ListItemText primary="toggle grid areas"/>
-                        </ListItem>
                         <ListItem
                             button
                             onClick={() => {

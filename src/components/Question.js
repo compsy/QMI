@@ -99,36 +99,33 @@ const style = {
 export default Question;
 
 const Summary = ({ question, provided, ...props }) => {
-  const { settings } = useContext(SettingsContext);
+  // const { settings } = useContext(SettingsContext);
   // const { questions } = useContext(QuestionnaireContext);
   const questions = useSelector(state => state.questions);
   const [editTitle, setEditTitle] = useState(false);
   const index = questions.indexOf(question);
 
   const SmallGridItem = () =>{
-    return  <Grid item xs style={{
-                    textAlign: "left",
-                    background: settings.showGridAreas ? "lightgreen" : "transparent",
-                    opacity: settings.showGridAreas ? "0.8" : "1.0",
-                  }}
-                  {...props}>
-      {props.children}
-    </Grid>
+    return (
+      <Grid
+        item
+        xs
+        style={{
+          textAlign: "left",
+        }}
+        {...props}
+      >
+        {props.children}
+      </Grid>
+    );
   }
 
   return (
     <ExpansionPanelSummary {...props}>
-      <Grid container direction="row" justify="center" alignItems="center" spacing={1}
-        style={{
-          background: settings.showGridAreas ? "lightgrey" : "transparent",
-          opacity: settings.showGridAreas ? "0.8" : "1.0",
-        }}
-      >
+      <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
         <Grid item xs
           style={{
             textAlign: "left",
-            background: settings.showGridAreas ? "lightgreen" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0",
           }}
           {...provided.dragHandleProps}
         >
@@ -141,8 +138,6 @@ const Summary = ({ question, provided, ...props }) => {
           xs
           style={{
             textAlign: "left",
-            background: settings.showGridAreas ? "lightgreen" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0",
           }}
         >
           <Typography variant="h5">
@@ -156,8 +151,6 @@ const Summary = ({ question, provided, ...props }) => {
             textAlign: "left",
             wordWrap: "break-word",
             wordBreak: "break-word",
-            background: settings.showGridAreas ? "lightblue" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0",
           }}
         >
           {editTitle ? (
@@ -177,8 +170,6 @@ const Summary = ({ question, provided, ...props }) => {
           xs={3}
           style={{
             textAlign: "right",
-            background: settings.showGridAreas ? "lightcoral" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0",
           }}
         >
             {renderButtons(question, index)}
@@ -189,7 +180,7 @@ const Summary = ({ question, provided, ...props }) => {
 };
 
 const Details = ({ question, index }) => {
-  const { settings } = useContext(SettingsContext);
+  // const { settings } = useContext(SettingsContext);
 
   return (
     <ExpansionPanelDetails>
@@ -199,18 +190,12 @@ const Details = ({ question, index }) => {
         justify="center"
         alignItems="stretch"
         spacing={1}
-        style={{
-          background: settings.showGridAreas ? "lightgrey" : "transparent",
-          opacity: settings.showGridAreas ? "0.8" : "1.0"
-        }}
       >
         <Grid
           item
           xs
           style={{
             textAlign: "center",
-            background: settings.showGridAreas ? "lightgreen" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0"
           }}
         >
           <Typography variant="caption">
@@ -223,8 +208,6 @@ const Details = ({ question, index }) => {
           xs
           style={{
             textAlign: "center",
-            background: settings.showGridAreas ? "lightblue" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0"
           }}
         >
           {(() => {
@@ -290,8 +273,6 @@ const Details = ({ question, index }) => {
           xs
           style={{
             textAlign: "center",
-            background: settings.showGridAreas ? "lightcoral" : "transparent",
-            opacity: settings.showGridAreas ? "0.8" : "1.0"
           }}
         >
             {(() => {

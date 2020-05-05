@@ -4,7 +4,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import {SettingsContext} from "../../contexts/SettingsContext";
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -18,7 +17,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DropdownPreview = ({ question }) => {
-    const { settings } = useContext(SettingsContext);
     const classes = useStyles();
     const [option, setOption] = React.useState("");
     const [open, setOpen] = React.useState(false);
