@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Checkbox, Grid, Radio, Typography } from "@material-ui/core";
-import { SettingsContext } from "../../contexts/SettingsContext";
 
 const RadioCheckboxPreview = ({ question }) => {
-  // const { settings } = useContext(SettingsContext);
   return (
     <Grid container direction="column" spacing={1}>
       {question.options.map((option) => (
