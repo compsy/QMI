@@ -17,6 +17,7 @@ import { AntSwitch } from "./AntSwitch";
 import "./background.css";
 import { Provider } from "react-redux";
 import store from "./app/store";
+import nav from './components/buttons/nav'
 
 const themeObject = {
   palette: {
@@ -67,6 +68,7 @@ function App() {
           <div style={{ display: "flex", flexDirection: "column" }}>
             <AppBar className={classes.appBar}>
               <Toolbar>
+                <nav/>
                 <IconButton
                   edge="start"
                   className={classes.menuButton}
