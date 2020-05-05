@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectProperty, setProperty } from "../../features/questionProperties/questionSlice";
+import { selectProperty, setProperty } from "../../features/question/questionSlice";
 import { Switch, FormControlLabel } from "@material-ui/core";
 
 export const BooleanProperty = ({ name, propertyName, ...props }) => {

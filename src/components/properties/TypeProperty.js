@@ -9,7 +9,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { QUESTION_TYPES, capitalize } from "../../utils";
-import { setProperty } from "../../features/questionProperties/questionSlice";
+import { setProperty } from "../../features/question/questionSlice";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

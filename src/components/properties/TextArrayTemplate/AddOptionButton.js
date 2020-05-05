@@ -4,7 +4,7 @@ import { makeStyles, Button, Tooltip } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import {
   selectProperty,
-} from "../../../features/questionProperties/questionSlice";
+} from "../../../features/question/questionSlice";
 
 const useStyles = makeStyles((theme) => ({
   button: {

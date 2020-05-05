@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {FilledInput, FormControl, IconButton, InputAdornment, InputLabel, makeStyles,} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EachOptionMenu from "./EachOptionMenu";
-import {removeOption, setTextArrayElement, setTextArrayField} from "../../../features/questionProperties/questionSlice";
+import {removeOption, setTextArrayElement, setTextArrayField} from "../../../features/question/questionSlice";
 import {CLEAN_SUPER_OPTION} from "../../../utils";
 
 const useStyles = makeStyles((theme) => ({

@@ -3,7 +3,7 @@ import {Box, Button, Dialog, Divider, Grid, makeStyles, Paper, Typography,} from
 import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
 import {CLEAN_SUPER_QUESTION, PROPERTIES_BY_QUESTION_TYPE,} from "../utils";
 import {useDispatch, useSelector} from "react-redux";
-import {setQuestion,} from "../features/questionProperties/questionSlice";
+import {setQuestion,} from "../features/question/questionSlice";
 import TypeProperty from "./properties/TypeProperty";
 import store from "../app/store";
 import {postprocessQuestion} from "./properties/postprocessor";

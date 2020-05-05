@@ -16,7 +16,7 @@ import {
   WidthProperty,
 } from "./NumericProperties";
 import {useSelector} from "react-redux";
-import {selectProperty} from "../../features/questionProperties/questionSlice";
+import {selectProperty} from "../../features/question/questionSlice";
 
 // not in use yet
 export const DataMethodProperty = ({...props}) => {

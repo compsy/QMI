@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectProperty,
   setProperty,
-} from "../../features/questionProperties/questionSlice";
+} from "../../features/question/questionSlice";
 import {
   TextField,
   FormControl,

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectProperty, setProperty } from "../../features/questionProperties/questionSlice";
+import { selectProperty, setProperty } from "../../features/question/questionSlice";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import { v4 as uuidv4 } from "uuid";
 import DateFnsUtils from "@date-io/date-fns";
