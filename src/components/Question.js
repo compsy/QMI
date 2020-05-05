@@ -32,6 +32,7 @@ import ReactHtmlParser from "react-html-parser";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import { useSelector } from "react-redux";
 
 const Question = ({ index, question, ...props }) => {
   const [open, setOpen] = useState(false);
@@ -99,7 +100,8 @@ export default Question;
 
 const Summary = ({ question, provided, ...props }) => {
   const { settings } = useContext(SettingsContext);
-  const { questions } = useContext(QuestionnaireContext);
+  // const { questions } = useContext(QuestionnaireContext);
+  const questions = useSelector(state => state.questions);
   const [editTitle, setEditTitle] = useState(false);
   const index = questions.indexOf(question);
 

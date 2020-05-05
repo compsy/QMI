@@ -19,6 +19,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
+import { useDispatch } from "react-redux";
+import { REMOVE_ALL } from "./features/questions/questionsSlice";
 
 function getStyle(style, snapshot) {
     if (!snapshot.isDropAnimating) {
@@ -50,7 +52,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const Sidebar = ({question, items}) => {
-    const {dispatch} = useContext(QuestionnaireContext);
+    // const {dispatch} = useContext(QuestionnaireContext);
+    const dispatch = useDispatch();
     const {settings, settingsDispatch} = useContext(SettingsContext);
     const classes = useStyles();
 
@@ -175,7 +178,8 @@ export const Sidebar = ({question, items}) => {
                                     <Button onClick={handleClose} color="primary">
                                         No
                                     </Button>
-                                    <Button onClick={() => { setOpen(false); dispatch({type: "REMOVE_ALL"}); } } color="primary" autoFocus>
+                                    {/* <Button onClick={() => { setOpen(false); dispatch({type: "REMOVE_ALL"}); } } color="primary" autoFocus> */}
+                                    <Button onClick={() => { setOpen(false); dispatch(REMOVE_ALL()); } } color="primary" autoFocus>
                                         Yes
                                     </Button>
                                 </DialogActions>

@@ -5,10 +5,12 @@ import {Box, Container, Typography} from "@material-ui/core";
 import {Droppable} from "react-beautiful-dnd";
 import Question from "./components/Question";
 import {v4 as uuidv1} from "uuid";
+import { useSelector } from "react-redux";
 
 export const BottomSection = ({items}) => {
     const {settings} = useContext(SettingsContext);
-    const {questions} = useContext(QuestionnaireContext);
+    // const {questions} = useContext(QuestionnaireContext);
+    const questions = useSelector(state => state.questions);
 
     return (
         <Container style={{textAlign: "center"}} maxWidth="md">

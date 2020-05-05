@@ -8,6 +8,8 @@ import {SettingsContext} from "../contexts/SettingsContext";
 import {Sidebar} from "../Sidebar";
 import {BottomSection} from "../BottomSection";
 import {TopSection} from "../TopSection";
+import { useSelector, useDispatch } from "react-redux";
+import { REORDER, CLONE, SET_QUESTIONS } from "../features/questions/questionsSlice";
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -22,7 +24,9 @@ const useStyles = makeStyles(theme => ({
 
 const QuestionsPage = () => {
   const { settings, settingsDispatch } = useContext(SettingsContext);
-  const { questions, dispatch } = useContext(QuestionnaireContext);
+  // const { questions, dispatch } = useContext(QuestionnaireContext);
+  const questions = useSelector(state => state.questions);
+  const dispatch = useDispatch();
   const onDragEnd = React.useCallback(result => {
     const { source, destination } = result;
     if (!destination) {
@@ -35,10 +39,12 @@ const QuestionsPage = () => {
     console.log(settings.destinationIndex, destination.index);
     switch (source.droppableId) {
       case "BAG":
-        dispatch({ type: "REORDER", source: source, destination: destination });
+        // dispatch({ type: "REORDER", source: source, destination: destination });
+        dispatch(REORDER({ source: source, destination: destination }));
         break;
       case "SHOP":
-        dispatch({ type: "CLONE", source: source, destination: destination });
+        // dispatch({ type: "CLONE", source: source, destination: destination });
+        dispatch(CLONE({ source: source, destination: destination }));
         console.log(destination);
         console.log(questions[destination.index]);
         break;
@@ -50,7 +56,8 @@ const QuestionsPage = () => {
   useEffect(() => {
     const x = localStorage.getItem("qmi-data");
     if (x !== null) {
-      dispatch({ type: "SET_QUESTIONS", questions: JSON.parse(x)})
+      // dispatch({ type: "SET_QUESTIONS", questions: JSON.parse(x)})
+      dispatch(SET_QUESTIONS({ questions: JSON.parse(x)} ))
     }
   }, []);
   useEffect(() => {

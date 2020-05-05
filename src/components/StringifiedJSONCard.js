@@ -1,9 +1,11 @@
 import React, {useContext} from 'react'
 import {QuestionnaireContext} from '../contexts/QuestionnaireContext';
 import {Card, Typography} from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
 const StringifiedJSONCard = () => {
-  const { questions } = useContext(QuestionnaireContext);
+  // const { questions } = useContext(QuestionnaireContext);
+  const questions = useSelector(state => state.questions);
   // formats the ids
   let count = 0;
   const toPrint = questions.map((question, index) => {

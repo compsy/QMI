@@ -7,6 +7,7 @@ import {setQuestion,} from "../features/questionProperties/questionSlice";
 import TypeProperty from "./properties/TypeProperty";
 import store from "../app/store";
 import {postprocessQuestion} from "./properties/postprocessor";
+import { UPDATE_QUESTION } from "../features/questions/questionsSlice";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -58,30 +59,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EditDialog2 = ({ question, index, open, setOpen }) => {
-  // const newQuestion = useSelector((state) => state.question);
-  const dispatch2 = useDispatch();
-  // const { dispatch } = useContext(QuestionnaireContext);
-
-  const { dispatch } = useContext(QuestionnaireContext);
+  const dispatch = useDispatch();
 
   // load question to editor state on dialog open
   useEffect(() => {
-    dispatch2(setQuestion({ ...CLEAN_SUPER_QUESTION, ...question }));
+    dispatch(setQuestion({ ...CLEAN_SUPER_QUESTION, ...question }));
   }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const state = store.getState();
     const newQuestion = postprocessQuestion(state.question);
-    // const newQuestion = state.question;
-    dispatch({ type: "UPDATE_QUESTION", id: question.id, new: newQuestion });
-    // console.log(newQuestion);
-    // setOpen(false);
+    dispatch(UPDATE_QUESTION({ id: question.id, new: newQuestion }))
   };
 
   // cancel all and return to QuestionsPage
   const handleClose = () => {
-    // dispatch(resetAll());
     setOpen(false);
   };
 

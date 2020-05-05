@@ -1,10 +1,13 @@
 import React, {useContext, useState} from "react";
 import TextField from "@material-ui/core/TextField";
 import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
+import { useDispatch } from "react-redux";
+import { UPDATE_QUESTION } from "../features/questions/questionsSlice";
 
 const EditQuestionTitleField = ({question, onComplete}) =>{
   const [title, setTitle] = useState(question.title);
-  const { dispatch } = useContext(QuestionnaireContext);
+  // const { dispatch } = useContext(QuestionnaireContext);
+  const dispatch = useDispatch();
 
   function handleKeyDown(event){
     // noinspection FallThroughInSwitchStatementJS
@@ -18,7 +21,8 @@ const EditQuestionTitleField = ({question, onComplete}) =>{
   document.addEventListener("keydown", handleKeyDown);
 
   function updateGlobal(){
-    dispatch({ type: "UPDATE_QUESTION", id: question.id, new: question });
+    // dispatch({ type: "UPDATE_QUESTION", id: question.id, new: question });
+    dispatch(UPDATE_QUESTION({ id: question.id, new: question }))
   }
   function updateTitle(){
     if(title === question.title) return;
