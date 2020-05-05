@@ -1,17 +1,13 @@
 import React, {useContext} from "react";
 import {Grid, Radio, Typography} from "@material-ui/core";
-import {SettingsContext} from "../../contexts/SettingsContext";
 
 const LikertPreview = ({ question }) => {
-  const { settings } = useContext(SettingsContext);
   const renderBox = () =>
     <Grid
     item
     xs={"auto"}
     style={{
-      textAlign: "center",
-      background: settings.showGridAreas ? "grey" : "transparent",
-      opacity: settings.showGridAreas ? "0.8" : "1.0"
+      textAlign: "center",    
     }}
   >
     <Radio  disabled/>
@@ -28,10 +24,6 @@ const LikertPreview = ({ question }) => {
     style={{
       wordWrap: "break-word",
       textAlign: "left",
-      background: settings.showGridAreas
-        ? "mediumpurple"
-        : "transparent",
-      opacity: settings.showGridAreas ? "0.8" : "1.0"
     }}
   >
     <Typography variant="body1">{ printOption(option) }</Typography>
@@ -43,10 +35,6 @@ const LikertPreview = ({ question }) => {
       item
       xs={"auto"}
       key={option.numeric_value}
-      style={{
-        background: settings.showGridAreas ? "yellow" : "transparent",
-        opacity: settings.showGridAreas ? "0.8" : "1.0"
-      }}
     >
       <Grid
         container
@@ -64,10 +52,6 @@ const LikertPreview = ({ question }) => {
       container
       direction="row"
       justify="space-evenly"
-      style={{
-        background: settings.showGridAreas ? "pink" : "transparent",
-        opacity: settings.showGridAreas ? "0.8" : "1.0"
-      }}
       spacing={1}
     >
       {question.options.map(option => (renderOption(typeof(option) === "string" ? option : option.title)))}
