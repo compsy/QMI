@@ -19,13 +19,20 @@ import Nav from "./components/buttons/nav";
 import { Auth0Provider } from "./components/react-auth0-spa";
 import config from "./auth_config.json";
 import history from "./utils/history";
+import PersonIcon from "@material-ui/icons/Person";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
+import {Header, TemporaryDrawer} from "./components/TemporaryDrawer";
+import AssignmentIcon from '@material-ui/icons/Assignment';
+
 
 const themeObject = {
   palette: {
     type: "light",
   },
 };
-const useDarkMode = () => {
+export const useDarkMode = () => {
   const [theme, setTheme] = useState(themeObject);
   const {
     palette: { type },
@@ -71,6 +78,14 @@ function App() {
   const [theme, toggleDarkMode] = useDarkMode();
   const themeConfig = createMuiTheme(theme);
 
+  const menuLayout = [
+    {custom:<Header key={"header"}/>},
+    {isDivider: true},
+    {custom:<h3>Nothing works here.</h3>},
+    {isDivider: true},
+    {title: 'Questionnaires', icon: <AssignmentIcon/>, onClick: () =>{}},
+  ];
+
   const classes = useStyles();
   return (
     <Auth0Provider
@@ -86,14 +101,7 @@ function App() {
               <AppBar className={classes.appBar}>
                 <Toolbar>
                   <Nav />
-                  <IconButton
-                    edge="start"
-                    className={classes.menuButton}
-                    color="inherit"
-                    aria-label="menu"
-                  >
-                    <MenuIcon />
-                  </IconButton>
+                  <TemporaryDrawer layout={menuLayout}/>
                   <Typography variant="h6" className={classes.title}>
                     Questionnaire Interface
                   </Typography>
@@ -114,6 +122,7 @@ function App() {
                 </Toolbar>
               </AppBar>
               <QuestionsPage />
+
             </div>
           </MuiThemeProvider>
         </div>

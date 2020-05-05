@@ -7,7 +7,6 @@ import {postprocessQuestion} from "./properties/postprocessor";
 import {TitleProperty} from "./properties/TextProperties";
 import {setQuestion} from "../features/question/questionSlice";
 
-
 /**
  * In general, this is a stripped down version of the edit dialog, containing one property: title.
  * */
@@ -17,6 +16,7 @@ const EditQuestionTitleField = ({question, onComplete}) =>{
     dispatch(setQuestion({ ...CLEAN_SUPER_QUESTION, ...question }));
   }, []);
   document.addEventListener("keydown", handleKeyDown);
+
 
   function handleKeyDown(event){
     // noinspection FallThroughInSwitchStatementJS
@@ -39,11 +39,12 @@ const EditQuestionTitleField = ({question, onComplete}) =>{
     dispatch(UPDATE_QUESTION({ id: question.id, new: newQuestion }))
   }
 
-  const close = () => {
+  function close() {
     // To free up memory, as after the field is closed, keystrokes should not be handled with handleKeyDown anymore.
     document.removeEventListener("keydown", handleKeyDown);
     onComplete();
-  };
+  }
+
 
   return <TitleProperty/>
 };
