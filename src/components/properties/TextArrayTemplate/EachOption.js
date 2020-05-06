@@ -5,6 +5,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EachOptionMenu from "./EachOptionMenu";
 import {removeOption, setTextArrayElement, setTextArrayField} from "../../../features/question/questionSlice";
 import {CLEAN_SUPER_OPTION} from "../../../utils";
+import LinkQuestions from "./LinkQuestions";
 
 const useStyles = makeStyles((theme) => ({
     boxy: {
@@ -100,8 +101,9 @@ const EndButtons = ({ propertyName, index }) => {
     <InputAdornment position="end">
       {propertyName === "options" && (
         <>
-          {/* <EachOptionShows />
-          <EachOptionHides /> */}
+            {/*<EachOptionShows/>*/}
+           {/*<EachOptionHides />*/}
+           <LinkQuestions index={index}/>
           <EachOptionMenu propertyName={propertyName} index={index} />
         </>
       )}
