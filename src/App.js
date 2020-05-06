@@ -1,28 +1,15 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import QuestionsPage from "./components/QuestionsPage";
-import {
-  AppBar,
-  createMuiTheme,
-  makeStyles,
-  MuiThemeProvider,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import IconButton from "@material-ui/core/IconButton";
+import {AppBar, createMuiTheme, makeStyles, MuiThemeProvider, Toolbar, Typography,} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import { AntSwitch } from "./AntSwitch";
+import {AntSwitch} from "./AntSwitch";
 import "./background.css";
-import { Provider } from "react-redux";
+import {Provider} from "react-redux";
 import store from "./app/store";
 import Nav from "./components/buttons/nav";
-import { Auth0Provider } from "./components/react-auth0-spa";
+import {Auth0Provider} from "./components/react-auth0-spa";
 import config from "./auth_config.json";
 import history from "./utils/history";
-import PersonIcon from "@material-ui/icons/Person";
-import AddBoxIcon from "@material-ui/icons/AddBox";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
 import {Header, TemporaryDrawer} from "./components/TemporaryDrawer";
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
@@ -122,7 +109,6 @@ function App() {
                 </Toolbar>
               </AppBar>
               <QuestionsPage />
-
             </div>
           </MuiThemeProvider>
         </div>

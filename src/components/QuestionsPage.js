@@ -1,15 +1,14 @@
-import React, {useContext, useEffect} from "react";
+import React, {useEffect} from "react";
 import {CssBaseline, Grid, makeStyles} from "@material-ui/core";
-import {QuestionnaireContext} from "../contexts/QuestionnaireContext";
 import {DragDropContext} from "react-beautiful-dnd";
 import "./index.css";
 import {QUESTION_TYPES} from "./QuestionTypes";
-import {SettingsContext} from "../contexts/SettingsContext";
 import {Sidebar} from "../Sidebar";
 import {BottomSection} from "../BottomSection";
 import {TopSection} from "../TopSection";
-import { useSelector, useDispatch } from "react-redux";
-import { REORDER, CLONE, SET_QUESTIONS } from "../features/questions/questionsSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {CLONE, REORDER, SET_QUESTIONS} from "../features/questions/questionsSlice";
+import ScrollArrow from "../ScrollArrow";
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -60,26 +59,27 @@ const QuestionsPage = () => {
   }, [questions]);
 
   return (
-    <div className={classes.root} >
-      <CssBaseline />
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Sidebar items={QUESTION_TYPES} />
-        <main className={classes.content}>
-          <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="stretch"
-            style={{
-              margin: "0",
-            }}
-          >
-            <TopSection />
-            <BottomSection items={questions} />
-          </Grid>
-        </main>
-      </DragDropContext>
-    </div>
+      <div className={classes.root}>
+        <CssBaseline/>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Sidebar items={QUESTION_TYPES}/>
+          <main className={classes.content}>
+            <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="stretch"
+                style={{
+                  margin: "0",
+                }}
+            >
+              <TopSection/>
+              <BottomSection items={questions}/>
+              <ScrollArrow/>
+            </Grid>
+          </main>
+        </DragDropContext>
+      </div>
   );
 };
 
