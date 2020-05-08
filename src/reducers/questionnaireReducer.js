@@ -9,14 +9,14 @@ const reorder = (list, startIndex, endIndex) => {
     return newList;
 };
 
-const initialTextOptions = ["option 1" , "option 2","option 3" , "option 4"];
+const initialTextOptions = ["option 1", "option 2", "option 3", "option 4"];
 
 const copy = (source, destination, droppableSource, droppableDestination) => {
     let newDestination = destination.slice(0, destination.length);
     const item = source[droppableSource.index];
 
     // initialising question JSONs.
-    switch(item.label){
+    switch (item.label) {
         case "range":
             newDestination.splice(droppableDestination.index, 0, {
                 id: uuid(),
@@ -65,9 +65,9 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
     return newDestination;
 };
 
-const getQuestionTemplateByAction = (action, state) =>{
+const getQuestionTemplateByAction = (action, state) => {
     const uniq = uuid();
-    switch(action.type){
+    switch (action.type) {
         case "range":
             return [
                 ...state, {

@@ -1,6 +1,4 @@
-import React, {useContext} from "react";
-import {QuestionnaireContext} from "./contexts/QuestionnaireContext";
-import {SettingsContext} from "./contexts/SettingsContext";
+import React from "react";
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import {
     Divider,
@@ -19,8 +17,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
-import { useDispatch } from "react-redux";
-import { REMOVE_ALL } from "./features/questions/questionsSlice";
+import {useDispatch} from "react-redux";
+import {REMOVE_ALL} from "./features/questions/questionsSlice";
 
 function getStyle(style, snapshot) {
     if (!snapshot.isDropAnimating) {
@@ -168,7 +166,10 @@ export const Sidebar = ({question, items}) => {
                                         No
                                     </Button>
                                     {/* <Button onClick={() => { setOpen(false); dispatch({type: "REMOVE_ALL"}); } } color="primary" autoFocus> */}
-                                    <Button onClick={() => { setOpen(false); dispatch(REMOVE_ALL()); } } color="primary" autoFocus>
+                                    <Button onClick={() => {
+                                        setOpen(false);
+                                        dispatch(REMOVE_ALL());
+                                    }} color="primary" autoFocus>
                                         Yes
                                     </Button>
                                 </DialogActions>

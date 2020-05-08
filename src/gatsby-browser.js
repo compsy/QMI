@@ -2,11 +2,11 @@ import "typeface-montserrat"
 import "typeface-merriweather"
 
 import React from "react";
-import { navigate } from "gatsby";
+import {navigate} from "gatsby";
 
-import { AuthProvider } from "react-use-auth";
+import {AuthProvider} from "react-use-auth";
 
-export const wrapRootElement = ({ element }) => (
+export const wrapRootElement = ({element}) => (
     <AuthProvider
         navigate={navigate}
         auth0_domain="dev-pb8h7vmw.eu.auth0.com"

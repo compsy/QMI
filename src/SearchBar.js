@@ -63,7 +63,7 @@ export default function Searchbar() {
                     input: classes.inputInput,
                 }}
                 inputProps={{'aria-label': 'search'}}
-                 onChange={searchHandler}
+                onChange={searchHandler}
             />
         </div>
     );
