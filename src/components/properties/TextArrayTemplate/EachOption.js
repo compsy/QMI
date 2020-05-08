@@ -16,100 +16,100 @@ const useStyles = makeStyles((theme) => ({
 const EachOption = ({propertyName, index}) => {
     return (
         // <Slide in direction="right">
-    <OptionInputField propertyName={propertyName} index={index} />
-    // </Slide>
-  );
+        <OptionInputField propertyName={propertyName} index={index}/>
+        // </Slide>
+    );
 };
 
 export default EachOption;
 
 /* ----- USED IN EachOption BELOW ----- */
 
-const OptionInputField = ({ propertyName, index }) => {
-  const option = useSelector((state) => state.question[propertyName][index]);
-  const dispatch = useDispatch();
+const OptionInputField = ({propertyName, index}) => {
+    const option = useSelector((state) => state.question[propertyName][index]);
+    const dispatch = useDispatch();
 
-  // makes sure the options are in object format (unless range type)
-  useEffect(() => {
-    if (propertyName === "options" && typeof option === "string") {
-      dispatch(
-        setTextArrayElement({
-          property: propertyName,
-          index: index,
-          value: { ...CLEAN_SUPER_OPTION, title: option },
-        })
-      );
-    }
-  }, [option]);
-
-  const handleChange = (index, event) => {
-    if (propertyName === "options") {
-      dispatch(
-        setTextArrayElement({
-          property: propertyName,
-          index: index,
-          value: { ...option, title: event.target.value },
-        })
-      );
-    } else {
-      dispatch(
-        setTextArrayField({
-          property: propertyName,
-          index: index,
-          value: event.target.value,
-        })
-      );
-    }
-  };
-
-  const classes = useStyles();
-  return (
-    <FormControl fullWidth required>
-      <InputLabel variant="filled" style={{ userSelect: "none" }}>
-        {propertyName === "labels"
-          ? `Label ${index + 1}`
-          : `Option ${index + 1}`}
-      </InputLabel>
-      <FilledInput
-        // required
-        className={classes.boxy}
-        autoFocus
-        autoComplete="off"
-        type="text"
-        id={`option-${index + 1}`}
-        placeholder={
-          propertyName === "labels"
-            ? "Enter range label here.."
-            : "Enter option title here.."
+    // makes sure the options are in object format (unless range type)
+    useEffect(() => {
+        if (propertyName === "options" && typeof option === "string") {
+            dispatch(
+                setTextArrayElement({
+                    property: propertyName,
+                    index: index,
+                    value: {...CLEAN_SUPER_OPTION, title: option},
+                })
+            );
         }
-        value={(propertyName === "labels" ? option : option["title"]) || ""}
-        onChange={(e) => handleChange(index, e)}
-        endAdornment={<EndButtons propertyName={propertyName} index={index} />}
-      />
-    </FormControl>
-  );
+    }, [option]);
+
+    const handleChange = (index, event) => {
+        if (propertyName === "options") {
+            dispatch(
+                setTextArrayElement({
+                    property: propertyName,
+                    index: index,
+                    value: {...option, title: event.target.value},
+                })
+            );
+        } else {
+            dispatch(
+                setTextArrayField({
+                    property: propertyName,
+                    index: index,
+                    value: event.target.value,
+                })
+            );
+        }
+    };
+
+    const classes = useStyles();
+    return (
+        <FormControl fullWidth required>
+            <InputLabel variant="filled" style={{userSelect: "none"}}>
+                {propertyName === "labels"
+                    ? `Label ${index + 1}`
+                    : `Option ${index + 1}`}
+            </InputLabel>
+            <FilledInput
+                // required
+                className={classes.boxy}
+                autoFocus
+                autoComplete="off"
+                type="text"
+                id={`option-${index + 1}`}
+                placeholder={
+                    propertyName === "labels"
+                        ? "Enter range label here.."
+                        : "Enter option title here.."
+                }
+                value={(propertyName === "labels" ? option : option["title"]) || ""}
+                onChange={(e) => handleChange(index, e)}
+                endAdornment={<EndButtons propertyName={propertyName} index={index}/>}
+            />
+        </FormControl>
+    );
 };
 
-const EndButtons = ({ propertyName, index }) => {
-  const dispatch = useDispatch();
+const EndButtons = ({propertyName, index}) => {
+    const dispatch = useDispatch();
 
-  const handleRemoveOptionClick = (index) => {
-    dispatch(removeOption({ property: propertyName, index: index }));
-  };
+    const handleRemoveOptionClick = (index) => {
+        dispatch(removeOption({property: propertyName, index: index}));
+    };
 
-  return (
-    <InputAdornment position="end">
-      {propertyName === "options" && (
-        <>
-            {/*<EachOptionShows/>*/}
-           {/*<EachOptionHides />*/}
-           <LinkQuestions index={index}/>
-          <EachOptionMenu propertyName={propertyName} index={index} />
-        </>
-      )}
-      <IconButton size="small" onClick={() => handleRemoveOptionClick(index)}>
-        <DeleteIcon />
-      </IconButton>
-    </InputAdornment>
-  );
+    return (
+        <InputAdornment position="end">
+            {propertyName === "options" && (
+                <>
+                    {/*<EachOptionShows/>*/}
+                    {/*<EachOptionHides />*/}
+                    <LinkQuestions index={index}/>
+                    <EachOptionMenu propertyName={propertyName} index={index}/>
+                </>
+            )}
+            <IconButton size="small" onClick={() => handleRemoveOptionClick(index)}>
+                <DeleteIcon/>
+            </IconButton>
+        </InputAdornment>
+    );
 };

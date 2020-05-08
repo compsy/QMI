@@ -13,151 +13,150 @@ import GestureIcon from '@material-ui/icons/Gesture';
 import SelectIcon from '@material-ui/icons/ViewList';
 import Crop54Icon from '@material-ui/icons/Crop54';
 import {
-  AddButtonLabelProperty,
-  ButtonTextProperty,
-  ColorProperty,
-  ContentProperty,
-  DefaultDateProperty,
-  DefaultExpansionsProperty,
-  DefaultTextValueProperty,
-  DensityProperty,
-  HeightProperty,
-  HiddenProperty,
-  HintProperty,
-  HoursFromProperty,
-  HoursLabelProperty,
-  HoursStepProperty,
-  HoursToProperty,
-  ImageProperty,
-  LabelOptionsProperty,
-  LabelProperty,
-  LinksToExpandableProperty,
-  MaxDateProperty,
-  MaxExpansionsProperty,
-  MaxLengthProperty,
-  MaxProperty,
-  MinDateProperty,
-  MinProperty,
-  MinutesLabelProperty,
-  OtherwiseProperty,
-  PatternProperty,
-  PlaceholderProperty,
-  PrioritizedTextOptionsProperty,
-  RadiusProperty,
-  RemoveButtonLabelProperty,
-  RequiredProperty,
-  SectionEndProperty,
-  SectionStartProperty,
-  StepProperty,
-  TextOptionsProperty,
-  TitleProperty,
-  TodayProperty,
-  TooltipProperty,
-  WidthProperty
+    AddButtonLabelProperty,
+    ButtonTextProperty,
+    ColorProperty,
+    ContentProperty,
+    DefaultDateProperty,
+    DefaultExpansionsProperty,
+    DefaultTextValueProperty,
+    DensityProperty,
+    HeightProperty,
+    HiddenProperty,
+    HintProperty,
+    HoursFromProperty,
+    HoursLabelProperty,
+    HoursStepProperty,
+    HoursToProperty,
+    ImageProperty,
+    LabelOptionsProperty,
+    LabelProperty,
+    LinksToExpandableProperty,
+    MaxDateProperty,
+    MaxExpansionsProperty,
+    MaxLengthProperty,
+    MaxProperty,
+    MinDateProperty,
+    MinProperty,
+    MinutesLabelProperty,
+    OtherwiseProperty,
+    PatternProperty,
+    PlaceholderProperty,
+    PrioritizedTextOptionsProperty,
+    RadiusProperty,
+    RemoveButtonLabelProperty,
+    RequiredProperty,
+    SectionEndProperty,
+    SectionStartProperty,
+    StepProperty,
+    TextOptionsProperty,
+    TitleProperty,
+    TodayProperty,
+    TooltipProperty,
+    WidthProperty
 } from "./QuestionnaireProperties";
 
 export const QUESTION_TYPES = [
-  {id: uuid(), label: "radio", icon: <RadioButtonCheckedIcon/>},
-  {id: uuid(), label: "checkbox", icon: <CheckBoxIcon/>},
-  {id: uuid(), label: "range", icon: <TuneIcon/>},
-  {id: uuid(), label: "likert", icon: <LinearScaleIcon/>},
-  {id: uuid(), label: "textarea", icon: <TextFieldsIcon/>},
-  {id: uuid(), label: "number", icon: <Looks5TwoToneIcon/>},
-  {id: uuid(), label: "date", icon: <DateRangeIcon/>},
-  {id: uuid(), label: "time", icon: <ScheduleIcon/>},
-  {id: uuid(), label: "textfield", icon: <TextFormatIcon/>},
-  {id: uuid(), label: "drawing", icon: <GestureIcon/>},
-  // { id: uuid(), label: "unsubscribed" },
-  {id: uuid(), label: "dropdown", icon: <SelectIcon/>},
-  {id: uuid(), label: "raw", icon: <Crop54Icon/>}
+    {id: uuid(), label: "radio", icon: <RadioButtonCheckedIcon/>},
+    {id: uuid(), label: "checkbox", icon: <CheckBoxIcon/>},
+    {id: uuid(), label: "range", icon: <TuneIcon/>},
+    {id: uuid(), label: "likert", icon: <LinearScaleIcon/>},
+    {id: uuid(), label: "textarea", icon: <TextFieldsIcon/>},
+    {id: uuid(), label: "number", icon: <Looks5TwoToneIcon/>},
+    {id: uuid(), label: "date", icon: <DateRangeIcon/>},
+    {id: uuid(), label: "time", icon: <ScheduleIcon/>},
+    {id: uuid(), label: "textfield", icon: <TextFormatIcon/>},
+    {id: uuid(), label: "drawing", icon: <GestureIcon/>},
+    // { id: uuid(), label: "unsubscribed" },
+    {id: uuid(), label: "dropdown", icon: <SelectIcon/>},
+    {id: uuid(), label: "raw", icon: <Crop54Icon/>}
 ];
 
 // todo: add ShowAfterProperty, this one is allowed for every type.
 export const PROPERTIES_BY_QUESTION_TYPE = {
-  CHECKBOX: {
-    requiredProperties: [TitleProperty, TextOptionsProperty],
-    optionalProperties: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty,
-      TooltipProperty, OtherwiseProperty]
-  },
+    CHECKBOX: {
+        requiredProperties: [TitleProperty, TextOptionsProperty],
+        optionalProperties: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty,
+            TooltipProperty, OtherwiseProperty]
+    },
 
-  RADIO:{
-    requiredProperties: [TitleProperty, TextOptionsProperty],
-    optionalProperties: [ RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty,
-      TooltipProperty,OtherwiseProperty]
-  },
+    RADIO: {
+        requiredProperties: [TitleProperty, TextOptionsProperty],
+        optionalProperties: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty,
+            TooltipProperty, OtherwiseProperty]
+    },
 
-  LIKERT: {
-    requiredProperties: [TitleProperty, PrioritizedTextOptionsProperty],
-    optionalProperties:[HiddenProperty, SectionStartProperty, SectionEndProperty,
-      TooltipProperty]
-  },
+    LIKERT: {
+        requiredProperties: [TitleProperty, PrioritizedTextOptionsProperty],
+        optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty,
+            TooltipProperty]
+    },
 
-  RANGE: {
-    requiredProperties: [TitleProperty, LabelOptionsProperty],
-    optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty,
-      TooltipProperty, MinProperty, MaxProperty, StepProperty]
-  },
+    RANGE: {
+        requiredProperties: [TitleProperty, LabelOptionsProperty],
+        optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty,
+            TooltipProperty, MinProperty, MaxProperty, StepProperty]
+    },
 
-  RAW: {
-    requiredProperties: [ContentProperty],
-    optionalProperties: [SectionStartProperty, SectionEndProperty]
-  },
-
-
-  TEXTAREA:{
-    requiredProperties: [TitleProperty],
-    optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PlaceholderProperty]
-  },
-
-  TEXTFIELD: {
-    requiredProperties: [TitleProperty],
-    optionalProperties:  [HiddenProperty, SectionStartProperty, TooltipProperty, SectionEndProperty, PlaceholderProperty,
-      DefaultTextValueProperty, PatternProperty, HintProperty]
-  },
-
-  NUMBER: {
-    requiredProperties: [TitleProperty],
-    optionalProperties: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
-      MinProperty, MaxProperty, PlaceholderProperty, MaxLengthProperty, LinksToExpandableProperty]
-  },
-
-  EXPANDABLE: {
-    requiredProperties: [],
-    optionalProperties:  [SectionStartProperty, AddButtonLabelProperty, RemoveButtonLabelProperty, DefaultExpansionsProperty,
-      MaxExpansionsProperty]
-  },
-
-  TIME:{
-    requiredProperties: [TitleProperty],
-    optionalProperties:  [HoursFromProperty, HoursToProperty, HoursStepProperty, HoursLabelProperty, MinutesLabelProperty]
-  },
-
-  DATE: {
-    requiredProperties: [TitleProperty],
-    optionalProperties: [RequiredProperty, HiddenProperty , SectionStartProperty, SectionEndProperty, TooltipProperty,
-      MinDateProperty, MaxDateProperty, PlaceholderProperty, TodayProperty, DefaultDateProperty]
-  },
+    RAW: {
+        requiredProperties: [ContentProperty],
+        optionalProperties: [SectionStartProperty, SectionEndProperty]
+    },
 
 
-  UNSUBSCRIBE: {
-    requiredProperties: [],
-    optionalProperties: [TitleProperty, ContentProperty, ButtonTextProperty]
-  },
+    TEXTAREA: {
+        requiredProperties: [TitleProperty],
+        optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PlaceholderProperty]
+    },
 
-  DROPDOWN: {
-    requiredProperties: [TitleProperty, PrioritizedTextOptionsProperty],
-    optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
-      LabelProperty],
-  },
+    TEXTFIELD: {
+        requiredProperties: [TitleProperty],
+        optionalProperties: [HiddenProperty, SectionStartProperty, TooltipProperty, SectionEndProperty, PlaceholderProperty,
+            DefaultTextValueProperty, PatternProperty, HintProperty]
+    },
 
-  DRAWING: {
-    requiredProperties: [TitleProperty, WidthProperty, HeightProperty, ImageProperty, ColorProperty],
-    optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
-      RadiusProperty, DensityProperty]
-  },
+    NUMBER: {
+        requiredProperties: [TitleProperty],
+        optionalProperties: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
+            MinProperty, MaxProperty, PlaceholderProperty, MaxLengthProperty, LinksToExpandableProperty]
+    },
+
+    EXPANDABLE: {
+        requiredProperties: [],
+        optionalProperties: [SectionStartProperty, AddButtonLabelProperty, RemoveButtonLabelProperty, DefaultExpansionsProperty,
+            MaxExpansionsProperty]
+    },
+
+    TIME: {
+        requiredProperties: [TitleProperty],
+        optionalProperties: [HoursFromProperty, HoursToProperty, HoursStepProperty, HoursLabelProperty, MinutesLabelProperty]
+    },
+
+    DATE: {
+        requiredProperties: [TitleProperty],
+        optionalProperties: [RequiredProperty, HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
+            MinDateProperty, MaxDateProperty, PlaceholderProperty, TodayProperty, DefaultDateProperty]
+    },
+
+
+    UNSUBSCRIBE: {
+        requiredProperties: [],
+        optionalProperties: [TitleProperty, ContentProperty, ButtonTextProperty]
+    },
+
+    DROPDOWN: {
+        requiredProperties: [TitleProperty, PrioritizedTextOptionsProperty],
+        optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
+            LabelProperty],
+    },
+
+    DRAWING: {
+        requiredProperties: [TitleProperty, WidthProperty, HeightProperty, ImageProperty, ColorProperty],
+        optionalProperties: [HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty,
+            RadiusProperty, DensityProperty]
+    },
 
 };
-
 
 
 /*
@@ -167,15 +166,16 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
 * parameter: textOptions: an array of strings
 * returns: an array of JSON containing the converted options.
 * */
-export function TextOptionsToPrioritizedTextOptions(textOptions){
-  return textOptions.map((option, index) => ({title: option, numeric_value: index}));
+export function TextOptionsToPrioritizedTextOptions(textOptions) {
+    return textOptions.map((option, index) => ({title: option, numeric_value: index}));
 }
+
 /*
 * The opposite to the function above. This converts a JSON array of prioritized text to a simple string array
 * containing the titles of those (previously) prioritized options.
 * */
-export function PrioritizedTextOptionsToTextOptions(prioritizedTextOptions){
-  return prioritizedTextOptions.map((json) => json.title);
+export function PrioritizedTextOptionsToTextOptions(prioritizedTextOptions) {
+    return prioritizedTextOptions.map((json) => json.title);
 }
 
 /*
@@ -190,25 +190,24 @@ export function PrioritizedTextOptionsToTextOptions(prioritizedTextOptions){
 *     - conversionFunction: the function that handles the special conversion.
 * */
 
-const TEXT_OPTION_TO_PRIORITIZED_CASE =  {
-  likert: [{property: 'options', conversionFunction: TextOptionsToPrioritizedTextOptions}],
-  dropdown: [{property: 'options', conversionFunction: TextOptionsToPrioritizedTextOptions}],
+const TEXT_OPTION_TO_PRIORITIZED_CASE = {
+    likert: [{property: 'options', conversionFunction: TextOptionsToPrioritizedTextOptions}],
+    dropdown: [{property: 'options', conversionFunction: TextOptionsToPrioritizedTextOptions}],
 };
 
-const PRIORITIZED_TO_TEXT_OPTION_CASE =  {
-  radio: [{property: 'options', conversionFunction: PrioritizedTextOptionsToTextOptions}],
-  checkbox: [{property: 'options', conversionFunction: PrioritizedTextOptionsToTextOptions}],
+const PRIORITIZED_TO_TEXT_OPTION_CASE = {
+    radio: [{property: 'options', conversionFunction: PrioritizedTextOptionsToTextOptions}],
+    checkbox: [{property: 'options', conversionFunction: PrioritizedTextOptionsToTextOptions}],
 };
 
 export const SPECIAL_CONVERSION_CASES = {
-  radio: TEXT_OPTION_TO_PRIORITIZED_CASE,
-  checkbox: TEXT_OPTION_TO_PRIORITIZED_CASE,
-  likert: PRIORITIZED_TO_TEXT_OPTION_CASE,
-  dropdown: PRIORITIZED_TO_TEXT_OPTION_CASE
+    radio: TEXT_OPTION_TO_PRIORITIZED_CASE,
+    checkbox: TEXT_OPTION_TO_PRIORITIZED_CASE,
+    likert: PRIORITIZED_TO_TEXT_OPTION_CASE,
+    dropdown: PRIORITIZED_TO_TEXT_OPTION_CASE
 
-  // todo: add special case: min/max for numeric and date
+    // todo: add special case: min/max for numeric and date
 };
-
 
 
 /*

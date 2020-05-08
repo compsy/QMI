@@ -23,7 +23,6 @@ const TimerPickerPreview = ({question}) => {
                 {/*    hours_step = {question.hours_step}*/}
 
 
-
                 {/*    onChange={handleDateChange}*/}
                 {/*    KeyboardButtonProps={{*/}
                 {/*        'aria-label': 'change time',*/}
@@ -34,10 +33,10 @@ const TimerPickerPreview = ({question}) => {
                     id="time"
                     type="time"
                     // title = "hello"
-                    color = "primary"
-                    hours_from = "0"
-                    hours_to = "11"
-                    size = "large"
+                    color="primary"
+                    hours_from="0"
+                    hours_to="11"
+                    size="large"
                     defaultValue="10:10"
                     InputLabelProps={{
                         shrink: true,

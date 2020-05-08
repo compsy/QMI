@@ -44,7 +44,7 @@ const LinkQuestions = (option) => {
     const handleCloseItem = (question) => {
         setAnchorEl(null);
         toggleQuestion(question);
-    }
+    };
 
     const currentQuestion = useSelector((state) => state.question);
 
@@ -62,7 +62,7 @@ const LinkQuestions = (option) => {
         let newQuestion = JSON.parse(JSON.stringify(currentQuestion));
         newQuestion.options[option.index].shows_question.push(newId);
         dispatch(UPDATE_QUESTION({id: currentQuestion.id, new: newQuestion}));
-    }
+    };
 
     return (
         <>
@@ -94,11 +94,12 @@ const LinkQuestions = (option) => {
 
                 {questions.map((id) => {
                     return (
-                    <MenuItem onClick={(e) => toggleQuestion(id)}>{id}</MenuItem>
-                )})}
+                        <MenuItem onClick={(e) => toggleQuestion(id)}>{id}</MenuItem>
+                    )
+                })}
             </Menu>
         </>
     );
-}
+};
 
 export default LinkQuestions;

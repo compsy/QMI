@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const TextArea = ({ question }) => {
+const TextArea = ({question}) => {
     const classes = useStyles();
     const [value, setValue] = React.useState();
 
@@ -23,14 +23,14 @@ const TextArea = ({ question }) => {
         <form className={classes.root} noValidate autoComplete="off">
             <div>
                 <TextField
-                    section_start = {question.section_start}
-                    hidden = {question.hidden}
-                    id = {question.id}
-                    type = {question.type}
-                    title = {question.title}
-                    tooltip = {question.tooltip}
+                    section_start={question.section_start}
+                    hidden={question.hidden}
+                    id={question.id}
+                    type={question.type}
+                    title={question.title}
+                    tooltip={question.tooltip}
                     placeholder={question.placeholder}
-                    section_end = {question.section_end}
+                    section_end={question.section_end}
                 />
 
             </div>

@@ -1,11 +1,11 @@
 import React from "react";
 import ReactHtmlParser from 'react-html-parser';
 
-const NumberPreview = ({ question }) => {
+const NumberPreview = ({question}) => {
     return (
         <div title={question.title}>
             <form>
-                { ReactHtmlParser (question.content) }
+                {ReactHtmlParser(question.content)}
             </form>
         </div>
     );

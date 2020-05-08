@@ -17,10 +17,10 @@ const TextFieldPreview = ({question}) => {
     return (
         <form className={classes.root} noValidate autoComplete="off">
             <TextField
-                section_start = {question.section_start}
-                hidden = {question.hidden}
-                id = {question.id}
-                type={ question.type}
+                section_start={question.section_start}
+                hidden={question.hidden}
+                id={question.id}
+                type={question.type}
                 title={question.title}
                 tooltip={question.tooltip}
                 default_value={question.default_value}

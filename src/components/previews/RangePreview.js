@@ -1,7 +1,6 @@
 import React from 'react';
 import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,18 +44,18 @@ const PrettoSlider = withStyles({
 })(Slider);
 
 
-const  RangePreview = ({ question }) => {
+const RangePreview = ({question}) => {
     const classes = useStyles();
 
     const marks = [];
     const labelsNumber = question.labels.length;
     // Here min, max, step are checked for undefined,
     // as default question from QuestionnaireContext doesn't always initialize these fields
-    const min =  typeof question.min === "undefined" ? 0 : parseInt(question.min, 10);
+    const min = typeof question.min === "undefined" ? 0 : parseInt(question.min, 10);
     const max = typeof question.max === "undefined" ? 100 : parseInt(question.max, 10);
     const step = typeof question.step === "undefined" ? 1 : parseInt(question.step, 10);
-    const labelStep = labelsNumber <= 1 ? 0 : ~~((max - min)/(labelsNumber - 1));
-    let pos = labelsNumber === 1 ? ~~((max - min)/2) : min;
+    const labelStep = labelsNumber <= 1 ? 0 : ~~((max - min) / (labelsNumber - 1));
+    let pos = labelsNumber === 1 ? ~~((max - min) / 2) : min;
 
     for (let i = 0; i < labelsNumber; i++) {
         marks.push({
@@ -71,12 +70,12 @@ const  RangePreview = ({ question }) => {
             <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider"
                           defaultValue={0}
                           aria-labelledby="discrete-slider"
-                          marks = {marks}
+                          marks={marks}
                           min={min}
                           max={max}
-                          step = {step}
-                          title = {question.title}
-                          section_end = {question.section_end}
+                          step={step}
+                          title={question.title}
+                          section_end={question.section_end}
             />
         </div>
     );

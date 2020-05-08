@@ -16,39 +16,40 @@ import PersonIcon from "@material-ui/icons/Person";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
+
 const useStyles = makeStyles((theme) => ({
-  list: {
-    width: 250,
-    color: "white"
-  },
-  drawer: {
-    height: "100%",
-    backgroundColor: "#00909e",
-  },
-  header:{
-    backgroundColor: "rgba(0, 0, 0, 0)",
-    color: "white"
-  }
+    list: {
+        width: 250,
+        color: "white"
+    },
+    drawer: {
+        height: "100%",
+        backgroundColor: "#00909e",
+    },
+    header: {
+        backgroundColor: "rgba(0, 0, 0, 0)",
+        color: "white"
+    }
 }));
 
 // The default header for a TemporaryDrawer instance. It contains the u-can-act logo and a title.
 export const Header = () => {
-  const classes = useStyles();
-  return <Card className={classes.header}>
-    <CardActionArea>
-      <CardMedia
-        component="img"
-        alt="Logo"
-        image="U_can_act_logo_WIT_web.png"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h6">
-          Questionnaire Editor
-        </Typography>
-      </CardContent>
-    </CardActionArea>
-  </Card>
-}
+    const classes = useStyles();
+    return <Card className={classes.header}>
+        <CardActionArea>
+            <CardMedia
+                component="img"
+                alt="Logo"
+                image="U_can_act_logo_WIT_web.png"
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h6">
+                    Questionnaire Editor
+                </Typography>
+            </CardContent>
+        </CardActionArea>
+    </Card>
+};
 
 /* The left sidebar.
 Layouts are strucutred in an array containing JSON objects:
@@ -62,73 +63,86 @@ Layouts are strucutred in an array containing JSON objects:
 
 // Example layout.
 const layout = [
-  {custom:<Header key={"header"}/>},
-  {isDivider: true},
-  {custom:<h3>Nothing works here.</h3>},
-  {isDivider: true},
-  {title: 'Profile', icon: <PersonIcon/>, onClick: () =>{console.log("clicked")}},
-  {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () =>{}},
-  {isDivider: true},
-  {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () =>{}},
-  {isDivider: true},
-  {title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {}}
+    {custom: <Header key={"header"}/>},
+    {isDivider: true},
+    {custom: <h3>Nothing works here.</h3>},
+    {isDivider: true},
+    {
+        title: 'Profile', icon: <PersonIcon/>, onClick: () => {
+            console.log("clicked")
+        }
+    },
+    {
+        title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {
+        }
+    },
+    {isDivider: true},
+    {
+        title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {
+        }
+    },
+    {isDivider: true},
+    {
+        title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {
+        }
+    }
 ];
 
 
-export const TemporaryDrawer =  ({layout}) => {
-  const classes = useStyles();
-  const [open, setOpen] = useState(false);
+export const TemporaryDrawer = ({layout}) => {
+    const classes = useStyles();
+    const [open, setOpen] = useState(false);
 
-  const renderLayout = () =>{
-    const renderElement = (element, index) =>{
-      if(element.hasOwnProperty('isDivider')) {
-        return <Divider key={'divider' + index}/>
-      }else if(element.hasOwnProperty('custom')){
-        return element.custom;
-      }
-      return <ListItem button key={element.title + index} onClick={element.onClick}>
-        <ListItemIcon>{element.icon}</ListItemIcon>
-        <ListItemText primary={element.title}/>
-      </ListItem>
+    const renderLayout = () => {
+        const renderElement = (element, index) => {
+            if (element.hasOwnProperty('isDivider')) {
+                return <Divider key={'divider' + index}/>
+            } else if (element.hasOwnProperty('custom')) {
+                return element.custom;
+            }
+            return <ListItem button key={element.title + index} onClick={element.onClick}>
+                <ListItemIcon>{element.icon}</ListItemIcon>
+                <ListItemText primary={element.title}/>
+            </ListItem>
+        };
+
+        return layout.map((element, index) => renderElement(element, index))
     };
 
-    return layout.map((element, index) => renderElement(element, index))
-  }
+    const toggleDrawer = (open) => (event) => {
+        if (event.type === 'keydown' && event.key === 'Escape') {
+            setOpen(false);
+            return;
+        }
+        setOpen(open);
+    };
 
-  const toggleDrawer = (open) => (event) => {
-    if(event.type === 'keydown' && event.key === 'Escape'){
-      setOpen(false);
-      return;
-    }
-    setOpen(open);
-  };
-
-  const list = () => {
-    return <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {renderLayout()}
-      </List>
-    </div>
-  };
-
-  return (
-    <Fragment key="drawer-left" >
-      <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
-                  onClick={toggleDrawer(true)}
-      >
-        <MenuIcon />
-      </IconButton>
-
-      <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
-        <div className={classes.drawer}>
-          {list()}
+    const list = () => {
+        return <div
+            className={classes.list}
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+        >
+            <List>
+                {renderLayout()}
+            </List>
         </div>
-      </Drawer>
-    </Fragment>
-  );
-}
+    };
+
+    return (
+        <Fragment key="drawer-left">
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
+                        onClick={toggleDrawer(true)}
+            >
+                <MenuIcon/>
+            </IconButton>
+
+            <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
+                <div className={classes.drawer}>
+                    {list()}
+                </div>
+            </Drawer>
+        </Fragment>
+    );
+};
