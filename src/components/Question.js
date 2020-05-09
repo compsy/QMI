@@ -103,20 +103,6 @@ const Summary = ({question, provided, ...props}) => {
     const [editTitle, setEditTitle] = useState(false);
     const index = questions.indexOf(question);
 
-    const SmallGridItem = () => {
-        return (
-            <Grid
-                item
-                xs
-                style={{
-                    textAlign: "left",
-                }}
-                {...props}
-            >
-                {props.children}
-            </Grid>
-        );
-    };
 
     return (
         <ExpansionPanelSummary {...props}>

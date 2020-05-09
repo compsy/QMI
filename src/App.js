@@ -66,9 +66,9 @@ function App() {
     const themeConfig = createMuiTheme(theme);
 
     const menuLayout = [
-        {custom: <Header key={"header"}/>},
+        {custom: <Header key="header"/>},
         {isDivider: true},
-        {custom: <h3>Nothing works here.</h3>},
+        {custom: <h3 key="nothing works here">Nothing works here.</h3>},
         {isDivider: true},
         {
             title: 'Questionnaires', icon: <AssignmentIcon/>, onClick: () => {

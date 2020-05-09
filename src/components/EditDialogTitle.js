@@ -14,7 +14,7 @@ const EditQuestionTitleField = ({question, onComplete}) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setQuestion({...CLEAN_SUPER_QUESTION, ...question}));
-    }, []);
+    }, [dispatch, question]);
     document.addEventListener("keydown", handleKeyDown);
 
 
