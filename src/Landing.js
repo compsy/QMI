@@ -123,8 +123,7 @@ const QuestionnaireView = () => {
         const ActionIcon = ({value}) => {
             return alignInGrid(0,
                 <IconButton onClick={() => setCurrent(value)}><InfoIcon/></IconButton>,
-                <IconButton onClick={() => {
-                    console.log("Questionnaire " + value + " will be edited.")
+                <IconButton onClick={() => {console.log("Questionnaire " + value + " will be edited.")
                 }}><EditIcon/></IconButton>
             );
         };
@@ -232,25 +231,12 @@ function LandingApp() {
         {isDivider: true},
         {custom: <h3>Nothing works here.</h3>},
         {isDivider: true},
-        {
-            title: 'Profile', icon: <PersonIcon/>, onClick: () => {
-                console.log("clicked")
-            }
-        },
-        {
-            title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {
-            }
-        },
+        {title: 'Profile', icon: <PersonIcon/>, onClick: () => {console.log("clicked")}},
+        {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {}},
         {isDivider: true},
-        {
-            title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {
-            }
-        },
+        {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {}},
         {isDivider: true},
-        {
-            title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {
-            }
-        }
+        {title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {}}
     ];
     const MainWrapper = ({...props}) => {
         return <Auth0Provider

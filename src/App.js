@@ -61,6 +61,10 @@ const onRedirectCallback = (appState) => {
     );
 };
 
+function testApi(){
+
+}
+
 function App() {
     const [theme, toggleDarkMode] = useDarkMode();
     const themeConfig = createMuiTheme(theme);
@@ -70,10 +74,7 @@ function App() {
         {isDivider: true},
         {custom: <h3 key="nothing works here">Nothing works here.</h3>},
         {isDivider: true},
-        {
-            title: 'Questionnaires', icon: <AssignmentIcon/>, onClick: () => {
-            }
-        },
+        {title: 'Questionnaires', icon: <AssignmentIcon/>, onClick: () => {}},
     ];
 
     const classes = useStyles();

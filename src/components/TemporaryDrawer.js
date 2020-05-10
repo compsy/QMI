@@ -67,25 +67,12 @@ const layout = [
     {isDivider: true},
     {custom: <h3>Nothing works here.</h3>},
     {isDivider: true},
-    {
-        title: 'Profile', icon: <PersonIcon/>, onClick: () => {
-            console.log("clicked")
-        }
-    },
-    {
-        title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {
-        }
-    },
+    {title: 'Profile', icon: <PersonIcon/>, onClick: () => {console.log("clicked")}},
+    {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {}},
     {isDivider: true},
-    {
-        title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {
-        }
-    },
+    {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {}},
     {isDivider: true},
-    {
-        title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {
-        }
-    }
+    {title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {}}
 ];
 
 
