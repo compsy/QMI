@@ -10,6 +10,7 @@ const postprocessCheckbox = (question) => {
                 : {
                     ...q,
                     numeric_value: undefined,
+                    id: undefined,
                 }
         );
     };
@@ -64,6 +65,7 @@ const postprocessLikert = (question) => {
                     stop_subscription: undefined,
                     shows_questions: undefined,
                     hides_questions: undefined,
+                    id: undefined,
                 }
         );
     };
@@ -199,6 +201,7 @@ const postprocessDropdown = (question) => {
                     stop_subscription: undefined,
                     shows_questions: undefined,
                     hides_questions: undefined,
+                    id: undefined,
                 }
         );
     };

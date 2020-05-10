@@ -90,7 +90,7 @@ const OptionInputField = ({propertyName, index}) => {
     );
 };
 
-const RemoveButton = ({ index }) => {
+const RemoveButton = ({ propertyName, index }) => {
     const dispatch = useDispatch();
     const handleRemoveOptionClick = (index) => {
         dispatch(removeOption({property: propertyName, index: index}));
@@ -113,7 +113,7 @@ const EndButtons = ({propertyName, index}) => {
                     <EachOptionMenu propertyName={propertyName} index={index}/>
                 </>
             )}
-            <RemoveButton index={index} />
+            <RemoveButton propertyName={propertyName} index={index} />
         </InputAdornment>
     );
 };

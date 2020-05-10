@@ -48,6 +48,9 @@ import {
     WidthHeightComposite
 } from "../components/properties/OtherProperties";
 
+import {v4 as uuidv4} from 'uuid';
+
+
 export const initial0 = {
     id: "v1",
     type: "radio",
@@ -317,7 +320,10 @@ export const CLEAN_SUPER_QUESTION = {
     labels: [],
 };
 
+
+
 export const CLEAN_SUPER_OPTION = {
+    id: uuidv4(),
     title: undefined,
     tooltip: undefined,
     stop_subscription: undefined,
