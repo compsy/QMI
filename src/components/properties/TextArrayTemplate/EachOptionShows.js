@@ -1,6 +1,8 @@
 import React, {useContext} from "react";
 import {Button, makeStyles, Menu, MenuItem,} from "@material-ui/core";
 import {QuestionnaireContext} from "../../../contexts/QuestionnaireContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addToToDispatch } from "../../../features/utilities/utilitiesSlice";
 
 const useStyles = makeStyles((theme) => ({
     showsHidesButtons: {
@@ -9,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const EachOptionShows = () => {
+const EachOptionShows = ({ index }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -22,8 +24,14 @@ const EachOptionShows = () => {
 
     // Access store to get non-hidden questions
     // const shown = store.getState();
-    const {questions} = useContext(QuestionnaireContext);
+    const questions = useSelector(state => state.questions);
     const hidden = questions.filter((q) => q.hidden === true);
+
+    const dispatch = useDispatch();
+
+    const handleMenuItemClick = key = event => {
+        dispatch(addToToDispatch({ type: "showsMap", key: key, value: {qid: questions[index].id, oid: 0} }))
+    }
 
     const classes = useStyles();
     return (
@@ -57,9 +65,10 @@ const EachOptionShows = () => {
                 {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
                 {hidden &&
                 hidden.map((item, i) => {
+                    const index = questions.indexOf(item);
                     return (
-                        <MenuItem button={true}>
-                            {`v${questions.indexOf(item) + 1}: ${
+                        <MenuItem button={true} onClick={handleMenuItemClick(item)}>
+                            {`v${index + 1}: ${
                                 item.title && item.title
                             }`}
                         </MenuItem>

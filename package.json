@@ -39,7 +39,7 @@
   },
   "HowToGetCoverage": {
     "test": "react-scripts test --coverage --watchAll"
-    },
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
