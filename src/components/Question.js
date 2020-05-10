@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Divider,
     ExpansionPanel,
@@ -82,8 +82,8 @@ function renderButtons(question, index) {
         elements.push(<ExpandMoreIcon key={elements.length}/>);
     } else {
         elements.push(<EditQuestionButton key={elements.length} question={question} index={index}/>);
-        elements.push(<DuplicateQuestionButton key={elements.length} question={question}/>);
-        elements.push(<RemoveQuestionButton key={elements.length} question={question} index={index}/>);
+        elements.push(<DuplicateQuestionButton key={elements.length +1} question={question}/>);
+        elements.push(<RemoveQuestionButton key={elements.length +2} question={question} index={index}/>);
     }
     return <div>{elements}</div>
 }
