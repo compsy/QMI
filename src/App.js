@@ -6,12 +6,14 @@ import {AntSwitch} from "./AntSwitch";
 import "./background.css";
 import {Provider} from "react-redux";
 import store from "./app/store";
-import Nav from "./components/buttons/nav";
+import NavBar from "./components/buttons/nav";
 import {Auth0Provider} from "./components/react-auth0-spa";
 import config from "./auth_config.json";
 import history from "./utils/history";
 import {Header, TemporaryDrawer} from "./components/TemporaryDrawer";
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import Profile from "./components/Profile";
+import { Router, Route, Switch } from "react-router-dom";
 
 
 const themeObject = {
@@ -91,7 +93,15 @@ function App() {
                         <div style={{display: "flex", flexDirection: "column"}}>
                             <AppBar className={classes.appBar}>
                                 <Toolbar>
-                                    <Nav/>
+                                    <Router history={history}>
+                                        <header>
+                                            <NavBar />
+                                        </header>
+                                        <Switch>
+                                            <Route path="/" exact />
+                                            <Route path="/profile" component={Profile} />
+                                        </Switch>
+                                    </Router>
                                     <TemporaryDrawer layout={menuLayout}/>
                                     <Typography variant="h6" className={classes.title}>
                                         Questionnaire Interface
