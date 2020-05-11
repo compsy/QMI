@@ -88,7 +88,7 @@ function App() {
                                 <Toolbar>
                                     <Router history={history}>
                                         <header>
-                                            <NavBar/>
+                                            {/*<NavBar/>*/}
                                         </header>
                                         <Switch>
                                             <Route path="/" exact/>

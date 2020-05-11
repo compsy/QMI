@@ -53,6 +53,23 @@ export const Header = () => {
     </Card>
 };
 
+function LoggedIn(isAuthenticated, logout, loginWithRedirect) {
+    if (isAuthenticated) {
+        return (
+            {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {
+                    logout();
+                }
+            }
+        )
+    }
+        return (
+            {title: 'Log In', icon: <ExitToAppIcon/>, onClick: () => {
+                    loginWithRedirect();
+                }}
+        )
+}
+
+
 /* The left sidebar.
 Layouts are strucutred in an array containing JSON objects:
      title: string containing the text of the element
@@ -65,27 +82,12 @@ Layouts are strucutred in an array containing JSON objects:
 
 // Example layout.
 
-const layout = [
-    {custom: <Header key={"header"}/>},
-    {isDivider: true},
-    {custom: <h3>Nothing works here.</h3>},
-    {isDivider: true},
-    {title: 'Profile', icon: <PersonIcon/>, onClick: () => {console.log("clicked")}},
-    {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {}},
-    {isDivider: true},
-    {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {}},
-    {isDivider: true},
-    {title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {}}
-];
 
 
 export const TemporaryDrawer = () => {
-    const {user} = useAuth0();
+    const {isAuthenticated, loginWithRedirect, logout, user} = useAuth0();
     console.log(user);
     let layout = [
-        // {custom: <Header key="header"/>},
-        // {custom: <h3 key="nothing works here">Nothing works here.</h3>},
-        // {isDivider: true}
         {custom: <Header key={"header"}/>},
         {isDivider: true},
         {custom: <h3>Nothing works here.</h3>},
@@ -93,7 +95,7 @@ export const TemporaryDrawer = () => {
         {title: 'Profile', icon: <PersonIcon/>, onClick: () => {console.log("clicked")}},
         {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {}},
         {isDivider: true},
-        {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {}},
+        LoggedIn(isAuthenticated, logout, loginWithRedirect),
         {isDivider: true},
         {title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {}},
         {isDivider: true},
@@ -101,10 +103,12 @@ export const TemporaryDrawer = () => {
     if (user) {
     layout = [
         ...layout,
-        {custom: <h3>Your information</h3>},
+        {custom: <h3 key={"Your info Header"}> Your information</h3>},
         {isDivider: true},
-        {title: user.name, icon: <AssignmentIcon/>},
-        {title: user.email, icon: <AssignmentIcon/>}
+        // {title: user.name, icon: <AssignmentIcon/>},
+        // {title: user.email, icon: <AssignmentIcon/>}
+        {custom: <h4 key={"username" + user.name}> {user.name} </h4>},
+        {custom: <h4 key={"useremail" + user.email}> {user.email} </h4>}
     ]
 }
     const classes = useStyles();
