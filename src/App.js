@@ -7,13 +7,13 @@ import "./background.css";
 import {Provider} from "react-redux";
 import store from "./app/store";
 import NavBar from "./components/buttons/nav";
-import {Auth0Provider} from "./components/react-auth0-spa";
+import {Auth0Provider, useAuth0} from "./components/react-auth0-spa";
 import config from "./auth_config.json";
 import history from "./utils/history";
 import {Header, TemporaryDrawer} from "./components/TemporaryDrawer";
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Profile from "./components/Profile";
-import { Router, Route, Switch } from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 
 
 const themeObject = {
@@ -63,21 +63,14 @@ const onRedirectCallback = (appState) => {
     );
 };
 
-function testApi(){
+function testApi() {
 
 }
 
 function App() {
+
     const [theme, toggleDarkMode] = useDarkMode();
     const themeConfig = createMuiTheme(theme);
-
-    const menuLayout = [
-        {custom: <Header key="header"/>},
-        {isDivider: true},
-        {custom: <h3 key="nothing works here">Nothing works here.</h3>},
-        {isDivider: true},
-        {title: 'Questionnaires', icon: <AssignmentIcon/>, onClick: () => {}},
-    ];
 
     const classes = useStyles();
     return (
@@ -95,14 +88,14 @@ function App() {
                                 <Toolbar>
                                     <Router history={history}>
                                         <header>
-                                            <NavBar />
+                                            <NavBar/>
                                         </header>
                                         <Switch>
-                                            <Route path="/" exact />
-                                            <Route path="/profile" component={Profile} />
+                                            <Route path="/" exact/>
+                                            <Route path="/profile" component={Profile}/>
                                         </Switch>
                                     </Router>
-                                    <TemporaryDrawer layout={menuLayout}/>
+                                    <TemporaryDrawer/>
                                     <Typography variant="h6" className={classes.title}>
                                         Questionnaire Interface
                                     </Typography>
@@ -130,5 +123,4 @@ function App() {
         </Auth0Provider>
     );
 }
-
 export default App;

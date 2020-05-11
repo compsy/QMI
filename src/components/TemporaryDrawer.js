@@ -16,6 +16,8 @@ import PersonIcon from "@material-ui/icons/Person";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import {useAuth0} from "./react-auth0-spa";
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -62,6 +64,7 @@ Layouts are strucutred in an array containing JSON objects:
 */
 
 // Example layout.
+
 const layout = [
     {custom: <Header key={"header"}/>},
     {isDivider: true},
@@ -76,7 +79,34 @@ const layout = [
 ];
 
 
-export const TemporaryDrawer = ({layout}) => {
+export const TemporaryDrawer = () => {
+    const {user} = useAuth0();
+    console.log(user);
+    let layout = [
+        // {custom: <Header key="header"/>},
+        // {custom: <h3 key="nothing works here">Nothing works here.</h3>},
+        // {isDivider: true}
+        {custom: <Header key={"header"}/>},
+        {isDivider: true},
+        {custom: <h3>Nothing works here.</h3>},
+        {isDivider: true},
+        {title: 'Profile', icon: <PersonIcon/>, onClick: () => {console.log("clicked")}},
+        {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {}},
+        {isDivider: true},
+        {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {}},
+        {isDivider: true},
+        {title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {}},
+        {isDivider: true},
+    ];
+    if (user) {
+    layout = [
+        ...layout,
+        {custom: <h3>Your information</h3>},
+        {isDivider: true},
+        {title: user.name, icon: <AssignmentIcon/>},
+        {title: user.email, icon: <AssignmentIcon/>}
+    ]
+}
     const classes = useStyles();
     const [open, setOpen] = useState(false);
 
