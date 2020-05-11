@@ -1,66 +1,79 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {FilledInput, FormControl, IconButton, InputAdornment, InputLabel, makeStyles, Badge,} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EachOptionMenu from "./EachOptionMenu";
-import {removeOption, setTextArrayElement, setTextArrayField} from "../../../features/question/questionSlice";
-import {CLEAN_SUPER_OPTION} from "../../../utils";
-import LinkQuestions from "./LinkQuestions";
-import {v4 as uuidv4} from 'uuid';
-import EachOptionShows from "./EachOptionShows";
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import { removeFromMap } from "../../../features/utilities/utilitiesSlice";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    FilledInput,
+    FormControl,
+    IconButton,
+    InputAdornment,
+    InputLabel,
+    makeStyles,
+    Badge,
+} from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
+import EachOptionMenu from './EachOptionMenu'
+import {
+    removeOption,
+    setTextArrayElement,
+    setTextArrayField,
+} from '../../../features/question/questionSlice'
+import { CLEAN_SUPER_OPTION } from '../../../utils'
+import LinkQuestions from './LinkQuestions'
+import { v4 as uuidv4 } from 'uuid'
+import EachOptionShows from './EachOptionShows'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import { removeFromMap } from '../../../features/utilities/utilitiesSlice'
+import EachOptionHides from './EachOptionHides'
 
 const useStyles = makeStyles((theme) => ({
     boxy: {
         borderRadius: 0,
     },
-}));
+}))
 
-const EachOption = ({propertyName, index}) => {
+const EachOption = ({ propertyName, index }) => {
     return (
         // <Slide in direction="right">
-        <OptionInputField propertyName={propertyName} index={index}/>
+        <OptionInputField propertyName={propertyName} index={index} />
         // </Slide>
-    );
-};
+    )
+}
 
-export default EachOption;
+export default EachOption
 
 /* ----- USED IN EachOption BELOW ----- */
 
-const OptionInputField = ({propertyName, index}) => {
-    const option = useSelector((state) => state.question[propertyName][index]);
-    const dispatch = useDispatch();
+const OptionInputField = ({ propertyName, index }) => {
+    const option = useSelector((state) => state.question[propertyName][index])
+    const dispatch = useDispatch()
 
     // makes sure the options are in object format (unless range type)
     useEffect(() => {
-        if (propertyName === "options" && typeof option === "string") {
+        if (propertyName === 'options' && typeof option === 'string') {
             dispatch(
                 setTextArrayElement({
                     property: propertyName,
                     index: index,
                     value: {
-                        ...CLEAN_SUPER_OPTION, 
-                        id: uuidv4(), 
+                        ...CLEAN_SUPER_OPTION,
+                        id: uuidv4(),
                         title: option,
                         shows_questions: [],
                         hides_questions: [],
                     },
                 })
-            );
+            )
         }
-    }, [option]);
+    }, [option])
 
     const handleChange = (index, event) => {
-        if (propertyName === "options") {
+        if (propertyName === 'options') {
             dispatch(
                 setTextArrayElement({
                     property: propertyName,
                     index: index,
-                    value: {...option, title: event.target.value},
+                    value: { ...option, title: event.target.value },
                 })
-            );
+            )
         } else {
             dispatch(
                 setTextArrayField({
@@ -68,15 +81,15 @@ const OptionInputField = ({propertyName, index}) => {
                     index: index,
                     value: event.target.value,
                 })
-            );
+            )
         }
-    };
+    }
 
-    const classes = useStyles();
+    const classes = useStyles()
     return (
         <FormControl fullWidth required>
-            <InputLabel variant="filled" style={{userSelect: "none"}}>
-                {propertyName === "labels"
+            <InputLabel variant="filled" style={{ userSelect: 'none' }}>
+                {propertyName === 'labels'
                     ? `Label ${index + 1}`
                     : `Option ${index + 1}`}
             </InputLabel>
@@ -88,35 +101,51 @@ const OptionInputField = ({propertyName, index}) => {
                 type="text"
                 id={`option-${index + 1}`}
                 placeholder={
-                    propertyName === "labels"
-                        ? "Enter range label here.."
-                        : "Enter option title here.."
+                    propertyName === 'labels'
+                        ? 'Enter range label here..'
+                        : 'Enter option title here..'
                 }
-                value={(propertyName === "labels" ? option : option["title"]) || ""}
+                value={
+                    (propertyName === 'labels' ? option : option['title']) || ''
+                }
                 onChange={(e) => handleChange(index, e)}
-                endAdornment={<EndButtons propertyName={propertyName} index={index}/>}
+                endAdornment={
+                    <EndButtons propertyName={propertyName} index={index} />
+                }
             />
         </FormControl>
-    );
-};
+    )
+}
 
 const RemoveButton = ({ propertyName, index }) => {
-    const dispatch = useDispatch();
-    const question = useSelector(state => state.question);
+    const dispatch = useDispatch()
+    const question = useSelector((state) => state.question)
     const removeBothFromMap = () => {
-        const option = question[propertyName][index];
-        const showsQuestions = option.shows_questions;
-        const hidesQuestions = option.hides_questions;
-        const qid = question.id;
-        const oid = option.id;
+        const option = question[propertyName][index]
+        const showsQuestions = option.shows_questions
+        const hidesQuestions = option.hides_questions
+        const qid = question.id
+        const oid = option.id
         if (showsQuestions && showsQuestions.length > 0) {
-            for (let i=0; i<showsQuestions.length; i++) {
-                dispatch(removeFromMap({type: "showsMap", key: showsQuestions[i], value: {qid, oid}}))
+            for (let i = 0; i < showsQuestions.length; i++) {
+                dispatch(
+                    removeFromMap({
+                        type: 'showsMap',
+                        key: showsQuestions[i],
+                        value: { qid, oid },
+                    })
+                )
             }
         }
         if (hidesQuestions && hidesQuestions.length > 0) {
-            for (let i=0; i<hidesQuestions.length; i++) {
-                dispatch(removeFromMap({type: "hidesMap", key: hidesQuestions[i], value: {qid, oid}}))
+            for (let i = 0; i < hidesQuestions.length; i++) {
+                dispatch(
+                    removeFromMap({
+                        type: 'hidesMap',
+                        key: hidesQuestions[i],
+                        value: { qid, oid },
+                    })
+                )
             }
         }
     }
@@ -126,40 +155,66 @@ const RemoveButton = ({ propertyName, index }) => {
         //     key: key,
         //     value: { qid: qid, oid: oid },
         // })
-        removeBothFromMap();
-        dispatch(removeOption({property: propertyName, index: index}));
-    };
+        removeBothFromMap()
+        dispatch(removeOption({ property: propertyName, index: index }))
+    }
     return (
         <IconButton size="small" onClick={() => handleRemoveOptionClick(index)}>
-            <DeleteIcon/>
+            <DeleteIcon />
         </IconButton>
-    );
+    )
 }
 
-const EndButtons = ({propertyName, index}) => {
-    const showsQuestions = useSelector(state => state.question[propertyName][index].shows_questions)
+const EndButtons = ({ propertyName, index }) => {
+    const showsQuestions = useSelector(
+        (state) => state.question[propertyName][index].shows_questions
+    )
+    const hidesQuestions = useSelector(
+        (state) => state.question[propertyName][index].hides_questions
+    )
+    const type = useSelector((state) => state.question.type)
     return (
         <InputAdornment position="end">
-            {propertyName === "options" && (
+            {propertyName === 'options' && (
                 <>
-                    <Badge
-                        badgeContent={(showsQuestions && showsQuestions.length) || 0}
-                        color="primary"
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'left',
-                        }}
-                        overlap="circle"
-                    >
-                        <EachOptionShows index={index} />
-                    </Badge>
+                    {(type === 'checkbox' || type === 'radio') && (
+                        <>
+                            <Badge
+                                badgeContent={
+                                    (showsQuestions && showsQuestions.length) ||
+                                    0
+                                }
+                                color="primary"
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                overlap="circle"
+                            >
+                                <EachOptionShows index={index} />
+                            </Badge>
+                            <Badge
+                                badgeContent={
+                                    (hidesQuestions && hidesQuestions.length) ||
+                                    0
+                                }
+                                color="primary"
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                overlap="circle"
+                            >
+                                <EachOptionHides index={index} />
+                            </Badge>
+                        </>
+                    )}
                     {/*<EachOptionHides />*/}
                     {/* <LinkQuestions index={index}/> */}
-                    <EachOptionMenu propertyName={propertyName} index={index}/>
+                    <EachOptionMenu propertyName={propertyName} index={index} />
                 </>
             )}
             <RemoveButton propertyName={propertyName} index={index} />
         </InputAdornment>
-    );
-};
-
+    )
+}
