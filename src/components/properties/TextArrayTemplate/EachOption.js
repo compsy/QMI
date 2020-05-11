@@ -1,11 +1,15 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {FilledInput, FormControl, IconButton, InputAdornment, InputLabel, makeStyles,} from "@material-ui/core";
+import {FilledInput, FormControl, IconButton, InputAdornment, InputLabel, makeStyles, Badge,} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EachOptionMenu from "./EachOptionMenu";
 import {removeOption, setTextArrayElement, setTextArrayField} from "../../../features/question/questionSlice";
 import {CLEAN_SUPER_OPTION} from "../../../utils";
 import LinkQuestions from "./LinkQuestions";
+import {v4 as uuidv4} from 'uuid';
+import EachOptionShows from "./EachOptionShows";
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import { removeFromMap } from "../../../features/utilities/utilitiesSlice";
 
 const useStyles = makeStyles((theme) => ({
     boxy: {
@@ -36,7 +40,13 @@ const OptionInputField = ({propertyName, index}) => {
                 setTextArrayElement({
                     property: propertyName,
                     index: index,
-                    value: {...CLEAN_SUPER_OPTION, title: option},
+                    value: {
+                        ...CLEAN_SUPER_OPTION, 
+                        id: uuidv4(), 
+                        title: option,
+                        shows_questions: [],
+                        hides_questions: [],
+                    },
                 })
             );
         }
@@ -92,7 +102,31 @@ const OptionInputField = ({propertyName, index}) => {
 
 const RemoveButton = ({ propertyName, index }) => {
     const dispatch = useDispatch();
+    const question = useSelector(state => state.question);
+    const removeBothFromMap = () => {
+        const option = question[propertyName][index];
+        const showsQuestions = option.shows_questions;
+        const hidesQuestions = option.hides_questions;
+        const qid = question.id;
+        const oid = option.id;
+        if (showsQuestions && showsQuestions.length > 0) {
+            for (let i=0; i<showsQuestions.length; i++) {
+                dispatch(removeFromMap({type: "showsMap", key: showsQuestions[i], value: {qid, oid}}))
+            }
+        }
+        if (hidesQuestions && hidesQuestions.length > 0) {
+            for (let i=0; i<hidesQuestions.length; i++) {
+                dispatch(removeFromMap({type: "hidesMap", key: hidesQuestions[i], value: {qid, oid}}))
+            }
+        }
+    }
     const handleRemoveOptionClick = (index) => {
+        // removeFromMap({
+        //     type: 'showsMap',
+        //     key: key,
+        //     value: { qid: qid, oid: oid },
+        // })
+        removeBothFromMap();
         dispatch(removeOption({property: propertyName, index: index}));
     };
     return (
@@ -103,13 +137,24 @@ const RemoveButton = ({ propertyName, index }) => {
 }
 
 const EndButtons = ({propertyName, index}) => {
+    const showsQuestions = useSelector(state => state.question[propertyName][index].shows_questions)
     return (
         <InputAdornment position="end">
             {propertyName === "options" && (
                 <>
-                    {/*<EachOptionShows/>*/}
+                    <Badge
+                        badgeContent={(showsQuestions && showsQuestions.length) || 0}
+                        color="primary"
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                        overlap="circle"
+                    >
+                        <EachOptionShows index={index} />
+                    </Badge>
                     {/*<EachOptionHides />*/}
-                    <LinkQuestions index={index}/>
+                    {/* <LinkQuestions index={index}/> */}
                     <EachOptionMenu propertyName={propertyName} index={index}/>
                 </>
             )}

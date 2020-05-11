@@ -1,19 +1,19 @@
-const postprocessCheckbox = (question) => {
-    // const preprocessedOptions = () => {
-    //   return question.options;
-    // };
+import store from '../../app/store'
+import { removeFromMap } from '../../features/utilities/utilitiesSlice'
+import { removeAllWithKey } from '../buttons/RemoveQuestionButton'
 
+const postprocessCheckbox = (question) => {
     const processedOptionsCheckbox = () => {
         return question.options.map((q) =>
-            typeof q === "string"
+            typeof q === 'string'
                 ? q
                 : {
-                    ...q,
-                    numeric_value: undefined,
-                    id: undefined,
-                }
-        );
-    };
+                      ...q,
+                      numeric_value: undefined,
+                      // id: undefined,
+                  }
+        )
+    }
     // prettier-ignore
     return {
         // ...CLEAN_SUPER_QUESTION,
@@ -32,7 +32,7 @@ const postprocessCheckbox = (question) => {
         otherwise_label: question.otherwise_label !== undefined ? question.otherwise_label : undefined,
         otherwise_tooltip: question.otherwise_tooltip !== undefined ? question.otherwise_tooltip : undefined,
     };
-};
+}
 
 const postprocessRange = (question) => {
     // prettier-ignore
@@ -52,23 +52,23 @@ const postprocessRange = (question) => {
         tooltip: question.tooltip !== undefined ? question.tooltip : undefined,
         section_end: question.section_end !== undefined ? question.section_end : undefined,
     }
-};
+}
 
 const postprocessLikert = (question) => {
     const processedOptionsLikert = () => {
         return question.options.map((q) =>
-            typeof q === "string"
+            typeof q === 'string'
                 ? q
                 : {
-                    ...q,
-                    tooltip: undefined,
-                    stop_subscription: undefined,
-                    shows_questions: undefined,
-                    hides_questions: undefined,
-                    id: undefined,
-                }
-        );
-    };
+                      ...q,
+                      tooltip: undefined,
+                      stop_subscription: undefined,
+                      shows_questions: undefined,
+                      hides_questions: undefined,
+                      // id: undefined,
+                  }
+        )
+    }
     // prettier-ignore
     return {
         id: question.id,
@@ -82,7 +82,7 @@ const postprocessLikert = (question) => {
         tooltip: question.tooltip !== undefined ? question.tooltip : undefined,
         section_end: question.section_end !== undefined ? question.section_end : undefined,
     };
-};
+}
 
 const postprocessRaw = (question) => {
     // prettier-ignore
@@ -95,7 +95,7 @@ const postprocessRaw = (question) => {
         section_start: question.section_start !== undefined ? question.section_start : undefined,
         section_end: question.section_end !== undefined ? question.section_end : undefined,
     }
-};
+}
 
 const postprocessTextarea = (question) => {
     // prettier-ignore
@@ -111,7 +111,7 @@ const postprocessTextarea = (question) => {
         placeholder: question.placeholder !== undefined ? question.placeholder : undefined,
         section_end: question.section_end !== undefined ? question.section_end : undefined,
     };
-};
+}
 
 const postprocessTextfield = (question) => {
     // prettier-ignore
@@ -130,7 +130,7 @@ const postprocessTextfield = (question) => {
         placeholder: question.placeholder !== undefined ? question.placeholder : undefined,
         section_end: question.section_end !== undefined ? question.section_end : undefined,
     };
-};
+}
 
 const postprocessNumber = (question) => {
     // prettier-ignore
@@ -151,7 +151,7 @@ const postprocessNumber = (question) => {
         required: question.required !== undefined ? question.required : undefined,
         section_end: question.section_end !== undefined ? question.section_end : undefined,
     };
-};
+}
 
 const postprocessTime = (question) => {
     // prettier-ignore
@@ -167,7 +167,7 @@ const postprocessTime = (question) => {
         hours_label: question.hours_label !== undefined ? question.hours_label : undefined,
         minutes_label: question.minutes_label !== undefined ? question.minutes_label : undefined,
     };
-};
+}
 
 const postprocessDate = (question) => {
     // prettier-ignore
@@ -188,23 +188,23 @@ const postprocessDate = (question) => {
         default_date: question.default_date !== undefined ? question.default_date : undefined,
         section_end: question.section_end !== undefined ? question.section_end : undefined,
     };
-};
+}
 
 const postprocessDropdown = (question) => {
     const processedOptionsDropdown = () => {
         return question.options.map((q) =>
-            typeof q === "string"
+            typeof q === 'string'
                 ? q
                 : {
-                    ...q,
-                    tooltip: undefined,
-                    stop_subscription: undefined,
-                    shows_questions: undefined,
-                    hides_questions: undefined,
-                    id: undefined,
-                }
-        );
-    };
+                      ...q,
+                      tooltip: undefined,
+                      stop_subscription: undefined,
+                      shows_questions: undefined,
+                      hides_questions: undefined,
+                      // id: undefined,
+                  }
+        )
+    }
     // prettier-ignore
     return {
         id: question.id,
@@ -219,7 +219,7 @@ const postprocessDropdown = (question) => {
         tooltip: question.tooltip !== undefined ? question.tooltip : undefined,
         section_end: question.section_end !== undefined ? question.section_end : undefined,
     };
-};
+}
 
 const postprocessDrawing = (question) => {
     // prettier-ignore
@@ -240,7 +240,7 @@ const postprocessDrawing = (question) => {
         density: question.density !== undefined ? question.density : undefined,
         section_end: question.section_end !== undefined ? question.section_end : undefined,
     };
-};
+}
 
 const postprocessMap = {
     checkbox: postprocessCheckbox,
@@ -255,8 +255,59 @@ const postprocessMap = {
     date: postprocessDate,
     dropdown: postprocessDropdown,
     drawing: postprocessDrawing,
-};
+}
 
-export const postprocessQuestion = (question) => {
-    return postprocessMap[question.type](question);
-};
+export const postprocessQuestion = (question, index) => {
+    // case : question with shows/hides questions changes type to one without
+    // case : question shown/hidden changes type to one without
+    if (question.type !== 'checkbox' && question.type !== 'radio') {
+        removeAllWithKey(question);
+        clearMapWithQuestion(question);
+    }
+
+    // case : if hidden is toggled
+    const oldQuestion = store.getState().questions[index];
+    if (question.hidden !== undefined && (question.hidden !== oldQuestion.hidden)) {
+        removeAllWithKey(question);
+        clearMapWithQuestion(question);
+    }
+
+    console.log('showsMap: ', store.getState().utilities.showsMap)
+    console.log('hidesMap: ', store.getState().utilities.hidesMap)
+    return postprocessMap[question.type](question)
+}
+
+export const clearMapWithQuestion = (question) => {
+    if (question.options !== undefined && question.options.length > 0) {
+        for (let i = 0; i < question.options.length; i++) {
+            const option = question.options[i]
+            const showsQuestions = option.shows_questions
+            const hidesQuestions = option.hides_questions
+            const qid = question.id
+            const oid = option.id
+            if (showsQuestions && showsQuestions.length > 0) {
+                for (let i = 0; i < showsQuestions.length; i++) {
+                    store.dispatch(
+                        removeFromMap({
+                            type: 'showsMap',
+                            key: showsQuestions[i],
+                            value: { qid, oid },
+                        })
+                    )
+                }
+            }
+            if (hidesQuestions && hidesQuestions.length > 0) {
+                for (let i = 0; i < hidesQuestions.length; i++) {
+                    store.dispatch(
+                        removeFromMap({
+                            type: 'hidesMap',
+                            key: hidesQuestions[i],
+                            value: { qid, oid },
+                        })
+                    )
+                }
+            }
+        }
+    }
+
+}

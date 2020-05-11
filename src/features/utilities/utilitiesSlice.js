@@ -1,29 +1,58 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 export const utilitiesSlice = createSlice({
-    name: "utilities",
+    name: 'utilities',
     initialState: {
         showsMap: {},
         hidesMap: {},
-        toDispatch: [],
+        saved: {},
+        idMap: {},
     },
     reducers: {
         addToMap: (state, action) => {
             // 1) check if uuid already exists in map
-            const { type, key, value } = action.payload;
-            const list = state[type][key];
+            const { type, key, value } = action.payload
+            const list = state[type][key]
             if (list !== undefined && list.length > 0) {
-                state[type][key] = [...list, value];
+                state[type][key] = [...list, value]
             } else {
-                state[type][key] = [value];
+                state[type][key] = [value]
             }
         },
-        addToToDispatch: (state, action) => {
-            state.toDispatch = [...state.toDispatch, action.payload];
+        removeFromMap: (state, action) => {
+            const { type, key, value } = action.payload
+            if (state[type][key] && state[type][key].length > 0) {
+                state[type][key] = state[type][key].filter(
+                    (x) => JSON.stringify(x) !== JSON.stringify(value)
+                )
+            }
+        },
+        removeByKey: (state, action) => {
+            const { [action.payload.key]: value, ...rest } = state[
+                action.payload.type
+            ]
+            console.log('rest: ', rest)
+            state[action.payload.type] = rest
+        },
+        SET_UTILITIES: (state, action) => {
+            return action.payload
+        },
+        SET_SAVED: (state, action) => {
+            state.saved = action.payload
+        },
+        SET_IDMAP: (state, action) => {
+            state.idMap = action.payload
         },
     },
-});
+})
 
-export const { addToMap, addToToDispatch } = utilitiesSlice.actions;
+export const {
+    addToMap,
+    removeFromMap,
+    removeByKey,
+    SET_UTILITIES,
+    SET_SAVED,
+    SET_IDMAP
+} = utilitiesSlice.actions
 
-export default utilitiesSlice.reducer;
+export default utilitiesSlice.reducer

@@ -7,6 +7,7 @@ import TypeProperty from "./properties/TypeProperty";
 import store from "../app/store";
 import {postprocessQuestion} from "./properties/postprocessor";
 import {UPDATE_QUESTION} from "../features/questions/questionsSlice";
+import { SET_UTILITIES } from "../features/utilities/utilitiesSlice";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,12 +71,16 @@ const EditDialog2 = ({question, index, open, setOpen}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const state = store.getState();
-        const newQuestion = postprocessQuestion(state.question);
+        const newQuestion = postprocessQuestion(state.question, index);
         dispatch(UPDATE_QUESTION({id: question.id, new: newQuestion}))
     };
 
     // cancel all and return to QuestionsPage
     const handleClose = () => {
+        // restore mappings
+        dispatch(SET_UTILITIES(store.getState().utilities.saved));
+        console.log('showsMap: ', store.getState().utilities.showsMap)
+        console.log('hidesMap: ', store.getState().utilities.hidesMap)
         setOpen(false);
     };
 
