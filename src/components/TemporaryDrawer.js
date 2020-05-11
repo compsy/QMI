@@ -53,21 +53,7 @@ export const Header = () => {
     </Card>
 };
 
-function LoggedIn(isAuthenticated, logout, loginWithRedirect) {
-    if (isAuthenticated) {
-        return (
-            {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {
-                    logout();
-                }
-            }
-        )
-    }
-        return (
-            {title: 'Log In', icon: <ExitToAppIcon/>, onClick: () => {
-                    loginWithRedirect();
-                }}
-        )
-}
+
 
 
 /* The left sidebar.
@@ -84,33 +70,7 @@ Layouts are strucutred in an array containing JSON objects:
 
 
 
-export const TemporaryDrawer = () => {
-    const {isAuthenticated, loginWithRedirect, logout, user} = useAuth0();
-    console.log(user);
-    let layout = [
-        {custom: <Header key={"header"}/>},
-        {isDivider: true},
-        {custom: <h3>Nothing works here.</h3>},
-        {isDivider: true},
-        {title: 'Profile', icon: <PersonIcon/>, onClick: () => {console.log("clicked")}},
-        {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {}},
-        {isDivider: true},
-        LoggedIn(isAuthenticated, logout, loginWithRedirect),
-        {isDivider: true},
-        {title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {}},
-        {isDivider: true},
-    ];
-    if (user) {
-    layout = [
-        ...layout,
-        {custom: <h3 key={"Your info Header"}> Your information</h3>},
-        {isDivider: true},
-        // {title: user.name, icon: <AssignmentIcon/>},
-        // {title: user.email, icon: <AssignmentIcon/>}
-        {custom: <h4 key={"username" + user.name}> {user.name} </h4>},
-        {custom: <h4 key={"useremail" + user.email}> {user.email} </h4>}
-    ]
-}
+export const TemporaryDrawer = ({layout}) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
 

@@ -14,6 +14,10 @@ import {Header, TemporaryDrawer} from "./components/TemporaryDrawer";
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Profile from "./components/Profile";
 import {Router, Route, Switch} from "react-router-dom";
+import PersonIcon from "@material-ui/icons/Person";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
 
 
 const themeObject = {
@@ -63,12 +67,56 @@ const onRedirectCallback = (appState) => {
     );
 };
 
-function testApi() {
 
+const SideBar = () =>{
+    const {isAuthenticated, loginWithRedirect, logout, user} = useAuth0();
+
+    function LoggedIn() {
+        if (isAuthenticated) {
+            return (
+              {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {
+                      logout();
+                  }
+              }
+            )
+        }
+        return (
+          {title: 'Log In', icon: <ExitToAppIcon/>, onClick: () => {
+                  loginWithRedirect();
+              }}
+        )
+    }
+    const generateLayout = () =>{
+        let layout = [
+            {custom: <Header key={"header"}/>},
+            {isDivider: true},
+            {custom: <h3 key={"nothing works here header"}>Nothing works here.</h3>},
+            {isDivider: true},
+            {title: 'Profile', icon: <PersonIcon/>, onClick: () => {console.log("clicked")}},
+            {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {}},
+            {isDivider: true},
+            {isDivider: true},
+            {title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {}},
+            {isDivider: true},
+        ];
+        if (user) {
+            layout = [
+                ...layout,
+                {custom: <h3 key={"your information header"}>Your information</h3>},
+                {isDivider: true},
+                {custom: <h3 key={"user name"}> {user.name}</h3>},
+                {custom: <h3 key={"user email"}> {user.email}</h3>},
+                LoggedIn()
+            ]
+        }else{
+            layout = [...layout, LoggedIn()];
+        }
+        return layout;
+    }
+    return <TemporaryDrawer layout={generateLayout(user)}/>
 }
 
 function App() {
-
     const [theme, toggleDarkMode] = useDarkMode();
     const themeConfig = createMuiTheme(theme);
 
@@ -95,7 +143,7 @@ function App() {
                                             <Route path="/profile" component={Profile}/>
                                         </Switch>
                                     </Router>
-                                    <TemporaryDrawer/>
+                                    <SideBar/>
                                     <Typography variant="h6" className={classes.title}>
                                         Questionnaire Interface
                                     </Typography>
