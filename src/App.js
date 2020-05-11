@@ -6,14 +6,12 @@ import {AntSwitch} from "./AntSwitch";
 import "./background.css";
 import {Provider} from "react-redux";
 import store from "./app/store";
-import NavBar from "./components/buttons/nav";
 import {Auth0Provider, useAuth0} from "./components/react-auth0-spa";
 import config from "./auth_config.json";
 import history from "./utils/history";
-import {Header, TemporaryDrawer} from "./components/TemporaryDrawer";
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import {Header, TemporaryDrawer, UserInformationCard} from "./components/TemporaryDrawer";
 import Profile from "./components/Profile";
-import {Router, Route, Switch} from "react-router-dom";
+import {Route, Router, Switch} from "react-router-dom";
 import PersonIcon from "@material-ui/icons/Person";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -70,48 +68,33 @@ const onRedirectCallback = (appState) => {
 
 const SideBar = () =>{
     const {isAuthenticated, loginWithRedirect, logout, user} = useAuth0();
-
-    function LoggedIn() {
-        if (isAuthenticated) {
-            return (
-              {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: () => {
-                      logout();
-                  }
-              }
-            )
-        }
-        return (
-          {title: 'Log In', icon: <ExitToAppIcon/>, onClick: () => {
-                  loginWithRedirect();
-              }}
-        )
+    function getUserInformation() {
+        return isAuthenticated ? [
+              {custom: <UserInformationCard user={user}/>},
+              {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: logout}
+          ] :
+          [{title: 'Log In', icon: <ExitToAppIcon/>, onClick: loginWithRedirect}]
     }
+
     const generateLayout = () =>{
-        let layout = [
+        return [
             {custom: <Header key={"header"}/>},
             {isDivider: true},
             {custom: <h3 key={"nothing works here header"}>Nothing works here.</h3>},
             {isDivider: true},
-            {title: 'Profile', icon: <PersonIcon/>, onClick: () => {console.log("clicked")}},
-            {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {}},
+            {
+                title: 'Profile', icon: <PersonIcon/>, onClick: () => {
+                    console.log("clicked")
+                }
+            },
+            {
+                title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {
+                }
+            },
             {isDivider: true},
-            {isDivider: true},
-            {title: 'Edit Dialog Beta', icon: <DeveloperBoardIcon/>, onClick: () => {}},
-            {isDivider: true},
+            ...getUserInformation()
+
         ];
-        if (user) {
-            layout = [
-                ...layout,
-                {custom: <h3 key={"your information header"}>Your information</h3>},
-                {isDivider: true},
-                {custom: <h3 key={"user name"}> {user.name}</h3>},
-                {custom: <h3 key={"user email"}> {user.email}</h3>},
-                LoggedIn()
-            ]
-        }else{
-            layout = [...layout, LoggedIn()];
-        }
-        return layout;
     }
     return <TemporaryDrawer layout={generateLayout(user)}/>
 }
@@ -135,9 +118,6 @@ function App() {
                             <AppBar className={classes.appBar}>
                                 <Toolbar>
                                     <Router history={history}>
-                                        <header>
-                                            {/*<NavBar/>*/}
-                                        </header>
                                         <Switch>
                                             <Route path="/" exact/>
                                             <Route path="/profile" component={Profile}/>

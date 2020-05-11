@@ -12,12 +12,7 @@ import List from "@material-ui/core/List";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
-import PersonIcon from "@material-ui/icons/Person";
-import AddBoxIcon from "@material-ui/icons/AddBox";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import {useAuth0} from "./react-auth0-spa";
+
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -53,6 +48,25 @@ export const Header = () => {
     </Card>
 };
 
+// The default card for showing basic user information in the sidebar.
+export const UserInformationCard = ({user}) => {
+    const classes = useStyles();
+    return <Card className={classes.header}>
+        <CardActionArea>
+            <CardContent>
+                <Typography gutterBottom variant="h6">
+                    User
+                </Typography>
+                <Typography gutterBottom variant="subtitle1">
+                    {user.name}
+                </Typography>
+                <Typography gutterBottom variant="subtitle2">
+                    {user.email}
+                </Typography>
+            </CardContent>
+        </CardActionArea>
+    </Card>
+}
 
 
 
