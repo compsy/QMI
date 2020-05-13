@@ -12,6 +12,8 @@ import List from "@material-ui/core/List";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
+import CardHeader from "@material-ui/core/CardHeader";
+import Avatar from "@material-ui/core/Avatar";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     header: {
         backgroundColor: "rgba(0, 0, 0, 0)",
         color: "white"
+    },
+    cover: {
+
     }
 }));
 
@@ -52,19 +57,13 @@ export const Header = () => {
 export const UserInformationCard = ({user}) => {
     const classes = useStyles();
     return <Card className={classes.header}>
-        <CardActionArea>
-            <CardContent>
-                <Typography gutterBottom variant="h6">
-                    User
-                </Typography>
-                <Typography gutterBottom variant="subtitle1">
-                    {user.name}
-                </Typography>
-                <Typography gutterBottom variant="subtitle2">
-                    {user.email}
-                </Typography>
-            </CardContent>
-        </CardActionArea>
+        <CardHeader
+          avatar={
+              <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
+          }
+          title={user.name}
+          subheader={user.email}
+        />
     </Card>
 }
 
