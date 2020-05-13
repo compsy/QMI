@@ -43,7 +43,7 @@ const EachOptionShows = ({ index }) => {
     const qid = useSelector((state) => state.question.id)
     const option = useSelector((state) => state.question.options[index])
     const oid = option.id
-    const hidden = questions.filter((q) => q.hidden === true && q.id !== qid);
+    const hidden = questions.filter((q) => q.hidden === true && q.id !== qid && q.type !== "raw");
     const showsQuestions = useSelector(
         (state) => state.question.options[index].shows_questions
     )
@@ -123,10 +123,11 @@ const EachOptionShows = ({ index }) => {
                 {hidden && hidden.length > 0 ? (
                     hidden.map((item, i) => {
                         const index = questions.indexOf(item)
-                        const title =
+                        const title = item.title !== undefined ? (
                             item.title.length > 30
                                 ? `${item.title.slice(0, 29)}...`
                                 : item.title
+                        ) : "untitled"
                         const menuItemStyle = {
                             paddingLeft: theme.spacing(1),
                             paddingRight: theme.spacing(3),
