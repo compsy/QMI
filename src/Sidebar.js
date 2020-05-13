@@ -1,16 +1,6 @@
 import React from "react";
 import {Draggable, Droppable} from "react-beautiful-dnd";
-import {
-    Divider,
-    Drawer,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    makeStyles,
-    Paper,
-    Typography
-} from "@material-ui/core";
+import {Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Paper, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContentText from "@material-ui/core/DialogContentText";
@@ -51,7 +41,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const Sidebar = ({question, items}) => {
-    // const {dispatch} = useContext(QuestionnaireContext);
     const dispatch = useDispatch();
     const classes = useStyles();
 
@@ -89,7 +78,7 @@ export const Sidebar = ({question, items}) => {
                             return (
                                 <React.Fragment key={item.id}>
                                     {shouldRenderClone ? (
-                                        <ListItem button key={item.label}>
+                                        <ListItem button id= {item.label} key={item.label}>
                                             <ListItemIcon>{item.icon}</ListItemIcon>
                                             <ListItemText
                                                 primary={item.label}
@@ -100,6 +89,7 @@ export const Sidebar = ({question, items}) => {
                                         <Draggable draggableId={item.id} index={index}>
                                             {(provided, snapshot) => (
                                                 <ListItem
+                                                    id= {item.label}
                                                     key={item.label}
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
@@ -119,7 +109,7 @@ export const Sidebar = ({question, items}) => {
                         {/* {provided.placeholder} */}
                         <div className={classes.toolbar}/>
                         <Divider/>
-                        {/* <ListItem
+                         <ListItem
                             button
                             onClick={() => {
                                 localStorage.clear();
@@ -127,14 +117,14 @@ export const Sidebar = ({question, items}) => {
                             }}
                         >
                             <ListItemText primary="delete data"/>
-                        </ListItem> */}
+                        </ListItem>
 
                         <ListItem
                             button
-
+                            id={"eraseQuestionnaire"}
                             onClick={handleClickOpen}
                         >
-                            <ListItemText primary="erase questionnaire"/>
+                            <ListItemText  primary="erase questionnaire"/>
                         </ListItem>
                         <ListItem
                             button
@@ -167,9 +157,9 @@ export const Sidebar = ({question, items}) => {
                                         No
                                     </Button>
                                     {/* <Button onClick={() => { setOpen(false); dispatch({type: "REMOVE_ALL"}); } } color="primary" autoFocus> */}
-                                    <Button onClick={() => {
+                                    <Button id={"yesToDelete"} onClick={() => {
                                         setOpen(false);
-                                        dispatch(SET_UTILITIES({showsMap: {}, hidesMap: {}, saved: {}}))
+                                        dispatch(SET_UTILITIES({showsMap: {}, hidesMap: {}, saved: {}}));
                                         dispatch(REMOVE_ALL());
                                     }} color="primary" autoFocus>
                                         Yes

@@ -5,7 +5,7 @@ function BoxArea(props) {
     return (
         <Droppable droppableId="BAG">
             {(provided, snapshot) => (
-                <ul ref={provided.innerRef} className="shopping-bag">
+                <ul ref={provided.innerRef} id={"dropzone"} className="shopping-bag">
                     {props.items.map((item, index) => (
                         <Draggable key={item.id} draggableId={item.id} index={index}>
                             {(provided, snapshot) => (
