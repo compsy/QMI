@@ -128,7 +128,7 @@ export const Sidebar = ({question, items}) => {
                         </ListItem>
                         <ListItem
                             button
-
+                            id={"renderQuestionnaire"}
                             onClick={() => {
                                 let x = localStorage.getItem("qmi-data");
                                 x = Buffer.from(x).toString("base64");
@@ -153,7 +153,7 @@ export const Sidebar = ({question, items}) => {
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button onClick={handleClose} color="primary">
+                                    <Button id={"noToDelete"} onClick={handleClose} color="primary">
                                         No
                                     </Button>
                                     {/* <Button onClick={() => { setOpen(false); dispatch({type: "REMOVE_ALL"}); } } color="primary" autoFocus> */}
