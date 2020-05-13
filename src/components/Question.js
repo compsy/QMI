@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
     Divider,
     ExpansionPanel,
     ExpansionPanelDetails,
     ExpansionPanelSummary,
     Grid,
-    Typography
+    Typography,
+    Badge
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RemoveQuestionButton from "./buttons/RemoveQuestionButton";
@@ -30,7 +31,9 @@ import ReactHtmlParser from "react-html-parser";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import {useSelector} from "react-redux";
+import store from "../app/store";
 
 const Question = ({index, question, ...props}) => {
     const [open, setOpen] = useState(false);
@@ -63,29 +66,55 @@ const Question = ({index, question, ...props}) => {
     );
 };
 
-const HiddenQuestionIndicator = ({question}) => {
-    return question.hidden ?
-        <Tooltip title="This question will be hidden from the user.">
-            <IconButton aria-label="This question will be hidden from the user">
-                <VisibilityOffIcon/>
-            </IconButton>
-        </Tooltip>
-        : null
-};
-
+const HiddenQuestionIndicator = ({ question }) => {
+    const utilities = store.getState().utilities;
+    return question.hidden ? (
+        <Badge
+            badgeContent={(utilities.showsMap[question.id] && utilities.showsMap[question.id].length) || 0}
+            color="primary"
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+            }}
+            overlap="circle"
+        >
+            <Tooltip title="This question will be hidden from the user.">
+                <IconButton aria-label="This question will be hidden from the user">
+                    <VisibilityOffIcon />
+                </IconButton>
+            </Tooltip>
+        </Badge>
+    ) : (
+        <Badge
+            badgeContent={(utilities.hidesMap[question.id] && utilities.hidesMap[question.id].length) || 0}
+            color="primary"
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+            }}
+            overlap="circle"
+        >
+            <Tooltip title="This question will be shown to the user.">
+                <IconButton aria-label="This question will be shown to the user">
+                    <VisibilityIcon />
+                </IconButton>
+            </Tooltip>
+        </Badge>
+    )
+    }
 
 function renderButtons(question, index) {
     const type = question.type;
     const elements = [];
-    elements.push(<HiddenQuestionIndicator key={elements.length} question={question}/>);
+    elements.push(<Grid item><HiddenQuestionIndicator key={elements.length} question={question}/></Grid>);
     if (type !== "raw") {
-        elements.push(<ExpandMoreIcon key={elements.length}/>);
+        elements.push(<Grid item><ExpandMoreIcon key={elements.length}/></Grid>);
     } else {
-        elements.push(<EditQuestionButton key={elements.length} question={question} index={index}/>);
-        elements.push(<DuplicateQuestionButton key={elements.length +1} question={question}/>);
-        elements.push(<RemoveQuestionButton key={elements.length +2} question={question} index={index}/>);
+        elements.push(<Grid item><EditQuestionButton key={elements.length} question={question} index={index}/></Grid>);
+        elements.push(<Grid item><DuplicateQuestionButton key={elements.length} question={question}/></Grid>);
+        elements.push(<Grid item><RemoveQuestionButton key={elements.length} question={question} index={index}/></Grid>);
     }
-    return <div>{elements}</div>
+    return <Grid container direction="row" justify="flex-end" alignItems="center">{elements}</Grid>
 }
 
 const style = {

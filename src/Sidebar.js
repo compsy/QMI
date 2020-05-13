@@ -18,7 +18,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import {useDispatch} from "react-redux";
-import {REMOVE_ALL} from "./features/questions/questionsSlice";
+import {REMOVE_ALL, REMOVE_ALL_DATA} from "./features/questions/questionsSlice";
+import { SET_UTILITIES } from "./features/utilities/utilitiesSlice";
 
 function getStyle(style, snapshot) {
     if (!snapshot.isDropAnimating) {
@@ -118,7 +119,7 @@ export const Sidebar = ({question, items}) => {
                         {/* {provided.placeholder} */}
                         <div className={classes.toolbar}/>
                         <Divider/>
-                        <ListItem
+                        {/* <ListItem
                             button
                             onClick={() => {
                                 localStorage.clear();
@@ -126,7 +127,7 @@ export const Sidebar = ({question, items}) => {
                             }}
                         >
                             <ListItemText primary="delete data"/>
-                        </ListItem>
+                        </ListItem> */}
 
                         <ListItem
                             button
@@ -168,6 +169,7 @@ export const Sidebar = ({question, items}) => {
                                     {/* <Button onClick={() => { setOpen(false); dispatch({type: "REMOVE_ALL"}); } } color="primary" autoFocus> */}
                                     <Button onClick={() => {
                                         setOpen(false);
+                                        dispatch(SET_UTILITIES({showsMap: {}, hidesMap: {}, saved: {}}))
                                         dispatch(REMOVE_ALL());
                                     }} color="primary" autoFocus>
                                         Yes

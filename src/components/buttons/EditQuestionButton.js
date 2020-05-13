@@ -3,6 +3,8 @@ import {IconButton, Tooltip} from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import NewQuestionContextProvider from "../../contexts/NewQuestionContext";
 import EditDialog2 from "../BetaEditDialog2";
+import store from "../../app/store";
+import { SET_SAVED } from "../../features/utilities/utilitiesSlice";
 
 
 const EditQuestionButton = ({question, index}) => {
@@ -11,7 +13,11 @@ const EditQuestionButton = ({question, index}) => {
     return (
         <>
             <Tooltip title="edit">
-                <IconButton onClick={() => setOpen(true)}>
+                <IconButton onClick={() => {
+                    store.dispatch(SET_SAVED(store.getState().utilities));
+                    console.log("state.utilities.saved: ", store.getState().utilities.saved)
+                    setOpen(true);
+                }}>
                     <EditIcon/>
                 </IconButton>
             </Tooltip>

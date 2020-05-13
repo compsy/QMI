@@ -8,7 +8,9 @@ import {BottomSection} from "../BottomSection";
 import {TopSection} from "../TopSection";
 import {useDispatch, useSelector} from "react-redux";
 import {CLONE, REORDER, SET_QUESTIONS} from "../features/questions/questionsSlice";
+import {SET_UTILITIES} from "../features/utilities/utilitiesSlice";
 import ScrollArrow from "../ScrollArrow";
+import store from "../app/store";
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -47,15 +49,21 @@ const QuestionsPage = () => {
         }
     }, []);
     const classes = useStyles();
+
     useEffect(() => {
         const x = localStorage.getItem("qmi-data");
         if (x !== null) {
             // dispatch({ type: "SET_QUESTIONS", questions: JSON.parse(x)})
             dispatch(SET_QUESTIONS({questions: JSON.parse(x)}))
         }
+        const y = localStorage.getItem("qmi-utilities");
+        if (y !== null) {
+            dispatch(SET_UTILITIES(JSON.parse(y)));
+        }
     }, []);
     useEffect(() => {
-        localStorage.setItem("qmi-data", JSON.stringify(questions))
+        localStorage.setItem("qmi-data", JSON.stringify(questions));
+        localStorage.setItem("qmi-utilities", JSON.stringify(store.getState().utilities))
     }, [questions]);
 
     return (

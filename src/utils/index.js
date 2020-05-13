@@ -48,7 +48,6 @@ import {
     WidthHeightComposite
 } from "../components/properties/OtherProperties";
 
-import {v4 as uuidv4} from 'uuid';
 
 
 export const initial0 = {
@@ -323,7 +322,6 @@ export const CLEAN_SUPER_QUESTION = {
 
 
 export const CLEAN_SUPER_OPTION = {
-    id: uuidv4(),
     title: undefined,
     tooltip: undefined,
     stop_subscription: undefined,
@@ -525,28 +523,29 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
 };
 
 export const INITIAL_QUESTIONNAIRE_CONTEXT = [
-    {id: 'v1', type: "range", title: "Hello BOI", labels: ["option 1", "option 2", "option 3", "option 4", "option5"]},
-    {id: 'v2', type: "radio", title: "Hello Kitty", options: ["option 1", "option 2", "option 3", "option 4"]},
-    {id: 'v3', type: "checkbox", title: "untitled checkbox", options: ["option 1", "option 2", "option 3", "option 4"]},
-    {id: 'v4', type: "range", hidden: "true", title: "Hey Arnold", labels: ["passing rate"]},
-    {
-        id: 'v5',
-        type: "raw",
-        content: "<p class=\"flow-text\">Hier staat een demo vragenlijst voor u klaar. Dit staat in een RAW tag</p>"
-    },
-    {
-        id: "v26",
-        type: "dropdown",
-        title: "dropdown",
-        label: "Hey",
-        tooltip: "Bye",
-        options: ["option 1", "option 2", "option 3", "option 4"]
-    },
-    {
-        id: "v32",
-        type: "radio",
-        shows_otherwise: "false",
-        title: "Voorbeeld van een radio",
-        options: [{title: "Ja", shows_question: ["v2"]}, {title: "Nee", shows_question: ["v4"]}]
-    }
+    // {id: 'v1', type: "range", title: "Hello BOI", labels: ["option 1", "option 2", "option 3", "option 4", "option5"]},
+    // {id: 'v2', type: "radio", title: "Hello Kitty", options: ["option 1", "option 2", "option 3", "option 4"]},
+    // {id: 'v3', type: "checkbox", title: "untitled checkbox", options: ["option 1", "option 2", "option 3", "option 4"]},
+    // {id: 'v4', type: "range", hidden: "true", title: "Hey Arnold", labels: ["passing rate"]},
+    // {
+    //     id: 'v5',
+    //     type: "raw",
+    //     content: "<p class=\"flow-text\">Hier staat een demo vragenlijst voor u klaar. Dit staat in een RAW tag</p>"
+    // },
+    // {
+    //     id: "v26",
+    //     type: "dropdown",
+    //     title: "dropdown",
+    //     label: "Hey",
+    //     tooltip: "Bye",
+    //     options: ["option 1", "option 2", "option 3", "option 4"]
+    // },
+    // {
+    //     id: "v32",
+    //     type: "radio",
+    //     shows_otherwise: "false",
+    //     title: "Voorbeeld van een radio",
+    //     options: [{title: "Ja", shows_question: ["v2"]}, {title: "Nee", shows_question: ["v4"]}]
+    // }
 ];
+
