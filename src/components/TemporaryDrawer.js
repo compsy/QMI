@@ -58,11 +58,11 @@ export const UserInformationCard = ({user}) => {
     const classes = useStyles();
     return <Card className={classes.header}>
         <CardHeader
-          avatar={
-              <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
-          }
-          title={user.name}
-          subheader={user.email}
+            avatar={
+                <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
+            }
+            title={user.name}
+            subheader={user.email}
         />
     </Card>
 }

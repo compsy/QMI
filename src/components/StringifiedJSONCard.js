@@ -79,6 +79,7 @@ const StringifiedJSONCard = () => {
 
     return (
         <Card
+
             variant="outlined"
             style={{
                 wordWrap: "break-word",
@@ -89,7 +90,7 @@ const StringifiedJSONCard = () => {
                 overflow: "scroll"
             }}
         >
-            <Typography variant="body2">{JSON.stringify(toPrint2())}</Typography>
+            <Typography id = {"jsonText"} variant="body2">{JSON.stringify(toPrint2())}</Typography>
         </Card>
     );
 };

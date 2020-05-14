@@ -141,6 +141,7 @@ const Summary = ({question, provided, ...props}) => {
                           textAlign: "left",
                       }}
                       {...provided.dragHandleProps}
+
                 >
                     <DragHandleIcon/>
                 </Grid>
@@ -165,6 +166,7 @@ const Summary = ({question, provided, ...props}) => {
                         wordWrap: "break-word",
                         wordBreak: "break-word",
                     }}
+                    id = {questions.indexOf(question) + 1}
                 >
                     {editTitle ? (
                         <EditQuestionTitleField
@@ -174,7 +176,7 @@ const Summary = ({question, provided, ...props}) => {
                     ) : (
                         <Typography
                             onDoubleClick={() => question.type === "raw" ? setEditTitle(false) : setEditTitle(true)}
-                            variant="h5">
+                            variant="h5" >
 
                             {question.type === "raw" ? ReactHtmlParser(question.content) : question.title}
                         </Typography>

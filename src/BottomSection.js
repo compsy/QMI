@@ -17,7 +17,7 @@ export const BottomSection = ({items}) => {
             </Typography>
             <Droppable droppableId="BAG" style={{textAlign: "center"}}>
                 {(provided, snapshot) => (
-                    <Box ref={provided.innerRef} className="shopping-bag">
+                    <Box ref={provided.innerRef} id={"dropzone"} className="shopping-bag">
                         {questions.map((question, index) => (
                             <Question index={index} key={uuidv1()} question={question}/>
                         ))}

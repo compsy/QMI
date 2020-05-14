@@ -37,7 +37,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "cypress open"
   },
   "HowToGetCoverage": {
     "test": "react-scripts test --coverage --watchAll"
@@ -58,8 +59,10 @@
     ]
   },
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^1.3.1",
     "@auth0/auth0-spa-js": "^1.8.1",
     "@material-ui/pickers": "^3.2.10",
+    "cypress": "^4.5.0",
     "react-use-auth0": "^1.0.0",
     "redux-devtools": "^3.5.0",
     "request": "^2.88.2"
