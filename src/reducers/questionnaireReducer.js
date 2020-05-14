@@ -29,16 +29,9 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
             });
             break;
         case "checkbox":
-        case "radio":
-            newDestination.splice(droppableDestination.index, 0, {
-                id: uuid(),
-                type: item.label,
-                title: `untitled ${item.label}`,
-                options: initialTextOptions
-            });
-            break;
         case "likert":
         case "dropdown":
+        case "radio":
             newDestination.splice(droppableDestination.index, 0, {
                 id: uuid(),
                 type: item.label,
@@ -79,6 +72,8 @@ const getQuestionTemplateByAction = (action, state) => {
                     step: "1",
                     labels: ["option 1", "option 2", "option 3", "option 4"]
                 }];
+        case "likert":
+        case "dropdown":
         case "checkbox":
         case "radio":
             return [
@@ -88,15 +83,7 @@ const getQuestionTemplateByAction = (action, state) => {
                     title: "untitled " + action.questionType,
                     options: initialTextOptions
                 }];
-        case "likert":
-        case "dropdown":
-            return [
-                ...state, {
-                    id: uniq,
-                    type: action.questionType.toLowerCase(),
-                    title: "untitled " + action.questionType,
-                    options: initialTextOptions
-                }];
+
         case "raw":
             return [
                 ...state, {
