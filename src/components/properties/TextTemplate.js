@@ -52,7 +52,7 @@ export const TextProperty = ({
         <FormControl fullWidth required={required}>
             <InputLabel variant="filled" style={{userSelect: "none"}}>{name}</InputLabel>
             <FilledInput
-                // className={classes.boxy}
+                data-cy={propertyName + property}
                 autoComplete="off"
                 type="text"
                 id={propertyName}

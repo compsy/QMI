@@ -5,6 +5,7 @@ import {TextProperty} from "./TextTemplate";
 export const TitleProperty = ({...props}) => {
     return (
         <TextProperty
+
             propertyName={"title"}
             name={"Title"}
             required={true}

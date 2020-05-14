@@ -12,14 +12,14 @@ const RemoveQuestionButton = ({question}) => {
     const handleClick = (event) => {
         removeAllWithKey(question);
         clearMapWithQuestion(question);
-    // if (question.type === "checkbox" || question.type === "radio") {
-    // }
+        // if (question.type === "checkbox" || question.type === "radio") {
+        // }
         console.log('showsMap: ', store.getState().utilities.showsMap)
         console.log('hidesMap: ', store.getState().utilities.hidesMap)
         dispatch(REMOVE_QUESTION({id: question.id}));
-    }
+    };
     return (
-        <Tooltip title="remove">
+        <Tooltip data-cy={"remove" + question.id} title="remove">
             <IconButton onClick={handleClick}>
                 <DeleteIcon/>
             </IconButton>

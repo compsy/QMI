@@ -42,6 +42,7 @@ const Question = ({index, question, ...props}) => {
         <Draggable key={question.id} draggableId={question.id} index={index}>
             {(provided, snapshot) => (
                 <div
+                    id={question.title}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     style={provided.draggableProps.style}
@@ -70,6 +71,7 @@ const HiddenQuestionIndicator = ({ question }) => {
     const utilities = store.getState().utilities;
     return question.hidden ? (
         <Badge
+            data-cy={"hiddenBadge" + question.id}
             badgeContent={(utilities.showsMap[question.id] && utilities.showsMap[question.id].length) || 0}
             color="primary"
             anchorOrigin={{
@@ -86,6 +88,7 @@ const HiddenQuestionIndicator = ({ question }) => {
         </Badge>
     ) : (
         <Badge
+            data-cy={"notHiddenBadge" + question.id}
             badgeContent={(utilities.hidesMap[question.id] && utilities.hidesMap[question.id].length) || 0}
             color="primary"
             anchorOrigin={{
@@ -293,19 +296,16 @@ const Details = ({question, index}) => {
                     }}
                 >
                     {(() => {
-                        switch (question.type) {
-                            case "raw":
-                                return;
-
-                            default:
-                                return (
-                                    <div>
-                                        <RemoveQuestionButton question={question}/>
-                                        <EditQuestionButton question={question} index={index}/>
-                                        <DuplicateQuestionButton question={question} index={index}/>
-                                    </div>
-                                )
-
+                        if (question.type === "raw") {
+                            return;
+                        } else {
+                            return (
+                                <div>
+                                    <RemoveQuestionButton question={question}/>
+                                    <EditQuestionButton question={question} index={index}/>
+                                    <DuplicateQuestionButton question={question} index={index}/>
+                                </div>
+                            )
                         }
                     })()}
                 </Grid>
