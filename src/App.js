@@ -68,11 +68,38 @@ const onRedirectCallback = (appState) => {
 
 function TestApi({getTokenSilently, getIdTokenClaims}){
 
+    const getToken = (authCode) => {
+        const request = require("request");
+        console.log(authCode);
+        const options = {
+            method: 'POST',
+            url: 'https://kanadev-dev.eu.auth0.com/oauth/token',
+            headers: {'content-type': 'application/x-www-form-urlencoded'},
+            form: {
+                grant_type: 'authorization_code',
+                client_id: '49p7Y8ZUytfeP9WJXW8bQ14QqFJR7Q5T',
+                client_secret: '9ojvbU5oWXaMJEKCrAnNc8sAZW0wmTGAFNJR9wn1K_xBNY4W7zFH6beKhLOfcAGB',
+                code: authCode,
+                redirect_uri: 'http://localhost:3000'
+            }
+        };
+
+        request(options, function (error, response, body) {
+            if (error) throw new Error(error);
+            if(!body.hasOwnProperty('access_token')) throw new Error(body);
+
+            return body.access_token;
+        });
+    }
+
     const callApi = async () =>{
         const request = require("request");
+        const jwtDecode = require("jwt-decode");
         const token = await getTokenSilently();
 
-        console.log(btoa("MIIDCzCCAfOgAwIBAgIJSVbsDO/vXlo3MA0GCSqGSIb3DQEBCwUAMCMxITAfBgNV\n" +
+        /*
+        console.log(btoa("-----BEGIN CERTIFICATE-----\n" +
+          "MIIDCzCCAfOgAwIBAgIJSVbsDO/vXlo3MA0GCSqGSIb3DQEBCwUAMCMxITAfBgNV\n" +
           "BAMTGGthbmFkZXYtZGV2LmV1LmF1dGgwLmNvbTAeFw0yMDA1MTExNDM2MDVaFw0z\n" +
           "NDAxMTgxNDM2MDVaMCMxITAfBgNVBAMTGGthbmFkZXYtZGV2LmV1LmF1dGgwLmNv\n" +
           "bTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALUxqmClqHMoBQd5YYyq\n" +
@@ -88,9 +115,14 @@ function TestApi({getTokenSilently, getIdTokenClaims}){
           "olZxkZKtjnBIyGE8WbzceLJ8j/38PJMrujD56laU/Cmcxcmo2ZG5/TIORkxXrU8N\n" +
           "p1tLqAX4MDUewIdaidGvJdwc6ORJYnQ23q3MTF1GlGV49MPAXNGKZJyXEWIgAG2C\n" +
           "RGc0OUU+Ou3sCjCo736SUtwYIi8W/4T1KiMILn2vmxrnzPYaJgZu0TueTgqhcREW\n" +
-          "t+cGoPh5WwVQwu9FDE3D"));
+          "t+cGoPh5WwVQwu9FDE3D\n" +
+          "-----END CERTIFICATE-----"));
+
+        */
 
         console.log(token);
+
+
         const options = {
             method: 'GET',
             url: config.base + "/api/v1/person/me",
@@ -104,7 +136,8 @@ function TestApi({getTokenSilently, getIdTokenClaims}){
             if (error) throw new Error(error);
 
             console.log(body);
-        });
+        }
+        );
 
     };
 
@@ -115,7 +148,7 @@ function TestApi({getTokenSilently, getIdTokenClaims}){
 }
 
 const SideBar = () =>{
-    const {isAuthenticated, loginWithRedirect, logout, user, getTokenSilently, getIdTokenClaims} = useAuth0();
+    const {isAuthenticated, loginWithRedirect, logout, user, getIdTokenClaims, getTokenSilently} = useAuth0();
     function getUserInformation() {
         return isAuthenticated ? [
               {custom: <UserInformationCard key={"user information card"} user={user}/>},
@@ -142,7 +175,7 @@ const SideBar = () =>{
             },
             {isDivider: true},
             //{title: 'Test API', icon: <DeveloperBoardIcon/>, onClick: () => {testApi(user);}}
-           {custom: <TestApi key={"TestApi"} getTokenSilently={getTokenSilently} getIdTokenClaims={getIdTokenClaims}/>}
+           {custom: <TestApi key={"TestApi"} getTokenSilently={getTokenSilently} getTokenWithPopup={getIdTokenClaims}/>}
         ];
     }
     return <TemporaryDrawer layout={generateLayout(user)}/>
@@ -159,6 +192,7 @@ function App() {
             client_id={config.clientId}
             redirect_uri={window.location.origin}
             onRedirectCallback={onRedirectCallback}
+            audience={config.audience}
         >
             <Provider store={store}>
                 <div className="content">
