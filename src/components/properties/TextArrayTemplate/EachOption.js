@@ -28,15 +28,15 @@ const useStyles = makeStyles((theme) => ({
     boxy: {
         borderRadius: 0,
     },
-}))
+}));
 
-const EachOption = ({ propertyName, index }) => {
+const EachOption = ({propertyName, index}) => {
     return (
         // <Slide in direction="right">
-        <OptionInputField propertyName={propertyName} index={index} />
+        <OptionInputField propertyName={propertyName} index={index}/>
         // </Slide>
     )
-}
+};
 
 export default EachOption
 
@@ -63,7 +63,7 @@ const OptionInputField = ({ propertyName, index }) => {
                 })
             )
         }
-    }, [option])
+    }, [option]);
 
     const handleChange = (index, event) => {
         if (propertyName === 'options') {
@@ -83,9 +83,9 @@ const OptionInputField = ({ propertyName, index }) => {
                 })
             )
         }
-    }
+    };
 
-    const classes = useStyles()
+    const classes = useStyles();
     return (
         <FormControl fullWidth required>
             <InputLabel variant="filled" style={{ userSelect: 'none' }}>
@@ -110,29 +110,30 @@ const OptionInputField = ({ propertyName, index }) => {
                 }
                 onChange={(e) => handleChange(index, e)}
                 endAdornment={
-                    <EndButtons propertyName={propertyName} index={index} />
+                    <EndButtons propertyName={propertyName} index={index}/>
                 }
             />
         </FormControl>
     )
-}
+};
 
 const RemoveButton = ({ propertyName, index }) => {
-    const dispatch = useDispatch()
-    const question = useSelector((state) => state.question)
+    const dispatch = useDispatch();
+    const question = useSelector((state) => state.question);
+    const qid = question.id;
     const removeBothFromMap = () => {
-        const option = question[propertyName][index]
-        const showsQuestions = option.shows_questions
-        const hidesQuestions = option.hides_questions
-        const qid = question.id
-        const oid = option.id
+        const option = question[propertyName][index];
+        const showsQuestions = option.shows_questions;
+        const hidesQuestions = option.hides_questions;
+        const oid = option.id;
+        console.log("qid" + qid);
         if (showsQuestions && showsQuestions.length > 0) {
             for (let i = 0; i < showsQuestions.length; i++) {
                 dispatch(
                     removeFromMap({
                         type: 'showsMap',
                         key: showsQuestions[i],
-                        value: { qid, oid },
+                        value: {qid, oid},
                     })
                 )
             }
@@ -143,36 +144,37 @@ const RemoveButton = ({ propertyName, index }) => {
                     removeFromMap({
                         type: 'hidesMap',
                         key: hidesQuestions[i],
-                        value: { qid, oid },
+                        value: {qid, oid},
                     })
                 )
             }
         }
-    }
+    };
     const handleRemoveOptionClick = (index) => {
         // removeFromMap({
         //     type: 'showsMap',
         //     key: key,
         //     value: { qid: qid, oid: oid },
         // })
-        removeBothFromMap()
-        dispatch(removeOption({ property: propertyName, index: index }))
-    }
+        removeBothFromMap();
+        dispatch(removeOption({property: propertyName, index: index}))
+    };
+
     return (
-        <IconButton size="small" onClick={() => handleRemoveOptionClick(index)}>
-            <DeleteIcon />
+        <IconButton data-cy={qid + "delete" + (index + 1)} size="small" onClick={() => handleRemoveOptionClick(index)}>
+            <DeleteIcon/>
         </IconButton>
     )
-}
+};
 
 const EndButtons = ({ propertyName, index }) => {
     const showsQuestions = useSelector(
         (state) => state.question[propertyName][index].shows_questions
-    )
+    );
     const hidesQuestions = useSelector(
         (state) => state.question[propertyName][index].hides_questions
-    )
-    const type = useSelector((state) => state.question.type)
+    );
+    const type = useSelector((state) => state.question.type);
     return (
         <InputAdornment position="end">
             {propertyName === 'options' && (
@@ -211,10 +213,10 @@ const EndButtons = ({ propertyName, index }) => {
                     )}
                     {/*<EachOptionHides />*/}
                     {/* <LinkQuestions index={index}/> */}
-                    <EachOptionMenu propertyName={propertyName} index={index} />
+                    <EachOptionMenu propertyName={propertyName} index={index}/>
                 </>
             )}
-            <RemoveButton propertyName={propertyName} index={index} />
+            <RemoveButton propertyName={propertyName} index={index}/>
         </InputAdornment>
     )
-}
+};
