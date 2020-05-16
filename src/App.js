@@ -18,29 +18,8 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
 import Button from "@material-ui/core/Button";
 import { useCookies } from 'react-cookie';
+import {useDarkMode} from "./useDarkMode";
 
-const themeObject = {
-    palette: {
-        type: "light",
-    },
-};
-export const useDarkMode = () => {
-    const [theme, setTheme] = useState(themeObject);
-    const {
-        palette: {type},
-    } = theme;
-    const toggleDarkMode = () => {
-        const updatedTheme = {
-            ...theme,
-            palette: {
-                ...theme.palette,
-                type: type === "light" ? "dark" : "light",
-            },
-        };
-        setTheme(updatedTheme);
-    };
-    return [theme, toggleDarkMode];
-};
 const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
