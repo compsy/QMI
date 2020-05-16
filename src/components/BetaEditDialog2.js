@@ -100,7 +100,7 @@ const EditDialog2 = ({question, index, open, setOpen}) => {
                     <Box p={2.5}>
                         <DialogBody/>
                     </Box>
-                    <DialogFooter handleClose={handleClose}/>
+                    <DialogFooter handleClose={handleClose} question={question}/>
                 </Grid>
             </form>
         </Dialog>
@@ -158,7 +158,7 @@ const DialogBody = () => {
     );
 };
 
-const DialogFooter = ({handleClose}) => {
+const DialogFooter = ({question, handleClose}) => {
     const classes = useStyles();
 
     return (
@@ -172,6 +172,7 @@ const DialogFooter = ({handleClose}) => {
                         // variant="contained"
                         color="secondary"
                         onClick={handleClose}
+                        data-cy={"cancel" + question.id}
                     >
                         cancel
                     </Button>
@@ -183,6 +184,7 @@ const DialogFooter = ({handleClose}) => {
                         className={classes.button2}
                         color="primary"
                         type="submit"
+                        data-cy={"submit" + question.id}
                     >
                         save
                     </Button>

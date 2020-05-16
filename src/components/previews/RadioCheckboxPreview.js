@@ -23,13 +23,14 @@ const RadioCheckboxPreview = ({question}) => {
                         </Grid>
                         <Grid
                             item
+
                             xs={9}
                             style={{
                                 wordWrap: "break-word",
                                 textAlign: "left",
                             }}
                         >
-                            <Typography variant="body1">
+                            <Typography variant="body1" data-cy={option}>
                                 {typeof option === "string" ? option : option.title}
                             </Typography>
                         </Grid>
