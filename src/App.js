@@ -17,7 +17,7 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
 import Button from "@material-ui/core/Button";
-
+import { useCookies } from 'react-cookie';
 
 const themeObject = {
     palette: {
@@ -67,7 +67,7 @@ const onRedirectCallback = (appState) => {
 };
 
 function TestApi({getTokenSilently, getIdTokenClaims}){
-
+    const [cookies, setCookie] = useCookies(['Authorization']);
     const getToken = (authCode) => {
         const request = require("request");
         console.log(authCode);
@@ -92,7 +92,45 @@ function TestApi({getTokenSilently, getIdTokenClaims}){
         });
     }
 
+    const call1 = (token) => {
+        const request = new XMLHttpRequest();
+        request.open('POST', config.base + "/api/v1/auth_user", false);
+        req(request, token);
+    }
+
+    const call2 = (token) => {
+        const request = new XMLHttpRequest();
+        request.open('GET', config.base + "/api/v1/person/me", false);
+        req(request, token);
+    }
+
+    function req(request, token) {
+        //request.withCredentials = true;
+        request.setRequestHeader("Accept", "application/json");
+        request.setRequestHeader("Content-Type", "application/json");
+        request.setRequestHeader("Authorization", "Bearer " + token);
+        request.setRequestHeader("Cookie", "Authorization=" + cookies.Authorization)
+        request.onload = function () {
+            if (request.status >= 200 && request.status < 400) {
+                const data = JSON.parse(this.response);
+                console.table(data);
+            } else {
+                console.error(request.status + " " + request.statusText);
+            }
+        }
+        request.send();
+    }
+
+
+
     const callApi = async () =>{
+        const token = await getTokenSilently();
+        setCookie('Authorization', token, {path:'/'});
+        call1(token);
+        call2(token);
+    }
+
+    const callApiOld = async () =>{
         const request = require("request");
         const jwtDecode = require("jwt-decode");
         const token = await getTokenSilently();
@@ -116,28 +154,44 @@ function TestApi({getTokenSilently, getIdTokenClaims}){
           "p1tLqAX4MDUewIdaidGvJdwc6ORJYnQ23q3MTF1GlGV49MPAXNGKZJyXEWIgAG2C\n" +
           "RGc0OUU+Ou3sCjCo736SUtwYIi8W/4T1KiMILn2vmxrnzPYaJgZu0TueTgqhcREW\n" +
           "t+cGoPh5WwVQwu9FDE3D\n" +
-          "-----END CERTIFICATE-----"));
+          "-----END CERTIFICATE-----"));*/
 
-        */
 
         console.log(token);
+
+        setCookie('Authorization', token, {path:'/'});
+
+
+        const pre = {
+            method: 'GET',
+            url: config.base + "/",
+            headers: {
+                Authorization:
+                    `Bearer ${token}`
+            }
+        };
 
 
         const options = {
             method: 'GET',
             url: config.base + "/api/v1/person/me",
             headers: {
-                authorization:
+                Authorization:
                   `Bearer ${token}`
             }
         };
 
-        request(options, function (error, response, body) {
+        function handleRetrieval(error, response, body, name) {
             if (error) throw new Error(error);
+            console.log(name + "\t" + response + "\n" + body);
+        }
 
-            console.log(body);
+        request(pre, (error, response, body) =>{
+            handleRetrieval(error, response, body, "auth_user");
+            request(options, (error, response, body) => handleRetrieval(error, response, body, "person/show_list"));
         }
         );
+
 
     };
 
@@ -184,7 +238,6 @@ const SideBar = () =>{
 function App() {
     const [theme, toggleDarkMode] = useDarkMode();
     const themeConfig = createMuiTheme(theme);
-
     const classes = useStyles();
     return (
         <Auth0Provider
