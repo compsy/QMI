@@ -14,6 +14,7 @@ const EditQuestionButton = ({question, index}) => {
         <>
             <Tooltip title="duplicate">
                 <IconButton
+                    data-cy={"duplicate" + (index + 1)}
                     // onClick={() => dispatch({ type: "DUPLICATE_QUESTION", question: question })}>
                     onClick={() => dispatch(DUPLICATE_QUESTION({question: question}))}>
                     <FileCopyIcon/>
