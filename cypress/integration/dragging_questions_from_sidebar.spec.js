@@ -3,9 +3,8 @@ describe('This file contains all tests related to dragging questions', () => {
         cy.visit("/")
 
     });
-    const dropzone = 'div[id="dropzone"]';
     // IMPORTANT: do not let your cursor go on the screen while the test is running it may interrupt with the dragging
-
+    const dropzone = 'div[id="dropzone"]';
     it('How a user would drag a number question', () => {
         const radio = '#radio';
         cy.dragAndDrop(radio, dropzone, 0, 0);
@@ -66,5 +65,4 @@ describe('This file contains all tests related to dragging questions', () => {
         cy.dragAndDrop(raw, dropzone, 0, 0);
         cy.get('div[id="1"]').should('have.text', "This is an untitled raw question");
     });
-
 });
