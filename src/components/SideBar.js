@@ -29,9 +29,7 @@ const SideBar = () => {
                     console.log("clicked")
                 }
             },
-            {
-                title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {
-                }
+            {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {}
             },
             {isDivider: true},
             //{title: 'Test API', icon: <DeveloperBoardIcon/>, onClick: () => {testApi(user);}}

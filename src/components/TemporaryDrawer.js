@@ -61,7 +61,7 @@ export const UserInformationCard = ({user}) => {
             avatar={
                 <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
             }
-            title={user.name}
+            title={user.name + ` (${user.nickname})`}
             subheader={user.email}
         />
     </Card>
