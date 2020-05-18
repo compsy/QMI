@@ -57,11 +57,30 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 
-
 ## Features
-* Drag and Drop
-* Duplicating questions
-* Editing questions
+* **Drag and Drop**
+This feature enables the user select a questionnaire type from the right sidebar, drag it along to the questionnaire section and release the mouse to place inside the questionnaire section. We have implemented this functionality by using the {Draggable} hook from "react-beautiful-dnd";
+
+* **Duplicating questions** This feature enables the user to duplicate a current questionnaire with all of it's properties and add it at the end of the list which contains all the current questionnaires. The way this feature was implemented was mainly through the following piece of code which can be found in `questionnaireReducer.js`: 
+```
+const duplicateQuestion = (action, state) => {
+    return [
+        ...state, {
+            ...action.question,
+            id: uuid()
+        }];
+};
+```
+
+* **Editing questions** This feature enables the user to edit any questionnaire which has been previously created. Any corresponding fields to the type can be edited through this feature. 
+
+* **Clickable Title**
+
+* **Dark Mode**
+
+* **Authenticate/Log in**
+
+
 
 ## Status
 Project is: **In progress**
