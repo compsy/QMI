@@ -12947,10 +12947,10 @@ react-use-auth0@^1.0.0:
     "@auth0/auth0-spa-js" "^1.7.0"
     react-async-hook "^3.6.1"
 
-react-use-auth@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/react-use-auth/-/react-use-auth-0.6.1.tgz#ed8317a385c87348ca22005ed92908ee957382ea"
-  integrity sha512-PrwW2INlZJ/zuKB/UmC9R9e86/K/E8Hcb53HxvyrONT/3/uCzwEJGZr8kay/Cb4fDWr5UZc+KU+TXIVo30Qcfw==
+react-use-auth@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-use-auth/-/react-use-auth-0.7.0.tgz#26ce1ed6b6f2fa0b5a2d033ed7081628fcbc981b"
+  integrity sha512-GelHrrSpedDg/DRMIhdfMYYS+w+PBLU1+yL0HSi1XfzXH8EMCeMPCsYyqyv73LG07sVXNBtsewjml7aRR7sJJg==
   dependencies:
     "@types/react-test-renderer" "^16.9.2"
     auth0-js "^9.13.2"
