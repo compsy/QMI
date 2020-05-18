@@ -22,7 +22,7 @@ export const Summary = ({question, provided, ...props}) => {
                           textAlign: "left",
                       }}
                       {...provided.dragHandleProps}
-
+                      data-cy={"draghandle" + (index + 1)}
                 >
                     <DragHandleIcon/>
                 </Grid>

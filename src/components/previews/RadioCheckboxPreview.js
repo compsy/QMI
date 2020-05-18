@@ -30,8 +30,10 @@ const RadioCheckboxPreview = ({question}) => {
                                 textAlign: "left",
                             }}
                         >
-                            <Typography variant="body1" data-cy={option}>
-                                {typeof option === "string" ? option : option.title}
+                            <Typography variant="body1" data-cy={option.title}>
+                                <div id={option}>
+                                    {typeof option === "string" ? option : option.title}
+                                </div>
                             </Typography>
                         </Grid>
                     </Grid>

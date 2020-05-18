@@ -55,11 +55,11 @@ describe('This file contains all tests related to editing a question through the
             .get('[data-cy="test option"]').should('have.text', newOption);
 
     });
-    it.only('How a user would delete an option of a question', () => {
+    it('How a user would delete an option of a question', () => {
         const option3 = "option 3";
         cy.get('div[id="2"]')
             .click()
-            .get(`[data-cy="${option3}"]`).should('have.text', option3);
+            .get('div[id="option 3"]').should('have.text', option3);
         cy.get('[data-cy=editv2]')
             .click();
         cy.get('[data-cy=v2delete3]')
