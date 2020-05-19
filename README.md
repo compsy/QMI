@@ -57,11 +57,36 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 
-
 ## Features
-* Drag and Drop
-* Duplicating questions
-* Editing questions
+* **Drag and Drop**
+This feature enables the user select a questionnaire type from the right sidebar, drag it along to the questionnaire section and release the mouse to place inside the questionnaire section. We have implemented this functionality by using the {Draggable} hook from "react-beautiful-dnd";
+
+* **Duplicating questions** This feature enables the user to duplicate a current questionnaire with all of it's properties and add it at the end of the list which contains all the current questionnaires. The way this feature was implemented was mainly through the following piece of code which can be found in `questionnaireReducer.js`: 
+```
+const duplicateQuestion = (action, state) => {
+    return [
+        ...state, {
+            ...action.question,
+            id: uuid()
+        }];
+};
+```
+
+* **Editing questions** This feature enables the user to edit any questionnaire which has been previously created. Any corresponding fields to the type can be edited through this feature. 
+
+* **Clickable Title** The title of any questionnaire can be edited by being clicked on.  
+
+* **Dark Mode** The theme of the page can be switched to a darker tone if desired by clciking on the toggle situated at the top right of the page. 
+
+* **Authenticate/Log in** This feature enables the user to log in into the app (or register if needed). By doing this he/she is able to then save his/her current list of questionnaire and come back to it at a later time in order to edit it if needed. 
+
+## Compatible browsers
+We have tested the application on the following browsers through browserstack:
+* Firefox (version 76)
+* Chrome (version 81)
+* Safari (version 5.1)
+* Opera (version 68)
+
 
 ## Status
 Project is: **In progress**
