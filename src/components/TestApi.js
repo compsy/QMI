@@ -13,7 +13,7 @@ function TestApi({getIdTokenClaims}){
             title: "string"
         }
         const unirest = require('unirest');
-        unirest('POST', 'http://localhost:3002/api/v1/questionnaire')
+        const request = unirest('POST', 'http://localhost:3002/api/v1/questionnaire')
             .headers({
                 'Content-Type': ['application/json', 'text/plain'],
                 'Accept': 'application/json',
@@ -29,6 +29,7 @@ function TestApi({getIdTokenClaims}){
     const callApi = async () =>{
         const itc = await getIdTokenClaims();
         const token = itc.__raw;
+        console.log(token);
         callCreateQuestionnaire(token);
     }
     return <>
