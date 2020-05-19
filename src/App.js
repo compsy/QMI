@@ -69,7 +69,7 @@ function App() {
                                             <Route path="/profile" component={Profile}/>
                                         </Switch>
                                     </Router>
-                                    <SideBar/>
+                                    <GeneralSidebar/>
                                     <Typography variant="h6" className={classes.title}>
                                         Questionnaire Interface
                                     </Typography>
