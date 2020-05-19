@@ -6,11 +6,11 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import React from "react";
 
-export const HiddenQuestionIndicator = ({question}) => {
+export const HiddenQuestionIndicator = ({question, index}) => {
     const utilities = store.getState().utilities;
     return question.hidden ? (
         <Badge
-            data-cy={"hiddenBadge" + question.id}
+            data-cy={"hiddenBadge" + (index + 1)}
             badgeContent={(utilities.showsMap[question.id] && utilities.showsMap[question.id].length) || 0}
             color="primary"
             anchorOrigin={{
@@ -27,7 +27,7 @@ export const HiddenQuestionIndicator = ({question}) => {
         </Badge>
     ) : (
         <Badge
-            data-cy={"notHiddenBadge" + question.id}
+            data-cy={"notHiddenBadge" + (index + 1)}
             badgeContent={(utilities.hidesMap[question.id] && utilities.hidesMap[question.id].length) || 0}
             color="primary"
             anchorOrigin={{

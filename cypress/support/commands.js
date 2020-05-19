@@ -80,3 +80,60 @@ Cypress.Commands.add('dragFromSidebar', (itemToDrag) => {
     }
     cy.get('div[id="1"]').should('have.text', output);
 });
+
+Cypress.Commands.add('cancelEditDialog', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    if (itemToDrag !== "raw") {
+        cy.get('div[id="1"]')
+            .click();
+    }
+    cy.get('[data-cy=edit1]')
+        .click({force: true});
+    cy.get('[data-cy=cancel1]')
+        .click();
+});
+
+Cypress.Commands.add('editTitle', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    const newTitle = "new test title";
+    cy.get('div[id="1"]')
+        .click();
+    cy.get('[data-cy=edit1]')
+        .click({force: true});
+    cy.get('#title')
+        .click({force: true})
+        .type('{selectall}')
+        .type(newTitle);
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.get('div[id="1"]')
+        .should('have.text', newTitle);
+});
+Cypress.Commands.add('hideQuestion', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    cy.get('[data-cy=notHiddenBadge1]');
+    cy.get('div[id="1"]')
+        .click();
+    cy.get('[data-cy=edit1]')
+        .click();
+    cy.get('input[name="hidden"]')
+        .click({force: true});
+    if (itemToDrag === "drawing") {
+        cy.setRequiredDrawingProperties()
+    }
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.get('[data-cy=hiddenBadge1]')
+});
+Cypress.Commands.add('setRequiredDrawingProperties', () => {
+    cy.get('#drawingWidth')
+        .click({force: true})
+        .type('400');
+    cy.get('#drawingHeight')
+        .click({force: true})
+        .type('400');
+    cy.get('#image')
+        .click({force: true})
+        .type('blank.png');
+});
+

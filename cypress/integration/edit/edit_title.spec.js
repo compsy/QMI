@@ -1,4 +1,4 @@
-describe('This file contains all tests related to editing a question title', () => {
+describe('This file contains all tests related to edit a question title', () => {
     beforeEach(() => {
         cy.visit("/")
     });
