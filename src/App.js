@@ -69,7 +69,7 @@ function App() {
                                             <Route path="/profile" component={Profile}/>
                                         </Switch>
                                     </Router>
-                                    <GeneralSidebar setShowCreateQuestionnaire={setShowCreateQuestionnaire}/>
+                                    <GeneralSidebar/>
                                     <Typography variant="h6" className={classes.title}>
                                         Questionnaire Interface
                                     </Typography>
