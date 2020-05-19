@@ -2,10 +2,10 @@ describe('This file contains all tests related to edit a question through the ed
     beforeEach(() => {
         cy.visit("/")
     });
-    it('How a user would cancel the edit dialog after opening it', () => {
+    it('How a user would cancel the edit dialog after opening it for a drawing question', () => {
         cy.cancelEditDialog('drawing');
     });
-    it('How a user would cancel the edit dialog after opening it', () => {
+    it('This test shows how a user would edit the title of a drawing question', () => {
         cy.dragFromSidebar('drawing');
         const newTitle = "new test title";
         cy.get('div[id="1"]')
