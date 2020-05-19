@@ -80,6 +80,47 @@ const duplicateQuestion = (action, state) => {
 
 * **Authenticate/Log in** This feature enables the user to log in into the app (or register if needed). By doing this he/she is able to then save his/her current list of questionnaire and come back to it at a later time in order to edit it if needed. 
 
+## Available question types (in the latest version) and their respective properties 
+
+* **Radio** with properties (required) : TitleProperty, TextOptionsProperty <br/>
+ (optionalProperties) : HiddenRequiredComposite, SectionStartProperty, SectionEndProperty, TooltipProperty, OtherwiseProperty 
+
+* **Checkbox** with properties (required) : TitleProperty, TextOptionsProperty <br/>
+(optionalProperties) : HiddenRequiredComposite, SectionStartProperty, SectionEndProperty, TooltipProperty, OtherwiseProperty 
+
+* **Likert** with properties (required) : TitleProperty, TextOptionsProperty <br/>
+(optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty
+
+* **Range** with properties (required) : TitleProperty, LabelOptionsProperty <br/>
+(optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, CustomMinMaxStepProperty
+
+* **Raw** with properties (required) : ContentProperty <br/>
+(optionalProperties) : SectionStartProperty, SectionEndProperty
+
+* **TextArea** with properties (required) : TitleProperty <br/>
+(optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PlaceholderProperty
+
+
+* **Textfield** with properties (required) : TitleProperty <br/>
+(optionalProperties) : HiddenProperty, SectionStartProperty, TooltipProperty, SectionEndProperty, PlaceholderProperty, DefaultTextValueProperty, PatternProperty, HintProperty
+
+* **Number** with properties (required) : TitleProperty <br/>
+(optionalProperties) :  HiddenRequiredComposite, SectionStartProperty, SectionEndProperty, TooltipProperty, NumberTypeComposite, PlaceholderProperty, LinksToExpandableProperty
+
+* **Time** with properties (required) : TitleProperty <br/>
+(optionalProperties) : HoursCompositeProperty, HoursLabelProperty, MinutesLabelProperty
+
+* **Date** with properties (required) : TitleProperty <br/>
+(optionalProperties) : HiddenRequiredComposite, SectionStartProperty, SectionEndProperty, TooltipProperty, MinDateProperty, MaxDateProperty, PlaceholderProperty, TodayProperty, DefaultDateProperty
+
+* **Dropdown** with properties (required) : TitleProperty, TextOptionsProperty <br/>
+(optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, LabelProperty
+
+* **Drawing** with properties (required) : TitleProperty, WidthHeightComposite, ImageProperty, ColorProperty, <br/>
+(optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, RadiusDensityComposite
+
+
+
 ## Compatible browsers
 We have tested the application on the following browsers through browserstack:
 * Firefox (version 76)
