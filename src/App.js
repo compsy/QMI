@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useCallback, useState } from 'react'
 import QuestionsPage from "./components/QuestionsPage";
 import {AppBar, createMuiTheme, makeStyles, MuiThemeProvider, Toolbar, Typography,} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -45,6 +45,8 @@ function App() {
     const [theme, toggleDarkMode] = useDarkMode();
     const themeConfig = createMuiTheme(theme);
     const classes = useStyles();
+
+
     return (
         <Auth0Provider
             domain={config.domain}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from 'react'
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import {Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Paper, Typography} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
@@ -7,7 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
-import {useDispatch} from "react-redux";
+import { Provider, useDispatch } from 'react-redux'
 import {REMOVE_ALL, REMOVE_ALL_DATA} from "./features/questions/questionsSlice";
 import { SET_UTILITIES } from "./features/utilities/utilitiesSlice";
 
@@ -52,6 +52,15 @@ export const Sidebar = ({question, items}) => {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+
+    const [isOpen, setOpenVideo] = React.useState(false);
+
+    const handleClickOpenVideo = useCallback( () => { setOpenVideo(true) }, [], );
+
+    const handleCloseVideo = () => {
+        setOpenVideo(false);
     };
 
     return (
@@ -135,9 +144,8 @@ export const Sidebar = ({question, items}) => {
                                 window.open("http://app.u-can-act.nl/questionnaire/interactive?content=" + x);
                             }}
                         >
-                            <ListItemText primary="Render Questionnaire"/>
+                            <ListItemText primary="render questionnaire"/>
                         </ListItem>
-
                         <div>
                             <Dialog
                                 open={open}
@@ -156,7 +164,6 @@ export const Sidebar = ({question, items}) => {
                                     <Button id={"noToDelete"} onClick={handleClose} color="primary">
                                         No
                                     </Button>
-                                    {/* <Button onClick={() => { setOpen(false); dispatch({type: "REMOVE_ALL"}); } } color="primary" autoFocus> */}
                                     <Button id={"yesToDelete"} onClick={() => {
                                         setOpen(false);
                                         dispatch(SET_UTILITIES({showsMap: {}, hidesMap: {}, saved: {}}));
@@ -178,8 +185,6 @@ export const Sidebar = ({question, items}) => {
 const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
     const item = items[rubric.source.index];
     const style = {
-        //backgroundColor: snapshot.isDragging ? 'blue' : 'white',
-        // fontSize: 18,
         ...provided.draggableProps.style
     };
     return (
@@ -188,9 +193,7 @@ const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            // style={provided.draggableProps.style}
             style={getStyle(provided.draggableProps.style, snapshot)}
-            // style={{ padding: "1em", color: "white" }}
         >
             <ListItem>
                 <ListItemIcon style={{color: "white"}}>{item.icon}</ListItemIcon>
