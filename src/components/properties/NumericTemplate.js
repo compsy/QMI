@@ -28,6 +28,7 @@ export const NumericProperty = ({name, propertyName, ...props}) => {
 
     return (
         <TextField
+            id={"drawing" + name}
             key={propertyName}
             //error={!valid}
             variant="filled"

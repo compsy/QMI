@@ -9,7 +9,7 @@ import {HiddenQuestionIndicator} from "./HiddenQuestionIndicator";
 export function renderButtons(question, index) {
     const type = question.type;
     const elements = [];
-    elements.push(<Grid item><HiddenQuestionIndicator key={elements.length} question={question}/></Grid>);
+    elements.push(<Grid item><HiddenQuestionIndicator key={elements.length} question={question} index={index}/></Grid>);
     if (type !== "raw") {
         elements.push(<Grid item><ExpandMoreIcon key={elements.length}/></Grid>);
     } else {

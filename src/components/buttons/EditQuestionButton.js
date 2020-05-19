@@ -13,7 +13,7 @@ const EditQuestionButton = ({question, index}) => {
     return (
         <>
             <Tooltip title="edit">
-                <IconButton data-cy={"edit" + question.id} onClick={() => {
+                <IconButton data-cy={"edit" + (index + 1)} onClick={() => {
                     store.dispatch(SET_SAVED(store.getState().utilities));
                     console.log("state.utilities.saved: ", store.getState().utilities.saved)
                     setOpen(true);

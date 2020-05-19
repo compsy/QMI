@@ -84,6 +84,7 @@ const TextProperty = ({newQuestion, newQuestionDispatch, name, propertyName, ...
 
     return (
         <TextField
+
             key={propertyName}
             variant="outlined"
             margin="dense"
@@ -394,6 +395,7 @@ export const TooltipProperty = ({newQuestion, newQuestionDispatch, ...props}) =>
 export const HiddenProperty = ({newQuestion, newQuestionDispatch, ...props}) => {
     return (
         <BooleanProperty
+
             newQuestionDispatch={newQuestionDispatch}
             newQuestion={newQuestion}
             name={"Hidden"}
