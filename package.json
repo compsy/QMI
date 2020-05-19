@@ -13,7 +13,7 @@
     "@testing-library/jest-dom": "^5.7.0",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^10.2.3",
-    "date-fns": "^2.13.0",
+    "date-fns": "^2.14.0",
     "glob": "latest",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
