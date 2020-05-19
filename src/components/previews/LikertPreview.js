@@ -1,7 +1,7 @@
 import React from "react";
 import {Grid, Radio, Typography} from "@material-ui/core";
 
-const LikertPreview = ({question}) => {
+const LikertPreview = ({question, index}) => {
     const renderBox = () =>
         <Grid
             item
@@ -25,8 +25,9 @@ const LikertPreview = ({question}) => {
                 wordWrap: "break-word",
                 textAlign: "left",
             }}
+
         >
-            <Typography variant="body1">{printOption(option)}</Typography>
+            <Typography variant="body1" data-cy={"question" + (index + 1) + option}>{printOption(option)}</Typography>
         </Grid>;
 
 
@@ -41,6 +42,7 @@ const LikertPreview = ({question}) => {
                 direction="column"
                 justify="flex-start"
                 alignItems="center"
+                data-cy={option}
             >
                 {renderBox()}
                 {renderText(option)}
@@ -55,6 +57,7 @@ const LikertPreview = ({question}) => {
             spacing={1}
         >
             {question.options.map(option => (renderOption(typeof (option) === "string" ? option : option.title)))}
+
         </Grid>
     );
 };

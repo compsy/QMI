@@ -1,11 +1,11 @@
 import React from "react";
 import {Checkbox, Grid, Radio, Typography} from "@material-ui/core";
 
-const RadioCheckboxPreview = ({question}) => {
+const RadioCheckboxPreview = ({question, index}) => {
     return (
         <Grid container direction="column" spacing={1}>
-            {question.options.map((option, index) => (
-                <Grid item xs key={option + index}>
+            {question.options.map((option, Optionindex) => (
+                <Grid item xs key={option + Optionindex}>
                     <Grid
                         container
                         direction="row"
@@ -31,7 +31,7 @@ const RadioCheckboxPreview = ({question}) => {
                             }}
                         >
                             <Typography variant="body1" data-cy={option.title}>
-                                <div id={option}>
+                                <div id={option} data-cy={"question" + (index + 1) + option}>
                                     {typeof option === "string" ? option : option.title}
                                 </div>
                             </Typography>

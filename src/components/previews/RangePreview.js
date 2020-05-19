@@ -44,7 +44,7 @@ const PrettoSlider = withStyles({
 })(Slider);
 
 
-const RangePreview = ({question}) => {
+const RangePreview = ({question, index}) => {
     const classes = useStyles();
 
     const marks = [];
@@ -64,9 +64,8 @@ const RangePreview = ({question}) => {
         });
         pos += labelStep;
     }
-
     return (
-        <div className={classes.root}>
+        <div className={classes.root} data-cy={"question" + (index + 1)}>
             <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider"
                           defaultValue={0}
                           aria-labelledby="discrete-slider"

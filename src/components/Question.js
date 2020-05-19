@@ -100,9 +100,9 @@ const Details = ({question, index}) => {
                         switch (question.type) {
                             case "radio":
                             case "checkbox":
-                                return <RadioCheckboxPreview question={question}/>;
+                                return <RadioCheckboxPreview question={question} index={index}/>;
                             case "likert":
-                                return <LikertPreview question={question}/>;
+                                return <LikertPreview question={question} index={index}/>;
                             case "range":
                                 return (
                                     <div
@@ -112,7 +112,7 @@ const Details = ({question, index}) => {
                                             alignItems: "center"
                                         }}
                                     >
-                                        <RangePreview question={question}/>
+                                        <RangePreview question={question} index={index}/>
                                     </div>
                                 );
                             case "dropdown":
@@ -150,7 +150,7 @@ const Details = ({question, index}) => {
                             case "raw":
                                 return <RawPreview question={question}/>;
                             default:
-                                return <RadioCheckboxPreview question={question}/>;
+                                return <RadioCheckboxPreview question={question} index={index}/>;
                         }
                     })()}
                 </Grid>

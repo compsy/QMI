@@ -15,7 +15,6 @@ describe('This file contains all tests related to edit a question title', () => 
 
     it('How a user would attempt to edit a title of a question but not make any change', () => {
         cy.get('div[id="1"]').invoke('text').then((previousText) => {
-
             cy.get('div[id="1"]')
                 .dblclick();
             cy.get('input[id="title"]')

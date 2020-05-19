@@ -11,5 +11,10 @@ describe('This file contains all tests related to edit a question through the ed
     it('This test shows how a user would toggle the visibility of a checkbox question to be hidden', () => {
         cy.hideQuestion('checkbox');
     });
+    it.only('This test shows how a user would change the text of a checkbox question certain option', () => {
+        cy.changeOptionOfItem('checkbox');
+    });
+
+
 });
 

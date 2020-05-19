@@ -125,6 +125,7 @@ Cypress.Commands.add('hideQuestion', (itemToDrag) => {
         .click();
     cy.get('[data-cy=hiddenBadge1]')
 });
+
 Cypress.Commands.add('setRequiredDrawingProperties', () => {
     cy.get('#drawingWidth')
         .click({force: true})
@@ -136,4 +137,36 @@ Cypress.Commands.add('setRequiredDrawingProperties', () => {
         .click({force: true})
         .type('blank.png');
 });
+
+Cypress.Commands.add('changeOptionOfItem', (itemToDrag) => {
+
+    let questionToGetOption, editedOption = null;
+    if (itemToDrag !== "range") {
+        questionToGetOption = '[data-cy="question1option 1"]';
+        editedOption = '[data-cy="test option"]'
+    } else {
+        questionToGetOption = editedOption = '[data-cy=question1] > .MuiSlider-root > .MuiSlider-markLabelActive';
+    }
+
+    cy.dragFromSidebar(itemToDrag);
+    const newOption = "test option";
+    cy.get('div[id="1"]')
+        .click()
+    cy.get(questionToGetOption)
+        .invoke('text')
+        .should('not.eq', newOption)
+    cy.get('[data-cy=edit1]')
+        .click();
+    cy.get('#option-1')
+        .click({force: true})
+        .type('{selectall}')
+        .type(newOption);
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.get('div[id="1"]')
+        .click()
+        .get(editedOption).should('have.text', newOption);
+});
+
+
 

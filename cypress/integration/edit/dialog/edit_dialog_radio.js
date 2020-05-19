@@ -11,7 +11,8 @@ describe('This file contains all tests related to edit a question through the ed
     it('This test shows how a user would toggle the visibility of a radio question to be hidden', () => {
         cy.hideQuestion('radio');
     });
-
-
+    it.only('This test shows how a user would change the text of a radio question certain option', () => {
+        cy.changeOptionOfItem('radio');
+    });
 });
 
