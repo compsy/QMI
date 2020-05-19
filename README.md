@@ -80,7 +80,12 @@ const duplicateQuestion = (action, state) => {
 
 * **Authenticate/Log in** This feature enables the user to log in into the app (or register if needed). By doing this he/she is able to then save his/her current list of questionnaire and come back to it at a later time in order to edit it if needed. 
 
-
+## Compatible browsers
+We have tested the application on the following browsers through browserstack:
+* Firefox (version 76)
+* Chrome (version 81)
+* Safari (version 5.1)
+* Opera (version 68)
 
 ## Status
 Project is: **In progress**
