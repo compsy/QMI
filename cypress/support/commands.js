@@ -69,3 +69,14 @@ Cypress.Commands.add('dragAndDrop', (subject, target, dragIndex, dropIndex) => {
                 });
         });
 });
+Cypress.Commands.add('dragFromSidebar', (itemToDrag) => {
+    const dropzone = 'div[id="dropzone"]';
+    let output = null;
+    cy.dragAndDrop('#' + itemToDrag, dropzone, 0, 0);
+    if (itemToDrag !== "raw") {
+        output = `untitled ${itemToDrag}`
+    } else {
+        output = `This is an untitled raw question`
+    }
+    cy.get('div[id="1"]').should('have.text', output);
+});
