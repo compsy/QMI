@@ -523,8 +523,13 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
 };
 
 export const INITIAL_QUESTIONNAIRE_CONTEXT = [
-    {id: 'v1', type: "range", title: "Hello BOI", labels: ["option 1", "option 2", "option 3", "option 4", "option5"]},
-    {id: 'v2', type: "radio", title: "Hello Kitty", options: ["option 1", "option 2", "option 3", "option 4"]},
+    {id: 'v1',
+         type: "raw",
+         content: "<h4>Welcome to your new questionnaire!</h4>\n" +
+             "<p class=\"flow-text\" style='font-size:medium;'>Add questions by dragging a question type over here.</p>\n" +
+             "<p class=\"flow-text\" style='font-size:medium;'>Double click a question title to edit the title.</p>\n" +
+             "<p class=\"flow-text\" style='font-size:medium;'>Click a question header to show details.</p>\n"
+    },
     // {id: 'v3', type: "checkbox", title: "untitled checkbox", options: ["option 1", "option 2", "option 3", "option 4"]},
     // {id: 'v4', type: "range", hidden: "true", title: "Hey Arnold", labels: ["passing rate"]},
     // {

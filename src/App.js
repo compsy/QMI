@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, {useState} from "react";
 import QuestionsPage from "./components/QuestionsPage";
 import {AppBar, createMuiTheme, makeStyles, MuiThemeProvider, Toolbar, Typography,} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -12,7 +12,8 @@ import history from "./utils/history";
 import Profile from "./components/Profile";
 import {Route, Router, Switch} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
-import SideBar from "./components/SideBar";
+import GeneralSidebar from "./components/GeneralSidebar";
+import {CreateNewQuestionnaireDialog} from "./components/CreateNewQuestionnaireDialog";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -45,8 +46,7 @@ function App() {
     const [theme, toggleDarkMode] = useDarkMode();
     const themeConfig = createMuiTheme(theme);
     const classes = useStyles();
-
-
+    const [showCreateQuestionnaire, setShowCreateQuestionnaire] = useState(false);
     return (
         <Auth0Provider
             domain={config.domain}
@@ -89,6 +89,10 @@ function App() {
                                     </Typography>
                                 </Toolbar>
                             </AppBar>
+                            {showCreateQuestionnaire &&
+                            <CreateNewQuestionnaireDialog open={showCreateQuestionnaire}
+                                                          setOpen={setShowCreateQuestionnaire}/>
+                            }
                             <QuestionsPage/>
                         </div>
                     </MuiThemeProvider>
