@@ -10,6 +10,7 @@ import ScheduleIcon from "@material-ui/icons/Schedule";
 import TextFormatIcon from "@material-ui/icons/TextFormat";
 import GestureIcon from "@material-ui/icons/Gesture";
 import SelectIcon from "@material-ui/icons/ViewList";
+import {v4 as uuidv4} from "uuid";
 
 import {HiddenProperty, SectionEndProperty, TodayProperty,} from "../components/properties/BooleanProperties";
 
