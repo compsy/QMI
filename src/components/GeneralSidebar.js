@@ -2,7 +2,7 @@ import {useAuth0} from "./react-auth0-spa";
 import {Header, TemporaryDrawer, UserInformationCard} from "./TemporaryDrawer";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import AddBoxIcon from "@material-ui/icons/AddBox";
-import TestApi from "./TestApi";
+import TestApiSection from "./TestApiSection";
 import React from "react";
 import HomeIcon from '@material-ui/icons/Home';
 
@@ -25,16 +25,12 @@ const GeneralSidebar = ({setShowCreateQuestionnaire}) => {
             {custom: <Header key={"header"}/>},
             getUserCard(),
             {isDivider: true},
-            {
-                title: 'Home', icon: <HomeIcon/>, onClick: () => {
-                    console.log("Go to landing page")
-                }
-            },
+            {title: 'Home', icon: <HomeIcon/>, onClick: () => {console.log("Go to landing page")}},
             {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {setShowCreateQuestionnaire(true)}},
             {isDivider: true},
             getUserButton(),
             {isDivider: true},
-            {custom: <TestApi key={"TestApi"} getIdTokenClaims={getIdTokenClaims}/>}
+            {custom: <TestApiSection key={"TestApi"} getIdTokenClaims={getIdTokenClaims}/>}
         ];
     };
     return <TemporaryDrawer layout={generateLayout(user)}/>

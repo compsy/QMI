@@ -4,7 +4,7 @@ import React from "react";
 import {useAuth0} from "./react-auth0-spa";
 
 //const {getTokenSilently, getIdTokenClaims} = useAuth0();
-function TestApi({getIdTokenClaims}){
+function TestApiSection({getIdTokenClaims}){
     const callCreateQuestionnaire = (token) => {
         const emptyQuestionnaire = {
             name: "string",
@@ -38,4 +38,4 @@ function TestApi({getIdTokenClaims}){
     </>
 }
 
-export default TestApi;
+export default TestApiSection;

@@ -18,5 +18,5 @@ export function renderButtons(question, index) {
         elements.push(<Grid item><RemoveQuestionButton key={elements.length} question={question}
                                                        index={index}/></Grid>);
     }
-    return <Grid container direction="row" justify="flex-end" alignItems="center">{elements}</Grid>
+    return <Grid key="buttons" container direction="row" justify="flex-end" alignItems="center">{elements}</Grid>
 }
