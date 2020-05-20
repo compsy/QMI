@@ -69,13 +69,13 @@ const QuestionsPage = () => {
         localStorage.setItem("qmi-utilities", JSON.stringify(store.getState().utilities))
     }, [questions]);
 
-    const useModal = () => {
-        const [isOpen, setOpen] = useState(false);
-        return [isOpen, () => setOpen(!isOpen)];
+    // const useModal = () => {
+    //     const [isOpen, setOpen] = useState(false);
+    //     return [isOpen, () => setOpen(!isOpen)];
+    //
+    // }
 
-    }
-
-    const [isOpen, onOpenModal] = useModal();
+    // const [isOpen, onOpenModal] = useModal();
 
     return (
         <div className={classes.root}>
@@ -94,8 +94,7 @@ const QuestionsPage = () => {
                     >
                         <TopSection/>
                         <BottomSection items={questions}/>
-                        <HelpIcon onClick={onOpenModal} style={{height: 80}}/>
-                        <WatchTutorial isOpen={isOpen} toggleModal={onOpenModal}/>
+
                         <ScrollArrow/>
                     </Grid>
                 </main>

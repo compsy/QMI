@@ -1,10 +1,19 @@
 import React, {useState} from 'react';
 import {FaArrowCircleUp} from 'react-icons/fa';
 import './scroll.css';
+import WatchTutorial from "./WatchTutorial";
+import HelpIcon from "@material-ui/icons/Help";
 
+const useModal = () => {
+    const [isOpen, setOpen] = useState(false);
+    return [isOpen, () => setOpen(!isOpen)];
+
+}
 
 const ScrollArrow = () => {
 
+
+    const [isOpen, onOpenModal] = useModal()
     const [showScroll, setShowScroll] = useState(false);
 
     const checkScrollTop = () => {
@@ -22,8 +31,15 @@ const ScrollArrow = () => {
     window.addEventListener('scroll', checkScrollTop);
 
     return (
-        <FaArrowCircleUp className="scrollTop" onClick={scrollTop}
-                         style={{height: 40, display: showScroll ? 'flex' : 'none'}}/>
+        <div>
+            <FaArrowCircleUp className="scrollTop" onClick={scrollTop}
+                             style={{height: 40, display: showScroll ? 'flex' : 'none'}}/>
+            <HelpIcon onClick={onOpenModal} style={{height: 80}}/>
+            <WatchTutorial isOpen={isOpen} toggleModal={onOpenModal}/>
+
+
+        </div>
+
     );
 };
 
