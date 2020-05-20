@@ -36,14 +36,17 @@
     "react-youtube": "^7.11.2",
     "redux": "^4.0.5",
     "typeface-roboto": "0.0.75",
-    "uuid": "^7.0.2"
+    "uuid": "^7.0.2",
+    "snyk": "^1.323.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "HowToGetCoverage": {
     "test": "react-scripts test --coverage --watchAll"
@@ -72,5 +75,6 @@
     "redux-devtools": "^3.5.0",
     "request": "^2.88.2",
     "unirest": "^0.6.0"
-  }
+  },
+  "snyk": true
 }
