@@ -16,7 +16,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     list: {
         width: 250,
         color: "white"
@@ -78,11 +78,6 @@ Layouts are strucutred in an array containing JSON objects:
      {isDivider: true}                  : For adding a divider to the layout
      {custom: <RenderedReactComponent>} : For adding a custom react component or sub-layout.
 */
-
-// Example layout.
-
-
-
 export const TemporaryDrawer = ({layout}) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);

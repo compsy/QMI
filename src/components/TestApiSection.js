@@ -1,9 +1,7 @@
-import config from "../auth_config";
 import Button from "@material-ui/core/Button";
 import React from "react";
-import {useAuth0} from "./react-auth0-spa";
 
-//const {getTokenSilently, getIdTokenClaims} = useAuth0();
+
 function TestApiSection({getIdTokenClaims}){
     const callCreateQuestionnaire = (token) => {
         const emptyQuestionnaire = {
@@ -13,7 +11,7 @@ function TestApiSection({getIdTokenClaims}){
             title: "string"
         }
         const unirest = require('unirest');
-        const request = unirest('POST', 'http://localhost:3002/api/v1/questionnaire')
+        unirest('POST', 'http://localhost:3002/api/v1/questionnaire')
             .headers({
                 'Content-Type': ['application/json', 'text/plain'],
                 'Accept': 'application/json',
