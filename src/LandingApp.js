@@ -8,7 +8,6 @@ import {
     Toolbar,
     Typography,
 } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
 import "./background.css";
 import {Provider} from "react-redux";
 import store from "./app/store";
@@ -16,40 +15,16 @@ import {Auth0Provider} from "./components/react-auth0-spa";
 import config from "./auth_config.json";
 import history from "./utils/history";
 import {useDarkMode} from "./App";
-import PersonIcon from '@material-ui/icons/Person';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import InfoIcon from '@material-ui/icons/Info';
-import EditIcon from '@material-ui/icons/Edit';
-import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
-import {Header, TemporaryDrawer} from "./components/TemporaryDrawer";
 import GeneralSidebar from "./components/GeneralSidebar";
 import {QuestionnaireView} from "./components/LandingPage/QuestionnaireView";
 
-/***
- *
- *
- * Color palette used:
- * https://colorhunt.co/palette/180289
- *
- *
- * ***/
 
 const themeObject = {
     palette: {
         type: "white",
     },
 };
+
 // A function that routes the user to the right place
 // after login
 const onRedirectCallback = (appState) => {

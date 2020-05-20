@@ -12,7 +12,6 @@ import history from "./utils/history";
 import Profile from "./components/Profile";
 import {Route, Router, Switch} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
-import GeneralSidebar from "./components/GeneralSidebar";
 import {CreateNewQuestionnaireDialog} from "./components/CreateNewQuestionnaireDialog";
 
 const useStyles = makeStyles((theme) => ({

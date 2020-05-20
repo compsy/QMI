@@ -13,7 +13,6 @@ import {
     Typography,
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-// import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -27,20 +26,43 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+function EditButtonAndMenu({index}) {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const dispatch = useDispatch();
+    const handleRemoveClick = () => {
+        dispatch(removeQuestionAtIndex(index));
+    };
+    const classes = useStyles();
+    return (
+        <>
+            <IconButton className={classes.button} size="small" onClick={handleClick}>
+                <MoreHorizIcon/>
+            </IconButton>
+            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+                <MenuItem button onClick={handleRemoveClick}>
+                    remove
+                </MenuItem>
+            </Menu>
+        </>
+    );
+}
+
 // if QuestionCard is called,
 // the question is guaranteed to exist in state
 function QuestionCard({index}) {
     const question = useSelector((state) => state.questions[index]);
-    // const dispatch = useDispatch();
     const classes = useStyles();
-    // const [show, setShow] = useState(false);
     return (
         <div key={`question-${index}`}>
             <Paper
                 className={classes.paper}
                 onClick={(e) => e.stopPropagation()}
-                // onMouseEnter={() => setShow(true)}
-                // onMouseLeave={() => setShow(false)}
             >
                 <div>
                     {question.type && (
@@ -89,30 +111,3 @@ function QuestionCard({index}) {
 }
 
 export default QuestionCard;
-
-function EditButtonAndMenu({index}) {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-    const dispatch = useDispatch();
-    const handleRemoveClick = () => {
-        dispatch(removeQuestionAtIndex(index));
-    };
-    const classes = useStyles();
-    return (
-        <>
-            <IconButton className={classes.button} size="small" onClick={handleClick}>
-                <MoreHorizIcon/>
-            </IconButton>
-            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-                <MenuItem button onClick={handleRemoveClick}>
-                    remove
-                </MenuItem>
-            </Menu>
-        </>
-    );
-}

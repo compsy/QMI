@@ -34,8 +34,8 @@ const ScrollArrow = () => {
         <div>
             <FaArrowCircleUp className="scrollTop" onClick={scrollTop}
                              style={{height: 40, display: showScroll ? 'flex' : 'none'}}/>
-            {/*<HelpIcon onClick={onOpenModal} style={{height: 80}}/>*/}
-            {/*<WatchTutorial isOpen={isOpen} toggleModal={onOpenModal}/>*/}
+            <HelpIcon onClick={onOpenModal} style={{height: 80}}/>
+            <WatchTutorial isOpen={isOpen} toggleModal={onOpenModal}/>
 
 
         </div>
