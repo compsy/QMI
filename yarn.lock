@@ -2247,10 +2247,10 @@
     pretty-format "^25.1.0"
     wait-for-expect "^3.0.2"
 
-"@testing-library/jest-dom@^5.7.0":
-  version "5.7.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.7.0.tgz#b2e2acb4c088a293d52ba2cd1674b526282a2f87"
-  integrity sha512-ZV0OtBXmTDEDxrIbqJXiOcXCZ6aIMpmDlmfHj0hGNsSuQ/nX0qPAs9HWmCzXvPfTrhufTiH2nJLvDJu/LgHzwQ==
+"@testing-library/jest-dom@^5.8.0":
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.8.0.tgz#815e830129c4dda6c8e9a725046397acec523669"
+  integrity sha512-9Y4FxYIxfwHpUyJVqI8EOfDP2LlEBqKwXE3F+V8ightji0M2rzQB+9kqZ5UJxNs+9oXJIgvYj7T3QaXLNHVDMw==
   dependencies:
     "@babel/runtime" "^7.9.2"
     "@types/testing-library__jest-dom" "^5.0.2"
@@ -2271,10 +2271,10 @@
     "@testing-library/dom" "^6.15.0"
     "@types/testing-library__react" "^9.1.2"
 
-"@testing-library/user-event@^10.2.3":
-  version "10.2.3"
-  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-10.2.3.tgz#ac38ec2acd966d56d7aeef965365340d11d15d8e"
-  integrity sha512-jgNuLEDrzlFoD/wG/W4rR/h5nk8TEDccfex5/ubDbXKrIC2/xx02pBy+Or4dAeEn36R0e/ZGJ1XybO+WtFhw3g==
+"@testing-library/user-event@^10.3.2":
+  version "10.3.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-10.3.2.tgz#208954ae8b4a1cea65be4557db9affc1e80af38c"
+  integrity sha512-/oyuBE61/l2HOJavOEXv/Z0oatPu2n/A/EptQSH4MoJimyBGozSvmwiP/Wol9IbSo3u2Tl93BDd7b0M4aGLYug==
 
 "@types/babel__core@^7.1.0":
   version "7.1.4"
