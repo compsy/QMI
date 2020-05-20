@@ -51,7 +51,7 @@ const DropdownPreview = ({question}) => {
                 >
                     {question.options.map((option, index) =>
                         <MenuItem key={option + (index + 1)} value={index + 1}>
-                            <em>{option}</em>
+                            <em>{typeof option === "string" ? option : option.title}</em>
                         </MenuItem>
                     )}
 

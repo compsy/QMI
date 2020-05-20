@@ -14,25 +14,9 @@ const TimerPickerPreview = ({question}) => {
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container justify="space-around">
-                {/*<KeyboardTimePicker*/}
-                {/*    margin="normal"*/}
-                {/*    id={question.id}*/}
-                {/*    type="time"*/}
-                {/*    defaultValue = "3"*/}
-                {/*    hours_to = {question.hours_to}*/}
-                {/*    hours_step = {question.hours_step}*/}
-
-
-                {/*    onChange={handleDateChange}*/}
-                {/*    KeyboardButtonProps={{*/}
-                {/*        'aria-label': 'change time',*/}
-                {/*    }}*/}
-
-                {/*/>*/}
                 <TextField
                     id="time"
                     type="time"
-                    // title = "hello"
                     color="primary"
                     hours_from="0"
                     hours_to="11"

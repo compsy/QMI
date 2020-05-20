@@ -17,10 +17,8 @@ import {
     setTextArrayField,
 } from '../../../features/question/questionSlice'
 import { CLEAN_SUPER_OPTION } from '../../../utils'
-import LinkQuestions from './LinkQuestions'
 import { v4 as uuidv4 } from 'uuid'
 import EachOptionShows from './EachOptionShows'
-import VisibilityIcon from '@material-ui/icons/Visibility'
 import { removeFromMap } from '../../../features/utilities/utilitiesSlice'
 import EachOptionHides from './EachOptionHides'
 
@@ -211,8 +209,6 @@ const EndButtons = ({ propertyName, index }) => {
                             </Badge>
                         </>
                     )}
-                    {/*<EachOptionHides />*/}
-                    {/* <LinkQuestions index={index}/> */}
                     <EachOptionMenu propertyName={propertyName} index={index}/>
                 </>
             )}

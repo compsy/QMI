@@ -336,10 +336,6 @@ export const CLEAN_SUPER_OPTION = {
 // converts an option from string to object
 // after done, preprocessed question is given to state.question
 const preprocessCheckbox = (question) => {
-    // const preprocessedOptions = () => {
-    //   return question.options;
-    // };
-    // prettier-ignore
     return {
         // ...CLEAN_SUPER_QUESTION,
         id: question.id,
