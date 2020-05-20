@@ -524,8 +524,8 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
 };
 
 export const INITIAL_QUESTIONNAIRE_CONTEXT = [
-    {id: 'v1', type: "range", title: "Hello BOI", labels: ["option 1", "option 2", "option 3", "option 4", "option5"]},
-    {id: 'v2', type: "radio", title: "Hello Kitty", options: ["option 1", "option 2", "option 3", "option 4"]},
+    {id: uuidv4(), type: "range", title: "Hello BOI", labels: ["option 1", "option 2", "option 3", "option 4", "option5"]},
+    {id: uuidv4(), type: "radio", title: "Hello Kitty", options: ["option 1", "option 2", "option 3", "option 4"]},
     // {id: 'v1',
     //      type: "raw",
     //      content: "<h4>Welcome to your new questionnaire!</h4>\n" +
