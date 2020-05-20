@@ -118,15 +118,15 @@ export const Sidebar = ({question, items}) => {
                         {/* {provided.placeholder} */}
                         <div className={classes.toolbar}/>
                         <Divider/>
-                         <ListItem
-                            button
-                            onClick={() => {
-                                localStorage.clear();
-                                window.location.reload(true)
-                            }}
-                        >
-                            <ListItemText primary="delete data"/>
-                        </ListItem>
+                        {/* <ListItem*/}
+                        {/*    button*/}
+                        {/*    onClick={() => {*/}
+                        {/*        localStorage.clear();*/}
+                        {/*        window.location.reload(true)*/}
+                        {/*    }}*/}
+                        {/*>*/}
+                        {/*    <ListItemText primary="delete data"/>*/}
+                        {/*</ListItem>*/}
 
                         <ListItem
                             button
