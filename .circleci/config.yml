@@ -28,12 +28,17 @@ jobs:
     steps:
       - run:
           command: curl -X POST -d {} ${awesome_endpoint}
-
-
+orbs:
+  cypress: cypress-io/cypress@1.0.0
 workflows:
   version: 2.1
   build:
     jobs:
+      - cypress/install:
+          build: "npm run build"
+      - cypress/run:
+          parallel: true
+          parallelism: 10
       - build:
           filters:
             branches:
