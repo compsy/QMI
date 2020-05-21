@@ -14,7 +14,7 @@ describe('This file contains all tests related to edit a question through the ed
     it('This test shows how a user would change the text of a checkbox question certain option', () => {
         cy.changeOptionOfItem('checkbox');
     });
-    it.only('How a user would delete an option of a question', () => {
+    it.only('How a user would delete an option of a checkbox question', () => {
         cy.deleteAnOption('checkbox');
     });
 
