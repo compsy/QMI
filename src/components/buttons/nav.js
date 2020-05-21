@@ -1,7 +1,6 @@
 import React from "react";
 import {useAuth0} from '../react-auth0-spa';
 import Button from "@material-ui/core/Button";
-import AssignmentIcon from "@material-ui/icons/Assignment";
 import { Link } from "react-router-dom";
 
 

@@ -81,7 +81,7 @@ function App() {
                                         >
                                             <Grid item>Light Mode</Grid>
                                             <Grid item>
-                                                <AntSwitch onChange={toggleDarkMode} value="checkedC"/>
+                                                <AntSwitch data-cy="darkModeSwitcher" mode={themeConfig.palette.type} onChange={toggleDarkMode} value="checkedC"/>
                                             </Grid>
                                             <Grid item>Dark Mode</Grid>
                                         </Grid>

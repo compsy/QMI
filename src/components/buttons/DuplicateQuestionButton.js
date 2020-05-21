@@ -11,18 +11,17 @@ const EditQuestionButton = ({question, index}) => {
     const dispatch = useDispatch();
     console.log(index)
     return (
-        <>
-            <Tooltip title="duplicate">
-                <IconButton
-                    data-cy={Object.is(index, NaN) ? 'duplicateRaw' : "duplicate" + (index + 1)}
-                    // data-cy={"duplicate" + (index + 1)}
-                    // onClick={() => dispatch({ type: "DUPLICATE_QUESTION", question: question })}>
-                    onClick={() => dispatch(DUPLICATE_QUESTION({question: question}))}>
-                    <FileCopyIcon/>
-                </IconButton>
-            </Tooltip>
-        </>
-    );
+        <Tooltip title="duplicate">
+            <IconButton
+                data-cy={Object.is(index, NaN) ? 'duplicateRaw' : "duplicate" + (index + 1)}
+                // data-cy={"duplicate" + (index + 1)}
+                // onClick={() => dispatch({ type: "DUPLICATE_QUESTION", question: question })}>
+                onClick={() => dispatch(DUPLICATE_QUESTION({question: question}))}>
+                <FileCopyIcon/>
+            </IconButton>
+        </Tooltip>
+    )
+    ;
 };
 
 export default EditQuestionButton;

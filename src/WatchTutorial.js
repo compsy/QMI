@@ -16,7 +16,7 @@ const WatchTutorial = ({isOpen, toggleModal}) => {
 
     return (
         <ResizableBox width={400} height={100}>
-            <ModalVideo channel='youtube' ratio='2000:10' isOpen={isOpen} opts={opts}  videoId='C1-fRwmvzng' onClose={toggleModal} />
+            <ModalVideo cy-data="data" hannel='youtube' ratio='2000:10' isOpen={isOpen} opts={opts}  videoId='C1-fRwmvzng' onClose={toggleModal} />
         </ResizableBox>
     )
 };
