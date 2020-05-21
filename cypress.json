@@ -1,4 +1,4 @@
 {
-  "baseUrl": "http://localhost:3000/overview",
+  "baseUrl": "https://dev-qmi.netlify.app",
   "chromeWebSecurity": false
 }

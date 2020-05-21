@@ -1,9 +1,11 @@
 describe('This file contains all tests related to edit a question title', () => {
     beforeEach(() => {
         cy.visit("/")
+        cy.dragFromSidebar('radio');
     });
     it('How a user would edit a title with a change', () => {
         const newTitleText = "I_wonder_if_this_test_will_pass?";
+
         cy.get('div[id="1"]')
             .dblclick();
         cy.get('input[id="title"]')
