@@ -168,5 +168,25 @@ Cypress.Commands.add('changeOptionOfItem', (itemToDrag) => {
         .get(editedOption).should('have.text', newOption);
 });
 
+Cypress.Commands.add('deleteAnOption', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    const option3 = "option 3";
+    cy.get('div[id="1"]')
+        .click()
+        .get(`div[id="${option3}"]`).should('have.text', option3);
+    cy.get('div[id="optionPanel0"]').children().contains("option 3")
+    cy.get('[data-cy=edit1]')
+        .click();
+    cy.get('[data-cy=delete3]')
+        .click({force: true});
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.get('div[id="1"]')
+        .click();
+    cy.get('div[id="optionPanel0"]').children().should('have.length', 3)
+    cy.get('div[id="optionPanel0"]').contains(option3).should('not.exist')
+});
+
+
 
 
