@@ -14,6 +14,8 @@ describe('This file contains all tests related to edit a question through the ed
     it.only('This test shows how a user would change the text of a likert question certain option', () => {
         cy.changeOptionOfItem('likert');
     });
-
+    it('How a user would double tap on a title of a likert question to make a change from the current title', () => {
+        cy.doubleQuestionClickToEditTitle('likert');
+    });
 });
 

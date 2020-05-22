@@ -187,6 +187,17 @@ Cypress.Commands.add('deleteAnOption', (itemToDrag) => {
     cy.get('div[id="optionPanel0"]').contains(option3).should('not.exist')
 });
 
+Cypress.Commands.add('doubleQuestionClickToEditTitle', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    const newTitleText = `I wonder if this test for ${itemToDrag} question will pass?`;
+    cy.get('div[id="1"]')
+        .dblclick();
+    cy.get('input[id="title"]')
+        .type('{selectall}')
+        .type(newTitleText)
+        .type('{enter}');
+    cy.get('div[id="1"]').should('have.text', newTitleText)
+});
 
 
 

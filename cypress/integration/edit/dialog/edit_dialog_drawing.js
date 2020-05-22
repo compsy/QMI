@@ -25,5 +25,8 @@ describe('This file contains all tests related to edit a question through the ed
     it('This test shows how a user would toggle the visibility of a drawing question to be hidden', () => {
         cy.hideQuestion('drawing');
     });
+    it.only('How a user would double tap on a title of a drawing question to make a change from the current title', () => {
+        cy.doubleQuestionClickToEditTitle('drawing');
+    });
 });
 

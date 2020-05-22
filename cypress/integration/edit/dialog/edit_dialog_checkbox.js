@@ -17,6 +17,10 @@ describe('This file contains all tests related to edit a question through the ed
     it('How a user would delete an option of a checkbox question', () => {
         cy.deleteAnOption('checkbox');
     });
+    it('How a user would double tap on a title of a checkbox question to make a change from the current title', () => {
+        cy.doubleQuestionClickToEditTitle('checkbox');
+    });
+
 
 });
 

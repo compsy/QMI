@@ -34,7 +34,7 @@ describe('This file contains all tests related to edit a question through the ed
             .get('[data-value="1"]').should('have.text', newOption);
 
     });
-    it.only('How a user would delete an option of a dropdown question', () => {
+    it('How a user would delete an option of a dropdown question', () => {
         // cy.deleteAnOption('dropdown');
         cy.dragFromSidebar('dropdown');
         const option3 = "option 3";
@@ -53,6 +53,9 @@ describe('This file contains all tests related to edit a question through the ed
             .click();
         cy.get('#demo-controlled-open-select').click().get('#menu-')
             .contains(option3).should('not.exist')
+    });
+    it('How a user would double tap on a title of a dropdown question to make a change from the current title', () => {
+        cy.doubleQuestionClickToEditTitle('dropdown');
     });
 });
 

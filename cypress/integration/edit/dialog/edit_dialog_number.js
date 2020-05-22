@@ -11,5 +11,8 @@ describe('This file contains all tests related to edit a question through the ed
     it('This test shows how a user would toggle the visibility of a number question to be hidden', () => {
         cy.hideQuestion('number');
     });
+    it('How a user would double tap on a title of a number question to make a change from the current title', () => {
+        cy.doubleQuestionClickToEditTitle('number');
+    });
 });
 
