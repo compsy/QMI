@@ -182,7 +182,7 @@ const DialogFooter = ({question, handleClose, index}) => {
                     <Button
                         disableElevation
                         className={classes.button2}
-                        color="primary"
+                        // color="primary"
                         type="submit"
                         data-cy={"submit" + (index + 1)}
                     >
