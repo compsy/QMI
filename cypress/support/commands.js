@@ -199,5 +199,16 @@ Cypress.Commands.add('doubleQuestionClickToEditTitle', (itemToDrag) => {
     cy.get('div[id="1"]').should('have.text', newTitleText)
 });
 
-
+Cypress.Commands.add('doubleQuestionClickToEditTitleWithoutChange', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    cy.get('div[id="1"]').invoke('text').then((previousText) => {
+        cy.get('div[id="1"]')
+            .dblclick();
+        cy.get('input[id="title"]')
+            .type('{enter}');
+        cy.get('div[id="1"]').invoke('text').should((updatedText) => {
+            expect(previousText).to.eq(updatedText)
+        })
+    })
+});
 

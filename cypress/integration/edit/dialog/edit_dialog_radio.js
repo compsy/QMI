@@ -17,8 +17,8 @@ describe('This file contains all tests related to edit a question through the ed
     it('How a user would delete an option of a radio question', () => {
         cy.deleteAnOption('radio');
     });
-    it('How a user would double tap on a title of a radio question to make a change from the current title', () => {
-        cy.doubleQuestionClickToEditTitle('radio');
+    it('How a user would double tap on a title of a radio question without making a change to the title', () => {
+        cy.doubleQuestionClickToEditTitleWithoutChange('radio');
     });
 });
 
