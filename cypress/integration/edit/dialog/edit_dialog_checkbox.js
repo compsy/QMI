@@ -23,6 +23,9 @@ describe('This file contains all tests related to edit a question through the ed
     it('How a user would double tap on a title of a checkbox question without making a change to the title', () => {
         cy.doubleQuestionClickToEditTitleWithoutChange('checkbox');
     });
+    it('How a user would select this type of question to select section end as true ', () => {
+        cy.enableSectionEnd('checkbox');
+    });
 
 
 });

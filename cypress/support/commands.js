@@ -212,3 +212,21 @@ Cypress.Commands.add('doubleQuestionClickToEditTitleWithoutChange', (itemToDrag)
     })
 });
 
+Cypress.Commands.add('enableSectionEnd', (itemToDrag) => {
+    if (itemToDrag !== "raw") {
+        cy.dragFromSidebar(itemToDrag);
+    }
+    const sectionEnd = '"section_end":true';
+    cy.get('#jsonText').contains(sectionEnd).should('not.exist')
+    cy.get('div[id="1"]')
+        .click()
+    cy.get('[data-cy=edit1]')
+        .click({force: true});
+    if (itemToDrag === "drawing") {
+        cy.setRequiredDrawingProperties();
+    }
+    cy.get('[data-cy="section_end"]').click({force: true});
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.get('#jsonText').contains(sectionEnd)
+});

@@ -14,6 +14,7 @@ export const BooleanProperty = ({name, propertyName, ...props}) => {
 
     const switchComponent = (
         <Switch
+            data-cy={propertyName}
             checked={property || false}
             color="primary"
             onChange={handleChange}
