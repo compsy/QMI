@@ -7,7 +7,7 @@ import TextFieldPreview from '../../components/previews/TextFieldPreview'
 configure({ adapter: new Adapter() });
 
 describe('<TextField/>', () => {
-    it('renders a number question', () => {
+    it('renders a textfield question', () => {
         const question= {
             section_start: "Tot slot",
             hidden: true,

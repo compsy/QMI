@@ -7,7 +7,7 @@ import TextArea from '../../components/previews/TextArea'
 configure({ adapter: new Adapter() });
 
 describe('<TextArea/>', () => {
-    it('renders a number question', () => {
+    it('renders a textarea question', () => {
         const question= {
             section_start: "Tot slot",
             hidden: true,

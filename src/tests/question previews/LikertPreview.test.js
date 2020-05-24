@@ -7,7 +7,7 @@ import LikertPreview from '../../components/previews/LikertPreview'
 configure({ adapter: new Adapter() });
 
 describe('<LikertPreview/>', () => {
-    it('renders a number question', () => {
+    it('renders a likert question', () => {
         const question= {
             id: "v4",
             type: "likert",

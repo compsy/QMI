@@ -7,7 +7,7 @@ import TimePickerPreview from '../../components/previews/TimePickerPreview'
 configure({ adapter: new Adapter() });
 
 describe('<TimePickerPreview/>', () => {
-    it('renders a number question', () => {
+    it('renders a time question', () => {
         const question= {
             id: "v10",
             type: "time",

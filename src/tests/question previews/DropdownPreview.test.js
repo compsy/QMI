@@ -7,7 +7,7 @@ import DropdownPreview from '../../components/previews/DropdownPreview'
 configure({ adapter: new Adapter() });
 
 describe('<DropdownPreview/>', () => {
-    it('renders a number question', () => {
+    it('renders a dropdown question', () => {
         const question= {
             id: "v5",
             type: "dropdown",

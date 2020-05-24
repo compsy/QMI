@@ -7,7 +7,7 @@ import RangePreview from '../../components/previews/RangePreview'
 configure({ adapter: new Adapter() });
 
 describe('<RangePreview/>', () => {
-    it('renders a number question', () => {
+    it('renders a range question', () => {
         const question= {
             section_start: "De hoofddoelen",
             hidden: true,

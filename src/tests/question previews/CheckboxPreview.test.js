@@ -7,7 +7,7 @@ import RadioCheckboxPreview from '../../components/previews/RadioCheckboxPreview
 configure({ adapter: new Adapter() });
 
 describe('<RadioCheckboxPreview/>', () => {
-    it('renders a number question', () => {
+    it('renders a checkbox question', () => {
         const question= {
             id: "v2",
             type: "checkbox",
