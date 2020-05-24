@@ -6,7 +6,7 @@ import TestApiSection from "./TestApiSection";
 import React from "react";
 import HomeIcon from '@material-ui/icons/Home';
 
-const GeneralSidebar = ({setShowCreateQuestionnaire}) => {
+export const GeneralSidebar = ({setShowCreateQuestionnaire}) => {
     const {isAuthenticated, loginWithRedirect, logout, user, getIdTokenClaims} = useAuth0();
 
 

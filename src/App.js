@@ -13,6 +13,7 @@ import {Route, Router, Switch} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
 import {CreateNewQuestionnaireDialog} from "./components/CreateNewQuestionnaireDialog";
 import {auth_config} from "./features/API/auth_config";
+import GeneralSidebar from "./components/GeneralSidebar";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
