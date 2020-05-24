@@ -232,6 +232,7 @@ Cypress.Commands.add('enableSectionEnd', (itemToDrag) => {
 });
 
 Cypress.Commands.add('enableRequiredProperty', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
     const sectionEnd = '"required":true';
     cy.get('#jsonText').contains(sectionEnd).should('not.exist')
     cy.get('div[id="1"]')
