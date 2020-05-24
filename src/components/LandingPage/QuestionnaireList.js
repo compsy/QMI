@@ -13,6 +13,9 @@ import EditIcon from "@material-ui/icons/Edit";
 import React, {useEffect, useState} from "react";
 import {auth_config} from "../../features/API/auth_config";
 import {useAuth0} from "../react-auth0-spa";
+import Alert from "@material-ui/lab/Alert";
+import AlertTitle from "@material-ui/lab/AlertTitle";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -29,14 +32,14 @@ const useStyles = makeStyles((theme) => ({
 
 export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
     const classes = useStyles();
-    const {isAuthenticated, getIdTokenClaims} = useAuth0();
+    const {isAuthenticated, getIdTokenClaims, loading} = useAuth0();
     const [questionnaireListState, setQuestionnaireListState] = useState({status: API_STATUS.INIT, body: []});
     useEffect(() => {
         if(questionnaireListState.status === API_STATUS.INIT){
             retrieveQuestionnaires();
         }
     });
-    console.log(questionnaireListState);
+
     const getAllQuestionnairesAsync = async () => {
         const itc = await getIdTokenClaims();
         const unirest = require('unirest');
@@ -46,18 +49,23 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
             })
     }
     const retrieveQuestionnaires = () => {
-        if(!isAuthenticated) return;
-        setQuestionnaireListState({status: API_STATUS.LOADING, body: []});
+        if(!isAuthenticated){
+            return;
+        }
+        setQuestionnaireListState({status: API_STATUS.LOADING, body: "Retrieving questionnaires"});
         const errorCatcher = error => {
-            console.log("error");
-            setQuestionnaireListState({status: API_STATUS.ERROR, body: error.body});
+            setQuestionnaireListState({status: API_STATUS.ERROR, body: error.message()});
         };
 
         try{
             getAllQuestionnairesAsync()
                 .then(response => {
+                    if(response.error && response.error.message.includes("NetworkError")){
+                        setQuestionnaireListState({status: API_STATUS.ERROR, body: "The server cannot be reached."})
+                        return;
+                    }
                     if(response.error){
-                        setQuestionnaireListState({status: API_STATUS.ERROR, body: response});
+                        setQuestionnaireListState({status: API_STATUS.ERROR, body: response.message()});
                     }
                     setQuestionnaireListState({status: API_STATUS.IDLE, body: response.body});
                 })
@@ -67,35 +75,58 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
 
     }
     const renderStatusMessage = (status) =>{
+        console.log(status);
+        if(questionnaireListState.status === API_STATUS.IDLE && questionnaireListState.body === []){
+            return <Alert severity="info">
+                <AlertTitle>No questionnaires are available.</AlertTitle>
+            </Alert>
+        }
+
+        if(loading){
+            return <Alert severity="info">
+                <AlertTitle>Info </AlertTitle>
+                <Grid container spacing={3}>
+                    <Grid item><CircularProgress size={20}/></Grid>
+                    <Grid item>Logging in</Grid>
+                </Grid>
+
+            </Alert>
+        }
+
         switch (status){
+
             case API_STATUS.LOADING:
-                return <CircularProgress color="secondary"/>
-            case API_STATUS.error:
-                return getTypographyMessage("Error." +  questionnaireListState.body)
+                return <Alert severity="info">
+                    <AlertTitle>Info </AlertTitle>
+                    <Grid container spacing={3}>
+                        <Grid item><CircularProgress size={20}/></Grid>
+                        <Grid item>{questionnaireListState.body}</Grid>
+                    </Grid>
+
+                </Alert>
+            case API_STATUS.ERROR:
+                return  <Alert severity="error">
+                    <AlertTitle>Error</AlertTitle>
+                    {questionnaireListState.body}
+                </Alert>
+            case API_STATUS.INIT:
             case API_STATUS.NOT_AUTHENTICATED:
-                return getTypographyMessage("Please log in.");
+                return <Alert severity="info">
+                    <AlertTitle>Info</AlertTitle>
+                    Please log in.
+                </Alert>
             case API_STATUS.IDLE:
                 return renderQuestionnaires();
         }
     }
     const renderQuestionnaires = () =>{
-        return questionnaireListState.body.map(json => <GridListTile key={json.key} className={classes.tile}>
-                <QuestionnaireCard questionnaire={json}/>
-            </GridListTile>
-        );
-    }
-    const getTypographyMessage = (message) => {
-        return<GridListTile key={"message"} className={classes.tile}>
-            <MessageCard>{message}</MessageCard>
-        </GridListTile>
-    }
-
-    const MessageCard = ({props}) => {
-        return<Card className={classes.card}>
-            <CardContent>
-                <Typography className={classes.title} variant="h3">{props.children}</Typography>
-            </CardContent>
-        </Card>
+        return<GridList cols={4} spacing={10}>
+            {questionnaireListState.body.map(json =>
+                <GridListTile key={json.key} className={classes.tile}>
+                    <QuestionnaireCard questionnaire={json}/>
+                </GridListTile>
+            )}
+        </GridList>
     }
 
     const QuestionnaireCard = ({questionnaire}) => {
@@ -116,12 +147,6 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
         </Card>
     }
 
-    return <GridList cols={4} spacing={10}>
-        {
-            questionnaireListState.status === API_STATUS.IDLE && questionnaireListState.body === [] ?
-                getTypographyMessage("No questionnaires available.")
-            :
-            renderStatusMessage(questionnaireListState.status)}
-    </GridList>
+    return renderStatusMessage(questionnaireListState.status);
 };
 

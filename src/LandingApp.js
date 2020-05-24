@@ -15,7 +15,7 @@ import {Auth0Provider, useAuth0} from "./components/react-auth0-spa";
 
 import history from "./utils/history";
 import {useDarkMode} from "./useDarkMode";
-import GeneralSidebar, {getUserCard} from "./components/GeneralSidebar";
+import GeneralSidebar from "./components/GeneralSidebar";
 import {LandingPage} from "./components/LandingPage/LandingPage";
 import {auth_config} from "./features/API/auth_config";
 
