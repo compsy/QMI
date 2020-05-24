@@ -17,7 +17,7 @@ describe('This file contains all tests related to edit a question through the ed
     it('How a user would double tap on a title of a textarea question without making a change to the title', () => {
         cy.doubleQuestionClickToEditTitleWithoutChange('textarea');
     });
-    it.only('How a user would select this type of question to select section end as true ', () => {
+    it.only('How a user would select this type of question to set section end as true ', () => {
         cy.enableSectionEnd('textarea');
     });
 });

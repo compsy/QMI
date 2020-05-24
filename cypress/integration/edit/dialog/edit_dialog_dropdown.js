@@ -60,7 +60,7 @@ describe('This file contains all tests related to edit a question through the ed
     it('How a user would double tap on a title of a dropdown question without making a change to the title', () => {
         cy.doubleQuestionClickToEditTitleWithoutChange('dropdown');
     });
-    it('How a user would select this type of question to select section end as true ', () => {
+    it('How a user would select this type of question to set section end as true ', () => {
         cy.enableSectionEnd('dropdown');
     });
 });

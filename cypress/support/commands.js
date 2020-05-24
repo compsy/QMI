@@ -230,3 +230,16 @@ Cypress.Commands.add('enableSectionEnd', (itemToDrag) => {
         .click();
     cy.get('#jsonText').contains(sectionEnd)
 });
+
+Cypress.Commands.add('enableRequiredProperty', (itemToDrag) => {
+    const sectionEnd = '"required":true';
+    cy.get('#jsonText').contains(sectionEnd).should('not.exist')
+    cy.get('div[id="1"]')
+        .click()
+    cy.get('[data-cy=edit1]')
+        .click({force: true});
+    cy.get('[data-cy="required"]').click({force: true});
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.get('#jsonText').contains(sectionEnd)
+});

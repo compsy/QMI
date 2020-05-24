@@ -19,7 +19,7 @@ describe('This file contains all tests related to edit a question through the ed
         cy.get('.MuiTypography-root > h1')
             .should('have.text', newTitle);
     });
-    it('How a user would select this type of question to select section end as true ', () => {
+    it('How a user would select this type of question to set section end as true ', () => {
         cy.enableSectionEnd('raw');
     });
 });
