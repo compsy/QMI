@@ -1,50 +1,51 @@
 import Button from "@material-ui/core/Button";
 import React from "react";
+import {auth_config} from "../features/API/auth_config";
+import {API_STATUS} from "../features/API/ApiHandler";
 
 
 function TestApiSection({getIdTokenClaims}){
-    const callCreateQuestionnaire = (token) => {
-        const emptyQuestionnaire = {
-            name: "string",
-            content: {},
-            key: "string",
-            title: "string"
-        }
-        const unirest = require('unirest');
-        unirest('GET', 'http://localhost:3002/api/v1/person/me')
-            .headers({
-                'Content-Type': ['application/json', 'text/plain'],
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + token,
-            })
-            //.send(JSON.stringify(emptyQuestionnaire))
-            .end(function (res) {
-                if (res.error) throw new Error(res.error);
-                console.log(res.body);
-            });
+
+    const handleBadRequest = (response) => {
+        console.log("Bad request");
+        Object.keys(response.body.result).forEach(key => console.log(key + " " + response.body.result[key]));
+
     }
 
-    const getAllQuestionnaires = async () => {
+    const handleSuccess = (response) => {
+        console.log("Success!");
+    }
+
+    const responseHandlers = {
+        400: handleBadRequest,
+        201: handleSuccess,
+
+    }
+
+    const createNewQuestionnaireAsync = async (questionnaire) =>{
         const itc = await getIdTokenClaims();
-        console.log(itc.__raw);
-        let questionnaires = {};
         const unirest = require('unirest');
-        return unirest('GET', "http://localhost:3002" + '/api/v1/questionnaire')
+        const req = unirest('POST', auth_config.base + '/api/v1/questionnaire')
             .headers({
-                'Authorization': `Bearer ${itc.__raw}`
+                'Authorization': 'Bearer ' + itc.__raw,
+                'Content-Type': 'application/json'
             })
+            .send(JSON.stringify({questionnaire: questionnaire}))
+            .end(function (res) {
+                console.log(res.code);
+                responseHandlers[res.code](res);
+            });
+
     }
 
     const callApi = async () =>{
-
-        const questionnairesPromise = getAllQuestionnaires();
-        console.log(questionnairesPromise);
-        questionnairesPromise
-            .then(function (res) {
-            if (res.error) throw new Error(res.error);
-            console.table(res.body);
-        });
-
+        const questionnaire = {
+            name: "teest",
+            content: {},
+            key: "teest",
+            title: "test"
+        }
+        createNewQuestionnaireAsync(questionnaire);
     }
     return <>
         <h1>Api Test</h1>

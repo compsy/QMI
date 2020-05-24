@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import { Provider, useDispatch } from 'react-redux'
 import {REMOVE_ALL, REMOVE_ALL_DATA} from "./features/questions/questionsSlice";
 import { SET_UTILITIES } from "./features/utilities/utilitiesSlice";
+import {SafeQuestionnaireDialog} from "./SaveQuestionnaireDialog";
 
 function getStyle(style, snapshot) {
     if (!snapshot.isDropAnimating) {
@@ -45,6 +46,7 @@ export const Sidebar = ({question, items}) => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
+    const [saveQuestionnaireOpen, setSafeQuestionnaireOpen] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -146,7 +148,17 @@ export const Sidebar = ({question, items}) => {
                         >
                             <ListItemText primary="Render Questionnaire"/>
                         </ListItem>
+
+                        <ListItem
+                            button
+                            id={"saveQuestionnaire"}
+                            onClick={() => {setSafeQuestionnaireOpen(true)}}
+                        >
+                            <ListItemText primary="Save Questionnaire"/>
+                        </ListItem>
+
                         <div>
+                            <SafeQuestionnaireDialog open={saveQuestionnaireOpen} setOpen={setSafeQuestionnaireOpen}/>
                             <Dialog
                                 open={open}
                                 onClose={handleClose}
