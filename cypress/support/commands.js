@@ -168,5 +168,79 @@ Cypress.Commands.add('changeOptionOfItem', (itemToDrag) => {
         .get(editedOption).should('have.text', newOption);
 });
 
+Cypress.Commands.add('deleteAnOption', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    const option3 = "option 3";
+    cy.get('div[id="1"]')
+        .click()
+        .get(`div[id="${option3}"]`).should('have.text', option3);
+    cy.get('div[id="optionPanel0"]').children().contains("option 3")
+    cy.get('[data-cy=edit1]')
+        .click();
+    cy.get('[data-cy=delete3]')
+        .click({force: true});
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.get('div[id="1"]')
+        .click();
+    cy.get('div[id="optionPanel0"]').children().should('have.length', 3)
+    cy.get('div[id="optionPanel0"]').contains(option3).should('not.exist')
+});
 
+Cypress.Commands.add('doubleQuestionClickToEditTitle', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    const newTitleText = `I wonder if this test for ${itemToDrag} question will pass?`;
+    cy.get('div[id="1"]')
+        .dblclick();
+    cy.get('input[id="title"]')
+        .type('{selectall}')
+        .type(newTitleText)
+        .type('{enter}');
+    cy.get('div[id="1"]').should('have.text', newTitleText)
+});
 
+Cypress.Commands.add('doubleQuestionClickToEditTitleWithoutChange', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    cy.get('div[id="1"]').invoke('text').then((previousText) => {
+        cy.get('div[id="1"]')
+            .dblclick();
+        cy.get('input[id="title"]')
+            .type('{enter}');
+        cy.get('div[id="1"]').invoke('text').should((updatedText) => {
+            expect(previousText).to.eq(updatedText)
+        })
+    })
+});
+
+Cypress.Commands.add('enableSectionEnd', (itemToDrag) => {
+    if (itemToDrag !== "raw") {
+        cy.dragFromSidebar(itemToDrag);
+    }
+    const sectionEnd = '"section_end":true';
+    cy.get('#jsonText').contains(sectionEnd).should('not.exist')
+    cy.get('div[id="1"]')
+        .click()
+    cy.get('[data-cy=edit1]')
+        .click({force: true});
+    if (itemToDrag === "drawing") {
+        cy.setRequiredDrawingProperties();
+    }
+    cy.get('[data-cy="section_end"]').click({force: true});
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.get('#jsonText').contains(sectionEnd)
+});
+
+Cypress.Commands.add('enableRequiredProperty', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    const sectionEnd = '"required":true';
+    cy.get('#jsonText').contains(sectionEnd).should('not.exist')
+    cy.get('div[id="1"]')
+        .click()
+    cy.get('[data-cy=edit1]')
+        .click({force: true});
+    cy.get('[data-cy="required"]').click({force: true});
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.get('#jsonText').contains(sectionEnd)
+});

@@ -8,7 +8,6 @@ import {
     Toolbar,
     Typography,
 } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
 import "./background.css";
 import {Provider} from "react-redux";
 import store from "./app/store";
@@ -20,20 +19,13 @@ import GeneralSidebar, {getUserCard} from "./components/GeneralSidebar";
 import {LandingPage} from "./components/LandingPage/LandingPage";
 import {auth_config} from "./features/API/auth_config";
 
-/***
- *
- *
- * Color palette used:
- * https://colorhunt.co/palette/180289
- *
- *
- * ***/
 
 const themeObject = {
     palette: {
         type: "white",
     },
 };
+
 // A function that routes the user to the right place
 // after login
 const onRedirectCallback = (appState) => {
@@ -71,27 +63,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-
-export const AuthWrapper = ({...props}) =>{
-    return <Auth0Provider
-        domain={auth_config.domain}
-        client_id={auth_config.clientId}
-        redirect_uri={window.location.origin}
-        onRedirectCallback={onRedirectCallback}
-        audience={auth_config.audience}
-        responseType={auth_config.responseType}
-        scope={auth_config.scope}
-    >
-        {props.children}
-    </Auth0Provider>
-}
-
-
 function LandingApp() {
     const [theme, toggleDarkMode] = useDarkMode();
     const themeConfig = createMuiTheme(theme);
     const classes = useStyles();
-
 
     const MainWrapper = ({...props}) => {
         return <Auth0Provider

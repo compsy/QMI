@@ -11,7 +11,6 @@ import history from "./utils/history";
 import Profile from "./components/Profile";
 import {Route, Router, Switch} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
-import GeneralSidebar from "./components/GeneralSidebar";
 import {CreateNewQuestionnaireDialog} from "./components/CreateNewQuestionnaireDialog";
 import {auth_config} from "./features/API/auth_config";
 
@@ -82,7 +81,7 @@ function App() {
                                         >
                                             <Grid item>Light Mode</Grid>
                                             <Grid item>
-                                                <AntSwitch onChange={toggleDarkMode} value="checkedC"/>
+                                                <AntSwitch data-cy="darkModeSwitcher" mode={themeConfig.palette.type} onChange={toggleDarkMode} value="checkedC"/>
                                             </Grid>
                                             <Grid item>Dark Mode</Grid>
                                         </Grid>

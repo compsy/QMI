@@ -11,5 +11,14 @@ describe('This file contains all tests related to edit a question through the ed
     it('This test shows how a user would toggle the visibility of a texfield question to be hidden', () => {
         cy.hideQuestion('textfield');
     });
+    it('How a user would double tap on a title of a textfield question to make a change from the current title', () => {
+        cy.doubleQuestionClickToEditTitle('textfield');
+    });
+    it('How a user would double tap on a title of a textfield question without making a change to the title', () => {
+        cy.doubleQuestionClickToEditTitleWithoutChange('textfield');
+    });
+    it.only('How a user would select this type of question to set section end as true ', () => {
+        cy.enableSectionEnd('textfield');
+    });
 });
 

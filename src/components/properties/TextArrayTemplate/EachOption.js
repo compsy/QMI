@@ -159,7 +159,7 @@ const RemoveButton = ({ propertyName, index }) => {
     };
 
     return (
-        <IconButton data-cy={qid + "delete" + (index + 1)} size="small" onClick={() => handleRemoveOptionClick(index)}>
+        <IconButton data-cy={"delete" + (index + 1)} size="small" onClick={() => handleRemoveOptionClick(index)}>
             <DeleteIcon/>
         </IconButton>
     )

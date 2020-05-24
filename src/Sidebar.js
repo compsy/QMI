@@ -118,22 +118,22 @@ export const Sidebar = ({question, items}) => {
                         {/* {provided.placeholder} */}
                         <div className={classes.toolbar}/>
                         <Divider/>
-                        {/* <ListItem*/}
-                        {/*    button*/}
-                        {/*    onClick={() => {*/}
-                        {/*        localStorage.clear();*/}
-                        {/*        window.location.reload(true)*/}
-                        {/*    }}*/}
-                        {/*>*/}
-                        {/*    <ListItemText primary="delete data"/>*/}
-                        {/*</ListItem>*/}
+                         <ListItem
+                            button
+                            onClick={() => {
+                                localStorage.clear();
+                                window.location.reload(true)
+                            }}
+                        >
+                            <ListItemText primary="delete data"/>
+                        </ListItem>
 
                         <ListItem
                             button
                             id={"eraseQuestionnaire"}
                             onClick={handleClickOpen}
                         >
-                            <ListItemText  primary="erase questionnaire"/>
+                            <ListItemText  primary="Erase Questionnaire"/>
                         </ListItem>
                         <ListItem
                             button
@@ -144,7 +144,7 @@ export const Sidebar = ({question, items}) => {
                                 window.open("http://app.u-can-act.nl/questionnaire/interactive?content=" + x);
                             }}
                         >
-                            <ListItemText primary="render questionnaire"/>
+                            <ListItemText primary="Render Questionnaire"/>
                         </ListItem>
                         <div>
                             <Dialog

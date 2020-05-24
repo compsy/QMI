@@ -72,9 +72,9 @@ const duplicateQuestion = (action, state) => {
 };
 ```
 
-* **Editing questions** This feature enables the user to edit any questionnaire which has been previously created. Any corresponding fields to the type can be edited through this feature. 
+* **Editing questions** This feature enables the user to edit any question which has been previously created. Any corresponding fields to the type can be edited through this feature. 
 
-* **Clickable Title** The title of any questionnaire can be edited by being clicked on.  
+* **Clickable Title** The title of any current question can be edited by being clicked on.  
 
 * **Dark Mode** The theme of the page can be switched to a darker tone if desired by clciking on the toggle situated at the top right of the page. 
 
@@ -119,6 +119,12 @@ const duplicateQuestion = (action, state) => {
 * **Drawing** with properties (required) : TitleProperty, WidthHeightComposite, ImageProperty, ColorProperty, <br/>
 (optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, RadiusDensityComposite
 
+## Redux
+Our react components share similar behaviour as funtions, instead of writing our code in one large single function, it's a good convention to split the logic into multiple, smaller functions, for each to perform a specific task and therefore make the overall code a lot more readable and easier to understand.
+
+We can apply this logic to large React components which handle different requests and have different purpose, which splits these components into smaller ones. We would usually have "container" components which are responsible for retrieving data and displaying corresponding information to the user based on information they have received through props. 
+
+Ou you can explain moe in details here how it was achieved...
 
 
 ## Compatible browsers

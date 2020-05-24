@@ -167,7 +167,7 @@ const Details = ({question, index}) => {
                         } else {
                             return (
                                 <div>
-                                    <RemoveQuestionButton question={question}/>
+                                    <RemoveQuestionButton question={question} index={index}/>
                                     <EditQuestionButton question={question} index={index}/>
                                     <DuplicateQuestionButton question={question} index={index}/>
                                 </div>
