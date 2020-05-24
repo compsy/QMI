@@ -27,8 +27,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const QuestionsPage = () => {
-    // const { settings, settingsDispatch } = useContext(SettingsContext);
-    // const { questions, dispatch } = useContext(QuestionnaireContext);
     const questions = useSelector(state => state.questions);
     const dispatch = useDispatch();
     const onDragEnd = React.useCallback(result => {

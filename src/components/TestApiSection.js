@@ -11,24 +11,40 @@ function TestApiSection({getIdTokenClaims}){
             title: "string"
         }
         const unirest = require('unirest');
-        unirest('POST', 'http://localhost:3002/api/v1/questionnaire')
+        unirest('GET', 'http://localhost:3002/api/v1/person/me')
             .headers({
                 'Content-Type': ['application/json', 'text/plain'],
                 'Accept': 'application/json',
                 'Authorization': 'Bearer ' + token,
             })
-            .send(JSON.stringify(emptyQuestionnaire))
+            //.send(JSON.stringify(emptyQuestionnaire))
             .end(function (res) {
                 if (res.error) throw new Error(res.error);
-                console.log(res.response);
+                console.log(res.body);
             });
     }
 
-    const callApi = async () =>{
+    const getAllQuestionnaires = async () => {
         const itc = await getIdTokenClaims();
-        const token = itc.__raw;
-        console.log(token);
-        callCreateQuestionnaire(token);
+        console.log(itc.__raw);
+        let questionnaires = {};
+        const unirest = require('unirest');
+        return unirest('GET', "http://localhost:3002" + '/api/v1/questionnaire')
+            .headers({
+                'Authorization': `Bearer ${itc.__raw}`
+            })
+    }
+
+    const callApi = async () =>{
+
+        const questionnairesPromise = getAllQuestionnaires();
+        console.log(questionnairesPromise);
+        questionnairesPromise
+            .then(function (res) {
+            if (res.error) throw new Error(res.error);
+            console.table(res.body);
+        });
+
     }
     return <>
         <h1>Api Test</h1>

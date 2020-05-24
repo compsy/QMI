@@ -7,13 +7,13 @@ import "./background.css";
 import {Provider} from "react-redux";
 import store from "./app/store";
 import {Auth0Provider} from "./components/react-auth0-spa";
-import config from "./auth_config.json";
 import history from "./utils/history";
 import Profile from "./components/Profile";
 import {Route, Router, Switch} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
 import GeneralSidebar from "./components/GeneralSidebar";
 import {CreateNewQuestionnaireDialog} from "./components/CreateNewQuestionnaireDialog";
+import {auth_config} from "./features/API/auth_config";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -49,13 +49,13 @@ function App() {
     const [showCreateQuestionnaire, setShowCreateQuestionnaire] = useState(false);
     return (
         <Auth0Provider
-            domain={config.domain}
-            client_id={config.clientId}
+            domain={auth_config.domain}
+            client_id={auth_config.clientId}
             redirect_uri={window.location.origin}
             onRedirectCallback={onRedirectCallback}
-            audience={config.audience}
-            responseType={config.responseType}
-            scope={config.scope}
+            audience={auth_config.audience}
+            responseType={auth_config.responseType}
+            scope={auth_config.scope}
         >
             <Provider store={store}>
                 <div className="content">
@@ -69,7 +69,7 @@ function App() {
                                             <Route path="/profile" component={Profile}/>
                                         </Switch>
                                     </Router>
-                                    {/*<GeneralSidebar setShowCreateQuestionnaire={setShowCreateQuestionnaire}/>*/}
+                                    <GeneralSidebar setShowCreateQuestionnaire={setShowCreateQuestionnaire}/>
                                     <Typography variant="h6" className={classes.title}>
                                         Questionnaire Interface
                                     </Typography>

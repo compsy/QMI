@@ -16,14 +16,14 @@ const GeneralSidebar = ({setShowCreateQuestionnaire}) => {
                 : {title: 'Log In', icon: <ExitToAppIcon/>, onClick: loginWithRedirect}
     }
 
-    function getUserCard() {
-        return isAuthenticated ? {custom: <UserInformationCard key={"user information card"} user={user}/>} : {custom: null}
+    const getUserCardLayout = () =>{
+        return {custom: getUserCard(isAuthenticated, user)};
     }
 
     const generateLayout = () =>{
         return [
             {custom: <Header key={"header"}/>},
-            getUserCard(),
+            getUserCardLayout(),
             {isDivider: true},
             {title: 'Home', icon: <HomeIcon/>, onClick: () => {console.log("Go to landing page")}},
             {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {setShowCreateQuestionnaire(true)}},
@@ -35,5 +35,10 @@ const GeneralSidebar = ({setShowCreateQuestionnaire}) => {
     };
     return <TemporaryDrawer layout={generateLayout(user)}/>
 };
+
+export function getUserCard(isAuthenticated, user){
+    return isAuthenticated ?  <UserInformationCard key={"user information card"} user={user}/> : <> </>
+
+}
 
 export default GeneralSidebar
