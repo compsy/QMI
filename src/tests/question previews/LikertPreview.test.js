@@ -19,6 +19,6 @@ describe('<LikertPreview/>', () => {
             ],
         };
         const component = shallow(<LikertPreview question={question}/>);
-        // expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
     });
 });

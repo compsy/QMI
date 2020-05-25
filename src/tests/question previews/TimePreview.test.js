@@ -18,6 +18,6 @@ describe('<TimePickerPreview/>', () => {
                 "Hoeveel tijd heb je deze week besteed aan de begeleiding van deze student movai pilon?",
         };
         const component = shallow(<TimePickerPreview question={question}/>);
-        // expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
     });
 });

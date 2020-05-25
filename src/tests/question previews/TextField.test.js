@@ -23,6 +23,6 @@ describe('<TextField/>', () => {
             section_end: true,
         };
         const component = shallow(<TextFieldPreview question={question}/>);
-        // expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
     });
 });

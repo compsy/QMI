@@ -19,6 +19,6 @@ describe('<DropdownPreview/>', () => {
             ],
         };
         const component = shallow(<DropdownPreview question={question}/>);
-        // expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
     });
 });
