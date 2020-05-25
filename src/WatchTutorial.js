@@ -4,7 +4,7 @@ import ModalVideo from 'react-modal-video';
 import {ResizableBox} from 'react-resizable';
 
 const WatchTutorial = ({isOpen, toggleModal}) => {
-    const ResizableBox = require('react-resizable').ResizableBox;
+    // const ResizableBox = require('react-resizable').ResizableBox;
 
     const opts = {
         height: '10',

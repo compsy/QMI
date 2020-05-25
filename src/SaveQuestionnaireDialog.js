@@ -1,13 +1,13 @@
-import {Box, Button, Dialog, Divider, Grid, makeStyles, Paper, Typography} from "@material-ui/core";
-import React, {createElement, useState} from "react";
+import {Box, Button, Dialog, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
+import React, {useState} from "react";
 import TextField from "@material-ui/core/TextField";
-import {v4 as uuidv4} from "uuid";
 import {useAuth0} from "./components/react-auth0-spa";
 import {useSelector} from "react-redux";
 import {API_STATUS} from "./features/API/ApiHandler";
 import {auth_config} from "./features/API/auth_config";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
+
 const useStyles = makeStyles((theme) => ({
     body: {
         padding: theme.spacing(2),
@@ -93,7 +93,7 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
     const [key, setKey] = useState("untitledquestionnaire");
     const classes = useStyles();
     const {isAuthenticated, getIdTokenClaims} = useAuth0();
-    const questions = useSelector(state => state.questions);
+    const questions = useSelector(state2 => state2.questions);
     const [state, setState] = useState({status: API_STATUS.INIT, body: null});
 
     const handleClose = () =>{

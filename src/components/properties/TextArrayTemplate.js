@@ -133,12 +133,12 @@ function EachOptioni({index, name, propertyName}) {
         }
     }, [option]);
 
-    const handleChange = (index, event) => {
+    const handleChange = (subIndex, event) => {
         if (type !== "range") {
             dispatch(
                 setTextArrayElement({
                     property: propertyName,
-                    index: index,
+                    index: subIndex,
                     value: {...option, title: event.target.value},
                 })
             );
@@ -146,15 +146,15 @@ function EachOptioni({index, name, propertyName}) {
             dispatch(
                 setTextArrayField({
                     property: propertyName,
-                    index: index,
+                    index: subIndex,
                     value: event.target.value,
                 })
             );
         }
     };
 
-    const handleRemoveOptionClick = (index) =>
-        dispatch(removeOption({property: propertyName, index: index}));
+    const handleRemoveOptionClick = (subIndex) =>
+        dispatch(removeOption({property: propertyName, index: subIndex}));
 
     const classes = useStyles();
     return (
@@ -390,7 +390,7 @@ const EachOptionShows = () => {
                     return (
                         <MenuItem button={true}>
                             {`v${questions.indexOf(item) + 1}: ${
-                                item.title && item.title
+                                item.title
                             }`}
                         </MenuItem>
                     );
@@ -448,11 +448,11 @@ const EachOptionHides = () => {
             >
                 {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
                 {shown &&
-                shown.map((item, i) => {
+                shown.map((item) => {
                     return (
                         <MenuItem button={true}>
                             {`v${questions.indexOf(item) + 1}: ${
-                                item.title && item.title
+                                item.title
                             }`}
                         </MenuItem>
                     );

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {
     AppBar,
     createMuiTheme,
@@ -11,7 +11,7 @@ import {
 import "./background.css";
 import {Provider} from "react-redux";
 import store from "./app/store";
-import {Auth0Provider, useAuth0} from "./components/react-auth0-spa";
+import {Auth0Provider} from "./components/react-auth0-spa";
 
 import history from "./utils/history";
 import {useDarkMode} from "./useDarkMode";

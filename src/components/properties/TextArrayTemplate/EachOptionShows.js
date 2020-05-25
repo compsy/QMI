@@ -1,23 +1,8 @@
-import React, { useContext, useEffect } from 'react'
-import {
-    Button,
-    makeStyles,
-    Menu,
-    MenuItem,
-    Grid,
-    Checkbox,
-    useTheme,
-    Typography,
-    Box,
-} from '@material-ui/core'
-import { useDispatch, useSelector } from 'react-redux'
-import { addToToDispatch, addToMap, removeFromMap } from '../../../features/utilities/utilitiesSlice'
-import { useState } from 'react'
-import {
-    setProperty,
-    setTextArrayElement,
-} from '../../../features/question/questionSlice'
-import CheckIcon from '@material-ui/icons/Check'
+import React, {useEffect, useState} from 'react'
+import {Box, Button, Checkbox, Grid, makeStyles, Menu, MenuItem, Typography, useTheme,} from '@material-ui/core'
+import {useDispatch, useSelector} from 'react-redux'
+import {addToMap, removeFromMap} from '../../../features/utilities/utilitiesSlice'
+import {setTextArrayElement,} from '../../../features/question/questionSlice'
 
 const useStyles = makeStyles((theme) => ({
     showsHidesButtons: {
@@ -26,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const EachOptionShows = ({ index }) => {
+const EachOptionShows = ({index}) => {
     const [anchorEl, setAnchorEl] = React.useState(null)
 
     const handleClick = (event) => {
@@ -122,7 +107,7 @@ const EachOptionShows = ({ index }) => {
             >
                 {hidden && hidden.length > 0 ? (
                     hidden.map((item, i) => {
-                        const index = questions.indexOf(item)
+                        const subIndex = questions.indexOf(item)
                         const title = item.title !== undefined ? (
                             item.title.length > 30
                                 ? `${item.title.slice(0, 29)}...`
@@ -157,7 +142,7 @@ const EachOptionShows = ({ index }) => {
                                     <Grid item>
                                         <Typography color="primary">
                                             <Box fontWeight="fontWeightBold">
-                                                {`v${index + 1}`}
+                                                {`v${subIndex + 1}`}
                                             </Box>
                                         </Typography>
                                         {title}

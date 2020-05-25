@@ -8,7 +8,6 @@ import React, {useEffect, useState} from "react";
 import {alignInGrid} from "./LandingPage";
 import {API_STATUS} from "../../features/API/ApiHandler";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import {auth_config} from "../../features/API/auth_config";
 import {useAuth0} from "../react-auth0-spa";
 

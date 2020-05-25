@@ -13,11 +13,6 @@ const useStyles = makeStyles(theme => ({
 
 const TextArea = ({question}) => {
     const classes = useStyles();
-    const [value, setValue] = React.useState();
-
-    const handleChange = event => {
-        setValue(event.target.value);
-    };
 
     return (
         <form className={classes.root} noValidate autoComplete="off">

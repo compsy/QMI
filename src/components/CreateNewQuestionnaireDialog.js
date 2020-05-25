@@ -1,8 +1,8 @@
-import {Box, Button, Dialog, Divider, Grid, makeStyles, Paper, Typography} from "@material-ui/core";
-import React, {createElement, useState} from "react";
+import {Box, Button, Dialog, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
+import React, {useState} from "react";
 import TextField from "@material-ui/core/TextField";
 import {v4 as uuidv4} from "uuid";
-import TypeProperty from "./properties/TypeProperty";
+
 const useStyles = makeStyles((theme) => ({
     body: {
         padding: theme.spacing(2),

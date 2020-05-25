@@ -36,13 +36,13 @@ function QuestionArea(props) {
                                     <li>{item.label}</li>
                                 ) : (
                                     <Draggable draggableId={item.id} index={index}>
-                                        {(provided, snapshot) => (
+                                        {(subProvided, subSnapshot) => (
                                             <React.Fragment>
                                                 <li
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                    className={snapshot.isDragging ? "dragging" : ""}
+                                                    ref={subProvided.innerRef}
+                                                    {...subProvided.draggableProps}
+                                                    {...subProvided.dragHandleProps}
+                                                    className={subSnapshot.isDragging ? "dragging" : ""}
                                                 >
                                                     {item.label}
                                                 </li>

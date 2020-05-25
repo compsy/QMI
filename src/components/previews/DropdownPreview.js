@@ -34,8 +34,6 @@ const DropdownPreview = ({question}) => {
         setOpen(true);
     };
 
-    let index = 1;
-
     return (
         <div>
             <FormControl className={classes.formControl}>
@@ -49,9 +47,9 @@ const DropdownPreview = ({question}) => {
                     value={option}
                     onChange={handleChange}
                 >
-                    {question.options.map((option, index) =>
-                        <MenuItem key={option + (index + 1)} value={index + 1}>
-                            <em>{typeof option === "string" ? option : option.title}</em>
+                    {question.options.map((questionOption, questionIndex) =>
+                        <MenuItem key={questionOption + (questionIndex + 1)} value={questionIndex + 1}>
+                            <em>{typeof questionOption === "string" ? questionOption : questionOption.title}</em>
                         </MenuItem>
                     )}
 

@@ -1,5 +1,5 @@
 // src/react-auth0-spa.js
-import React, { useState, useEffect, useContext } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import createAuth0Client from "@auth0/auth0-spa-js";
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
@@ -28,13 +28,13 @@ export const Auth0Provider = ({
         onRedirectCallback(appState);
       }
 
-      const isAuthenticated = await auth0FromHook.isAuthenticated();
+        const isAuthenticated2 = await auth0FromHook.isAuthenticated();
 
-      setIsAuthenticated(isAuthenticated);
+        setIsAuthenticated(isAuthenticated2);
 
       if (isAuthenticated) {
-        const user = await auth0FromHook.getUser();
-        setUser(user);
+          const subUser = await auth0FromHook.getUser();
+          setUser(subUser);
       }
 
       setLoading(false);
@@ -44,26 +44,26 @@ export const Auth0Provider = ({
   }, []);
 
   const loginWithPopup = async (params = {}) => {
-    setPopupOpen(true);
-    try {
-      await auth0Client.loginWithPopup(params);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setPopupOpen(false);
-    }
-    const user = await auth0Client.getUser();
-    setUser(user);
-    setIsAuthenticated(true);
+      setPopupOpen(true);
+      try {
+          await auth0Client.loginWithPopup(params);
+      } catch (error) {
+          console.error(error);
+      } finally {
+          setPopupOpen(false);
+      }
+      const subUser = await auth0Client.getUser();
+      setUser(subUser);
+      setIsAuthenticated(true);
   };
 
   const handleRedirectCallback = async () => {
-    setLoading(true);
-    await auth0Client.handleRedirectCallback();
-    const user = await auth0Client.getUser();
-    setLoading(false);
-    setIsAuthenticated(true);
-    setUser(user);
+      setLoading(true);
+      await auth0Client.handleRedirectCallback();
+      const subUser = await auth0Client.getUser();
+      setLoading(false);
+      setIsAuthenticated(true);
+      setUser(subUser);
   };
   return (
     <Auth0Context.Provider

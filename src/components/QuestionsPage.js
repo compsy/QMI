@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {useEffect} from 'react'
 import {CssBaseline, Grid, makeStyles} from "@material-ui/core";
 import {DragDropContext} from "react-beautiful-dnd";
 import "./index.css";
@@ -11,11 +11,7 @@ import {CLONE, REORDER, SET_QUESTIONS} from "../features/questions/questionsSlic
 import {SET_UTILITIES} from "../features/utilities/utilitiesSlice";
 import ScrollArrow from "../ScrollArrow";
 import store from "../app/store";
-import Button from '@material-ui/core/Button'
-import WatchTutorial from '../WatchTutorial'
-import HelpIcon from '@material-ui/icons/Help'
 
-const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
     root: {
         display: "flex"
@@ -66,14 +62,6 @@ const QuestionsPage = () => {
         localStorage.setItem("qmi-data", JSON.stringify(questions));
         localStorage.setItem("qmi-utilities", JSON.stringify(store.getState().utilities))
     }, [questions]);
-
-    // const useModal = () => {
-    //     const [isOpen, setOpen] = useState(false);
-    //     return [isOpen, () => setOpen(!isOpen)];
-    //
-    // }
-
-    // const [isOpen, onOpenModal] = useModal();
 
     return (
         <div className={classes.root}>

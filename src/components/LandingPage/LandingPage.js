@@ -1,5 +1,5 @@
-import {makeStyles, Typography} from "@material-ui/core";
-import React, {useEffect, useState} from "react";
+import {makeStyles} from "@material-ui/core";
+import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import {QuestionnaireDetails} from "./QuestionnaireDetails";
 import {QuestionnaireList} from "./QuestionnaireList";

@@ -1,11 +1,11 @@
 import React from "react";
 import {IconButton, Tooltip} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import {useDispatch, useSelector} from "react-redux";
-import {REMOVE_QUESTION, REMOVE_BY_MAP} from "../../features/questions/questionsSlice";
-import { clearMapWithQuestion } from "../properties/postprocessor";
+import {useDispatch} from "react-redux";
+import {REMOVE_BY_MAP, REMOVE_QUESTION} from "../../features/questions/questionsSlice";
+import {clearMapWithQuestion} from "../properties/postprocessor";
 import store from "../../app/store";
-import { removeByKey } from "../../features/utilities/utilitiesSlice";
+import {removeByKey} from "../../features/utilities/utilitiesSlice";
 
 const RemoveQuestionButton = ({question, index}) => {
     const dispatch = useDispatch();

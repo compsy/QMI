@@ -33,8 +33,6 @@ export const TextProperty = ({
         );
     };
 
-    const classes = useStyles();
-
     return (
         // <Paper className={classes.paper} variant="outlined">
         <FormControl fullWidth required={required}>

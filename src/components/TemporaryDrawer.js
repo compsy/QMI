@@ -98,12 +98,12 @@ export const TemporaryDrawer = ({layout}) => {
         return layout.map((element, index) => renderElement(element, index))
     };
 
-    const toggleDrawer = (open) => (event) => {
+    const toggleDrawer = (open2) => (event) => {
         if (event.type === 'keydown' && event.key === 'Escape') {
             setOpen(false);
             return;
         }
-        setOpen(open);
+        setOpen(open2);
     };
 
     const list = () => {

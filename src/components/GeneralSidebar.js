@@ -5,7 +5,6 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import TestApiSection from "./TestApiSection";
 import React from "react";
 import HomeIcon from '@material-ui/icons/Home';
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Box from "@material-ui/core/Box";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
@@ -37,7 +36,7 @@ export const GeneralSidebar = ({setShowCreateQuestionnaire = SET_SHOW_CREATE_QUE
             {custom: <TestApiSection key={"TestApi"} getIdTokenClaims={getIdTokenClaims}/>}
         ];
     };
-    return <TemporaryDrawer layout={generateLayout(user)}/>
+    return <TemporaryDrawer layout={generateLayout()}/>
 };
 
 export function getUserCard(isAuthenticated, user, loading){

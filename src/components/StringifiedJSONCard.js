@@ -1,41 +1,19 @@
 import React from 'react'
 import {Card, Typography} from '@material-ui/core';
 import {useSelector} from 'react-redux';
-import { useEffect } from 'react';
 
 const StringifiedJSONCard = () => {
     // const { questions } = useContext(QuestionnaireContext);
     const questions = useSelector(state => state.questions);
     // formats the ids
     let count = 0;
-    const toPrint = questions.map((question, index) => {
-        // subtract cumulative count of raws
-        if (question.type === "raw") {
-            count++;
-            return {
-                ...question,
-                id: undefined,
-            };
-        } else {
-            return {
-                ...question,
-                id: `v${index + 1 - count}`
-            }
-        }
-        // return {
-        //     ...question,
-        //     id: question.type === "raw" ? undefined : `v${index + 1}`
-        // };
-    });
 
-    const toPrint2 = () => {
+    const toPrint = () => {
         let toProcess = JSON.parse(JSON.stringify(questions))
-
-        let count = 0;
         let idMap = {};
 
         // idMap generation
-        for (let i=0; i<questions.length; i++) {
+        for (let i = 0; i < questions.length; i++) {
             if (questions[i].type === "raw") {
                 count++;
                 idMap = {...idMap, [questions[i].id]: undefined}
@@ -90,7 +68,7 @@ const StringifiedJSONCard = () => {
                 overflow: "scroll"
             }}
         >
-            <Typography id = {"jsonText"} variant="body2">{JSON.stringify(toPrint2())}</Typography>
+            <Typography id={"jsonText"} variant="body2">{JSON.stringify(toPrint())}</Typography>
         </Card>
     );
 };

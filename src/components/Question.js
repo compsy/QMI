@@ -1,11 +1,5 @@
 import React, {useState} from "react";
-import {
-    Divider,
-    ExpansionPanel,
-    ExpansionPanelDetails,
-    Grid,
-    Typography,
-} from "@material-ui/core";
+import {Divider, ExpansionPanel, ExpansionPanelDetails, Grid, Typography,} from "@material-ui/core";
 import RemoveQuestionButton from "./buttons/RemoveQuestionButton";
 import EditQuestionButton from "./buttons/EditQuestionButton";
 import RadioCheckboxPreview from "./previews/RadioCheckboxPreview";
@@ -23,6 +17,7 @@ import "./index.css";
 import RawPreview from "./previews/RawPreview";
 import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
 import {Summary} from './Summary'
+
 const Question = ({index, question, ...props}) => {
     const [open, setOpen] = useState(false);
 
@@ -163,7 +158,7 @@ const Details = ({question, index}) => {
                 >
                     {(() => {
                         if (question.type === "raw") {
-                            return;
+
                         } else {
                             return (
                                 <div>

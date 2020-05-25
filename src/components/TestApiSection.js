@@ -1,7 +1,6 @@
 import Button from "@material-ui/core/Button";
 import React from "react";
 import {auth_config} from "../features/API/auth_config";
-import {API_STATUS} from "../features/API/ApiHandler";
 
 
 function TestApiSection({getIdTokenClaims}){
@@ -45,7 +44,7 @@ function TestApiSection({getIdTokenClaims}){
             key: "teest",
             title: "test"
         }
-        createNewQuestionnaireAsync(questionnaire);
+        await createNewQuestionnaireAsync(questionnaire);
     }
     return <>
         <h1>Api Test</h1>

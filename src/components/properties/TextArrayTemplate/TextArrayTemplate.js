@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // main file for src/components/properties/TextArrayTemplate
-const TextArrayTemplate = ({name, propertyName}) => {
+const TextArrayTemplate = ({propertyName}) => {
     const property = useSelector(selectProperty(propertyName));
     const dispatch = useDispatch();
 

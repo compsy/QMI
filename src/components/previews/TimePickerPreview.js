@@ -6,11 +6,8 @@ import {MuiPickersUtilsProvider,} from '@material-ui/pickers';
 import TextField from "@material-ui/core/TextField";
 
 
-const TimerPickerPreview = ({question}) => {
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-    const handleDateChange = date => {
-        setSelectedDate(date);
-    };
+const TimerPickerPreview = () => {
+
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container justify="space-around">
