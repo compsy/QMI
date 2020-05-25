@@ -13239,10 +13239,10 @@ react-transition-group@^4.0.0, react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-use-auth0@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-use-auth0/-/react-use-auth0-1.0.0.tgz#cf681e87bfe7e03ef00a3797a3836c7661611b43"
-  integrity sha512-SX0LgLFNaK5WIqrs/Tm067BThPXTnZmMUvz6OHngYC6scx+rdxNyyLJDK6rU4H1O0In02aT78PUqShWuTpFDeQ==
+react-use-auth0@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-use-auth0/-/react-use-auth0-1.1.0.tgz#2f9547071c0a302474b86c631c1e89c9c600d4b7"
+  integrity sha512-nI9OtguwTVBiNLT9DHr1SOxt2OYTh+7X9uBRjLL6oGjNiGPHNKqvEqMKr6k9PD2zJJIirFYYQtIc8TTOi9NHDA==
   dependencies:
     "@auth0/auth0-spa-js" "^1.7.0"
     react-async-hook "^3.6.1"
