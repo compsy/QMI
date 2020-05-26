@@ -11,7 +11,6 @@ import history from "./utils/history";
 import Profile from "./components/Profile";
 import {Link, Route, Router, Switch} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
-import {CreateNewQuestionnaireDialog} from "./components/CreateNewQuestionnaireDialog";
 import {auth_config} from "./features/API/auth_config";
 import GeneralSidebar from "./components/GeneralSidebar";
 import Button from "@material-ui/core/Button";
@@ -49,7 +48,6 @@ function App() {
     const [theme, toggleDarkMode] = useDarkMode();
     const themeConfig = createMuiTheme(theme);
     const classes = useStyles();
-    const [showCreateQuestionnaire, setShowCreateQuestionnaire] = useState(false);
     return (
         <Auth0Provider
             domain={auth_config.domain}
@@ -68,7 +66,7 @@ function App() {
                             <AppBar className={classes.appBar}>
                                 <Toolbar>
                                     <Router history={history}>
-                                        <GeneralSidebar setShowCreateQuestionnaire={setShowCreateQuestionnaire}/>
+                                        <GeneralSidebar/>
                                         <Switch/>
                                     </Router>
                                     <Typography variant="h6" className={classes.title}>
@@ -90,11 +88,6 @@ function App() {
                                     </Typography>
                                 </Toolbar>
                             </AppBar>
-
-                            {showCreateQuestionnaire &&
-                            <CreateNewQuestionnaireDialog open={showCreateQuestionnaire}
-                                                          setOpen={setShowCreateQuestionnaire}/>
-                            }
                             <Router history={history}>
                                 <Route path="/" exact>
                                     <QuestionsPage/>

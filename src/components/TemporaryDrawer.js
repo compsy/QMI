@@ -98,7 +98,8 @@ export const TemporaryDrawer = ({layout}) => {
                 const className = element.hasOwnProperty('className') ? element.className : "this";
 
                 return <ListItem button key={element.title + index} to={element.redirect}
-                                 className={className} component={NavLink}>
+                                 className={className} component={NavLink}
+                >
                     <ListItemIcon >{element.icon}</ListItemIcon>
                     <ListItemText primary={element.title}/>
                 </ListItem>
