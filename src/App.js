@@ -51,9 +51,6 @@ function App() {
     const classes = useStyles();
     const [showCreateQuestionnaire, setShowCreateQuestionnaire] = useState(false);
     return (
-
-
-
         <Auth0Provider
             domain={auth_config.domain}
             client_id={auth_config.clientId}
@@ -71,13 +68,8 @@ function App() {
                             <AppBar className={classes.appBar}>
                                 <Toolbar>
                                     <Router history={history}>
-                                        <Switch>
-                                            <Route path="/"exact/>
-                                            <Route path="/profile" component={Profile}/>
-                                        </Switch>
-                                    <GeneralSidebar setShowCreateQuestionnaire={setShowCreateQuestionnaire}/>
-                                        <Switch>
-                                        </Switch>
+                                        <GeneralSidebar setShowCreateQuestionnaire={setShowCreateQuestionnaire}/>
+                                        <Switch/>
                                     </Router>
                                     <Typography variant="h6" className={classes.title}>
                                         Questionnaire Interface
@@ -104,15 +96,14 @@ function App() {
                                                           setOpen={setShowCreateQuestionnaire}/>
                             }
                             <Router history={history}>
+                                <Route path="/" exact>
+                                    <QuestionsPage/>
+                                </Route>
                                 <Route path="/home">
                                     <LandingPage/>
                                 </Route>
                             </Router>
-                            <Router history={history}>
-                                <Route path="/questions">
-                                    <QuestionsPage/>
-                                </Route>
-                            </Router>
+
                         </div>
                     </MuiThemeProvider>
                 </div>

@@ -16,6 +16,23 @@ import {useAuth0} from "../react-auth0-spa";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+
+const LOCALE_EN = {
+    retrievingQuestionnaires: "Retrieving questionnaires",
+    serverCannotBeReached: "The server cannot be reached.",
+    noAdminError: "You need to be an admin to use this feature.",
+    noQuestionnaires: "No questionnaires are available.",
+    loggingIn: "Logging in",
+}
+
+const LOCALE_NL = {
+    retrievingQuestionnaires: "Vragenlijsten ophalen",
+    serverCannotBeReached: "De server kan niet worden bereikt..",
+    noAdminError: "Administrator rechten zijn vereist.",
+    noQuestionnaires: "Er zijn geen vragenlijsten beschikbaar.",
+    loggingIn: "Inloggen",
+}
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -30,7 +47,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
 export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
+    const locale = LOCALE_EN;
+
     const classes = useStyles();
     const {isAuthenticated, getIdTokenClaims, loading} = useAuth0();
     const [questionnaireListState, setQuestionnaireListState] = useState({status: API_STATUS.INIT, body: []});
@@ -52,7 +73,7 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
         if(!isAuthenticated){
             return;
         }
-        setQuestionnaireListState({status: API_STATUS.LOADING, body: "Retrieving questionnaires"});
+        setQuestionnaireListState({status: API_STATUS.LOADING, body: locale.retrievingQuestionnaires});
         const errorCatcher = error => {
             setQuestionnaireListState({status: API_STATUS.ERROR, body: error.message()});
         };
@@ -61,12 +82,16 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
             getAllQuestionnairesAsync()
                 .then(response => {
                     if(response.error && response.error.message.includes("NetworkError")){
-                        setQuestionnaireListState({status: API_STATUS.ERROR, body: "The server cannot be reached."})
+                        setQuestionnaireListState({status: API_STATUS.ERROR, body: locale.serverCannotBeReached});
                         return;
                     }
                     if(response.error){
-                        setQuestionnaireListState({status: API_STATUS.ERROR, body: response.message()});
+                        setQuestionnaireListState({status: API_STATUS.ERROR, body:
+                            `${locale.noAdminError} (Error code: ${response.code})`});
+                        return;
                     }
+
+                    console.log("call")
                     setQuestionnaireListState({status: API_STATUS.IDLE, body: response.body});
                 })
         }catch(error){
@@ -74,11 +99,12 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
         }
 
     }
+
     const renderStatusMessage = (status) =>{
-        console.log(status);
+
         if(questionnaireListState.status === API_STATUS.IDLE && questionnaireListState.body === []){
             return <Alert severity="info">
-                <AlertTitle>No questionnaires are available.</AlertTitle>
+                <AlertTitle>{locale.noQuestionnaires}</AlertTitle>
             </Alert>
         }
 
@@ -87,7 +113,7 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
                 <AlertTitle>Info </AlertTitle>
                 <Grid container spacing={3}>
                     <Grid item><CircularProgress size={20}/></Grid>
-                    <Grid item>Logging in</Grid>
+                    <Grid item>{locale.loggingIn}</Grid>
                 </Grid>
 
             </Alert>
@@ -130,7 +156,7 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
     }
 
     const QuestionnaireCard = ({questionnaire}) => {
-        return <Card className={classes.card}>
+        return <Paper elevation={4}><Card className={classes.card}>
             <CardActionArea type="button" onClick={() => setCurrentQuestionnaireKey(questionnaire.key)}>
                 <CardContent>
                     <Typography className={classes.title} variant="h3">{questionnaire.title}</Typography>
@@ -144,7 +170,7 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
                     <EditIcon/>
                 </IconButton>
             </CardActions>
-        </Card>
+        </Card></Paper>
     }
 
     return renderStatusMessage(questionnaireListState.status);

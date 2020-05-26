@@ -17,8 +17,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const LOCALE_EN = {
+    noQuestionnaireTitle: "No questionnaire is selected.",
+    noQuestionnaireSubtitle: "Please click one of the questionnaires listed on the left to view details.",
+    editQuestionnaireButtonText: "Edit Questionnaire",
+    questionnaireDetailsTitle: "Questionnaire Details",
+    questions: "questions",
+    answers: "answers"
+}
 
 export const QuestionnaireDetails = ({questionnaireKey}) => {
+    const locale = LOCALE_EN;
     const {getIdTokenClaims, isAuthenticated} = useAuth0();
     const [questionnaireState, setQuestionnaireState] = useState({status: API_STATUS.INIT, body: null});
 
@@ -59,8 +68,8 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
     switch (questionnaireState.status){
         case API_STATUS.INIT:
             return <Wrapper
-                title={"No questionnaire is selected."}
-                subtitle={"Please click one of those listed on the left to view details."}
+                title={locale.noQuestionnaireTitle}
+                subtitle={locale.noQuestionnaireSubtitle}
             />
         case API_STATUS.LOADING:
             return <Wrapper>
@@ -77,7 +86,8 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
             return <Wrapper
                 title={questionnaire.name}
                 subtitle={"key: " + questionnaire.key}
-                extra={questionnaire.content.questions.length + " questions " + questionnaire.content.scores.length + " answers"}
+                extra={
+                    `${questionnaire.content.questions.length} ${locale.questions} | ${questionnaire.content.scores.length} ${locale.answers}.`}
                 editAvailable
             />
     }
@@ -86,9 +96,11 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
 
 const Wrapper = ({title = "", subtitle = "", extra = "", editAvailable = false, ...props}) => {
     const classes = useStyles();
+    const locale = LOCALE_EN;
     return <Card className={classes.card}>
         <CardContent>
-            {alignInGrid(1, <InfoIcon/>, <Typography color="textSecondary" gutterBottom>Questionnaire details
+            {alignInGrid(1, <InfoIcon/>, <Typography color="textSecondary" gutterBottom>
+                {locale.questionnaireDetailsTitle}
             </Typography>)}
             <Typography variant="h5" component="h2">
                 {title}

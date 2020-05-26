@@ -19,35 +19,30 @@ import {
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 
-
-
 const SET_SHOW_CREATE_QUESTIONNAIRE_PLACEHOLDER = () => {};
-
-export function printt() {
-    console.log("Go to landing page");
-}
 
 export const GeneralSidebar = ({setShowCreateQuestionnaire = SET_SHOW_CREATE_QUESTIONNAIRE_PLACEHOLDER}) => {
     const {isAuthenticated, loginWithRedirect, logout, user, getIdTokenClaims, loading} = useAuth0();
+
     function getUserButton() {
         return isAuthenticated ?
                 {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: logout}
                 : {title: 'Log In', icon: <ExitToAppIcon/>, onClick: loginWithRedirect}
     }
-
-    const getUserCardLayout = () =>{
-        return {custom: getUserCard(isAuthenticated, user, loading)};
-    };
+    function getUserCard(isAuthenticated, user, loading){
+        if(loading) return <Box justifyContent="center"><LinearProgress variant="query"/></Box>
+        return isAuthenticated ?  <UserInformationCard key={"user information card"} user={user}/>
+        : <> </>
+    }
 
     const generateLayout = () =>{
         return [
             {custom: <Header key={"header"}/>},
-            getUserCardLayout(),
+            {custom: getUserCard(isAuthenticated, user, loading)},
             {isDivider: true},
-            // {title: 'Home', icon: <HomeIcon component={Link} to={"/home"}/>, onClick: () => {printt()}, },
             {custom:<Button className={"this"} component={Link} to={"/home"}>Home</Button>},
             {isDivider: true},
-            {custom:<Button className={"this"} component={Link} to={"/questions"}>Question</Button>},
+            {custom:<Button className={"this"} component={Link} to={"/"}>Question</Button>},
             {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {setShowCreateQuestionnaire(true)}},
             {isDivider: true},
             getUserButton(),
@@ -57,11 +52,5 @@ export const GeneralSidebar = ({setShowCreateQuestionnaire = SET_SHOW_CREATE_QUE
     };
     return <TemporaryDrawer layout={generateLayout()}/>
 };
-
-export function getUserCard(isAuthenticated, user, loading){
-    if(loading) return <Box justifyContent="center"><LinearProgress variant="query"/></Box>;
-    return isAuthenticated ?  <UserInformationCard key={"user information card"} user={user}/> : <> </>
-
-}
 
 export default GeneralSidebar

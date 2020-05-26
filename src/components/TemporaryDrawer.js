@@ -59,11 +59,11 @@ export const UserInformationCard = ({user}) => {
     const classes = useStyles();
     return <Card className={classes.header}>
         <CardHeader
-            // avatar={
-            //     <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
-            // }
-            // title={user.name + ` (${user.nickname})`}
-            // subheader={user.email}
+            avatar={
+                <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
+            }
+                title={user.name + ` (${user.nickname})`}
+            subheader={user.email}
         />
     </Card>
 }
@@ -80,9 +80,6 @@ Layouts are structured in an array containing JSON objects:
      {custom: <RenderedReactComponent>} : For adding a custom react component or sub-layout.
 */
 
-function linkTo() {
-    return <Link></Link>
-}
 
 export const TemporaryDrawer = ({layout}) => {
     const classes = useStyles();
@@ -94,6 +91,8 @@ export const TemporaryDrawer = ({layout}) => {
                 return <Divider key={'divider' + index}/>
             } else if (element.hasOwnProperty('custom')) {
                 return element.custom;
+            }else if(element.hasOwnProperty('navButton')){
+                
             }
             return <ListItem button key={element.title + index} onClick={element.onClick}>
                 <ListItemIcon >{element.icon}</ListItemIcon>
