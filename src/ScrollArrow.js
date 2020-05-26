@@ -37,7 +37,6 @@ const ScrollArrow = () => {
             <HelpIcon data-cy="openTutorial" onClick={onOpenModal} style={{height: 80}}/>
             <WatchTutorial data-cy="maybe" isOpen={isOpen} toggleModal={onOpenModal}/>
 
-
         </div>
 
     );

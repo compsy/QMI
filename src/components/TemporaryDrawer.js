@@ -14,6 +14,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
+import Link from "@material-ui/core/Link";
 
 
 const useStyles = makeStyles(() => ({
@@ -58,11 +59,11 @@ export const UserInformationCard = ({user}) => {
     const classes = useStyles();
     return <Card className={classes.header}>
         <CardHeader
-            avatar={
-                <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
-            }
-            title={user.name + ` (${user.nickname})`}
-            subheader={user.email}
+            // avatar={
+            //     <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
+            // }
+            // title={user.name + ` (${user.nickname})`}
+            // subheader={user.email}
         />
     </Card>
 }
@@ -70,7 +71,7 @@ export const UserInformationCard = ({user}) => {
 
 
 /* The left sidebar.
-Layouts are strucutred in an array containing JSON objects:
+Layouts are structured in an array containing JSON objects:
      title: string containing the text of the element
      icon: a valid Material UI icon component
      onClick: a lambda expression containing the click handler for the element*
@@ -78,6 +79,11 @@ Layouts are strucutred in an array containing JSON objects:
      {isDivider: true}                  : For adding a divider to the layout
      {custom: <RenderedReactComponent>} : For adding a custom react component or sub-layout.
 */
+
+function linkTo() {
+    return <Link></Link>
+}
+
 export const TemporaryDrawer = ({layout}) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
@@ -90,7 +96,7 @@ export const TemporaryDrawer = ({layout}) => {
                 return element.custom;
             }
             return <ListItem button key={element.title + index} onClick={element.onClick}>
-                <ListItemIcon>{element.icon}</ListItemIcon>
+                <ListItemIcon >{element.icon}</ListItemIcon>
                 <ListItemText primary={element.title}/>
             </ListItem>
         };

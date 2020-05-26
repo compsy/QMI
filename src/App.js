@@ -9,11 +9,14 @@ import store from "./app/store";
 import {Auth0Provider} from "./components/react-auth0-spa";
 import history from "./utils/history";
 import Profile from "./components/Profile";
-import {Route, Router, Switch} from "react-router-dom";
+import {Link, Route, Router, Switch} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
 import {CreateNewQuestionnaireDialog} from "./components/CreateNewQuestionnaireDialog";
 import {auth_config} from "./features/API/auth_config";
 import GeneralSidebar from "./components/GeneralSidebar";
+import Button from "@material-ui/core/Button";
+import HomeIcon from "@material-ui/icons/Home";
+import {LandingPage} from "./components/LandingPage/LandingPage";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -48,6 +51,9 @@ function App() {
     const classes = useStyles();
     const [showCreateQuestionnaire, setShowCreateQuestionnaire] = useState(false);
     return (
+
+
+
         <Auth0Provider
             domain={auth_config.domain}
             client_id={auth_config.clientId}
@@ -57,6 +63,7 @@ function App() {
             responseType={auth_config.responseType}
             scope={auth_config.scope}
         >
+
             <Provider store={store}>
                 <div className="content">
                     <MuiThemeProvider theme={themeConfig}>
@@ -65,11 +72,13 @@ function App() {
                                 <Toolbar>
                                     <Router history={history}>
                                         <Switch>
-                                            <Route path="/" exact/>
+                                            <Route path="/"exact/>
                                             <Route path="/profile" component={Profile}/>
                                         </Switch>
-                                    </Router>
                                     <GeneralSidebar setShowCreateQuestionnaire={setShowCreateQuestionnaire}/>
+                                        <Switch>
+                                        </Switch>
+                                    </Router>
                                     <Typography variant="h6" className={classes.title}>
                                         Questionnaire Interface
                                     </Typography>
@@ -89,11 +98,21 @@ function App() {
                                     </Typography>
                                 </Toolbar>
                             </AppBar>
+
                             {showCreateQuestionnaire &&
                             <CreateNewQuestionnaireDialog open={showCreateQuestionnaire}
                                                           setOpen={setShowCreateQuestionnaire}/>
                             }
-                            <QuestionsPage/>
+                            <Router history={history}>
+                                <Route path="/home">
+                                    <LandingPage/>
+                                </Route>
+                            </Router>
+                            <Router history={history}>
+                                <Route path="/questions">
+                                    <QuestionsPage/>
+                                </Route>
+                            </Router>
                         </div>
                     </MuiThemeProvider>
                 </div>

@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {CookiesProvider} from "react-cookie";
+import LandingApp from "./LandingApp";
+import history from "./utils/history";
+import {Router} from "react-router-dom";
 
 ReactDOM.render(
     <React.StrictMode>
