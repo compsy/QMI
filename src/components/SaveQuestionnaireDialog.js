@@ -1,12 +1,14 @@
 import {Box, Button, Dialog, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
 import React, {useState} from "react";
 import TextField from "@material-ui/core/TextField";
-import {useAuth0} from "./components/react-auth0-spa";
-import {useSelector} from "react-redux";
-import {API_STATUS} from "./features/API/ApiHandler";
-import {auth_config} from "./features/API/auth_config";
+import {useAuth0} from "./react-auth0-spa";
+import {useDispatch, useSelector} from "react-redux";
+import {API_STATUS} from "../features/API/ApiHandler";
+import {auth_config} from "../features/API/auth_config";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
+import {SET_METADATA} from "../features/questionnaire/questionnaireMetadataSlice";
+import {GENERATE_INITIAL_QUESTIONNAIRE_METADATA_CONTEXT} from "../utils";
 
 const useStyles = makeStyles((theme) => ({
     body: {
@@ -88,13 +90,16 @@ const DialogHeader = ({state, ...props}) => {
 
 
 export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
-    const [name, setName] = useState("Untitled Questionnaire");
-    const [title, setTitle] = useState("Untitled Questionnaire");
-    const [key, setKey] = useState("untitledquestionnaire");
     const classes = useStyles();
+    const metadata = useSelector(state => state.questionnaireMetadata);
+    const questions = useSelector(state => state.questions);
+    const [name, setName] = useState(metadata.name);
+    const [title, setTitle] = useState(metadata.title);
+    const [key, setKey] = useState(metadata.key);
     const {isAuthenticated, getIdTokenClaims} = useAuth0();
-    const questions = useSelector(state2 => state2.questions);
     const [state, setState] = useState({status: API_STATUS.INIT, body: null});
+    const dispatch = useDispatch();
+    console.log(metadata);
 
     const handleClose = () =>{
         setOpen(false);
@@ -102,9 +107,7 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
 
     }
     const resetStates = () => {
-        setName("Untitled Questionnaire");
-        setKey("untitledquestionnaire");
-        setName("Untitled Questionnaire");
+        dispatch(SET_METADATA({metadata: GENERATE_INITIAL_QUESTIONNAIRE_METADATA_CONTEXT()}));
         setState({status: API_STATUS.INIT, body: null});
     }
 
@@ -163,11 +166,12 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
         callCreateQuestionnaire(questionnaire);
     }
 
-    const generateTextField = (attributeName, attributeSetter) => {
+    const generateTextField = (attributeName, attributeSetter, attributeState) => {
         return <TextField fullWidth id="filled-basic" label={attributeName} variant="filled"
                           required
                           error={errorInAttribute(attributeName)}
                           helperText={errorInAttribute(attributeName) ? state.body[attributeName] : null}
+                          defaultValue={attributeState}
                           onChange={(
                               e) => {attributeSetter(e.target.value)}}
         />
@@ -192,9 +196,9 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
                 >
                     <DialogHeader className={classes.header} state={state}/>
                     <Box p={2.5}>
-                        {generateTextField('name', setName)}
-                        {generateTextField('key', setKey)}
-                        {generateTextField('title', setTitle)}
+                        {generateTextField('name', setName, name)}
+                        {generateTextField('key', setKey, key)}
+                        {generateTextField('title', setTitle, title)}
                         {generateStatusFeedback()}
                     </Box>
                     <DialogFooter handleClose={handleClose} state={state} isAuthenticated={isAuthenticated}/>

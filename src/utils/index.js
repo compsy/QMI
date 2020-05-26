@@ -47,163 +47,7 @@ import {
     RadiusDensityComposite,
     WidthHeightComposite
 } from "../components/properties/OtherProperties";
-
-
-export const initial0 = {
-    id: "v1",
-    type: "radio",
-    title: "untitled",
-    // options: ["option 1", "option 2", "option 3", "option 4"],
-    options: [],
-};
-export const initial1 = {
-    section_start: "De hoofddoelen",
-    hidden: false,
-    id: "v1",
-    type: "radio",
-    required: true,
-    title: "untitled",
-    tooltip: "some tooltip",
-    options: ["option 1", "option 2", "option 3"],
-    show_otherwise: true,
-    otherwise_label: "Nee, omdat:",
-    otherwise_tooltip: "some tooltip",
-    section_end: true,
-};
-export const initial2 = {
-    section_start: "Capitals",
-    hidden: false,
-    id: "v1",
-    type: "radio",
-    required: true,
-    title: "What is the capital city of the Netherlands?",
-    tooltip: "Hint: It is not Berlin",
-    options: ["Den Haag", "Amsterdam", "Berlin", "Groningen"],
-    show_otherwise: true,
-    otherwise_label: "Nee, omdat:",
-    otherwise_tooltip: "some tooltip",
-    section_end: true,
-};
-export const initial3 = [
-    //   {id: 'v20', title: "Panda", type: "raw", content: '<p class="flow-text">Zie het voorbeeld hieronder:</p><img src="/images/begeleiders/omgeving.png" class="questionnaire-image" /><p class="flow-text">Geef voor de volgende antwoordopties aan of ze moeilijk of makkelijk te begrijpen waren.</p>'}
-    {
-        id: "v1",
-        type: "range",
-        title: "Hello BOI",
-        labels: ["option 1", "option 222", "option 3", "option 4"],
-    },
-    {
-        id: "v12",
-        type: "radio",
-        title: "Hello Kitty",
-        options: ["option 1", "option 22", "option 3", "option 4"],
-    },
-    {
-        id: "v2",
-        type: "checkbox",
-        title: "untitled checkbox",
-        options: ["option 1", "option 2", "option 3", "option 4"],
-    },
-    {
-        section_start: "De hoofddoelen",
-        hidden: true,
-        id: "v3",
-        type: "range",
-        min: 0,
-        max: 200,
-        step: 5,
-        title: "Was het voor jou duidelijk ?",
-        tooltip: "some tooltip",
-        labels: ["helemaal niet duidelijk", "heel duidelijk"],
-
-        // only since for debug rendering purposes, delete in final
-        // options: ['helemaal niet duidelijk', 'heel duidelijk'],
-        section_end: true,
-    },
-    {
-        id: "v4",
-        type: "likert",
-        title: "untitled likert",
-        options: [
-            {title: "hobby/sport"},
-            {title: "werk"},
-            {title: "vriendschap"},
-        ],
-    },
-    {
-        id: "v5",
-        type: "dropdown",
-        title: "untitled dropdown",
-        options: [
-            {title: "hobby/sport", numeric_value: 0},
-            {title: "werk", numeric_value: 25},
-            {title: "vriendschap", numeric_value: 50},
-        ],
-    },
-
-    {
-        section_start: "Tot slot",
-        hidden: true,
-        id: "v6",
-        type: "textarea",
-        title:
-            "Wat zou jij willen verbeteren aan de webapp die je de afgelopen drie weken hebt gebruikt?",
-        tooltip: "some tooltip",
-        placeholder: "Place holder",
-        section_end: true,
-    },
-
-    {
-        section_start: "De hoofddoelen",
-        hidden: true,
-        id: "v7",
-        type: "range",
-        min: 0,
-        max: 200,
-        step: 10,
-        title: "Was het voor jou duidelijk ?",
-        tooltip: "some tooltip",
-        labels: ["helemaal niet duidelijk", "heel duidelijk"],
-
-        // only since for debug rendering purposes, delete in final
-        // options: ['helemaal niet duidelijk', 'heel duidelijk'],
-        section_end: true,
-    },
-
-    {
-        section_start: "Tot slot",
-        hidden: true,
-        id: "v8",
-        type: "textfield",
-        title:
-            "Wat zou jij willen verbeteren aan de webapp die je de afgelopen drie weken hebt gebruikt?",
-        tooltip: "some tooltip",
-        default_value: "Niks",
-        pattern: "[a-z]{1,10}",
-        hint: "Must be a lowercase word between 1 and 10 characters in length",
-        placeholder: "Place holder",
-        section_end: true,
-    },
-    {
-        id: "v9",
-        type: "number",
-        title: "untitled number",
-        placeholder: 5132,
-        min: 10,
-        max: 100,
-        maxlength: 4,
-    },
-
-    {
-        id: "v10",
-        type: "time",
-        hours_from: 3,
-        hours_to: 6,
-        hours_step: 1,
-        title:
-            "Hoeveel tijd heb je deze week besteed aan de begeleiding van deze student movai pilon?",
-    },
-];
+import {v4 as uuidv4} from "uuid";
 
 export const QUESTION_TYPES = [
     {type: "checkbox", disabled: false},
@@ -221,22 +65,6 @@ export const QUESTION_TYPES = [
     {type: "dropdown", disabled: false},
     {type: "drawing", disabled: false},
 ];
-export const TYPE_ICONS = {
-    checkbox: <CheckBoxIcon/>,
-    radio: <RadioButtonCheckedIcon/>,
-    likert: <LinearScaleIcon/>,
-    range: <TuneIcon/>,
-    // raw: ,
-    textarea: <TextFieldsIcon/>,
-    textfield: <TextFormatIcon/>,
-    number: <Looks5TwoToneIcon/>,
-    // expandable: ,
-    time: <ScheduleIcon/>,
-    date: <DateRangeIcon/>,
-    // unsubscribe: ,
-    dropdown: <SelectIcon/>,
-    drawing: <GestureIcon/>,
-};
 
 // converts "section_start" to "Section_start"
 // converts "tooltip" to "Tooltip"
@@ -317,8 +145,6 @@ export const CLEAN_SUPER_QUESTION = {
     options: [],
     labels: [],
 };
-
-
 
 export const CLEAN_SUPER_OPTION = {
     title: undefined,
@@ -517,10 +343,17 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
     },
 };
 
+export const GENERATE_INITIAL_QUESTIONNAIRE_METADATA_CONTEXT = () => {
+    return {
+      key: uuidv4().replace(/-/g,"_"),
+      name: "Questionnaire " + uuidv4(),
+      title: "Untitled Questionnaire"
+    };
+}
+
+
 export const INITIAL_QUESTIONNAIRE_CONTEXT = [
-    // {id: uuidv4(), type: "range", title: "Hello BOI", labels: ["option 1", "option 2", "option 3", "option 4", "option5"]},
-    // {id: uuidv4(), type: "radio", title: "Hello Kitty", options: ["option 1", "option 2", "option 3", "option 4"]},
-    {
+  {
         id: 'v1',
         type: "raw",
         content: "<h4>Welcome to your new questionnaire!</h4>\n" +
@@ -529,27 +362,6 @@ export const INITIAL_QUESTIONNAIRE_CONTEXT = [
             "<p class=\"flow-textext\" style='font-size:medium;'>Click a question header to show details.</p>\n" +
             "<p class=\"flow-textext\" style='font-size:medium;'>Click render questionnaire to see the final output</p>\n"
     },
-    // {id: 'v3', type: "checkbox", title: "untitled checkbox", options: ["option 1", "option 2", "option 3", "option 4"]},
-    // {id: 'v4', type: "range", hidden: "true", title: "Hey Arnold", labels: ["passing rate"]},
-    // {
-    //     id: 'v5',
-    //     type: "raw",
-    //     content: "<p class=\"flow-text\">Hier staat een demo vragenlijst voor u klaar. Dit staat in een RAW tag</p>"
-    // },
-    // {
-    //     id: "v26",
-    //     type: "dropdown",
-    //     title: "dropdown",
-    //     label: "Hey",
-    //     tooltip: "Bye",
-    //     options: ["option 1", "option 2", "option 3", "option 4"]
-    // },
-    // {
-    //     id: "v32",
-    //     type: "radio",
-    //     shows_otherwise: "false",
-    //     title: "Voorbeeld van een radio",
-    //     options: [{title: "Ja", shows_question: ["v2"]}, {title: "Nee", shows_question: ["v4"]}]
-    // }
+
 ];
 

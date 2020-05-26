@@ -62,14 +62,7 @@ export const CreateNewQuestionnaireDialog = ({open, setOpen}) =>{
     }
 
     const handleSubmit = () => {
-        const key = uuidv4();
-        const content = {};
-        const emptyQuestionnaire = {
-            name: name,
-            content: content,
-            key: key,
-            title: name
-        }
+
         localStorage.clear();
         window.location.reload(true)
     }

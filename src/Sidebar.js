@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button";
 import { Provider, useDispatch } from 'react-redux'
 import {REMOVE_ALL, REMOVE_ALL_DATA} from "./features/questions/questionsSlice";
 import { SET_UTILITIES } from "./features/utilities/utilitiesSlice";
-import {SafeQuestionnaireDialog} from "./SaveQuestionnaireDialog";
+import {SafeQuestionnaireDialog} from "./components/SaveQuestionnaireDialog";
 
 function getStyle(style, snapshot) {
     if (!snapshot.isDropAnimating) {

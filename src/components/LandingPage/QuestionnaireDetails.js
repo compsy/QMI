@@ -10,6 +10,11 @@ import {API_STATUS} from "../../features/API/ApiHandler";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {auth_config} from "../../features/API/auth_config";
 import {useAuth0} from "../react-auth0-spa";
+import {Link} from "react-router-dom";
+import {SET_QUESTIONS} from "../../features/questions/questionsSlice";
+
+import {useDispatch, useSelector} from "react-redux";
+import {SET_METADATA} from "../../features/questionnaire/questionnaireMetadataSlice";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -30,7 +35,14 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
     const locale = LOCALE_EN;
     const {getIdTokenClaims, isAuthenticated} = useAuth0();
     const [questionnaireState, setQuestionnaireState] = useState({status: API_STATUS.INIT, body: null});
+    const dispatch = useDispatch();
 
+    const loadQuestionnaireIntoState = () => {
+        localStorage.clear();
+        const questionnaire = questionnaireState.body;
+        dispatch(SET_QUESTIONS({questions: questionnaire.content.questions}));
+        dispatch(SET_METADATA({metadata: {key: questionnaire.key, name: questionnaire.name, title: questionnaire.title}}));
+    }
     const questionnaireKeyHasChanged =
         () => questionnaireState.status === API_STATUS.IDLE && questionnaireState.body.key !== questionnaireKey;
 
@@ -89,14 +101,16 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
                 extra={
                     `${questionnaire.content.questions.length} ${locale.questions} | ${questionnaire.content.scores.length} ${locale.answers}.`}
                 editAvailable
-            />
+                onClick={loadQuestionnaireIntoState}
+            > </Wrapper>
     }
 
 };
 
-const Wrapper = ({title = "", subtitle = "", extra = "", editAvailable = false, ...props}) => {
+const Wrapper = ({title = "", subtitle = "", extra = "", editAvailable = false, ...props}, loadQuestionnaireFunction = null) => {
     const classes = useStyles();
     const locale = LOCALE_EN;
+
     return <Card className={classes.card}>
         <CardContent>
             {alignInGrid(1, <InfoIcon/>, <Typography color="textSecondary" gutterBottom>
@@ -114,7 +128,9 @@ const Wrapper = ({title = "", subtitle = "", extra = "", editAvailable = false, 
             {props.children}
         </CardContent>
         <CardActions>
-            <Button disabled={!editAvailable} color="primary">Edit Questionnaire</Button>
+            <Button disabled={!editAvailable} color="primary" component={Link} to="/" {...props}>Edit Questionnaire</Button>
         </CardActions>
     </Card>
+
 };
+

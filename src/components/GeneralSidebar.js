@@ -5,6 +5,7 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import TestApiSection from "./TestApiSection";
 import React from "react";
 import HomeIcon from '@material-ui/icons/Home';
+import EditIcon from '@material-ui/icons/Edit';
 import Box from "@material-ui/core/Box";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import {
@@ -19,6 +20,7 @@ import {
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 
+
 const SET_SHOW_CREATE_QUESTIONNAIRE_PLACEHOLDER = () => {};
 
 export const GeneralSidebar = ({setShowCreateQuestionnaire = SET_SHOW_CREATE_QUESTIONNAIRE_PLACEHOLDER}) => {
@@ -30,7 +32,7 @@ export const GeneralSidebar = ({setShowCreateQuestionnaire = SET_SHOW_CREATE_QUE
                 : {title: 'Log In', icon: <ExitToAppIcon/>, onClick: loginWithRedirect}
     }
     function getUserCard(isAuthenticated, user, loading){
-        if(loading) return <Box justifyContent="center"><LinearProgress variant="query"/></Box>
+        if(loading) return <Box key="loading-icon" justifyContent="center"><LinearProgress variant="query"/></Box>
         return isAuthenticated ?  <UserInformationCard key={"user information card"} user={user}/>
         : <> </>
     }
@@ -40,9 +42,9 @@ export const GeneralSidebar = ({setShowCreateQuestionnaire = SET_SHOW_CREATE_QUE
             {custom: <Header key={"header"}/>},
             {custom: getUserCard(isAuthenticated, user, loading)},
             {isDivider: true},
-            {custom:<Button className={"this"} component={Link} to={"/home"}>Home</Button>},
+            {redirect: "/home", icon: <HomeIcon/>, title:"Home"},
             {isDivider: true},
-            {custom:<Button className={"this"} component={Link} to={"/"}>Question</Button>},
+            {redirect: "/", icon: <EditIcon/>, title:"Editor"},
             {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {setShowCreateQuestionnaire(true)}},
             {isDivider: true},
             getUserButton(),

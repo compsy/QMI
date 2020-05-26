@@ -11,6 +11,7 @@ import {CLONE, REORDER, SET_QUESTIONS} from "../features/questions/questionsSlic
 import {SET_UTILITIES} from "../features/utilities/utilitiesSlice";
 import ScrollArrow from "../ScrollArrow";
 import store from "../app/store";
+import uuid from "uuid/v1";
 
 const useStyles = makeStyles(theme => ({
     root: {

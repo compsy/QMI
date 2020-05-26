@@ -15,6 +15,8 @@ import Drawer from "@material-ui/core/Drawer";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import Link from "@material-ui/core/Link";
+import Button from "@material-ui/core/Button";
+import {NavLink} from "react-router-dom";
 
 
 const useStyles = makeStyles(() => ({
@@ -91,8 +93,15 @@ export const TemporaryDrawer = ({layout}) => {
                 return <Divider key={'divider' + index}/>
             } else if (element.hasOwnProperty('custom')) {
                 return element.custom;
-            }else if(element.hasOwnProperty('navButton')){
-                
+            }else if(element.hasOwnProperty('redirect')){
+                // inserting default values if a replacement has not been given
+                const className = element.hasOwnProperty('className') ? element.className : "this";
+
+                return <ListItem button key={element.title + index} to={element.redirect}
+                                 className={className} component={NavLink}>
+                    <ListItemIcon >{element.icon}</ListItemIcon>
+                    <ListItemText primary={element.title}/>
+                </ListItem>
             }
             return <ListItem button key={element.title + index} onClick={element.onClick}>
                 <ListItemIcon >{element.icon}</ListItemIcon>
