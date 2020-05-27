@@ -8,7 +8,7 @@ import {BottomSection} from "../BottomSection";
 import {TopSection} from "../TopSection";
 import {useDispatch, useSelector} from "react-redux";
 import {CLONE, REORDER, SET_QUESTIONS} from "../features/questions/questionsSlice";
-import {SET_UTILITIES} from "../features/utilities/utilitiesSlice";
+import {SET_UTILITIES, CLEAR_MAPS, addToMap} from "../features/utilities/utilitiesSlice";
 import ScrollArrow from "../ScrollArrow";
 import store from "../app/store";
 import uuid from "uuid/v1";
@@ -48,20 +48,52 @@ const QuestionsPage = () => {
     }, []);
     const classes = useStyles();
 
+    let count = 0;
     useEffect(() => {
-        const x = localStorage.getItem("qmi-data");
-        if (x !== null) {
-            // dispatch({ type: "SET_QUESTIONS", questions: JSON.parse(x)})
-            dispatch(SET_QUESTIONS({questions: JSON.parse(x)}))
+        if (count === 0) {
+            // computeMaps
+            dispatch(CLEAR_MAPS());
+            // 1) go through the questionnaire
+            for (let i=0; i<questions.length; i++) {
+                // 2) check if "radio" or "checkbox" type
+                if (questions[i].type === "radio" || questions[i].type === "checkbox") {
+                    // 3) go through the question's options
+                    for (let j=0; j<questions[i].options.length; j++) {
+                        // 4) check if "string" or "object" type
+                        if (typeof(questions[i].options[j]) === "object") {
+                            // 5) check if "shows_questions" or "hides_questions" is not undefined
+                            if (questions[i].options[j].shows_questions !== undefined && questions[i].options[j].shows_questions.length > 0) {
+                                // 6) go through the shows_questions and add to correct map
+                                for (let k=0; k<questions[i].options[j].shows_questions.length; k++) {
+                                    dispatch(addToMap({
+                                        type: 'showsMap',
+                                        key: questions[i].options[j].shows_questions[k],
+                                        value: { qid: questions[i].id, oid: questions[i].options[j].id },
+                                    }))
+                                }
+                                // 7) go through the hides_questions and add to correct map
+                                for (let k=0; k<questions[i].options[j].hides_questions.length; k++) {
+                                    dispatch(addToMap({
+                                        type: 'hidesMap',
+                                        key: questions[i].options[j].hides_questions[k],
+                                        value: { qid: questions[i].id, oid: questions[i].options[j].id },
+                                    }))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-        const y = localStorage.getItem("qmi-utilities");
-        if (y !== null) {
-            dispatch(SET_UTILITIES(JSON.parse(y)));
+        // localStorage.setItem("qmi-data", JSON.stringify(questions));
+        // *****
+        // localStorage.setItem("qmi-utilities", JSON.stringify(store.getState().utilities))
+        // dispatch(CLEAR_MAPS());
+        
+        return () => {
+            dispatch(CLEAR_MAPS());
+            // localStorage.clear();
         }
-    }, []);
-    useEffect(() => {
-        localStorage.setItem("qmi-data", JSON.stringify(questions));
-        localStorage.setItem("qmi-utilities", JSON.stringify(store.getState().utilities))
     }, [questions]);
 
     return (

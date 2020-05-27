@@ -43,6 +43,10 @@ export const utilitiesSlice = createSlice({
         SET_IDMAP: (state, action) => {
             state.idMap = action.payload
         },
+        CLEAR_MAPS: (state, action) => {
+            state.showsMap = {};
+            state.hidesMap = {};
+        }
     },
 })
 
@@ -52,7 +56,8 @@ export const {
     removeByKey,
     SET_UTILITIES,
     SET_SAVED,
-    SET_IDMAP
+    SET_IDMAP,
+    CLEAR_MAPS
 } = utilitiesSlice.actions
 
 export default utilitiesSlice.reducer

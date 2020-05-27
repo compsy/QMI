@@ -72,7 +72,34 @@ const duplicateQuestion = (action, state) => {
 };
 ```
 
-* **Editing questions** This feature enables the user to edit any question which has been previously created. Any corresponding fields to the type can be edited through this feature. 
+* **Editing questions** This feature enables the user to edit any question which has been previously created. Any corresponding fields to the type can be edited through this feature.
+
+### A question is loaded into `state.question`
+
+Every time the EditDialog is opened, `state.question` is initialized as:
+```
+state.question = {
+	id: undefined,
+	type: undefined,
+	title: undefined,
+	tooltip: undefined,
+	options: [],
+	labels: [],
+	required: undefined,
+	hidden: undefined,
+	// ...union of all properties from all types mapped to undefined ([] if array type)
+	...question // the original question as it is in state.questions
+}
+```
+Storing `state.question` this way allows us to continuously switch between question types (checkbox, radio, raw, etc...) while editing the question in `state.question` using the EditDialog. Edited properties also persist between type changes this way, until the question editor dialog is exited by cancellation or submission.
+
+### At form submission (save edited question)
+
+The object in `state.question` at the point of submission, will contain properties undefined for the final question type. We process `state.question` and remove the unwanted properties using the post-processor located in `src/components/properties/postprocessor.js`. Then, we replace the original question in `state.questions` with the post-processed edited question.
+
+At this point, it's important to note that the `id` property for all questions are mapped to `uuid`'s. These ids are then finally post-processed one last time by the final post-processor located in `src/components/StringifiedJSONCard.js` to the appropriate `id`'s (v1, v2, ...) before being rendered by the frontend system. Having the `id`'s this way helps us show the correct `id`'s for options with the property `shows_questions` and `hides_questions` (showing hidden/hiding shown question functionality). This also means that the object stored in `state.questions` cannot be used as a valid `questions` object to store in u-can-act's backend (a valid one is the one used in `StringifiedJSONCard`).
+
+### “Shows/hides” functionality - scenarios (and what to do at each case)
 
 * **Clickable Title** The title of any current question can be edited by being clicked on.  
 
@@ -124,8 +151,19 @@ Our react components share similar behaviour as funtions, instead of writing our
 
 We can apply this logic to large React components which handle different requests and have different purpose, which splits these components into smaller ones. We would usually have "container" components which are responsible for retrieving data and displaying corresponding information to the user based on information they have received through props. 
 
-Ou you can explain moe in details here how it was achieved...
+We also use the [react-redux](https://github.com/reduxjs/react-redux) library and Redux’s own [redux-toolkit](https://github.com/reduxjs/redux-toolkit) library.
 
+[react-redux](https://github.com/reduxjs/react-redux) allows us to easily access Redux state and dispatch actions using React.
+
+[redux-toolkit](https://github.com/reduxjs/redux-toolkit) is used to simplify the reducers, actions, and action creators into a single file for each “slice” of state (e.g. state.*slice*). It also allows us to handle API calls to [u-can-act](https://github.com/compsy/u-can-act)’s backend. For the current size of the system, we found that this was an efficient way to organize the "business logic" of the application. In the case that the application gets bigger, this can be converted to using "normal" Redux to connect supply state to a component. (using react-redux connect, mapStateToProps, mapDispatchToProps, separate action and action creators, etc.)
+
+The main Redux store state is `state = { questions, question, utilities }`
+
+- `state.questions` contains the current questionnaire being edited by the frontend system
+
+- `state.question` contains the current question being edited by the editdialog (one of the questions in state.questions is loaded into state.question for editing)
+
+- `state.utilities` contains helpers for the frontend. (e.g. helpers for showing hidden/hiding shown question functionality)
 
 ## Compatible browsers
 We have tested the application on the following browsers through browserstack:
