@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import QuestionsPage from "./components/QuestionsPage";
 import {AppBar, createMuiTheme, makeStyles, MuiThemeProvider, Toolbar, Typography,} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
@@ -8,14 +8,14 @@ import {Provider} from "react-redux";
 import store from "./app/store";
 import {Auth0Provider} from "./components/react-auth0-spa";
 import history from "./utils/history";
-import Profile from "./components/Profile";
-import {Link, Route, Router, Switch} from "react-router-dom";
+import {Route, Router, Switch} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
 import {auth_config} from "./features/API/auth_config";
 import GeneralSidebar from "./components/GeneralSidebar";
-import Button from "@material-ui/core/Button";
-import HomeIcon from "@material-ui/icons/Home";
 import {LandingPage} from "./components/LandingPage/LandingPage";
+import {EraseQuestionnaireButton} from "./NavigationBarButtons/EraseQuestionnaireButton";
+import {RenderQuestionnaireButton} from "./NavigationBarButtons/RenderQuestionnaireButton";
+import {SaveQuestionnaireButton} from "./NavigationBarButtons/SaveQuestionnaireButton";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -63,12 +63,16 @@ function App() {
                 <div className="content">
                     <MuiThemeProvider theme={themeConfig}>
                         <div style={{display: "flex", flexDirection: "column"}}>
+                            {/*<NavigationBar theme2={theme}/>*/}
                             <AppBar className={classes.appBar}>
                                 <Toolbar>
                                     <Router history={history}>
                                         <GeneralSidebar/>
                                         <Switch/>
                                     </Router>
+                                    <EraseQuestionnaireButton/>
+                                    <RenderQuestionnaireButton/>
+                                    <SaveQuestionnaireButton/>
                                     <Typography variant="h6" className={classes.title}>
                                         Questionnaire Interface
                                     </Typography>
@@ -79,13 +83,16 @@ function App() {
                                             alignItems="center"
                                             spacing={1}
                                         >
+
                                             <Grid item>Light Mode</Grid>
                                             <Grid item>
                                                 <AntSwitch data-cy="darkModeSwitcher" mode={themeConfig.palette.type} onChange={toggleDarkMode} value="checkedC"/>
                                             </Grid>
+
                                             <Grid item>Dark Mode</Grid>
                                         </Grid>
                                     </Typography>
+                                    {/*<IconUser/>*/}
                                 </Toolbar>
                             </AppBar>
                             <Router history={history}>

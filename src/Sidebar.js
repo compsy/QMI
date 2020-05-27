@@ -1,17 +1,17 @@
-import React, { useCallback } from 'react'
+import React, {useCallback} from 'react'
 import {Draggable, Droppable} from "react-beautiful-dnd";
-import {Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Paper, Typography} from "@material-ui/core";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
-import Button from "@material-ui/core/Button";
-import { Provider, useDispatch } from 'react-redux'
-import {REMOVE_ALL, REMOVE_ALL_DATA} from "./features/questions/questionsSlice";
-import { SET_UTILITIES } from "./features/utilities/utilitiesSlice";
-import {SafeQuestionnaireDialog} from "./components/SaveQuestionnaireDialog";
-import { toPrint } from './utils';
+import {
+    Divider,
+    Drawer,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    makeStyles,
+    Paper,
+    Typography
+} from "@material-ui/core";
+import {useDispatch} from 'react-redux'
 
 function getStyle(style, snapshot) {
     if (!snapshot.isDropAnimating) {
@@ -130,64 +130,6 @@ export const Sidebar = ({question, items}) => {
                         >
                             <ListItemText primary="delete data"/>
                         </ListItem>
-
-                        <ListItem
-                            button
-                            id={"eraseQuestionnaire"}
-                            onClick={handleClickOpen}
-                        >
-                            <ListItemText  primary="Erase Questionnaire"/>
-                        </ListItem>
-                        <ListItem
-                            button
-                            id={"renderQuestionnaire"}
-                            onClick={() => {
-                                let x = JSON.stringify(toPrint());
-                                x = Buffer.from(x).toString("base64");
-                                window.open("http://app.u-can-act.nl/questionnaire/interactive?content=" + x);
-                            }}
-                        >
-                            <ListItemText primary="Render Questionnaire"/>
-                        </ListItem>
-
-                        <ListItem
-                            button
-                            id={"saveQuestionnaire"}
-                            onClick={() => {setSafeQuestionnaireOpen(true)}}
-                        >
-                            <ListItemText primary="Save Questionnaire"/>
-                        </ListItem>
-
-                        <div>
-                            <SafeQuestionnaireDialog open={saveQuestionnaireOpen} setOpen={setSafeQuestionnaireOpen}/>
-                            <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                aria-labelledby="alert-dialog-title"
-                                aria-describedby="alert-dialog-description"
-                            >
-                                <DialogTitle
-                                    id="alert-dialog-title">{"Do you want to erase questionnaire?"}</DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText id="alert-dialog-description">
-                                        The questionnaire will be deleted without restoration.
-                                    </DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button id={"noToDelete"} onClick={handleClose} color="primary">
-                                        No
-                                    </Button>
-                                    <Button id={"yesToDelete"} onClick={() => {
-                                        setOpen(false);
-                                        dispatch(SET_UTILITIES({showsMap: {}, hidesMap: {}, saved: {}}));
-                                        dispatch(REMOVE_ALL());
-                                    }} color="primary" autoFocus>
-                                        Yes
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </div>
-
 
                     </List>
                 </Drawer>
