@@ -11,6 +11,7 @@ import { Provider, useDispatch } from 'react-redux'
 import {REMOVE_ALL, REMOVE_ALL_DATA} from "./features/questions/questionsSlice";
 import { SET_UTILITIES } from "./features/utilities/utilitiesSlice";
 import {SafeQuestionnaireDialog} from "./components/SaveQuestionnaireDialog";
+import { toPrint } from './utils';
 
 function getStyle(style, snapshot) {
     if (!snapshot.isDropAnimating) {
@@ -141,7 +142,7 @@ export const Sidebar = ({question, items}) => {
                             button
                             id={"renderQuestionnaire"}
                             onClick={() => {
-                                let x = localStorage.getItem("qmi-data");
+                                let x = JSON.stringify(toPrint());
                                 x = Buffer.from(x).toString("base64");
                                 window.open("http://app.u-can-act.nl/questionnaire/interactive?content=" + x);
                             }}
