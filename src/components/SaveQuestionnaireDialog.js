@@ -99,7 +99,6 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
     const {isAuthenticated, getIdTokenClaims} = useAuth0();
     const [state, setState] = useState({status: API_STATUS.INIT, body: null});
     const dispatch = useDispatch();
-    console.log(metadata);
 
     const handleClose = () =>{
         setOpen(false);

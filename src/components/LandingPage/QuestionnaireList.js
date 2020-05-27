@@ -17,6 +17,9 @@ import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import {useDispatch} from "react-redux";
+import {SET_QUESTIONS} from "../../features/questions/questionsSlice";
+import {SET_METADATA} from "../../features/questionnaire/questionnaireMetadataSlice";
 
 const LOCALE_EN = {
     retrievingQuestionnaires: "Retrieving questionnaires",
@@ -91,7 +94,6 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
                         return;
                     }
 
-                    console.log("call")
                     setQuestionnaireListState({status: API_STATUS.IDLE, body: response.body});
                 })
         }catch(error){
@@ -165,10 +167,6 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
             </CardActionArea>
             <CardActions>
                 <IconButton onClick={() => setCurrentQuestionnaireKey(questionnaire.key)}><InfoIcon/></IconButton>
-                <IconButton
-                    onClick={() => {console.log("Load questionnaire data into state, redirect to editor");}}>
-                    <EditIcon/>
-                </IconButton>
             </CardActions>
         </Card></Paper>
     }

@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 const QuestionsPage = () => {
     const questions = useSelector(state => state.questions);
     const dispatch = useDispatch();
+
     const onDragEnd = React.useCallback(result => {
         const {source, destination} = result;
         if (!destination) {
@@ -115,8 +116,10 @@ const QuestionsPage = () => {
                         <BottomSection items={questions}/>
 
                         <ScrollArrow/>
+                        {count++}
                     </Grid>
                 </main>
+
             </DragDropContext>
         </div>
     );

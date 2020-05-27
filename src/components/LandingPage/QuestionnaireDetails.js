@@ -12,9 +12,11 @@ import {auth_config} from "../../features/API/auth_config";
 import {useAuth0} from "../react-auth0-spa";
 import {Link} from "react-router-dom";
 import {SET_QUESTIONS} from "../../features/questions/questionsSlice";
+import {v4 as uuid} from "uuid";
 
 import {useDispatch, useSelector} from "react-redux";
 import {SET_METADATA} from "../../features/questionnaire/questionnaireMetadataSlice";
+
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -40,6 +42,7 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
     const loadQuestionnaireIntoState = () => {
         localStorage.clear();
         const questionnaire = questionnaireState.body;
+        questionnaire.content.questions.forEach(question => question.type === 'raw' ? question.id = uuid() : null);
         dispatch(SET_QUESTIONS({questions: questionnaire.content.questions}));
         dispatch(SET_METADATA({metadata: {key: questionnaire.key, name: questionnaire.name, title: questionnaire.title}}));
     }
