@@ -85,11 +85,11 @@ const QuestionsPage = () => {
                 }
             }
         }
+        count++;
         // localStorage.setItem("qmi-data", JSON.stringify(questions));
         // *****
         // localStorage.setItem("qmi-utilities", JSON.stringify(store.getState().utilities))
         // dispatch(CLEAR_MAPS());
-        
         return () => {
             dispatch(CLEAR_MAPS());
             // localStorage.clear();
