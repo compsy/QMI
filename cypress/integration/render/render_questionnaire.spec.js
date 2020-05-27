@@ -3,7 +3,7 @@ describe('This file contains all tests related to rendering a questionaaire (the
         cy.visit("/")
     });
     it.only('How a user would edit a title with a change', () => {
-        cy.get('div[id="renderQuestionnaire"]')
+        cy.get('#renderQuestionnaire')
             .click();
     });
 });

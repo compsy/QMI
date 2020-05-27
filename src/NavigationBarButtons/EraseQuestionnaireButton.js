@@ -27,7 +27,7 @@ export function EraseQuestionnaireButton() {
     };
     return (
         <div>
-            <Button color="inherit" id={"eraseQuestionnaire"} onClick={handleClickOpen}>
+            <Button color="inherit" data-cy={"eraseQuestionnaire"} id={"eraseQuestionnaire"} onClick={handleClickOpen}>
                 Erase Questionnaire</Button>
 
             <div>

@@ -4,7 +4,7 @@ describe('This file contains all tests related to the Scroll to top button which
         cy.visit("/")
     });
     it('How a user would scroll to the top after clicking the Scroll to top button', () => {
-        const delta = 20;
+        const delta = 40;
         const startingScrollLength = 0;
         const lengthAfterDuplicatingQuestion = 480;
         const halfASecond = 500;

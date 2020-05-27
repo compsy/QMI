@@ -6,6 +6,7 @@ export function RenderQuestionnaireButton() {
     return (
         <Button
             color="inherit"
+            data-cy={"renderQuestionnaire"}
             id={"renderQuestionnaire"}
             onClick={() => {
                 let x = JSON.stringify(toPrint());
