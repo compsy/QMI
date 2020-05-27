@@ -14,10 +14,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
-import Link from "@material-ui/core/Link";
-import Button from "@material-ui/core/Button";
 import {NavLink} from "react-router-dom";
-
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(() => ({
     list: {
@@ -59,15 +57,15 @@ export const Header = () => {
 // The default card for showing basic user information in the sidebar.
 export const UserInformationCard = ({user}) => {
     const classes = useStyles();
-    return <Card className={classes.header}>
+    return <Box className={classes.header}>
         <CardHeader
             avatar={
                 <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
             }
-                title={user.name + ` (${user.nickname})`}
+            title={user.name + ` (${user.nickname})`}
             subheader={user.email}
         />
-    </Card>
+    </Box>
 }
 
 
