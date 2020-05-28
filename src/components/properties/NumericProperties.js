@@ -3,16 +3,26 @@ import {NumericProperty} from "./NumericTemplate";
 
 // Numeric properties
 export const MinProperty = ({...props}) => {
-    return <NumericProperty name={"Minimum"} propertyName={"min"} {...props} />;
+    return (
+        <div data-cy={"minimum"}>
+            <NumericProperty name={"Minimum"} propertyName={"min"} {...props} />
+        </div>
+    );
 };
 
 export const MaxProperty = ({...props}) => {
-    return <NumericProperty name={"Maximum"} propertyName={"max"} {...props} />;
+    return (
+        <div data-cy={"maximum"}>
+            <NumericProperty name={"Maximum"} propertyName={"max"} {...props} />
+        </div>
+    );
 };
 
 export const StepProperty = ({...props}) => {
     return (
-        <NumericProperty name={"Step size"} propertyName={"step"} {...props} />
+        <div data-cy={"stepSize"}>
+            <NumericProperty name={"Step size"} propertyName={"step"} {...props} />
+        </div>
     );
 };
 
