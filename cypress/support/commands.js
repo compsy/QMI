@@ -242,6 +242,9 @@ Cypress.Commands.add('enableToolTipText', (itemToDrag) => {
         .click({force: true})
         .type('{selectall}')
         .type(newToolTopText);
+    if (itemToDrag === "drawing") {
+        cy.setRequiredDrawingProperties();
+    }
     cy.get('[data-cy=submit1]')
         .click();
     cy.get('#jsonText').contains(newToolTopText)
