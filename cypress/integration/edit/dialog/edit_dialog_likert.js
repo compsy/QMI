@@ -23,5 +23,8 @@ describe('This file contains all tests related to edit a question through the ed
     it('How a user would select this type of question to set section end as true ', () => {
         cy.enableSectionEnd('likert');
     });
+    it('How a user would set the text of a certain tooltip for a specific question', () => {
+        cy.enableToolTipText('likert');
+    });
 });
 

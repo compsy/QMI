@@ -1,4 +1,4 @@
 {
-  "baseUrl": "https://dev-qmi.netlify.app",
+  "baseUrl": "https://dev-qmi.netlify.app/",
   "chromeWebSecurity": false
 }

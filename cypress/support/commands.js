@@ -57,7 +57,7 @@ Cypress.Commands.add('dragAndDrop', (subject, target, dragIndex, dropIndex) => {
                             clientX: coordsDrag.x + SLOPPY_CLICK_THRESHOLD,
                             clientY: coordsDrag.y,
                             force: true
-                        }).wait(1000);
+                        })
                     cy.get('body')
                         .trigger('mousemove', {
                             button: BUTTON_INDEX,
@@ -96,10 +96,7 @@ Cypress.Commands.add('cancelEditDialog', (itemToDrag) => {
 Cypress.Commands.add('editTitle', (itemToDrag) => {
     cy.dragFromSidebar(itemToDrag);
     const newTitle = "new test title";
-    cy.get('div[id="1"]')
-        .click();
-    cy.get('[data-cy=edit1]')
-        .click({force: true});
+    cy.openEditDialog();
     cy.get('#title')
         .click({force: true})
         .type('{selectall}')
@@ -112,10 +109,7 @@ Cypress.Commands.add('editTitle', (itemToDrag) => {
 Cypress.Commands.add('hideQuestion', (itemToDrag) => {
     cy.dragFromSidebar(itemToDrag);
     cy.get('[data-cy=notHiddenBadge1]');
-    cy.get('div[id="1"]')
-        .click();
-    cy.get('[data-cy=edit1]')
-        .click();
+    cy.openEditDialog();
     cy.get('input[name="hidden"]')
         .click({force: true});
     if (itemToDrag === "drawing") {
@@ -125,7 +119,6 @@ Cypress.Commands.add('hideQuestion', (itemToDrag) => {
         .click();
     cy.get('[data-cy=hiddenBadge1]')
 });
-
 Cypress.Commands.add('setRequiredDrawingProperties', () => {
     cy.get('#drawingWidth')
         .click({force: true})
@@ -139,8 +132,7 @@ Cypress.Commands.add('setRequiredDrawingProperties', () => {
 });
 
 Cypress.Commands.add('changeOptionOfItem', (itemToDrag) => {
-
-    let questionToGetOption, editedOption = null;
+    let questionToGetOption, editedOption;
     if (itemToDrag !== "range") {
         questionToGetOption = '[data-cy="question1option 1"]';
         editedOption = '[data-cy="test option"]'
@@ -218,10 +210,8 @@ Cypress.Commands.add('enableSectionEnd', (itemToDrag) => {
     }
     const sectionEnd = '"section_end":true';
     cy.get('#jsonText').contains(sectionEnd).should('not.exist')
-    cy.get('div[id="1"]')
-        .click()
-    cy.get('[data-cy=edit1]')
-        .click({force: true});
+    cy.openEditDialog();
+
     if (itemToDrag === "drawing") {
         cy.setRequiredDrawingProperties();
     }
@@ -235,12 +225,31 @@ Cypress.Commands.add('enableRequiredProperty', (itemToDrag) => {
     cy.dragFromSidebar(itemToDrag);
     const sectionEnd = '"required":true';
     cy.get('#jsonText').contains(sectionEnd).should('not.exist')
-    cy.get('div[id="1"]')
-        .click()
-    cy.get('[data-cy=edit1]')
-        .click({force: true});
+    cy.openEditDialog();
     cy.get('[data-cy="required"]').click({force: true});
     cy.get('[data-cy=submit1]')
         .click();
     cy.get('#jsonText').contains(sectionEnd)
+});
+
+Cypress.Commands.add('enableToolTipText', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    const sectionEnd = '"otherwise_label"';
+    const newToolTopText = `DemoToolTipTextFor${itemToDrag}Question`;
+    cy.get('#jsonText').contains(sectionEnd).should('not.exist')
+    cy.openEditDialog();
+    cy.get('#tooltip')
+        .click({force: true})
+        .type('{selectall}')
+        .type(newToolTopText);
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.get('#jsonText').contains(newToolTopText)
+});
+
+Cypress.Commands.add('openEditDialog', () => {
+    cy.get('div[id="1"]')
+        .click()
+    cy.get('[data-cy=edit1]')
+        .click({force: true});
 });
