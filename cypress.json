@@ -1,4 +1,6 @@
 {
   "baseUrl": "https://dev-qmi.netlify.app",
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "viewportWidth": 1424,
+  "viewportHeight": 800
 }
