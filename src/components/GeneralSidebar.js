@@ -10,9 +10,12 @@ export const GeneralSidebar = () => {
     const {isAuthenticated, loginWithRedirect, logout, user, getIdTokenClaims, loading} = useAuth0();
 
     function getUserButton() {
-        return isAuthenticated ?
+        return (
+            isAuthenticated ?
                 {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: logout}
-                : {title: 'Log In', icon: <ExitToAppIcon/>, onClick: loginWithRedirect}
+                : {title: 'Log In', icon: <div data-cy={"Login"}><ExitToAppIcon/></div>, onClick: loginWithRedirect}
+        );
+
     }
 
     const generateLayout = () =>{

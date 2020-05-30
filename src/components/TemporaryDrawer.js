@@ -134,7 +134,8 @@ export const TemporaryDrawer = ({layout}) => {
 
     return (
         <Fragment key="drawer-left">
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
+            <IconButton data-cy={"sidebar"} edge="start" className={classes.menuButton} color="inherit"
+                        aria-label="menu"
                         onClick={toggleDrawer(true)}
             >
                 <MenuIcon/>
