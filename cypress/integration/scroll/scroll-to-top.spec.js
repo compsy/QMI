@@ -4,14 +4,15 @@ describe('This file contains all tests related to the Scroll to top button which
         cy.visit("/")
     });
     it('How a user would scroll to the top after clicking the Scroll to top button', () => {
-        const delta = 40;
+        const delta = 50;
         const startingScrollLength = 0;
-        const lengthAfterDuplicatingQuestion = 480;
+        const lengthAfterDuplicatingQuestion = 440;
         const halfASecond = 500;
         cy.window().then(($window) => {
             expect($window.scrollY).to.be.closeTo(startingScrollLength, delta);
         });
         cy.get('[data-cy=duplicateNaN]').click({force: true})
+        cy.dragFromSidebar('checkbox');
         cy.scrollTo('bottom')
         cy.window().then(($window) => {
             expect($window.scrollY).to.be.closeTo(lengthAfterDuplicatingQuestion, delta);
