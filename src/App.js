@@ -1,12 +1,11 @@
-import React, {useState} from "react";
-import QuestionsPage from "./components/QuestionsPage";
-import {AppBar, createMuiTheme, makeStyles, MuiThemeProvider, Toolbar, Typography,} from "@material-ui/core";
+import React from "react";
+import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
 import "./background.css";
 import {Provider} from "react-redux";
 import store from "./app/store";
 import {Auth0Provider} from "./components/react-auth0-spa";
 import history from "./utils/history";
-import {Route, Router, Switch} from "react-router-dom";
+import {Router} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
 import {auth_config} from "./features/API/auth_config";
 import AppBarComponent from './AppBarComponent'
@@ -24,7 +23,6 @@ const onRedirectCallback = (appState) => {
 function App() {
     const [theme, toggleDarkMode] = useDarkMode();
     const themeConfig = createMuiTheme(theme);
-    const [showCreateQuestionnaire, setShowCreateQuestionnaire] = useState(false);
     return (
         <Auth0Provider
             domain={auth_config.domain}
@@ -38,10 +36,7 @@ function App() {
             <Provider store={store}>
                 <div className="content">
                     <MuiThemeProvider theme={themeConfig}>
-                        <div style={{display: "flex", flexDirection: "column"}}>
-                            <AppBarComponent themeConfig={themeConfig} toggleDarkMode={toggleDarkMode} setShowCreateQuestionnaire={setShowCreateQuestionnaire} />
-                            <QuestionsPage/>
-                        </div>
+                        <AppBarComponent themeConfig={themeConfig} toggleDarkMode={toggleDarkMode} />
                     </MuiThemeProvider>
                 </div>
             </Provider>

@@ -1,15 +1,12 @@
-import { AppBar, makeStyles, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, makeStyles, MuiThemeProvider, Toolbar, Typography } from '@material-ui/core'
 import { Route, Router, Switch } from 'react-router-dom'
 import history from './utils/history'
-import Profile from './components/Profile'
 import GeneralSidebar from './components/GeneralSidebar'
 import Grid from '@material-ui/core/Grid'
 import { AntSwitch } from './AntSwitch'
 import React from 'react'
-import { EraseQuestionnaireButton } from './NavigationBarButtons/EraseQuestionnaireButton'
-import { RenderQuestionnaireButton } from './NavigationBarButtons/RenderQuestionnaireButton'
-import { SaveQuestionnaireButton } from './NavigationBarButtons/SaveQuestionnaireButton'
-import IconUser from './IconUser'
+import QuestionsPage from './components/QuestionsPage'
+import { LandingPage } from './components/LandingPage/LandingPage'
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -26,38 +23,46 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const AppBarComponent = ({themeConfig, toggleDarkMode, setShowCreateQuestionnaire}) => {
+
+const AppBarComponent = ({themeConfig, toggleDarkMode}) => {
     const classes = useStyles();
-    return(
-        <AppBar className={classes.appBar}>
-            <Toolbar>
-                <Router history={history}>
-                    <GeneralSidebar/>
-                    <Switch/>
-                </Router>
-                <EraseQuestionnaireButton/>
-                <RenderQuestionnaireButton/>
-                <SaveQuestionnaireButton/>
-                <Typography variant="h6" className={classes.title}>
-                    Questionnaire Interface
-                </Typography>
-                <Typography component="div">
-                    <Grid
-                        component="label"
-                        container
-                        alignItems="center"
-                        spacing={1}
-                    >
-                        <Grid item>Light Mode</Grid>
-                        <Grid item>
-                            <AntSwitch data-cy="darkModeSwitcher" mode={themeConfig.palette.type} onChange={toggleDarkMode} value="checkedC"/>
+    return (
+        <div style={{display: "flex", flexDirection: "column"}}>
+            <AppBar className={classes.appBar}>
+                <Toolbar>
+                    <Router history={history}>
+                        <GeneralSidebar/>
+                        <Switch/>
+                    </Router>
+                    <Typography variant="h6" className={classes.title}>
+                        Questionnaire Interface
+                    </Typography>
+                    <Typography component="div">
+                        <Grid
+                            component="label"
+                            container
+                            alignItems="center"
+                            spacing={1}
+                        >
+                            <Grid item>Light Mode</Grid>
+                            <Grid item>
+                                <AntSwitch data-cy="darkModeSwitcher" mode={themeConfig.palette.type} onChange={toggleDarkMode} value="checkedC"/>
+                            </Grid>
+                            <Grid item>Dark Mode</Grid>
                         </Grid>
-                        <Grid item>Dark Mode</Grid>
-                    </Grid>
-                </Typography>
-                <IconUser/>
-            </Toolbar>
-        </AppBar>
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <Router history={history}>
+                <Route path="/" exact>
+                    <QuestionsPage/>
+                </Route>
+                <Route path="/home">
+                    <LandingPage/>
+                </Route>
+            </Router>
+
+        </div>
     );
 }
 
