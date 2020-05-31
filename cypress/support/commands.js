@@ -256,3 +256,38 @@ Cypress.Commands.add('openEditDialog', () => {
     cy.get('[data-cy=edit1]')
         .click({force: true});
 });
+
+Cypress.Commands.add('changePropertyOptions', (itemToDrag, propertyLabelOne, propertyLabelTwo, propertyLabelThree, fullPropertyLabelOne, fullPropertyLabelTwo, fullPropertyLabelThree) => {
+    cy.dragFromSidebar(itemToDrag);
+    const max = 50;
+    const min = 10;
+
+    cy.checkJsoncontains("shouldNotExist", fullPropertyLabelOne, fullPropertyLabelTwo, fullPropertyLabelThree, max, min, max / min);
+    cy.openEditDialog();
+    cy.replaceText(propertyLabelOne, max);
+    cy.replaceText(propertyLabelTwo, min);
+    cy.replaceText(propertyLabelThree, max / min);
+    cy.get('[data-cy=submit1]')
+        .click();
+    cy.checkJsoncontains("shouldExist", fullPropertyLabelOne, fullPropertyLabelTwo, fullPropertyLabelThree, max, min, max / min)
+
+});
+
+Cypress.Commands.add('replaceText', (itemToSelect, valueToType) => {
+    cy.get(`[data-cy=${itemToSelect}]`)
+        .click({force: true})
+        .type('{selectall}')
+        .type(valueToType);
+});
+
+Cypress.Commands.add('checkJsoncontains', (task, propertyOne, propertyTwo, propertyThree, propertyOneValue, propertyTwoValue, propertyThreeValue) => {
+    if (task === "shouldNotExist") {
+        cy.get('#jsonText').contains(`${propertyOne}"${propertyOneValue}"`).should('not.exist');
+        cy.get('#jsonText').contains(`${propertyTwo}"${propertyTwoValue}"`).should('not.exist');
+        cy.get('#jsonText').contains(`${propertyThree}"${propertyThreeValue}"`).should('not.exist');
+    } else {
+        cy.get('#jsonText').contains(`${propertyOne}"${propertyOneValue}"`);
+        cy.get('#jsonText').contains(`${propertyThree}"${propertyThreeValue}"`);
+        cy.get('#jsonText').contains(`${propertyTwo}"${propertyTwoValue}"`);
+    }
+});

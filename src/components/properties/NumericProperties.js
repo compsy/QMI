@@ -4,7 +4,7 @@ import {NumericProperty} from "./NumericTemplate";
 // Numeric properties
 export const MinProperty = ({...props}) => {
     return (
-        <div data-cy={"minimum"}>
+        <div data-cy={"min"}>
             <NumericProperty name={"Minimum"} propertyName={"min"} {...props} />
         </div>
     );
@@ -12,7 +12,7 @@ export const MinProperty = ({...props}) => {
 
 export const MaxProperty = ({...props}) => {
     return (
-        <div data-cy={"maximum"}>
+        <div data-cy={"max"}>
             <NumericProperty name={"Maximum"} propertyName={"max"} {...props} />
         </div>
     );
@@ -20,7 +20,7 @@ export const MaxProperty = ({...props}) => {
 
 export const StepProperty = ({...props}) => {
     return (
-        <div data-cy={"stepSize"}>
+        <div data-cy={"step"}>
             <NumericProperty name={"Step size"} propertyName={"step"} {...props} />
         </div>
     );
@@ -28,11 +28,13 @@ export const StepProperty = ({...props}) => {
 
 export const MaxLengthProperty = ({...props}) => {
     return (
-        <NumericProperty
-            name={"Max length"}
-            propertyName={"maxlength"}
-            {...props}
-        />
+        <div data-cy={"maxlength"}>
+            <NumericProperty
+                name={"Max length"}
+                propertyName={"maxlength"}
+                {...props}
+            />
+        </div>
     );
 };
 
@@ -58,27 +60,33 @@ export const MaxExpansionsProperty = ({...props}) => {
 
 export const HoursFromProperty = ({...props}) => {
     return (
-        <NumericProperty
-            name={"Hours from"}
-            propertyName={"hours_from"}
-            {...props}
-        />
+        <div data-cy={"hours_from"}>
+            <NumericProperty
+                name={"Hours from"}
+                propertyName={"hours_from"}
+                {...props}
+            />
+        </div>
     );
 };
 
 export const HoursToProperty = ({...props}) => {
     return (
-        <NumericProperty name={"Hours to"} propertyName={"hours_to"} {...props} />
+        <div data-cy={"hours_to"}>
+            <NumericProperty name={"Hours to"} propertyName={"hours_to"} {...props} />
+        </div>
     );
 };
 
 export const HoursStepProperty = ({...props}) => {
     return (
-        <NumericProperty
-            name={"Hours step count"}
-            propertyName={"hours_step"}
-            {...props}
-        />
+        <div data-cy={"hours_step"}>
+            <NumericProperty
+                name={"Hours step count"}
+                propertyName={"hours_step"}
+                {...props}
+            />
+        </div>
     );
 };
 

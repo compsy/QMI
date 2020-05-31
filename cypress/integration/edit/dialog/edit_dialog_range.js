@@ -45,38 +45,13 @@ describe('This file contains all tests related to edit a question through the ed
     it('How a user would set the text of a certain tooltip for a specific question', () => {
         cy.enableToolTipText('range');
     });
-    it.only('How a user would set a specific min, max and step size for a range question', () => {
-        cy.dragFromSidebar('range');
-        const maximumProperty = '"max":'
-        const minimumProperty = '"min":';
-        const stepProperty = '"step":';
-        const max = 50;
-        const min = 10;
-        const stepSize = max / min;
-
-        cy.get('#jsonText').contains(`${maximumProperty}"${max}"`).should('not.exist');
-        cy.get('#jsonText').contains(`${minimumProperty}"${min}"`).should('not.exist');
-        cy.get('#jsonText').contains(`${stepProperty}"${stepSize}"`).should('not.exist');
-
-        cy.openEditDialog();
-        cy.get('[data-cy=maximum]')
-            .click({force: true})
-            .type('{selectall}')
-            .type(max);
-        cy.get('[data-cy=minimum]')
-            .click({force: true})
-            .type('{selectall}')
-            .type(min);
-        cy.get('[data-cy=stepSize]')
-            .click({force: true})
-            .type('{selectall}')
-            .type(stepSize);
-        cy.get('[data-cy=submit1]')
-            .click();
-
-        cy.get('#jsonText').contains(`${maximumProperty}"${max}"`);
-        cy.get('#jsonText').contains(`${minimumProperty}"${min}"`);
-        cy.get('#jsonText').contains(`${stepProperty}"${stepSize}"`);
+    it('How a user would set a specific min, max and step for a range question', () => {
+        const maximum = 'max';
+        const minimum = 'min';
+        const step = 'step';
+        const maximumProperty = `"${maximum}":`;
+        const minimumProperty = `"${minimum}":`;
+        const stepProperty = `"${step}":`;
+        cy.changePropertyOptions('range', maximum, minimum, step, maximumProperty, minimumProperty, stepProperty);
     });
 });
-

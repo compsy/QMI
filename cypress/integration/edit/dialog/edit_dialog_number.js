@@ -26,5 +26,14 @@ describe('This file contains all tests related to edit a question through the ed
     it('How a user would set the text of a certain tooltip for a specific question', () => {
         cy.enableToolTipText('number');
     });
+    it('How a user would set a specific min, max and max length for a number question', () => {
+        const maximum = 'max';
+        const minimum = 'min';
+        const step = 'step';
+        const maximumProperty = `"${maximum}":`;
+        const minimumProperty = `"${minimum}":`;
+        const stepProperty = `"${step}":`;
+        cy.changePropertyOptions('range', maximum, minimum, step, maximumProperty, minimumProperty, stepProperty);
+    });
 });
 
