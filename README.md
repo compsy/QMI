@@ -3,20 +3,18 @@
  # Questionnaire Managment Interface
  
  ## Table of contents
-* [General info](#general-info)
-* [Screenshots](#screenshots)
-* [Features](#features)
-* [How to run it?](#how-to-run-it)
-* [Status](#status)
-* [Contributing](#contributing)
-* [Contact](#contact)
-
+  * [General info](#general-info)
+  * [Screenshots](#screenshots)
+  * [Features](#features)
+  * [How to run it?](#how-to-run-it)
+  * [Status](#status)
+  * [Contributing](#contributing)
+  * [Contact](#contact)
 
 ## General info
 blah blah
 	
-
-## How to run it?
+## How to run it
 In the project directory, you can run:
 
 ### `npm start`
@@ -56,12 +54,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-
 ## Features
-* **Drag and Drop**
+  * **Drag and Drop**
 This feature enables the user select a questionnaire type from the right sidebar, drag it along to the questionnaire section and release the mouse to place inside the questionnaire section. We have implemented this functionality by using the {Draggable} hook from "react-beautiful-dnd";
 
-* **Duplicating questions** This feature enables the user to duplicate a current questionnaire with all of it's properties and add it at the end of the list which contains all the current questionnaires. The way this feature was implemented was mainly through the following piece of code which can be found in `questionnaireReducer.js`: 
+  * **Duplicating questions** This feature enables the user to duplicate a current questionnaire with all of it's properties and add it at the end of the list which contains all the current questionnaires. The way this feature was implemented was mainly through the following piece of code which can be found in `questionnaireReducer.js`: 
 ```
 const duplicateQuestion = (action, state) => {
     return [
@@ -72,7 +69,7 @@ const duplicateQuestion = (action, state) => {
 };
 ```
 
-* **Editing questions** This feature enables the user to edit any question which has been previously created. Any corresponding fields to the type can be edited through this feature.
+  * **Editing questions** This feature enables the user to edit any question which has been previously created. Any corresponding fields to the type can be edited through this feature.
 
 ### A question is loaded into `state.question`
 
@@ -101,49 +98,49 @@ At this point, it's important to note that the `id` property for all questions a
 
 ### “Shows/hides” functionality - scenarios (and what to do at each case)
 
-* **Clickable Title** The title of any current question can be edited by being clicked on.  
+  * **Clickable Title** The title of any current question can be edited by being clicked on.  
 
-* **Dark Mode** The theme of the page can be switched to a darker tone if desired by clciking on the toggle situated at the top right of the page. 
+  * **Dark Mode** The theme of the page can be switched to a darker tone if desired by clciking on the toggle situated at the top right of the page. 
 
-* **Authenticate/Log in** This feature enables the user to log in into the app (or register if needed). By doing this he/she is able to then save his/her current list of questionnaire and come back to it at a later time in order to edit it if needed. 
+  * **Authenticate/Log in** This feature enables the user to log in into the app (or register if needed). By doing this he/she is able to then save his/her current list of questionnaire and come back to it at a later time in order to edit it if needed. 
 
 ## Available question types (in the latest version) and their respective properties 
 
-* **Radio** with properties (required) : TitleProperty, TextOptionsProperty <br/>
+  * **Radio** with properties (required) : TitleProperty, TextOptionsProperty <br/>
  (optionalProperties) : HiddenRequiredComposite, SectionStartProperty, SectionEndProperty, TooltipProperty, OtherwiseProperty 
 
-* **Checkbox** with properties (required) : TitleProperty, TextOptionsProperty <br/>
+  * **Checkbox** with properties (required) : TitleProperty, TextOptionsProperty <br/>
 (optionalProperties) : HiddenRequiredComposite, SectionStartProperty, SectionEndProperty, TooltipProperty, OtherwiseProperty 
 
-* **Likert** with properties (required) : TitleProperty, TextOptionsProperty <br/>
+  * **Likert** with properties (required) : TitleProperty, TextOptionsProperty <br/>
 (optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty
 
-* **Range** with properties (required) : TitleProperty, LabelOptionsProperty <br/>
+  * **Range** with properties (required) : TitleProperty, LabelOptionsProperty <br/>
 (optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, CustomMinMaxStepProperty
 
-* **Raw** with properties (required) : ContentProperty <br/>
+  * **Raw** with properties (required) : ContentProperty <br/>
 (optionalProperties) : SectionStartProperty, SectionEndProperty
 
-* **TextArea** with properties (required) : TitleProperty <br/>
+  * **TextArea** with properties (required) : TitleProperty <br/>
 (optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PlaceholderProperty
 
 
-* **Textfield** with properties (required) : TitleProperty <br/>
+  * **Textfield** with properties (required) : TitleProperty <br/>
 (optionalProperties) : HiddenProperty, SectionStartProperty, TooltipProperty, SectionEndProperty, PlaceholderProperty, DefaultTextValueProperty, PatternProperty, HintProperty
 
-* **Number** with properties (required) : TitleProperty <br/>
+  * **Number** with properties (required) : TitleProperty <br/>
 (optionalProperties) :  HiddenRequiredComposite, SectionStartProperty, SectionEndProperty, TooltipProperty, NumberTypeComposite, PlaceholderProperty, LinksToExpandableProperty
 
-* **Time** with properties (required) : TitleProperty <br/>
+  * **Time** with properties (required) : TitleProperty <br/>
 (optionalProperties) : HoursCompositeProperty, HoursLabelProperty, MinutesLabelProperty
 
-* **Date** with properties (required) : TitleProperty <br/>
+  * **Date** with properties (required) : TitleProperty <br/>
 (optionalProperties) : HiddenRequiredComposite, SectionStartProperty, SectionEndProperty, TooltipProperty, MinDateProperty, MaxDateProperty, PlaceholderProperty, TodayProperty, DefaultDateProperty
 
-* **Dropdown** with properties (required) : TitleProperty, TextOptionsProperty <br/>
+  * **Dropdown** with properties (required) : TitleProperty, TextOptionsProperty <br/>
 (optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, LabelProperty
 
-* **Drawing** with properties (required) : TitleProperty, WidthHeightComposite, ImageProperty, ColorProperty, <br/>
+  * **Drawing** with properties (required) : TitleProperty, WidthHeightComposite, ImageProperty, ColorProperty, <br/>
 (optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, RadiusDensityComposite
 
 ## Redux
@@ -159,18 +156,18 @@ We also use the [react-redux](https://github.com/reduxjs/react-redux) library an
 
 The main Redux store state is `state = { questions, question, utilities }`
 
-- `state.questions` contains the current questionnaire being edited by the frontend system
+* `state.questions` contains the current questionnaire being edited by the frontend system
 
-- `state.question` contains the current question being edited by the editdialog (one of the questions in state.questions is loaded into state.question for editing)
+* `state.question` contains the current question being edited by the editdialog (one of the questions in state.questions is loaded into state.question for editing)
 
-- `state.utilities` contains helpers for the frontend. (e.g. helpers for showing hidden/hiding shown question functionality)
+* `state.utilities` contains helpers for the frontend. (e.g. helpers for showing hidden/hiding shown question functionality)
 
 ## Compatible browsers
 We have tested the application on the following browsers through browserstack:
-* Firefox (version 76)
-* Chrome (version 81)
-* Safari (version 5.1)
-* Opera (version 68)
+  * Firefox (version 76)
+  * Chrome (version 81)
+  * Safari (version 5.1)
+  * Opera (version 68)
 
 
 ## Status
@@ -186,10 +183,10 @@ Please contribute using [Github Flow](https://guides.github.com/introduction/flo
 5. Submit a pull request
 
 ## Contact
-1. [Pal Poshyachinda](404)
-2. [Mahir Hiro](https://github.com/mahirhiro)
-3. [Krishan Jokhan](https://github.com/kanadev-az)
-4. [Hleb Shmak](https://github.com/HNaida)
-5. [Robert Rey](https://github.com/reyrobs)
+ 1. [Pal Poshyachinda](404)
+ 2. [Mahir Hiro](https://github.com/mahirhiro)
+ 3. [Krishan Jokhan](https://github.com/kanadev-az)
+ 4. [Hleb Shmak](https://github.com/HNaida)
+ 5. [Robert Rey](https://github.com/reyrobs)
 
 
