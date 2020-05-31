@@ -7,6 +7,10 @@ import { AntSwitch } from './AntSwitch'
 import React from 'react'
 import QuestionsPage from './components/QuestionsPage'
 import { LandingPage } from './components/LandingPage/LandingPage'
+import { EraseQuestionnaireButton } from './NavigationBarButtons/EraseQuestionnaireButton'
+import { RenderQuestionnaireButton } from './NavigationBarButtons/RenderQuestionnaireButton'
+import { SaveQuestionnaireButton } from './NavigationBarButtons/SaveQuestionnaireButton'
+import IconUser from './IconUser'
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -34,6 +38,9 @@ const AppBarComponent = ({themeConfig, toggleDarkMode}) => {
                         <GeneralSidebar/>
                         <Switch/>
                     </Router>
+                    <EraseQuestionnaireButton/>
+                    <RenderQuestionnaireButton/>
+                    <SaveQuestionnaireButton/>
                     <Typography variant="h6" className={classes.title}>
                         Questionnaire Interface
                     </Typography>
@@ -51,6 +58,7 @@ const AppBarComponent = ({themeConfig, toggleDarkMode}) => {
                             <Grid item>Dark Mode</Grid>
                         </Grid>
                     </Typography>
+                    <IconUser/>
                 </Toolbar>
             </AppBar>
             <Router history={history}>
