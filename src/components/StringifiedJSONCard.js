@@ -2,6 +2,18 @@ import React from 'react'
 import {Card, Typography} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 
+const processQuestions = (idMap, toProcessOptionShow) => {
+    if (toProcessOptionShow !== undefined && toProcessOptionShow.length > 0) {
+        for (let k=0; k<toProcessOptionShow.length; k++) {
+            toProcessOptionShow[k] = idMap[toProcessOptionShow[k]]
+        }
+    } else {
+        if (toProcessOptionShow !== undefined && toProcessOptionShow.length === 0) {
+            toProcessOptionShow = undefined
+        }
+    }
+}
+
 const StringifiedJSONCard = () => {
     const questions = useSelector(state => state.questions);
     // formats the ids
@@ -28,17 +40,8 @@ const StringifiedJSONCard = () => {
             if (toProcess[i].options !== undefined && toProcess[i].options.length > 0) {
                 for (let j=0; j<toProcess[i].options.length; j++) {
                     toProcess[i].options[j] = typeof toProcess[i].options[j] === "string" ? toProcess[i].options[j] : {...toProcess[i].options[j], id: undefined};
-                    for (let it=0; it < 2; i++) {
-                        if (toProcess[i].options[j].shows_questions !== undefined && toProcess[i].options[j].shows_questions.length > 0) {
-                            for (let k = 0; k < toProcess[i].options[j].shows_questions.length; k++) {
-                                toProcess[i].options[j].shows_questions[k] = idMap[toProcess[i].options[j].shows_questions[k]]
-                            }
-                        } else {
-                            if (toProcess[i].options[j].shows_questions !== undefined && toProcess[i].options[j].shows_questions.length === 0) {
-                                toProcess[i].options[j].shows_questions = undefined
-                            }
-                        }
-                    }
+                    processQuestions(idMap, toProcess[i].options[j].shows_questions);
+                    processQuestions(idMap, toProcess[i].options[j].hides_questions);
                 }
             }
         }
