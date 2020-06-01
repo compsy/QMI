@@ -34,11 +34,9 @@ const QuestionsPage = () => {
         }
         switch (source.droppableId) {
             case "BAG":
-                // dispatch({ type: "REORDER", source: source, destination: destination });
                 dispatch(REORDER({source: source, destination: destination}));
                 break;
             case "SHOP":
-                // dispatch({ type: "CLONE", source: source, destination: destination });
                 dispatch(CLONE({source: source, destination: destination}));
                 console.log(destination);
                 console.log(questions[destination.index]);

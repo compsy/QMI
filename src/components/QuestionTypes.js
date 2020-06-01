@@ -24,7 +24,6 @@ export const QUESTION_TYPES = [
     {id: uuid(), label: "time", icon: <ScheduleIcon/>},
     {id: uuid(), label: "textfield", icon: <TextFormatIcon/>},
     {id: uuid(), label: "drawing", icon: <GestureIcon/>},
-    // { id: uuid(), label: "unsubscribed" },
     {id: uuid(), label: "dropdown", icon: <SelectIcon/>},
     {id: uuid(), label: "raw", icon: <Crop54Icon/>}
 ];
