@@ -76,7 +76,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "istanbul-lib-coverage": "^3.0.0",
-    "nyc": "^15.0.1",
+    "nyc": "^15.1.0",
     "react-use-auth0": "^1.0.0",
     "redux-devtools": "^3.5.0",
     "request": "^2.88.2",
