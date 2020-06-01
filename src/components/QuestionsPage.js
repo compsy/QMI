@@ -98,7 +98,7 @@ const QuestionsPage = () => {
     }, [questions]);
 
     return (
-        <div className={classes.root}>
+        <div data-cy="questionsPage" className={classes.root}>
             <CssBaseline/>
             <DragDropContext onDragEnd={onDragEnd}>
                 <Sidebar items={QUESTION_TYPES}/>

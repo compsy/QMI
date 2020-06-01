@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 export const LandingPage = () => {
 
     const [currentQuestionnaireKey, setCurrentQuestionnaireKey] = useState(null);
-    return <Grid container spacing={10} style={{padding: 100}}>
+    return <Grid data-cy="landingPage" container spacing={10} style={{padding: 100}}>
         <Grid item xs={8}>
             <QuestionnaireList setCurrentQuestionnaireKey={setCurrentQuestionnaireKey}/>
         </Grid>

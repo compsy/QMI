@@ -22,15 +22,15 @@ export const GeneralSidebar = () => {
         return [
             {custom: <Header key={"header"}/>},
             {isDivider: true},
-            {redirect: "/home", icon: <HomeIcon/>, title:"Home"},
-            {redirect: "/", icon: <EditIcon/>, title:"Editor"},
+            {redirect: "/home", icon: <HomeIcon data-cy="homeIcon"/>, title:"Home"},
+            {redirect: "/", icon: <EditIcon data-cy="editIcon"/>, title:"Editor"},
             {isDivider: true},
             getUserButton(),
             {isDivider: true},
             {custom: <TestApiSection key={"TestApi"} getIdTokenClaims={getIdTokenClaims}/>}
         ];
     };
-    return <TemporaryDrawer layout={generateLayout()}/>
+    return <TemporaryDrawer data-cy="openSidebar" layout={generateLayout()}/>
 };
 
 export default GeneralSidebar
