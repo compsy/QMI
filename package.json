@@ -70,7 +70,7 @@
     "@cypress/code-coverage": "^3.8.0",
     "@cypress/instrument-cra": "^1.1.1",
     "@material-ui/pickers": "^3.2.10",
-    "@testing-library/dom": "^7.5.9",
+    "@testing-library/dom": "^7.7.3",
     "babel-plugin-istanbul": "^6.0.0",
     "cypress": "^4.7.0",
     "enzyme": "^3.11.0",
