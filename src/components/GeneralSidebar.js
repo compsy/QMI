@@ -1,39 +1,36 @@
 import {useAuth0} from "./react-auth0-spa";
-import {Header, TemporaryDrawer, UserInformationCard} from "./TemporaryDrawer";
+import {Header, TemporaryDrawer} from "./TemporaryDrawer";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import AddBoxIcon from "@material-ui/icons/AddBox";
 import TestApiSection from "./TestApiSection";
 import React from "react";
 import HomeIcon from '@material-ui/icons/Home';
+import EditIcon from '@material-ui/icons/Edit';
 
-const GeneralSidebar = ({setShowCreateQuestionnaire}) => {
-    const {isAuthenticated, loginWithRedirect, logout, user, getIdTokenClaims} = useAuth0();
-
+export const GeneralSidebar = () => {
+    const {isAuthenticated, loginWithRedirect, logout, user, getIdTokenClaims, loading} = useAuth0();
 
     function getUserButton() {
-        return isAuthenticated ?
+        return (
+            isAuthenticated ?
                 {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: logout}
-                : {title: 'Log In', icon: <ExitToAppIcon/>, onClick: loginWithRedirect}
-    }
+                : {title: 'Log In', icon: <div data-cy={"Login"}><ExitToAppIcon/></div>, onClick: loginWithRedirect}
+        );
 
-    function getUserCard() {
-        return isAuthenticated ? {custom: <UserInformationCard key={"user information card"} user={user}/>} : {custom: null}
     }
 
     const generateLayout = () =>{
         return [
             {custom: <Header key={"header"}/>},
-            getUserCard(),
             {isDivider: true},
-            {title: 'Home', icon: <HomeIcon/>, onClick: () => {console.log("Go to landing page")}},
-            {title: 'Create New Questionnaire', icon: <AddBoxIcon/>, onClick: () => {setShowCreateQuestionnaire(true)}},
+            {redirect: "/home", icon: <HomeIcon data-cy="homeIcon"/>, title:"Home"},
+            {redirect: "/", icon: <EditIcon data-cy="editIcon"/>, title:"Editor"},
             {isDivider: true},
             getUserButton(),
             {isDivider: true},
             {custom: <TestApiSection key={"TestApi"} getIdTokenClaims={getIdTokenClaims}/>}
         ];
     };
-    return <TemporaryDrawer layout={generateLayout(user)}/>
+    return <TemporaryDrawer data-cy="openSidebar" layout={generateLayout()}/>
 };
 
 export default GeneralSidebar

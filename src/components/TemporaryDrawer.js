@@ -14,9 +14,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
+import {NavLink} from "react-router-dom";
+import Box from '@material-ui/core/Box';
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     list: {
         width: 250,
         color: "white"
@@ -56,7 +57,7 @@ export const Header = () => {
 // The default card for showing basic user information in the sidebar.
 export const UserInformationCard = ({user}) => {
     const classes = useStyles();
-    return <Card className={classes.header}>
+    return <Box className={classes.header}>
         <CardHeader
             avatar={
                 <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
@@ -64,13 +65,13 @@ export const UserInformationCard = ({user}) => {
             title={user.name + ` (${user.nickname})`}
             subheader={user.email}
         />
-    </Card>
+    </Box>
 }
 
 
 
 /* The left sidebar.
-Layouts are strucutred in an array containing JSON objects:
+Layouts are structured in an array containing JSON objects:
      title: string containing the text of the element
      icon: a valid Material UI icon component
      onClick: a lambda expression containing the click handler for the element*
@@ -78,9 +79,6 @@ Layouts are strucutred in an array containing JSON objects:
      {isDivider: true}                  : For adding a divider to the layout
      {custom: <RenderedReactComponent>} : For adding a custom react component or sub-layout.
 */
-
-// Example layout.
-
 
 
 export const TemporaryDrawer = ({layout}) => {
@@ -93,9 +91,19 @@ export const TemporaryDrawer = ({layout}) => {
                 return <Divider key={'divider' + index}/>
             } else if (element.hasOwnProperty('custom')) {
                 return element.custom;
+            }else if(element.hasOwnProperty('redirect')){
+                // inserting default values if a replacement has not been given
+                const className = element.hasOwnProperty('className') ? element.className : "this";
+
+                return <ListItem button key={element.title + index} to={element.redirect}
+                                 className={className} component={NavLink}
+                >
+                    <ListItemIcon >{element.icon}</ListItemIcon>
+                    <ListItemText primary={element.title}/>
+                </ListItem>
             }
             return <ListItem button key={element.title + index} onClick={element.onClick}>
-                <ListItemIcon>{element.icon}</ListItemIcon>
+                <ListItemIcon >{element.icon}</ListItemIcon>
                 <ListItemText primary={element.title}/>
             </ListItem>
         };
@@ -103,12 +111,12 @@ export const TemporaryDrawer = ({layout}) => {
         return layout.map((element, index) => renderElement(element, index))
     };
 
-    const toggleDrawer = (open) => (event) => {
+    const toggleDrawer = (open2) => (event) => {
         if (event.type === 'keydown' && event.key === 'Escape') {
             setOpen(false);
             return;
         }
-        setOpen(open);
+        setOpen(open2);
     };
 
     const list = () => {
@@ -126,7 +134,8 @@ export const TemporaryDrawer = ({layout}) => {
 
     return (
         <Fragment key="drawer-left">
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
+            <IconButton data-cy={"sidebar"} edge="start" className={classes.menuButton} color="inherit"
+                        aria-label="menu"
                         onClick={toggleDrawer(true)}
             >
                 <MenuIcon/>

@@ -35,7 +35,6 @@ export const {
     setProperty,
     setTextArrayField,
     setTextArrayElement,
-    resetAll,
     removeOption,
 } = questionSlice.actions;
 

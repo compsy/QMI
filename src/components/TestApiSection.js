@@ -1,36 +1,50 @@
-import config from "../auth_config";
 import Button from "@material-ui/core/Button";
 import React from "react";
-import {useAuth0} from "./react-auth0-spa";
+import {auth_config} from "../features/API/auth_config";
 
-//const {getTokenSilently, getIdTokenClaims} = useAuth0();
+
 function TestApiSection({getIdTokenClaims}){
-    const callCreateQuestionnaire = (token) => {
-        const emptyQuestionnaire = {
-            name: "string",
-            content: {},
-            key: "string",
-            title: "string"
-        }
+
+    const handleBadRequest = (response) => {
+        console.log("Bad request");
+        Object.keys(response.body.result).forEach(key => console.log(key + " " + response.body.result[key]));
+
+    }
+
+    const handleSuccess = (response) => {
+        console.log("Success!");
+    }
+
+    const responseHandlers = {
+        400: handleBadRequest,
+        201: handleSuccess,
+
+    }
+
+    const createNewQuestionnaireAsync = async (questionnaire) =>{
+        const itc = await getIdTokenClaims();
         const unirest = require('unirest');
-        const request = unirest('POST', 'http://localhost:3002/api/v1/questionnaire')
+        const req = unirest('POST', auth_config.base + '/api/v1/questionnaire')
             .headers({
-                'Content-Type': ['application/json', 'text/plain'],
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + token,
+                'Authorization': 'Bearer ' + itc.__raw,
+                'Content-Type': 'application/json'
             })
-            .send(JSON.stringify(emptyQuestionnaire))
+            .send(JSON.stringify({questionnaire: questionnaire}))
             .end(function (res) {
-                if (res.error) throw new Error(res.error);
-                console.log(res.response);
+                console.log(res.code);
+                responseHandlers[res.code](res);
             });
+
     }
 
     const callApi = async () =>{
-        const itc = await getIdTokenClaims();
-        const token = itc.__raw;
-        console.log(token);
-        callCreateQuestionnaire(token);
+        const questionnaire = {
+            name: "teest",
+            content: {},
+            key: "teest",
+            title: "test"
+        }
+        await createNewQuestionnaireAsync(questionnaire);
     }
     return <>
         <h1>Api Test</h1>

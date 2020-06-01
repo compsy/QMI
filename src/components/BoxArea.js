@@ -8,12 +8,12 @@ function BoxArea(props) {
                 <ul ref={provided.innerRef} id={"dropzone"} className="shopping-bag">
                     {props.items.map((item, index) => (
                         <Draggable key={item.id} draggableId={item.id} index={index}>
-                            {(provided, snapshot) => (
+                            {(subProvided) => (
                                 <li
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    style={provided.draggableProps.style}
+                                    ref={subProvided.innerRef}
+                                    {...subProvided.draggableProps}
+                                    {...subProvided.dragHandleProps}
+                                    style={subProvided.draggableProps.style}
                                 >
                                     {item.label}
                                 </li>

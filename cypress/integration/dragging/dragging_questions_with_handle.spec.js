@@ -6,6 +6,7 @@ describe('This file contains all tests related to dragging questions', () => {
     // IMPORTANT: do not let your cursor go on the screen while the test is running it may interrupt with the dragging
     const dropzone = '#dropzone';
     it('How a user would drag a a question using a handle', () => {
+        cy.dragFromSidebar('radio');
         cy.get('div[id="1"]').invoke('text').then((previousText) => {
             // const previousQuestionTwoTitle = cy.get('div[id="2"]').invoke('text')
             const raw = '[data-cy=draghandle2]';

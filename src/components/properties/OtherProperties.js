@@ -17,7 +17,6 @@ import {
 } from "./NumericProperties";
 import {useSelector} from "react-redux";
 import {selectProperty} from "../../features/question/questionSlice";
-import {FilledInput} from "@material-ui/core";
 
 // not in use yet
 export const DataMethodProperty = ({...props}) => {

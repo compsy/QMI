@@ -33,21 +33,7 @@ export const TextProperty = ({
         );
     };
 
-    const classes = useStyles();
-
     return (
-        // <TextField
-        //   required={required}
-        //   key={propertyName}
-        //   fullWidth
-        //   variant="filled"
-        //   type="text"
-        //   id={"outlined-basic"}
-        //   value={property}
-        //   onChange={handleChange}
-        //   label={name}
-        //   {...props}
-        // />
         // <Paper className={classes.paper} variant="outlined">
         <FormControl fullWidth required={required}>
             <InputLabel variant="filled" style={{userSelect: "none"}}>{name}</InputLabel>

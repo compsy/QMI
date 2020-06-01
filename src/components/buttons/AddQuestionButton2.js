@@ -83,7 +83,6 @@ const AddQuestionButton2 = () => {
         <div style={{margin: "2em 0"}}>
             <SpeedDial
                 ariaLabel="speeddial"
-                // className={classes.speedDial}
                 direction="down"
                 icon={<SpeedDialIcon/>}
                 onClose={() => setOpen(false)}

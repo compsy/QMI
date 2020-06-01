@@ -3,7 +3,7 @@ import {Checkbox, Grid, Radio, Typography} from "@material-ui/core";
 
 const RadioCheckboxPreview = ({question, index}) => {
     return (
-        <Grid container direction="column" spacing={1}>
+        <Grid container direction="column" spacing={1} id={"optionPanel" + index}>
             {question.options.map((option, Optionindex) => (
                 <Grid item xs key={option + Optionindex}>
                     <Grid
@@ -30,11 +30,11 @@ const RadioCheckboxPreview = ({question, index}) => {
                                 textAlign: "left",
                             }}
                         >
-                            <Typography variant="body1" data-cy={option.title}>
-                                <div id={option} data-cy={"question" + (index + 1) + option}>
+                            <div id={option} data-cy={"question" + (index + 1) + option}>
+                                <Typography variant="body1" data-cy={option.title}>
                                     {typeof option === "string" ? option : option.title}
-                                </div>
-                            </Typography>
+                                </Typography>
+                            </div>
                         </Grid>
                     </Grid>
                 </Grid>

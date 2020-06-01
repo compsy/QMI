@@ -3,6 +3,8 @@
 //         cy.visit("/")
 //     });
 //     it('How a user would login with the right credentials', () => {
+//         cy.get('[data-cy=sidebar]').click({force: true});
+//         cy.get('[data-cy=Login]').click({force: true});
 //         cy.get('input[id="email"]').type("test@gmail.com")
 //         cy.get('input[id="password"]').type("ohno")
 //         cy.get('button[type="submit"]').click()

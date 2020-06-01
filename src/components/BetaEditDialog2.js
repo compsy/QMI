@@ -14,13 +14,10 @@ const useStyles = makeStyles((theme) => ({
     body: {
         padding: theme.spacing(2),
         "&>*": {
-            // marginTop: theme.spacing(4),
-            // marginBottom: theme.spacing(4),
             padding: theme.spacing(4),
         },
     },
     button1: {
-        // background: fade(theme.palette.secondary.main, 0.1),
         height: "60px",
         width: "100%",
         borderRadius: 0,
@@ -45,12 +42,10 @@ const useStyles = makeStyles((theme) => ({
     },
     mtb: {
         marginTop: theme.spacing(2),
-        // marginBottom: theme.spacing(2),
     },
     header: {
         padding: theme.spacing(2),
         paddingLeft: theme.spacing(4),
-        // paddingRight: theme.spacing(4),
     },
     required: {
         marginBottom: theme.spacing(4)
@@ -89,7 +84,6 @@ const EditDialog2 = ({question, index, open, setOpen}) => {
     return (
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
             <form onSubmit={handleSubmit}>
-                {/* <form style={{ padding: "1em" }}> */}
                 <Grid
                     container
                     direction="column"
@@ -169,7 +163,6 @@ const DialogFooter = ({question, handleClose, index}) => {
                     <Button
                         disableElevation
                         className={classes.button1}
-                        // variant="contained"
                         color="secondary"
                         onClick={handleClose}
                         data-cy={"cancel" + (index + 1)}
@@ -182,7 +175,6 @@ const DialogFooter = ({question, handleClose, index}) => {
                     <Button
                         disableElevation
                         className={classes.button2}
-                        color="primary"
                         type="submit"
                         data-cy={"submit" + (index + 1)}
                     >

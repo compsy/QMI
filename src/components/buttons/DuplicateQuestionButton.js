@@ -5,23 +5,18 @@ import {useDispatch} from "react-redux";
 import {DUPLICATE_QUESTION} from "../../features/questions/questionsSlice";
 
 
-const EditQuestionButton = ({question, index}) => {
-
-    // const { dispatch } = useContext(QuestionnaireContext);
+const DuplicateQuestionButton = ({question, index}) => {
     const dispatch = useDispatch();
-
     return (
-        <>
-            <Tooltip title="duplicate">
-                <IconButton
-                    data-cy={"duplicate" + (index + 1)}
-                    // onClick={() => dispatch({ type: "DUPLICATE_QUESTION", question: question })}>
-                    onClick={() => dispatch(DUPLICATE_QUESTION({question: question}))}>
-                    <FileCopyIcon/>
-                </IconButton>
-            </Tooltip>
-        </>
-    );
+        <Tooltip title="duplicate">
+            <IconButton
+                data-cy={Object.is(index, NaN) ? 'duplicateRaw' : "duplicate" + (index + 1)}
+                onClick={() => dispatch(DUPLICATE_QUESTION({question: question}))}>
+                <FileCopyIcon/>
+            </IconButton>
+        </Tooltip>
+    )
+    ;
 };
 
-export default EditQuestionButton;
+export default DuplicateQuestionButton;

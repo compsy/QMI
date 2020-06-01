@@ -31,13 +31,6 @@ const copy = (source, destination, droppableSource, droppableDestination) => {
             break;
         case "checkbox":
         case "radio":
-            newDestination.splice(droppableDestination.index, 0, {
-                id: uuid(),
-                type: item.label,
-                title: `untitled ${item.label}`,
-                options: initialTextOptions
-            });
-            break;
         case "likert":
         case "dropdown":
             newDestination.splice(droppableDestination.index, 0, {
@@ -82,13 +75,6 @@ const getQuestionTemplateByAction = (action, state) => {
                 }];
         case "checkbox":
         case "radio":
-            return [
-                ...state, {
-                    id: uniq,
-                    type: action.questionType.toLowerCase(),
-                    title: "untitled " + action.questionType,
-                    options: initialTextOptions
-                }];
         case "likert":
         case "dropdown":
             return [

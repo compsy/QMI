@@ -1,7 +1,6 @@
 describe('This file contains all tests related to dragging questions', () => {
     beforeEach(() => {
         cy.visit("/")
-
     });
     // IMPORTANT: do not let your cursor go on the screen while the test is running it may interrupt with the dragging
     it('How a user would drag a radio question', () => {

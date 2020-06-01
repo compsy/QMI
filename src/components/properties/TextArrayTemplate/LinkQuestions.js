@@ -41,11 +41,6 @@ const LinkQuestions = (option) => {
         setAnchorEl(null);
     };
 
-    const handleCloseItem = (question) => {
-        setAnchorEl(null);
-        toggleQuestion(question);
-    };
-
     const currentQuestion = useSelector((state) => state.question);
 
     // const dispatch = useDispatch();

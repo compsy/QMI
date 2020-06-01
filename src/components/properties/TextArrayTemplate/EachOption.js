@@ -1,25 +1,13 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-    FilledInput,
-    FormControl,
-    IconButton,
-    InputAdornment,
-    InputLabel,
-    makeStyles,
-    Badge,
-} from '@material-ui/core'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {Badge, FilledInput, FormControl, IconButton, InputAdornment, InputLabel, makeStyles,} from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EachOptionMenu from './EachOptionMenu'
-import {
-    removeOption,
-    setTextArrayElement,
-    setTextArrayField,
-} from '../../../features/question/questionSlice'
-import { CLEAN_SUPER_OPTION } from '../../../utils'
-import { v4 as uuidv4 } from 'uuid'
+import {removeOption, setTextArrayElement, setTextArrayField,} from '../../../features/question/questionSlice'
+import {CLEAN_SUPER_OPTION} from '../../../utils'
+import {v4 as uuidv4} from 'uuid'
 import EachOptionShows from './EachOptionShows'
-import { removeFromMap } from '../../../features/utilities/utilitiesSlice'
+import {removeFromMap} from '../../../features/utilities/utilitiesSlice'
 import EachOptionHides from './EachOptionHides'
 
 const useStyles = makeStyles((theme) => ({
@@ -63,20 +51,20 @@ const OptionInputField = ({ propertyName, index }) => {
         }
     }, [option]);
 
-    const handleChange = (index, event) => {
+    const handleChange = (subIndex, event) => {
         if (propertyName === 'options') {
             dispatch(
                 setTextArrayElement({
                     property: propertyName,
-                    index: index,
-                    value: { ...option, title: event.target.value },
+                    index: subIndex,
+                    value: {...option, title: event.target.value},
                 })
             )
         } else {
             dispatch(
                 setTextArrayField({
                     property: propertyName,
-                    index: index,
+                    index: subIndex,
                     value: event.target.value,
                 })
             )
@@ -148,18 +136,18 @@ const RemoveButton = ({ propertyName, index }) => {
             }
         }
     };
-    const handleRemoveOptionClick = (index) => {
+    const handleRemoveOptionClick = (subIndex) => {
         // removeFromMap({
         //     type: 'showsMap',
         //     key: key,
         //     value: { qid: qid, oid: oid },
         // })
         removeBothFromMap();
-        dispatch(removeOption({property: propertyName, index: index}))
+        dispatch(removeOption({property: propertyName, index: subIndex}))
     };
 
     return (
-        <IconButton data-cy={qid + "delete" + (index + 1)} size="small" onClick={() => handleRemoveOptionClick(index)}>
+        <IconButton data-cy={"delete" + (index + 1)} size="small" onClick={() => handleRemoveOptionClick(index)}>
             <DeleteIcon/>
         </IconButton>
     )
