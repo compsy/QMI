@@ -1,14 +1,12 @@
 import {useAuth0} from "./react-auth0-spa";
 import {Header, TemporaryDrawer} from "./TemporaryDrawer";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import TestApiSection from "./TestApiSection";
 import React from "react";
 import HomeIcon from '@material-ui/icons/Home';
 import EditIcon from '@material-ui/icons/Edit';
-import {Typography} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {AntSwitch} from "../AntSwitch";
-import ListItem from "@material-ui/core/ListItem";
+
 
 export const GeneralSidebar = ({themeConfig, toggleDarkMode}) => {
     const {isAuthenticated, loginWithRedirect, logout} = useAuth0();

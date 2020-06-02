@@ -3,7 +3,6 @@ import {Route, Router, Switch, useLocation} from 'react-router-dom'
 import history from '../utils/history'
 import GeneralSidebar from './GeneralSidebar'
 import Grid from '@material-ui/core/Grid'
-import { AntSwitch } from '../AntSwitch'
 import React from 'react'
 import QuestionsPage from './QuestionsPage'
 import { LandingPage } from './LandingPage/LandingPage'
@@ -11,8 +10,6 @@ import { EraseQuestionnaireButton } from '../NavigationBarButtons/EraseQuestionn
 import { RenderQuestionnaireButton } from '../NavigationBarButtons/RenderQuestionnaireButton'
 import { SaveQuestionnaireButton } from '../NavigationBarButtons/SaveQuestionnaireButton'
 import UserCard from '../IconUser'
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
