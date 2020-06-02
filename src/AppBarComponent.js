@@ -11,6 +11,8 @@ import { EraseQuestionnaireButton } from './NavigationBarButtons/EraseQuestionna
 import { RenderQuestionnaireButton } from './NavigationBarButtons/RenderQuestionnaireButton'
 import { SaveQuestionnaireButton } from './NavigationBarButtons/SaveQuestionnaireButton'
 import UserCard from './IconUser'
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -60,8 +62,11 @@ const AppBarComponent = ({themeConfig, toggleDarkMode}) => {
                         <Grid item xs={6}>
                             <Typography variant="h6" className={classes.title}>Questionnaire Interface</Typography>
                         </Grid>
-                        <Grid item xs={3}>
-                            <UserCard/>
+                        <Grid item xs={1}/>
+                        <Grid item xs={2}>
+                            <Grid container alignItems="flex-start" justify="flex-end">
+                                <UserCard/>
+                            </Grid>
                         </Grid>
 
                     </Grid>
