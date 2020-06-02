@@ -1,5 +1,5 @@
 import { AppBar, makeStyles, MuiThemeProvider, Toolbar, Typography } from '@material-ui/core'
-import { Route, Router, Switch } from 'react-router-dom'
+import {Route, Router, Switch, useLocation} from 'react-router-dom'
 import history from './utils/history'
 import GeneralSidebar from './components/GeneralSidebar'
 import Grid from '@material-ui/core/Grid'
@@ -27,38 +27,40 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const AuxiliaryButtons = () => {
+    const location = useLocation();
+    if(location.pathname.includes("home")) return null;
+
+    return [
+        <EraseQuestionnaireButton/>,
+        <RenderQuestionnaireButton/>,
+        <SaveQuestionnaireButton/>
+    ];
+}
 
 const AppBarComponent = ({themeConfig, toggleDarkMode}) => {
     const classes = useStyles();
+
     return (
         <div style={{display: "flex", flexDirection: "column"}}>
             <AppBar className={classes.appBar}>
                 <Toolbar>
                     <Router history={history}>
-                        <GeneralSidebar/>
+                        <GeneralSidebar themeConfig={themeConfig} toggleDarkMode={toggleDarkMode}/>
                         <Switch/>
-                    </Router>
-                    <EraseQuestionnaireButton/>
-                    <RenderQuestionnaireButton/>
-                    <SaveQuestionnaireButton/>
-                    <Typography variant="h6" className={classes.title}>
-                        Questionnaire Interface
-                    </Typography>
-                    <Typography component="div">
-                        <Grid
-                            component="label"
-                            container
-                            alignItems="center"
-                            spacing={1}
-                        >
-                            <Grid item>Light Mode</Grid>
-                            <Grid item>
-                                <AntSwitch data-cy="darkModeSwitcher" mode={themeConfig.palette.type} onChange={toggleDarkMode} value="checkedC"/>
-                            </Grid>
-                            <Grid item>Dark Mode</Grid>
+
+                    <Grid container alignContent="center" alignItems="center">
+                        <Grid item xs={3} wrap="nowrap"><AuxiliaryButtons/></Grid>
+                        <Grid item xs={6}>
+                            <Typography variant="h6" className={classes.title}>Questionnaire Interface</Typography>
                         </Grid>
-                    </Typography>
-                    <IconUser/>
+                        <Grid item xs={3}>
+                            <IconUser/>
+                        </Grid>
+
+                    </Grid>
+                    </Router>
+
                 </Toolbar>
             </AppBar>
             <Router history={history}>

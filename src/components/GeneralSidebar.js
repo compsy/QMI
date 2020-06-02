@@ -5,9 +5,12 @@ import TestApiSection from "./TestApiSection";
 import React from "react";
 import HomeIcon from '@material-ui/icons/Home';
 import EditIcon from '@material-ui/icons/Edit';
+import {Typography} from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import {AntSwitch} from "../AntSwitch";
 
-export const GeneralSidebar = () => {
-    const {isAuthenticated, loginWithRedirect, logout, user, getIdTokenClaims, loading} = useAuth0();
+export const GeneralSidebar = ({themeConfig, toggleDarkMode}) => {
+    const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
 
     function getUserButton() {
         return (
@@ -15,6 +18,22 @@ export const GeneralSidebar = () => {
                 {title: 'Log Out', icon: <ExitToAppIcon/>, onClick: logout}
                 : {title: 'Log In', icon: <div data-cy={"Login"}><ExitToAppIcon/></div>, onClick: loginWithRedirect}
         );
+    }
+    const ModeSwitcher = () =>{
+        return <Grid
+                component="label"
+                container
+                direction="row"
+                alignItems="center"
+                justify="center"
+                spacing={4}
+            >
+                <Grid item>Light Mode</Grid>
+                <Grid item>
+                    <AntSwitch data-cy="darkModeSwitcher" mode={themeConfig.palette.type} checked={themeConfig.palette.type === "dark"} onChange={toggleDarkMode} value="checkedC"/>
+                </Grid>
+                <Grid item>Dark Mode</Grid>
+            </Grid>
 
     }
 
@@ -26,8 +45,7 @@ export const GeneralSidebar = () => {
             {redirect: "/", icon: <EditIcon data-cy="editIcon"/>, title:"Editor"},
             {isDivider: true},
             getUserButton(),
-            {isDivider: true},
-            {custom: <TestApiSection key={"TestApi"} getIdTokenClaims={getIdTokenClaims}/>}
+            {custom: <ModeSwitcher/>},
         ];
     };
     return <TemporaryDrawer data-cy="openSidebar" layout={generateLayout()}/>
