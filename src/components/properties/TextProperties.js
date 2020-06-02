@@ -56,11 +56,13 @@ export const ContentProperty = ({...props}) => {
 
 export const PlaceholderProperty = ({...props}) => {
     return (
-        <TextProperty
-            propertyName={"placeholder"}
-            name={"Placeholder"}
-            {...props}
-        />
+        <div data-cy={"placeholder"}>
+            <TextProperty
+                propertyName={"placeholder"}
+                name={"Placeholder"}
+                {...props}
+            />
+        </div>
     );
 };
 

@@ -26,5 +26,16 @@ describe('This file contains all tests related to edit a question through the ed
     it('How a user would set the text of a certain tooltip for a specific question', () => {
         cy.enableToolTipText('date');
     });
+    it('How a user would set a label for a dropdown question', () => {
+        const placeholder = 'pla';
+        const fullplaceholderProperty = `"${label}":`;
+        cy.get('#jsonText').contains(`${fullLabelProperty}"${label}"`).should('not.exist');
+        cy.dragFromSidebar('dropdown');
+        cy.openEditDialog();
+        cy.get('[data-cy=label]').click().type(label);
+        cy.get('[data-cy=submit1]')
+            .click();
+        cy.get('#jsonText').contains(`${fullLabelProperty}"${label}"`)
+    });
 });
 
