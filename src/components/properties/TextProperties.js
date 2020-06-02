@@ -4,14 +4,15 @@ import {TextProperty} from "./TextTemplate";
 // Text properties
 export const TitleProperty = ({...props}) => {
     return (
-        <TextProperty
-
-            propertyName={"title"}
-            name={"Title"}
-            required={true}
-            placeholder={"Enter title text here.."}
-            {...props}
-        />
+        <div data-cy={"title"}>
+            <TextProperty
+                propertyName={"title"}
+                name={"Title"}
+                required={true}
+                placeholder={"Enter title text here.."}
+                {...props}
+            />
+        </div>
     );
 };
 
@@ -55,11 +56,13 @@ export const ContentProperty = ({...props}) => {
 
 export const PlaceholderProperty = ({...props}) => {
     return (
-        <TextProperty
-            propertyName={"placeholder"}
-            name={"Placeholder"}
-            {...props}
-        />
+        <div data-cy={"placeholder"}>
+            <TextProperty
+                propertyName={"placeholder"}
+                name={"Placeholder"}
+                {...props}
+            />
+        </div>
     );
 };
 
@@ -128,7 +131,11 @@ export const ButtonTextProperty = ({...props}) => {
 };
 
 export const LabelProperty = ({...props}) => {
-    return <TextProperty propertyName={"label"} name={"Label"} {...props} />;
+    return (
+        <div data-cy={"label"}>
+            <TextProperty propertyName={"label"} name={"Label"} {...props} />
+        </div>
+    );
 };
 
 export const SectionStartProperty = ({...props}) => {
@@ -143,12 +150,14 @@ export const SectionStartProperty = ({...props}) => {
 
 export const ImageProperty = ({...props}) => {
     return (
-        <TextProperty
-            propertyName={"image"}
-            name={"Image URL"}
-            required={true}
-            {...props}
-        />
+        <div data-cy={"image"}>
+            <TextProperty
+                propertyName={"image"}
+                name={"Image URL"}
+                required={true}
+                {...props}
+            />
+        </div>
     );
 };
 

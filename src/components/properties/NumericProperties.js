@@ -91,19 +91,29 @@ export const HoursStepProperty = ({...props}) => {
 };
 
 export const WidthProperty = ({...props}) => {
-    return <NumericProperty name={"Width"} propertyName={"width"} required={true} {...props} />;
+    return <NumericProperty name={"Width"} propertyName={"width"} required={true} {...props} />
 };
 
 export const HeightProperty = ({...props}) => {
-    return <NumericProperty name={"Height"} propertyName={"height"} required={true} {...props} />;
+    return (
+        <div data-cy={"height"}>
+            <NumericProperty name={"Height"} propertyName={"height"} required={true} {...props} />
+        </div>
+    );
 };
 
 export const RadiusProperty = ({...props}) => {
-    return <NumericProperty name={"Radius"} propertyName={"radius"} {...props} />;
+    return (
+        <div data-cy={"radius"}>
+            <NumericProperty name={"Radius"} propertyName={"radius"} {...props} />
+        </div>
+    );
 };
 
 export const DensityProperty = ({...props}) => {
     return (
-        <NumericProperty name={"Density"} propertyName={"density"} {...props} />
+        <div data-cy={"density"}>
+            <NumericProperty name={"Density"} propertyName={"density"} {...props} />
+        </div>
     );
 };

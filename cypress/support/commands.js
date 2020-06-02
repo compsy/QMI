@@ -276,8 +276,7 @@ Cypress.Commands.add('changePropertyOptions', (itemToDrag, propertyLabelOne, pro
 Cypress.Commands.add('replaceText', (itemToSelect, valueToType) => {
     cy.get(`[data-cy=${itemToSelect}]`)
         .click({force: true})
-        .type('{selectall}')
-        .type(valueToType);
+        .type(`{selectall}${valueToType}`);
 });
 
 Cypress.Commands.add('checkJsoncontains', (task, propertyOne, propertyTwo, propertyThree, propertyOneValue, propertyTwoValue, propertyThreeValue) => {

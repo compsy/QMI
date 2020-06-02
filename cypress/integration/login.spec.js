@@ -16,7 +16,7 @@
 //     });
 //     it('How a user would fail a login without a password', () => {
 //         cy.get('input[id="email"]')
-//             .type("meint@reducept.com")
+//             .type("mahir@gmail.com")
 //         cy.get('button[type="submit"]')
 //             .click()
 //         cy.get('p[id="password-helper-text"]')

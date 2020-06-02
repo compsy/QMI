@@ -1,6 +1,6 @@
 import store from '../../app/store'
-import { removeFromMap } from '../../features/utilities/utilitiesSlice'
-import { removeAllWithKey } from '../buttons/RemoveQuestionButton'
+import {removeFromMap} from '../../features/utilities/utilitiesSlice'
+import {removeAllWithKey} from '../buttons/RemoveQuestionButton'
 
 const postprocessCheckbox = (question) => {
     const processedOptionsCheckbox = () => {
@@ -8,9 +8,9 @@ const postprocessCheckbox = (question) => {
             typeof q === 'string'
                 ? q
                 : {
-                      ...q,
-                      numeric_value: undefined,
-                      // id: undefined,
+                    ...q,
+                    numeric_value: undefined,
+                    // id: undefined,
                   }
         )
     }
@@ -274,7 +274,13 @@ export const postprocessQuestion = (question, index) => {
 
     console.log('showsMap: ', store.getState().utilities.showsMap)
     console.log('hidesMap: ', store.getState().utilities.hidesMap)
-    return postprocessMap[question.type](question)
+
+    let newQuestion = postprocessMap[question.type](question)
+    if (newQuestion.show_otherwise === false) {
+        newQuestion.otherwise_label = undefined
+        newQuestion.otherwise_tooltip = undefined
+    }
+    return newQuestion;
 }
 
 export const clearMapWithQuestion = (question) => {
