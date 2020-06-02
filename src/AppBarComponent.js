@@ -10,7 +10,7 @@ import { LandingPage } from './components/LandingPage/LandingPage'
 import { EraseQuestionnaireButton } from './NavigationBarButtons/EraseQuestionnaireButton'
 import { RenderQuestionnaireButton } from './NavigationBarButtons/RenderQuestionnaireButton'
 import { SaveQuestionnaireButton } from './NavigationBarButtons/SaveQuestionnaireButton'
-import IconUser from './IconUser'
+import UserCard from './IconUser'
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -55,7 +55,7 @@ const AppBarComponent = ({themeConfig, toggleDarkMode}) => {
                             <Typography variant="h6" className={classes.title}>Questionnaire Interface</Typography>
                         </Grid>
                         <Grid item xs={3}>
-                            <IconUser/>
+                            <UserCard/>
                         </Grid>
 
                     </Grid>
