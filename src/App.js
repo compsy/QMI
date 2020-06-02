@@ -8,11 +8,12 @@ import history from "./utils/history";
 import {Router} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
 import {auth_config} from "./features/API/auth_config";
-import AppBarComponent from './AppBarComponent'
+import AppBarComponent from './components/AppBarComponent'
 
 // A function that routes the user to the right place
 // after login
 const onRedirectCallback = (appState) => {
+
     history.push(
         appState && appState.targetUrl
             ? appState.targetUrl
