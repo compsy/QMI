@@ -66,5 +66,14 @@ describe('This file contains all tests related to edit a question through the ed
     it('How a user would set the text of a certain tooltip for a specific question', () => {
         cy.enableToolTipText('dropdown');
     });
+    // it.only('How a user would set the text of a certain tooltip for a specific question', () => {
+    //     const labelTemplateText = 'temporaryLabelText';
+    //     cy.dragFromSidebar('dropdown');
+    //     cy.openEditDialog();
+    //     cy.get('[data-cy=label]').click().type();
+    //     cy.get('[data-cy=submit1]')
+    //         .click();
+    //
+    // });
 });
 
