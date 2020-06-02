@@ -91,7 +91,12 @@ export const TemporaryDrawer = ({layout}) => {
                 return <Divider key={'divider' + index}/>
             } else if (element.hasOwnProperty('custom')) {
                 return element.custom;
-            }else if(element.hasOwnProperty('redirect')){
+            } else if(element.hasOwnProperty('customWrapped')){
+                return <ListItem key={"customWrapped" + index}>
+                    <ListItemText>{element.customWrapped}</ListItemText>
+                </ListItem>
+            }
+            else if(element.hasOwnProperty('redirect')){
                 // inserting default values if a replacement has not been given
                 const className = element.hasOwnProperty('className') ? element.className : "this";
 

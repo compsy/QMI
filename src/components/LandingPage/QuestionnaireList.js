@@ -9,7 +9,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
-import EditIcon from "@material-ui/icons/Edit";
 import React, {useEffect, useState} from "react";
 import {auth_config} from "../../features/API/auth_config";
 import {useAuth0} from "../react-auth0-spa";
@@ -17,9 +16,6 @@ import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import {useDispatch} from "react-redux";
-import {SET_QUESTIONS} from "../../features/questions/questionsSlice";
-import {SET_METADATA} from "../../features/questionnaire/questionnaireMetadataSlice";
 
 const LOCALE_EN = {
     retrievingQuestionnaires: "Retrieving questionnaires",

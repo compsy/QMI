@@ -10,8 +10,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {CLONE, REORDER, SET_QUESTIONS} from "../features/questions/questionsSlice";
 import {SET_UTILITIES, CLEAR_MAPS, addToMap} from "../features/utilities/utilitiesSlice";
 import ScrollArrow from "../ScrollArrow";
-import store from "../app/store";
-import uuid from "uuid/v1";
 
 const useStyles = makeStyles(theme => ({
     root: {
