@@ -31,12 +31,14 @@ const AuxiliaryButtons = () => {
     const location = useLocation();
     if(location.pathname.includes("home")) return null;
 
-    return [
-        <EraseQuestionnaireButton/>,
+    const elements = [
+        <SaveQuestionnaireButton/>,
         <RenderQuestionnaireButton/>,
-        <SaveQuestionnaireButton/>
+        <EraseQuestionnaireButton/>
     ];
+    return elements.map(element => <Grid item>{element}</Grid>)
 }
+
 
 const AppBarComponent = ({themeConfig, toggleDarkMode}) => {
     const classes = useStyles();
@@ -50,7 +52,11 @@ const AppBarComponent = ({themeConfig, toggleDarkMode}) => {
                         <Switch/>
 
                     <Grid container alignContent="center" alignItems="center">
-                        <Grid item xs={3} wrap="nowrap"><AuxiliaryButtons/></Grid>
+                        <Grid item xs={3}>
+                            <Grid container alignItems="center" spacing={1}>
+                                <AuxiliaryButtons/>
+                            </Grid>
+                        </Grid>
                         <Grid item xs={6}>
                             <Typography variant="h6" className={classes.title}>Questionnaire Interface</Typography>
                         </Grid>
