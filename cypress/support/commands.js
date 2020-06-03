@@ -91,6 +91,7 @@ Cypress.Commands.add('cancelEditDialog', (itemToDrag) => {
         .click({force: true});
     cy.get('[data-cy=cancel1]')
         .click();
+    cy.scrollTo(0, 0);
 });
 
 Cypress.Commands.add('editTitle', (itemToDrag) => {
@@ -100,11 +101,12 @@ Cypress.Commands.add('editTitle', (itemToDrag) => {
     cy.get('#title')
         .click({force: true})
         .type('{selectall}')
-        .type(newTitle);
+        .type(newTitle + ' ' + itemToDrag);
     cy.get('[data-cy=submit1]')
         .click();
     cy.get('div[id="1"]')
-        .should('have.text', newTitle);
+        .should('have.text', newTitle + ' ' + itemToDrag);
+    cy.scrollTo(0, 0);
 });
 Cypress.Commands.add('hideQuestion', (itemToDrag) => {
     cy.dragFromSidebar(itemToDrag);
@@ -289,4 +291,17 @@ Cypress.Commands.add('checkJsoncontains', (task, propertyOne, propertyTwo, prope
         cy.get('#jsonText').contains(`${propertyThree}"${propertyThreeValue}"`);
         cy.get('#jsonText').contains(`${propertyTwo}"${propertyTwoValue}"`);
     }
+});
+
+Cypress.Commands.add('dragAndDeleteQuestion', (itemToDrag) => {
+    cy.dragFromSidebar(itemToDrag);
+    const previousLength = 2;
+    const list = 'div[id="dropzone"]';
+    cy.get(list).children().should('have.length', previousLength);
+    cy.get('div[id="1"]')
+        .click();
+    cy.get('[data-cy=remove1]')
+        .click();
+    cy.get(list).children().should('have.length', previousLength - 1);
+    cy.scrollTo(0, 0);
 });
