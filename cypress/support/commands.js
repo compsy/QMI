@@ -119,7 +119,8 @@ Cypress.Commands.add('hideQuestion', (itemToDrag) => {
     }
     cy.get('[data-cy=submit1]')
         .click();
-    cy.get('[data-cy=hiddenBadge1]')
+    cy.get('[data-cy=hiddenBadge1]');
+    cy.scrollTo(0, 0);
 });
 Cypress.Commands.add('setRequiredDrawingProperties', () => {
     cy.get('#drawingWidth')
@@ -160,6 +161,11 @@ Cypress.Commands.add('changeOptionOfItem', (itemToDrag) => {
     cy.get('div[id="1"]')
         .click()
         .get(editedOption).should('have.text', newOption);
+    cy.get('div[id="1"]')
+        .click();
+    cy.get('[data-cy=remove1]')
+        .click({force: true});
+    cy.scrollTo(0, 0);
 });
 
 Cypress.Commands.add('deleteAnOption', (itemToDrag) => {
@@ -178,7 +184,12 @@ Cypress.Commands.add('deleteAnOption', (itemToDrag) => {
     cy.get('div[id="1"]')
         .click();
     cy.get('div[id="optionPanel0"]').children().should('have.length', 3)
-    cy.get('div[id="optionPanel0"]').contains(option3).should('not.exist')
+    cy.get('div[id="optionPanel0"]').contains(option3).should('not.exist');
+    cy.get('div[id="1"]')
+        .click();
+    cy.get('[data-cy=remove1]')
+        .click({force: true});
+    cy.scrollTo(0, 0);
 });
 
 Cypress.Commands.add('doubleQuestionClickToEditTitle', (itemToDrag) => {
@@ -190,7 +201,8 @@ Cypress.Commands.add('doubleQuestionClickToEditTitle', (itemToDrag) => {
         .type('{selectall}')
         .type(newTitleText)
         .type('{enter}');
-    cy.get('div[id="1"]').should('have.text', newTitleText)
+    cy.get('div[id="1"]').should('have.text', newTitleText);
+    cy.scrollTo(0, 0);
 });
 
 Cypress.Commands.add('doubleQuestionClickToEditTitleWithoutChange', (itemToDrag) => {
@@ -204,6 +216,7 @@ Cypress.Commands.add('doubleQuestionClickToEditTitleWithoutChange', (itemToDrag)
             expect(previousText).to.eq(updatedText)
         })
     })
+    cy.scrollTo(0, 0);
 });
 
 Cypress.Commands.add('enableSectionEnd', (itemToDrag) => {
@@ -220,7 +233,12 @@ Cypress.Commands.add('enableSectionEnd', (itemToDrag) => {
     cy.get('[data-cy="section_end"]').click({force: true});
     cy.get('[data-cy=submit1]')
         .click();
-    cy.get('#jsonText').contains(sectionEnd)
+    cy.get('#jsonText').contains(sectionEnd);
+    cy.get('div[id="1"]')
+        .click();
+    cy.get('[data-cy=remove1]')
+        .click({force: true});
+    cy.scrollTo(0, 0);
 });
 
 Cypress.Commands.add('enableRequiredProperty', (itemToDrag) => {
@@ -231,7 +249,12 @@ Cypress.Commands.add('enableRequiredProperty', (itemToDrag) => {
     cy.get('[data-cy="required"]').click({force: true});
     cy.get('[data-cy=submit1]')
         .click();
-    cy.get('#jsonText').contains(sectionEnd)
+    cy.get('#jsonText').contains(sectionEnd);
+    cy.get('div[id="1"]')
+        .click();
+    cy.get('[data-cy=remove1]')
+        .click({force: true});
+    cy.scrollTo(0, 0);
 });
 
 Cypress.Commands.add('enableToolTipText', (itemToDrag) => {
@@ -249,7 +272,12 @@ Cypress.Commands.add('enableToolTipText', (itemToDrag) => {
     }
     cy.get('[data-cy=submit1]')
         .click();
-    cy.get('#jsonText').contains(newToolTopText)
+    cy.get('#jsonText').contains(newToolTopText);
+    cy.get('div[id="1"]')
+        .click();
+    cy.get('[data-cy=remove1]')
+        .click({force: true});
+    cy.scrollTo(0, 0);
 });
 
 Cypress.Commands.add('openEditDialog', () => {

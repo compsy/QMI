@@ -2,12 +2,13 @@ describe('This file contains all tests related to edit a question through the ed
     beforeEach(() => {
         cy.visit("/")
     });
-    it('This test shows how a user would edit the title of a checkbox question', () => {
-        const questionTypes = ['checkbox', 'date', 'dropdown', 'likert', 'number', 'radio', 'range',
+    it('How a user would cancel the edit dialog after opening it for a specific question', () => {
+        const questionTypes = ['checkbox', 'date', 'drawing', 'dropdown', 'likert', 'number', 'radio', 'range',
             'textarea', 'textfield', 'time'];
         for (let i = 0; i < questionTypes.length; i++) {
-            cy.editTitle(questionTypes[i]);
+            cy.doubleQuestionClickToEditTitle(questionTypes[i]);
         }
     });
 });
+
 

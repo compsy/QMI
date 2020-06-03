@@ -16,21 +16,6 @@ describe('This file contains all tests related to edit a question through the ed
         cy.get('div[id="1"]')
             .should('have.text', newTitle);
     });
-    it('This test shows how a user would toggle the visibility of a drawing question to be hidden', () => {
-        cy.hideQuestion('drawing');
-    });
-    it('How a user would double tap on a title of a drawing question to make a change from the current title', () => {
-        cy.doubleQuestionClickToEditTitle('drawing');
-    });
-    it('How a user would double tap on a title of a drawing question without making a change to the title', () => {
-        cy.doubleQuestionClickToEditTitleWithoutChange('drawing');
-    });
-    it('How a user would select this type of question to set section end as true ', () => {
-        cy.enableSectionEnd('drawing');
-    });
-    it('How a user would set the text of a certain tooltip for a specific question', () => {
-        cy.enableToolTipText('drawing');
-    });
     it('How a user would set the radius and density for a draw question', () => {
         const drawingRadius = 'radius';
         const drawingDensity = 'density';
