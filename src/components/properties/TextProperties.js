@@ -171,7 +171,6 @@ export const LinksToExpandableProperty = ({...props}) => {
     );
 };
 
-// Not organised yet
 export const PatternProperty = ({...props}) => {
     return (
         <TextProperty propertyName={"pattern"} name={"Regex pattern"} {...props} />

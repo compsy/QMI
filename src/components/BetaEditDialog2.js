@@ -8,52 +8,8 @@ import store from "../app/store";
 import {postprocessQuestion} from "./properties/postprocessor";
 import {UPDATE_QUESTION} from "../features/questions/questionsSlice";
 import {SET_UTILITIES} from "../features/utilities/utilitiesSlice";
+import {useStyles} from "../components/SaveQuestionnaireDialog"
 
-
-const useStyles = makeStyles((theme) => ({
-    body: {
-        padding: theme.spacing(2),
-        "&>*": {
-            padding: theme.spacing(4),
-        },
-    },
-    button1: {
-        height: "60px",
-        width: "100%",
-        borderRadius: 0,
-    },
-    button2: {
-        // background: fade(theme.palette.primary.main, 0.1),
-        height: "60px",
-        width: "100%",
-        borderRadius: 0,
-    },
-    stickyTop: {
-        background: theme.palette.background.paper,
-        position: "sticky",
-        top: 0,
-        zIndex: 2,
-    },
-    stickyBot: {
-        background: theme.palette.background.paper,
-        position: "sticky",
-        bottom: 0,
-        zIndex: 2,
-    },
-    mtb: {
-        marginTop: theme.spacing(2),
-    },
-    header: {
-        padding: theme.spacing(2),
-        paddingLeft: theme.spacing(4),
-    },
-    required: {
-        marginBottom: theme.spacing(4)
-    },
-    headerGrid: {
-        padding: theme.spacing(2),
-    }
-}));
 
 const EditDialog2 = ({question, index, open, setOpen}) => {
     const dispatch = useDispatch();

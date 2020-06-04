@@ -10,7 +10,7 @@ import Alert from "@material-ui/lab/Alert";
 import {SET_METADATA} from "../features/questionnaire/questionnaireMetadataSlice";
 import {GENERATE_INITIAL_QUESTIONNAIRE_METADATA_CONTEXT} from "../utils";
 
-const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles((theme) => ({
     body: {
         padding: theme.spacing(2),
         "&>*": {

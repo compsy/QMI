@@ -21,7 +21,6 @@ export default function TypeProperty() {
     const classes = useStyles();
 
     return (
-        // <div className="type-property">
         <Paper className={classes.paper} variant="outlined">
             <FormControl variant="filled" onClick={(e) => e.stopPropagation()}>
                 <InputLabel id="type-label" style={{userSelect: "none"}}>Type</InputLabel>
@@ -43,6 +42,5 @@ export default function TypeProperty() {
                 </Select>
             </FormControl>
         </Paper>
-        // {/* </div> */}
     );
 }
