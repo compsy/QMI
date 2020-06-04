@@ -5,9 +5,7 @@ import Question from "./components/Question";
 import {v4 as uuidv1} from "uuid";
 import {useSelector} from "react-redux";
 
-export const BottomSection = ({items}) => {
-    // const {settings} = useContext(SettingsContext);
-    // const {questions} = useContext(QuestionnaireContext);
+export const BottomSection = () => {
     const questions = useSelector(state => state.questions);
 
     return (
@@ -25,7 +23,6 @@ export const BottomSection = ({items}) => {
                     </Box>
                 )}
             </Droppable>
-            {/* <AddQuestionButton2 /> */}
         </Container>
     );
 };

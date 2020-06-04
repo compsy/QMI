@@ -9,8 +9,6 @@ export const TopSection = () => {
                 style={{textAlign: "center", margin: "1em auto", marginTop: "100px"}}
                 maxWidth="md"
             >
-                {/*<AddQuestionButton /> */}
-                {/*<ToggleGridAreasButton /> */}
                 <StringifiedJSONCard/>
             </Container>
         </div>

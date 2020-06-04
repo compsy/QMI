@@ -23,7 +23,7 @@ const Question = ({index, question, ...props}) => {
 
     return (
         <Draggable key={question.id} draggableId={question.id} index={index}>
-            {(provided, snapshot) => (
+            {(provided) => (
                 <div
                     id={question.title}
                     ref={provided.innerRef}
@@ -40,7 +40,6 @@ const Question = ({index, question, ...props}) => {
                             question={question}
                             provided={provided}
                         />
-                        {/* <Summary onClick={() => setOpen(!open)} question={question} onMouseDown={() => setOpen(!open)}/> */}
                         <Divider/>
                         <Details question={question} index={index}/>
                     </ExpansionPanel>
@@ -58,9 +57,65 @@ const style = {
 
 export default Question;
 
+const renderQuestionDetails = (question, index) => {
+    switch (question.type) {
+        case "radio":
+        case "checkbox":
+            return <RadioCheckboxPreview question={question} index={index}/>;
+        case "likert":
+            return <LikertPreview question={question} index={index}/>;
+        case "range":
+            return (
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }}
+                >
+                    <RangePreview question={question} index={index}/>
+                </div>
+            );
+        case "dropdown":
+            return (
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                    }}
+                >
+                    <DropdownPreview question={question}/>
+                </div>
+            );
+        case "textarea":
+            return (
+                <div style={style}>
+                    <TextArea question={question}/>
+                </div>
+            );
+        case "number":
+            return <NumberPreview question={question}/>;
+        case "date":
+            return <DatePickerPreview question={question}/>;
+        case "time":
+            return <TimePickerPreview question={question}/>;
+        case "textfield":
+            return <TextFieldPreview question={question}/>;
+        case "drawing":
+            return (
+                <div style={style}>
+                    <DrawingPreview question={question}/>
+                </div>
+            );
+        case "raw":
+            return <RawPreview question={question}/>;
+        default:
+            return <RadioCheckboxPreview question={question} index={index}/>;
+    }
+}
 
 const Details = ({question, index}) => {
-    // const { settings } = useContext(SettingsContext);
 
     return (
         <ExpansionPanelDetails>
@@ -79,7 +134,6 @@ const Details = ({question, index}) => {
                     }}
                 >
                     <Typography variant="caption">
-                        {/* {`${question.type} options preview`.toUpperCase()} */}
                         {question.type.toUpperCase()}
                     </Typography>
                 </Grid>
@@ -90,63 +144,7 @@ const Details = ({question, index}) => {
                         textAlign: "center",
                     }}
                 >
-                    {(() => {
-                        switch (question.type) {
-                            case "radio":
-                            case "checkbox":
-                                return <RadioCheckboxPreview question={question} index={index}/>;
-                            case "likert":
-                                return <LikertPreview question={question} index={index}/>;
-                            case "range":
-                                return (
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center"
-                                        }}
-                                    >
-                                        <RangePreview question={question} index={index}/>
-                                    </div>
-                                );
-                            case "dropdown":
-                                return (
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center"
-                                        }}
-                                    >
-                                        <DropdownPreview question={question}/>
-                                    </div>
-                                );
-                            case "textarea":
-                                return (
-                                    <div style={style}>
-                                        <TextArea question={question}/>
-                                    </div>
-                                );
-                            case "number":
-                                return <NumberPreview question={question}/>;
-                            case "date":
-                                return <DatePickerPreview question={question}/>;
-                            case "time":
-                                return <TimePickerPreview question={question}/>;
-                            case "textfield":
-                                return <TextFieldPreview question={question}/>;
-                            case "drawing":
-                                return (
-                                    <div style={style}>
-                                        <DrawingPreview question={question}/>
-                                    </div>
-                                );
-                            case "raw":
-                                return <RawPreview question={question}/>;
-                            default:
-                                return <RadioCheckboxPreview question={question} index={index}/>;
-                        }
-                    })()}
+                    {renderQuestionDetails(question, index)}
                 </Grid>
                 <Grid
                     item
@@ -155,19 +153,9 @@ const Details = ({question, index}) => {
                         textAlign: "center",
                     }}
                 >
-                    {(() => {
-                        if (question.type === "raw") {
-
-                        } else {
-                            return (
-                                <div>
-                                    <RemoveQuestionButton question={question} index={index}/>
-                                    <EditQuestionButton question={question} index={index}/>
-                                    <DuplicateQuestionButton question={question} index={index}/>
-                                </div>
-                            )
-                        }
-                    })()}
+                    <RemoveQuestionButton question={question} index={index}/>
+                    <EditQuestionButton question={question} index={index}/>
+                    <DuplicateQuestionButton question={question} index={index}/>
                 </Grid>
             </Grid>
         </ExpansionPanelDetails>

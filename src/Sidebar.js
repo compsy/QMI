@@ -29,11 +29,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex"
     },
     drawer: {
-        // width: drawerWidth,
         flexShrink: 0
-    },
-    drawerPaper: {
-        // width: drawerWidth,
     },
     toolbar: theme.mixins.toolbar,
     content: {
@@ -42,31 +38,8 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const Sidebar = ({question, items}) => {
-    const dispatch = useDispatch();
+export const Sidebar = ({items}) => {
     const classes = useStyles();
-
-    const [open, setOpen] = React.useState(false);
-    const [saveQuestionnaireOpen, setSafeQuestionnaireOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-
-    const [isOpen, setOpenVideo] = React.useState(false);
-
-    const handleClickOpenVideo = useCallback(() => {
-        setOpenVideo(true)
-    }, [],);
-
-    const handleCloseVideo = () => {
-        setOpenVideo(false);
-    };
 
     return (
         <Droppable
@@ -77,9 +50,6 @@ export const Sidebar = ({question, items}) => {
             {(provided, snapshot) => (
                 <Drawer
                     className={classes.drawer}
-                    classes={{
-                        paper: classes.drawerPaper
-                    }}
                     ref={provided.innerRef}
                     variant="permanent"
                     anchor="right"
@@ -120,7 +90,6 @@ export const Sidebar = ({question, items}) => {
                                 </React.Fragment>
                             );
                         })}
-                        {/* {provided.placeholder} */}
                         <div className={classes.toolbar}/>
                         <Divider/>
                         <ListItem

@@ -109,7 +109,7 @@ const QuestionsPage = () => {
                         }}
                     >
                         <TopSection/>
-                        <BottomSection items={questions}/>
+                        <BottomSection/>
 
                         <ScrollArrow/>
                         {count++}
