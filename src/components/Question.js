@@ -115,6 +115,18 @@ const renderQuestionDetails = (question, index) => {
     }
 }
 
+const renderEditButtons = (question, index) => {
+    if (question.type !== "raw") {
+        return (
+            <div>
+                <RemoveQuestionButton question={question} index={index}/>
+                <EditQuestionButton question={question} index={index}/>
+                <DuplicateQuestionButton question={question} index={index}/>
+            </div>
+        );
+    }
+}
+
 const Details = ({question, index}) => {
 
     return (
@@ -153,9 +165,8 @@ const Details = ({question, index}) => {
                         textAlign: "center",
                     }}
                 >
-                    <RemoveQuestionButton question={question} index={index}/>
-                    <EditQuestionButton question={question} index={index}/>
-                    <DuplicateQuestionButton question={question} index={index}/>
+                    >
+                    {renderEditButtons(question, index)}
                 </Grid>
             </Grid>
         </ExpansionPanelDetails>
