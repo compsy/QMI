@@ -18,14 +18,15 @@ const EditQuestionTitleField = ({question, onComplete}) => {
             switch (event.code) {
                 case "Enter":
                     updateTitle(event);
-              // eslint-disable-next-line no-fallthrough
+                // eslint-disable-next-line no-fallthrough
                 case "Escape":
                     close();
-              // eslint-disable-next-line no-fallthrough
+                // eslint-disable-next-line no-fallthrough
                 default:
                     break;
             }
         }
+
         function updateTitle(event) {
             event.preventDefault();
 
@@ -39,6 +40,7 @@ const EditQuestionTitleField = ({question, onComplete}) => {
             document.removeEventListener("keydown", handleKeyDown);
             onComplete();
         }
+
         document.addEventListener("keydown", handleKeyDown);
         dispatch(setQuestion({...CLEAN_SUPER_QUESTION, ...question}));
     }, [dispatch, onComplete, question]);

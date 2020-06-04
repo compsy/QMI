@@ -3,7 +3,7 @@ import React from "react";
 import {auth_config} from "../features/API/auth_config";
 
 
-function TestApiSection({getIdTokenClaims}){
+function TestApiSection({getIdTokenClaims}) {
 
     const handleBadRequest = (response) => {
         console.log("Bad request");
@@ -21,7 +21,7 @@ function TestApiSection({getIdTokenClaims}){
 
     }
 
-    const createNewQuestionnaireAsync = async (questionnaire) =>{
+    const createNewQuestionnaireAsync = async (questionnaire) => {
         const itc = await getIdTokenClaims();
         const unirest = require('unirest');
         const req = unirest('POST', auth_config.base + '/api/v1/questionnaire')
@@ -37,7 +37,7 @@ function TestApiSection({getIdTokenClaims}){
 
     }
 
-    const callApi = async () =>{
+    const callApi = async () => {
         const questionnaire = {
             name: "teest",
             content: {},

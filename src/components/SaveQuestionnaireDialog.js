@@ -83,7 +83,7 @@ const DialogHeader = ({state, ...props}) => {
 };
 
 
-export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
+export const SafeQuestionnaireDialog = ({open, setOpen}) => {
     const classes = useStyles();
     const metadata = useSelector(state => state.questionnaireMetadata);
     const questions = useSelector(state => state.questions);
@@ -94,7 +94,7 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
     const [state, setState] = useState({status: API_STATUS.INIT, body: null});
     const dispatch = useDispatch();
 
-    const handleClose = () =>{
+    const handleClose = () => {
         setOpen(false);
         resetStates();
 
@@ -105,7 +105,7 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
     }
 
     const callCreateQuestionnaire = async (questionnaire) => {
-        if(!isAuthenticated){
+        if (!isAuthenticated) {
             setState({status: API_STATUS.NOT_AUTHENTICATED, body: null});
         }
 
@@ -119,8 +119,8 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
             })
             .send(JSON.stringify({questionnaire: questionnaire}))
             .end(function (res) {
-                if(res.error && res.error.message.includes("NetworkError")){
-                    setState({status: API_STATUS.ERROR, body: {special: "The server cannot be reached." }})
+                if (res.error && res.error.message.includes("NetworkError")) {
+                    setState({status: API_STATUS.ERROR, body: {special: "The server cannot be reached."}})
                     return;
                 }
                 responseHandlers[res.code](res);
@@ -166,15 +166,17 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) =>{
                           helperText={errorInAttribute(attributeName) ? state.body[attributeName] : null}
                           defaultValue={attributeState}
                           onChange={(
-                              e) => {attributeSetter(e.target.value)}}
+                              e) => {
+                              attributeSetter(e.target.value)
+                          }}
         />
     }
 
     const generateStatusFeedback = () => {
-        if(state.status === API_STATUS.ERROR && state.body.hasOwnProperty('special'))
-            return<Alert severity="error">{state.body.special}</Alert>
+        if (state.status === API_STATUS.ERROR && state.body.hasOwnProperty('special'))
+            return <Alert severity="error">{state.body.special}</Alert>
 
-        if(state.status === API_STATUS.IDLE)
+        if (state.status === API_STATUS.IDLE)
             return <Alert severity="success">Your questionnaire has been saved!</Alert>;
     }
 

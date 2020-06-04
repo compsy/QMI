@@ -16,7 +16,7 @@ export function renderButtons(question, index) {
         elements.push(<Grid item key={elements.length}><EditQuestionButton question={question} index={index}/></Grid>);
         elements.push(<Grid item key={elements.length}><DuplicateQuestionButton question={question}/></Grid>);
         elements.push(<Grid item key={elements.length}><RemoveQuestionButton question={question}
-                                                       index={index}/></Grid>);
+                                                                             index={index}/></Grid>);
     }
     return <Grid key="buttons" container direction="row" justify="flex-end" alignItems="center">{elements}</Grid>
 }

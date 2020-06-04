@@ -18,30 +18,31 @@ export const GeneralSidebar = ({themeConfig, toggleDarkMode}) => {
                 : {title: 'Log In', icon: <div data-cy={"Login"}><ExitToAppIcon/></div>, onClick: loginWithRedirect}
         );
     }
-    const ModeSwitcher = () =>{
+
+    const ModeSwitcher = () => {
         return <Grid
-                container
-                direction="row"
-                alignItems="center"
-                justify="center"
-                spacing={1}
-            >
-                <Grid item>Light Mode</Grid>
-                <Grid item>
-                    <AntSwitch data-cy="darkModeSwitcher" mode={themeConfig.palette.type}
-                               checked={themeConfig.palette.type === "dark"} onChange={toggleDarkMode} value="checkedC"/>
-                </Grid>
-                <Grid item>Dark Mode</Grid>
+            container
+            direction="row"
+            alignItems="center"
+            justify="center"
+            spacing={1}
+        >
+            <Grid item>Light Mode</Grid>
+            <Grid item>
+                <AntSwitch data-cy="darkModeSwitcher" mode={themeConfig.palette.type}
+                           checked={themeConfig.palette.type === "dark"} onChange={toggleDarkMode} value="checkedC"/>
+            </Grid>
+            <Grid item>Dark Mode</Grid>
         </Grid>
 
     }
 
-    const generateLayout = () =>{
+    const generateLayout = () => {
         return [
             {custom: <Header key={"header"}/>},
             {isDivider: true},
-            {redirect: "/home", icon: <HomeIcon data-cy="homeIcon"/>, title:"Home"},
-            {redirect: "/", icon: <EditIcon data-cy="editIcon"/>, title:"Editor"},
+            {redirect: "/home", icon: <HomeIcon data-cy="homeIcon"/>, title: "Home"},
+            {redirect: "/", icon: <EditIcon data-cy="editIcon"/>, title: "Editor"},
             {isDivider: true},
             getUserButton(),
             {isDivider: true},

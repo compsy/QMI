@@ -32,16 +32,16 @@ export const removeAllWithKey = (question) => {
     const showsMap = utilities.showsMap;
     const hidesMap = utilities.hidesMap;
     if (showsMap[question.id] !== undefined && showsMap[question.id].length > 0) {
-        for (let i=0; i<showsMap[question.id].length; i++) {
-            const { qid, oid } = showsMap[question.id][i];
-            store.dispatch(REMOVE_BY_MAP({type: "showsMap", key: question.id, qid, oid }))
+        for (let i = 0; i < showsMap[question.id].length; i++) {
+            const {qid, oid} = showsMap[question.id][i];
+            store.dispatch(REMOVE_BY_MAP({type: "showsMap", key: question.id, qid, oid}))
         }
         store.dispatch(removeByKey({key: question.id, type: "showsMap"}));
     }
     if (hidesMap[question.id] !== undefined && hidesMap[question.id].length > 0) {
-        for (let i=0; i<hidesMap[question.id].length; i++) {
-            const { qid, oid } = hidesMap[question.id][i];
-            store.dispatch(REMOVE_BY_MAP({type: "hidesMap", key: question.id, qid, oid }))
+        for (let i = 0; i < hidesMap[question.id].length; i++) {
+            const {qid, oid} = hidesMap[question.id][i];
+            store.dispatch(REMOVE_BY_MAP({type: "hidesMap", key: question.id, qid, oid}))
         }
         store.dispatch(removeByKey({key: question.id, type: "hidesMap"}));
     }

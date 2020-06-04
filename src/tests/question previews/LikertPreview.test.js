@@ -1,14 +1,13 @@
-import { shallow } from 'enzyme';
-import { configure } from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
 import LikertPreview from '../../components/previews/LikertPreview'
 
-configure({ adapter: new Adapter() });
+configure({adapter: new Adapter()});
 
 describe('<LikertPreview/>', () => {
     it('renders a likert question', () => {
-        const question= {
+        const question = {
             id: "v4",
             type: "likert",
             title: "untitled likert",

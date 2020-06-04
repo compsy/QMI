@@ -7,7 +7,7 @@
  */
 const processShowHideOption = (idMap, toProcessOption) => {
     if (toProcessOption !== undefined && toProcessOption.length > 0) {
-        for (let k=0; k<toProcessOption.length; k++) {
+        for (let k = 0; k < toProcessOption.length; k++) {
             toProcessOption[k] = idMap[toProcessOption[k]]
         }
     } else {
@@ -38,10 +38,13 @@ const processQuestionnaire = (questions) => {
             toProcess[i].id = `v${i + 1 - count}`
         }
     }
-    for (let i=0; i<toProcess.length; i++) {
+    for (let i = 0; i < toProcess.length; i++) {
         if (toProcess[i].options !== undefined && toProcess[i].options.length > 0) {
-            for (let j=0; j<toProcess[i].options.length; j++) {
-                toProcess[i].options[j] = typeof toProcess[i].options[j] === "string" ? toProcess[i].options[j] : {...toProcess[i].options[j], id: undefined};
+            for (let j = 0; j < toProcess[i].options.length; j++) {
+                toProcess[i].options[j] = typeof toProcess[i].options[j] === "string" ? toProcess[i].options[j] : {
+                    ...toProcess[i].options[j],
+                    id: undefined
+                };
                 processShowHideOption(idMap, toProcess[i].options[j].shows_questions);
                 processShowHideOption(idMap, toProcess[i].options[j].hides_questions);
             }

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
 
 export const utilitiesSlice = createSlice({
     name: 'utilities',
@@ -11,7 +11,7 @@ export const utilitiesSlice = createSlice({
     reducers: {
         addToMap: (state, action) => {
             // 1) check if uuid already exists in map
-            const { type, key, value } = action.payload
+            const {type, key, value} = action.payload
             const list = state[type][key]
             if (list !== undefined && list.length > 0) {
                 state[type][key] = [...list, value]
@@ -20,7 +20,7 @@ export const utilitiesSlice = createSlice({
             }
         },
         removeFromMap: (state, action) => {
-            const { type, key, value } = action.payload
+            const {type, key, value} = action.payload
             if (state[type][key] && state[type][key].length > 0) {
                 state[type][key] = state[type][key].filter(
                     (x) => JSON.stringify(x) !== JSON.stringify(value)
@@ -28,9 +28,9 @@ export const utilitiesSlice = createSlice({
             }
         },
         removeByKey: (state, action) => {
-            const { [action.payload.key]: value, ...rest } = state[
+            const {[action.payload.key]: value, ...rest} = state[
                 action.payload.type
-            ]
+                ]
             console.log('rest: ', rest)
             state[action.payload.type] = rest
         },

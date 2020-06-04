@@ -1,14 +1,13 @@
-import { shallow } from 'enzyme';
-import { configure } from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
 import RadioCheckboxPreview from '../../components/previews/RadioCheckboxPreview'
 
-configure({ adapter: new Adapter() });
+configure({adapter: new Adapter()});
 
 describe('<RadioCheckboxPreview/>', () => {
     it('renders a checkbox question', () => {
-        const question= {
+        const question = {
             id: "v2",
             type: "checkbox",
             title: "untitled checkbox",

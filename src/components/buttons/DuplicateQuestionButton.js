@@ -15,8 +15,7 @@ const DuplicateQuestionButton = ({question, index}) => {
                 <FileCopyIcon/>
             </IconButton>
         </Tooltip>
-    )
-    ;
+    );
 };
 
 export default DuplicateQuestionButton;

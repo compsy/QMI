@@ -11,7 +11,7 @@ const postprocessCheckbox = (question) => {
                     ...q,
                     numeric_value: undefined,
                     // id: undefined,
-                  }
+                }
         )
     }
     // prettier-ignore
@@ -60,13 +60,13 @@ const postprocessLikert = (question) => {
             typeof q === 'string'
                 ? q
                 : {
-                      ...q,
-                      tooltip: undefined,
-                      stop_subscription: undefined,
-                      shows_questions: undefined,
-                      hides_questions: undefined,
-                      // id: undefined,
-                  }
+                    ...q,
+                    tooltip: undefined,
+                    stop_subscription: undefined,
+                    shows_questions: undefined,
+                    hides_questions: undefined,
+                    // id: undefined,
+                }
         )
     }
     // prettier-ignore
@@ -196,13 +196,13 @@ const postprocessDropdown = (question) => {
             typeof q === 'string'
                 ? q
                 : {
-                      ...q,
-                      tooltip: undefined,
-                      stop_subscription: undefined,
-                      shows_questions: undefined,
-                      hides_questions: undefined,
-                      // id: undefined,
-                  }
+                    ...q,
+                    tooltip: undefined,
+                    stop_subscription: undefined,
+                    shows_questions: undefined,
+                    hides_questions: undefined,
+                    // id: undefined,
+                }
         )
     }
     // prettier-ignore
@@ -297,7 +297,7 @@ export const clearMapWithQuestion = (question) => {
                         removeFromMap({
                             type: 'showsMap',
                             key: showsQuestions[i],
-                            value: { qid, oid },
+                            value: {qid, oid},
                         })
                     )
                 }
@@ -308,7 +308,7 @@ export const clearMapWithQuestion = (question) => {
                         removeFromMap({
                             type: 'hidesMap',
                             key: hidesQuestions[i],
-                            value: { qid, oid },
+                            value: {qid, oid},
                         })
                     )
                 }

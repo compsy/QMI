@@ -30,9 +30,7 @@ const useStyles = makeStyles(() => ({
         backgroundColor: "rgba(0, 0, 0, 0)",
         color: "white"
     },
-    cover: {
-
-    }
+    cover: {}
 }));
 
 // The default header for a TemporaryDrawer instance. It contains the u-can-act logo and a title.
@@ -69,7 +67,6 @@ export const UserInformationCard = ({user}) => {
 }
 
 
-
 /* The left sidebar.
 Layouts are structured in an array containing JSON objects:
      title: string containing the text of the element
@@ -91,24 +88,23 @@ export const TemporaryDrawer = ({layout}) => {
                 return <Divider key={'divider' + index}/>
             } else if (element.hasOwnProperty('custom')) {
                 return element.custom;
-            } else if(element.hasOwnProperty('customWrapped')){
+            } else if (element.hasOwnProperty('customWrapped')) {
                 return <ListItem key={"customWrapped" + index}>
                     <ListItemText>{element.customWrapped}</ListItemText>
                 </ListItem>
-            }
-            else if(element.hasOwnProperty('redirect')){
+            } else if (element.hasOwnProperty('redirect')) {
                 // inserting default values if a replacement has not been given
                 const className = element.hasOwnProperty('className') ? element.className : "this";
 
                 return <ListItem button key={element.title + index} to={element.redirect}
                                  className={className} component={NavLink}
                 >
-                    <ListItemIcon >{element.icon}</ListItemIcon>
+                    <ListItemIcon>{element.icon}</ListItemIcon>
                     <ListItemText primary={element.title}/>
                 </ListItem>
             }
             return <ListItem button key={element.title + index} onClick={element.onClick}>
-                <ListItemIcon >{element.icon}</ListItemIcon>
+                <ListItemIcon>{element.icon}</ListItemIcon>
                 <ListItemText primary={element.title}/>
             </ListItem>
         };

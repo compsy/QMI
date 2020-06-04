@@ -42,7 +42,7 @@ const EachOptionShows = ({index}) => {
             setTextArrayElement({
                 property: 'options',
                 index: index,
-                value: { ...option, shows_questions: copy },
+                value: {...option, shows_questions: copy},
             })
         )
     }, [copy])
@@ -55,7 +55,7 @@ const EachOptionShows = ({index}) => {
                 removeFromMap({
                     type: 'showsMap',
                     key: key,
-                    value: { qid: qid, oid: oid },
+                    value: {qid: qid, oid: oid},
                 })
             )
             setCopy(copy.filter((x) => x !== key))
@@ -66,7 +66,7 @@ const EachOptionShows = ({index}) => {
                 addToMap({
                     type: 'showsMap',
                     key: key,
-                    value: { qid: qid, oid: oid },
+                    value: {qid: qid, oid: oid},
                 })
             )
             setCopy([...copy, key])
@@ -152,7 +152,7 @@ const EachOptionShows = ({index}) => {
                         )
                     })
                 ) : (
-                    <NoneMenuItem />
+                    <NoneMenuItem/>
                 )}
             </Menu>
         </>

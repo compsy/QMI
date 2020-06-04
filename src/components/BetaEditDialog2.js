@@ -7,7 +7,7 @@ import TypeProperty from "./properties/TypeProperty";
 import store from "../app/store";
 import {postprocessQuestion} from "./properties/postprocessor";
 import {UPDATE_QUESTION} from "../features/questions/questionsSlice";
-import { SET_UTILITIES } from "../features/utilities/utilitiesSlice";
+import {SET_UTILITIES} from "../features/utilities/utilitiesSlice";
 
 
 const useStyles = makeStyles((theme) => ({

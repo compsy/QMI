@@ -29,7 +29,7 @@ export function EraseQuestionnaireButton() {
     return (
         <div>
             <Button color="inherit" data-cy={"eraseQuestionnaire"} id={"eraseQuestionnaire"} onClick={handleClickOpen}
-            startIcon={<DeleteIcon/>}
+                    startIcon={<DeleteIcon/>}
             >
                 Erase</Button>
 

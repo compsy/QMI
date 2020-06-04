@@ -14,7 +14,7 @@ import {Link} from "react-router-dom";
 import {SET_QUESTIONS} from "../../features/questions/questionsSlice";
 import {v4 as uuid} from "uuid";
 
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {SET_METADATA} from "../../features/questionnaire/questionnaireMetadataSlice";
 
 
@@ -44,16 +44,22 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
         const questionnaire = questionnaireState.body;
         questionnaire.content.questions.forEach(question => question.type === 'raw' ? question.id = uuid() : null);
         dispatch(SET_QUESTIONS({questions: questionnaire.content.questions}));
-        dispatch(SET_METADATA({metadata: {key: questionnaire.key, name: questionnaire.name, title: questionnaire.title}}));
+        dispatch(SET_METADATA({
+            metadata: {
+                key: questionnaire.key,
+                name: questionnaire.name,
+                title: questionnaire.title
+            }
+        }));
     }
     const questionnaireKeyHasChanged =
         () => questionnaireState.status === API_STATUS.IDLE && questionnaireState.body.key !== questionnaireKey;
 
     useEffect(() => {
-        if(questionnaireKey == null || questionnaireState.status === API_STATUS.LOADING) return;
-        if(questionnaireState.status === API_STATUS.INIT){
+        if (questionnaireKey == null || questionnaireState.status === API_STATUS.LOADING) return;
+        if (questionnaireState.status === API_STATUS.INIT) {
             retrieveQuestionnaire(questionnaireKey);
-        }else if(questionnaireKeyHasChanged()){
+        } else if (questionnaireKeyHasChanged()) {
             retrieveQuestionnaire(questionnaireKey);
         }
     })
@@ -67,12 +73,12 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
             })
     }
     const retrieveQuestionnaire = (key) => {
-        if(!isAuthenticated || questionnaireState.status === API_STATUS.LOADING) return;
+        if (!isAuthenticated || questionnaireState.status === API_STATUS.LOADING) return;
         setQuestionnaireState({status: API_STATUS.LOADING, body: null})
         getQuestionnaireByKeyAsync(key)
             .catch(error => setQuestionnaireState({status: API_STATUS.ERROR, body: error}))
             .then(response => {
-                if(response.status >= 400){
+                if (response.status >= 400) {
                     setQuestionnaireState({status: API_STATUS.ERROR, body: response.body});
                 }
                 setQuestionnaireState({status: API_STATUS.IDLE, body: response.body});
@@ -80,7 +86,7 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
             .catch(error => setQuestionnaireState({status: API_STATUS.ERROR, body: error}));
     }
 
-    switch (questionnaireState.status){
+    switch (questionnaireState.status) {
         case API_STATUS.INIT:
             return <Wrapper
                 title={locale.noQuestionnaireTitle}
@@ -88,7 +94,7 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
             />
         case API_STATUS.LOADING:
             return <Wrapper>
-                <CircularProgress />
+                <CircularProgress/>
             </Wrapper>
         case API_STATUS.ERROR:
             return <Wrapper
@@ -131,7 +137,8 @@ const Wrapper = ({title = "", subtitle = "", extra = "", editAvailable = false, 
             {props.children}
         </CardContent>
         <CardActions>
-            <Button disabled={!editAvailable} color="primary" component={Link} to="/" {...props}>Edit Questionnaire</Button>
+            <Button disabled={!editAvailable} color="primary" component={Link} to="/" {...props}>Edit
+                Questionnaire</Button>
         </CardActions>
     </Card>
 

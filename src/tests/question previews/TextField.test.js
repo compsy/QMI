@@ -1,14 +1,13 @@
-import { shallow } from 'enzyme';
-import { configure } from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
 import TextFieldPreview from '../../components/previews/TextFieldPreview'
 
-configure({ adapter: new Adapter() });
+configure({adapter: new Adapter()});
 
 describe('<TextField/>', () => {
     it('renders a textfield question', () => {
-        const question= {
+        const question = {
             section_start: "Tot slot",
             hidden: true,
             id: "v8",

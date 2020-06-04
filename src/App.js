@@ -37,11 +37,12 @@ function App() {
             <Provider store={store}>
                 <div className="content">
                     <MuiThemeProvider theme={themeConfig}>
-                        <AppBarComponent theme={theme} themeConfig={themeConfig} toggleDarkMode={toggleDarkMode} />
+                        <AppBarComponent theme={theme} themeConfig={themeConfig} toggleDarkMode={toggleDarkMode}/>
                     </MuiThemeProvider>
                 </div>
             </Provider>
         </Auth0Provider>
     );
 }
+
 export default App;

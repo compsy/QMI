@@ -60,7 +60,9 @@ export const Sidebar = ({question, items}) => {
 
     const [isOpen, setOpenVideo] = React.useState(false);
 
-    const handleClickOpenVideo = useCallback( () => { setOpenVideo(true) }, [], );
+    const handleClickOpenVideo = useCallback(() => {
+        setOpenVideo(true)
+    }, [],);
 
     const handleCloseVideo = () => {
         setOpenVideo(false);
@@ -90,7 +92,7 @@ export const Sidebar = ({question, items}) => {
                             return (
                                 <React.Fragment key={item.id}>
                                     {shouldRenderClone ? (
-                                        <ListItem button id= {item.label} key={item.label}>
+                                        <ListItem button id={item.label} key={item.label}>
                                             <ListItemIcon>{item.icon}</ListItemIcon>
                                             <ListItemText
                                                 primary={item.label}
@@ -101,7 +103,7 @@ export const Sidebar = ({question, items}) => {
                                         <Draggable draggableId={item.id} index={index}>
                                             {(provided, snapshot) => (
                                                 <ListItem
-                                                    id= {item.label}
+                                                    id={item.label}
                                                     key={item.label}
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
@@ -121,7 +123,7 @@ export const Sidebar = ({question, items}) => {
                         {/* {provided.placeholder} */}
                         <div className={classes.toolbar}/>
                         <Divider/>
-                         <ListItem
+                        <ListItem
                             button
                             onClick={() => {
                                 localStorage.clear();

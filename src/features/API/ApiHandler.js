@@ -4,7 +4,7 @@ export const API_STATUS = {
     INIT: 'init', // initial value, after the component has been mounted.
     IDLE: 'idle', //
     LOADING: 'loading', // api call is being processed
-    NOT_AUTHENTICATED : 'not authenticated',
+    NOT_AUTHENTICATED: 'not authenticated',
     ERROR: 'error' // an error has occurred in the api call
 }
 

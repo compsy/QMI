@@ -1,14 +1,14 @@
-import { AppBar, makeStyles, MuiThemeProvider, Toolbar, Typography } from '@material-ui/core'
+import {AppBar, makeStyles, Toolbar, Typography} from '@material-ui/core'
 import {Route, Router, Switch, useLocation} from 'react-router-dom'
 import history from '../utils/history'
 import GeneralSidebar from './GeneralSidebar'
 import Grid from '@material-ui/core/Grid'
 import React from 'react'
 import QuestionsPage from './QuestionsPage'
-import { LandingPage } from './LandingPage/LandingPage'
-import { EraseQuestionnaireButton } from '../NavigationBarButtons/EraseQuestionnaireButton'
-import { RenderQuestionnaireButton } from '../NavigationBarButtons/RenderQuestionnaireButton'
-import { SaveQuestionnaireButton } from '../NavigationBarButtons/SaveQuestionnaireButton'
+import {LandingPage} from './LandingPage/LandingPage'
+import {EraseQuestionnaireButton} from '../NavigationBarButtons/EraseQuestionnaireButton'
+import {RenderQuestionnaireButton} from '../NavigationBarButtons/RenderQuestionnaireButton'
+import {SaveQuestionnaireButton} from '../NavigationBarButtons/SaveQuestionnaireButton'
 import UserCard from '../IconUser'
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AuxiliaryButtons = () => {
     const location = useLocation();
-    if(location.pathname.includes("home")) return null;
+    if (location.pathname.includes("home")) return null;
 
     const elements = [
         <SaveQuestionnaireButton/>,
@@ -50,23 +50,23 @@ const AppBarComponent = ({theme, themeConfig, toggleDarkMode}) => {
                         <GeneralSidebar themeConfig={themeConfig} toggleDarkMode={toggleDarkMode}/>
                         <Switch/>
 
-                    <Grid container alignContent="center" alignItems="center">
-                        <Grid item xs={3}>
-                            <Grid container alignItems="center" spacing={1}>
-                                <AuxiliaryButtons/>
+                        <Grid container alignContent="center" alignItems="center">
+                            <Grid item xs={3}>
+                                <Grid container alignItems="center" spacing={1}>
+                                    <AuxiliaryButtons/>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Typography variant="h6" className={classes.title}>Questionnaire Interface</Typography>
-                        </Grid>
-                        <Grid item xs={1}/>
-                        <Grid item xs={2}>
-                            <Grid container alignItems="flex-start" justify="flex-end">
-                                <UserCard/>
+                            <Grid item xs={6}>
+                                <Typography variant="h6" className={classes.title}>Questionnaire Interface</Typography>
                             </Grid>
-                        </Grid>
+                            <Grid item xs={1}/>
+                            <Grid item xs={2}>
+                                <Grid container alignItems="flex-start" justify="flex-end">
+                                    <UserCard/>
+                                </Grid>
+                            </Grid>
 
-                    </Grid>
+                        </Grid>
                     </Router>
 
                 </Toolbar>

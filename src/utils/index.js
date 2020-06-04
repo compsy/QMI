@@ -37,7 +37,6 @@ import {
     WidthHeightComposite
 } from "../components/properties/OtherProperties";
 import {v4 as uuidv4} from "uuid";
-import processQuestions from './ProcessQuestionnaire'
 import processQuestionnaire from './ProcessQuestionnaire'
 
 export const QUESTION_TYPES = [
@@ -336,15 +335,15 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
 
 export const GENERATE_INITIAL_QUESTIONNAIRE_METADATA_CONTEXT = () => {
     return {
-      key: uuidv4().replace(/-/g,"_"),
-      name: "Questionnaire " + uuidv4(),
-      title: "Untitled Questionnaire"
+        key: uuidv4().replace(/-/g, "_"),
+        name: "Questionnaire " + uuidv4(),
+        title: "Untitled Questionnaire"
     };
 }
 
 
 export const INITIAL_QUESTIONNAIRE_CONTEXT = [
-  {
+    {
         id: 'v1',
         type: "raw",
         content: "<h4>Welcome to your new questionnaire!</h4>\n" +
@@ -355,7 +354,6 @@ export const INITIAL_QUESTIONNAIRE_CONTEXT = [
     },
 
 ];
-
 
 
 export const toPrint = () => {

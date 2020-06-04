@@ -1,14 +1,13 @@
-import { shallow } from 'enzyme';
-import { configure } from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
 import RangePreview from '../../components/previews/RangePreview'
 
-configure({ adapter: new Adapter() });
+configure({adapter: new Adapter()});
 
 describe('<RangePreview/>', () => {
     it('renders a range question', () => {
-        const question= {
+        const question = {
             section_start: "De hoofddoelen",
             hidden: true,
             id: "v7",

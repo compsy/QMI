@@ -59,7 +59,6 @@ const style = {
 export default Question;
 
 
-
 const Details = ({question, index}) => {
     // const { settings } = useContext(SettingsContext);
 
