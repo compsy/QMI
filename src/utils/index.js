@@ -1,15 +1,4 @@
 import React from "react";
-import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import TuneIcon from "@material-ui/icons/Tune";
-import LinearScaleIcon from "@material-ui/icons/LinearScale";
-import Looks5TwoToneIcon from "@material-ui/icons/Looks5TwoTone";
-import TextFieldsIcon from "@material-ui/icons/TextFields";
-import DateRangeIcon from "@material-ui/icons/DateRange";
-import ScheduleIcon from "@material-ui/icons/Schedule";
-import TextFormatIcon from "@material-ui/icons/TextFormat";
-import GestureIcon from "@material-ui/icons/Gesture";
-import SelectIcon from "@material-ui/icons/ViewList";
 
 import {HiddenProperty, SectionEndProperty, TodayProperty,} from "../components/properties/BooleanProperties";
 
@@ -48,6 +37,8 @@ import {
     WidthHeightComposite
 } from "../components/properties/OtherProperties";
 import {v4 as uuidv4} from "uuid";
+import processQuestions from './ProcessQuestionnaire'
+import processQuestionnaire from './ProcessQuestionnaire'
 
 export const QUESTION_TYPES = [
     {type: "checkbox", disabled: false},
@@ -365,52 +356,10 @@ export const INITIAL_QUESTIONNAIRE_CONTEXT = [
 
 ];
 
+
+
 export const toPrint = () => {
     const store = require("../app/store");
     const questions = store.default.getState().questions;
-    let toProcess = JSON.parse(JSON.stringify(questions))
-    let idMap = {};
-    let count = 0;
-
-    // idMap generation
-    for (let i = 0; i < questions.length; i++) {
-        if (questions[i].type === "raw") {
-            count++;
-            idMap = {...idMap, [questions[i].id]: undefined}
-            toProcess[i].id = undefined
-        } else {
-            idMap = {...idMap, [questions[i].id]: `v${i + 1 - count}`}
-            toProcess[i].id = `v${i + 1 - count}`
-        }
-    }
-    console.log("idMap: ", idMap);
-
-    for (let i=0; i<toProcess.length; i++) {
-        if (toProcess[i].options !== undefined && toProcess[i].options.length > 0) {
-            for (let j=0; j<toProcess[i].options.length; j++) {
-                toProcess[i].options[j] = typeof toProcess[i].options[j] === "string" ? toProcess[i].options[j] : {...toProcess[i].options[j], id: undefined};
-                if (toProcess[i].options[j].shows_questions !== undefined && toProcess[i].options[j].shows_questions.length > 0) {
-                    for (let k=0; k<toProcess[i].options[j].shows_questions.length; k++) {
-                        toProcess[i].options[j].shows_questions[k] = idMap[toProcess[i].options[j].shows_questions[k]]
-                    }
-                } else {
-                    // toProcess[i].options[j].shows_questions = undefined
-                    if (toProcess[i].options[j].shows_questions !== undefined && toProcess[i].options[j].shows_questions.length === 0) {
-                        toProcess[i].options[j].shows_questions = undefined
-                    }
-                }
-                if (toProcess[i].options[j].hides_questions !== undefined && toProcess[i].options[j].hides_questions.length > 0) {
-                    for (let k=0; k<toProcess[i].options[j].hides_questions.length; k++) {
-                        toProcess[i].options[j].hides_questions[k] = idMap[toProcess[i].options[j].hides_questions[k]]
-                    }
-                } else {
-                    // toProcess[i].options[j].hides_questions = undefined
-                    if (toProcess[i].options[j].hides_questions !== undefined && toProcess[i].options[j].hides_questions.length === 0) {
-                        toProcess[i].options[j].hides_questions = undefined
-                    }
-                }
-            }
-        }
-    }
-    return toProcess;
+    return processQuestionnaire(questions);
 }
