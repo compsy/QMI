@@ -39,12 +39,12 @@ const AuxiliaryButtons = () => {
 }
 
 
-const AppBarComponent = ({themeConfig, toggleDarkMode}) => {
+const AppBarComponent = ({theme, themeConfig, toggleDarkMode}) => {
     const classes = useStyles();
 
     return (
         <div style={{display: "flex", flexDirection: "column"}}>
-            <AppBar className={classes.appBar}>
+            <AppBar data-cy={theme.palette.type} className={classes.appBar}>
                 <Toolbar>
                     <Router history={history}>
                         <GeneralSidebar themeConfig={themeConfig} toggleDarkMode={toggleDarkMode}/>

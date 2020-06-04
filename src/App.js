@@ -37,7 +37,7 @@ function App() {
             <Provider store={store}>
                 <div className="content">
                     <MuiThemeProvider theme={themeConfig}>
-                        <AppBarComponent themeConfig={themeConfig} toggleDarkMode={toggleDarkMode} />
+                        <AppBarComponent theme={theme} themeConfig={themeConfig} toggleDarkMode={toggleDarkMode} />
                     </MuiThemeProvider>
                 </div>
             </Provider>
