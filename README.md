@@ -196,3 +196,132 @@ We have tested the application on the following browsers through browserstack:
   * Chrome (version 81)
   * Safari (version 5.1)
   * Opera (version 68)
+  
+  ````
+📦src
+ ┣ 📂NavigationBarButtons
+ ┃ ┣ 📜EraseQuestionnaireButton.js
+ ┃ ┣ 📜RenderQuestionnaireButton.js
+ ┃ ┗ 📜SaveQuestionnaireButton.js
+ ┣ 📂app
+ ┃ ┗ 📜store.js
+ ┣ 📂components
+ ┃ ┣ 📂LandingPage
+ ┃ ┃ ┣ 📜LandingPage.js
+ ┃ ┃ ┣ 📜QuestionnaireDetails.js
+ ┃ ┃ ┗ 📜QuestionnaireList.js
+ ┃ ┣ 📂buttons
+ ┃ ┃ ┣ 📜DuplicateQuestionButton.js
+ ┃ ┃ ┣ 📜EditQuestionButton.js
+ ┃ ┃ ┣ 📜RemoveQuestionButton.js
+ ┃ ┃ ┗ 📜ToggleGridAreasButton.js
+ ┃ ┣ 📂previews
+ ┃ ┃ ┣ 📜DatePickerPreview.js
+ ┃ ┃ ┣ 📜DrawingPreview.js
+ ┃ ┃ ┣ 📜DropdownPreview.js
+ ┃ ┃ ┣ 📜LikertPreview.js
+ ┃ ┃ ┣ 📜NumberPreview.js
+ ┃ ┃ ┣ 📜RadioCheckboxPreview.js
+ ┃ ┃ ┣ 📜RangePreview.js
+ ┃ ┃ ┣ 📜RawPreview.js
+ ┃ ┃ ┣ 📜TextArea.js
+ ┃ ┃ ┣ 📜TextFieldPreview.js
+ ┃ ┃ ┗ 📜TimePickerPreview.js
+ ┃ ┣ 📂properties
+ ┃ ┃ ┣ 📂TextArrayTemplate
+ ┃ ┃ ┃ ┣ 📜AddOptionButton.js
+ ┃ ┃ ┃ ┣ 📜EachOption.js
+ ┃ ┃ ┃ ┣ 📜EachOptionHides.js
+ ┃ ┃ ┃ ┣ 📜EachOptionMenu.js
+ ┃ ┃ ┃ ┣ 📜EachOptionShows.js
+ ┃ ┃ ┃ ┣ 📜LinkQuestions.js
+ ┃ ┃ ┃ ┗ 📜TextArrayTemplate.js
+ ┃ ┃ ┣ 📜BooleanProperties.js
+ ┃ ┃ ┣ 📜BooleanTemplate.js
+ ┃ ┃ ┣ 📜DateProperties.js
+ ┃ ┃ ┣ 📜DateTemplate.js
+ ┃ ┃ ┣ 📜NumericProperties.js
+ ┃ ┃ ┣ 📜NumericTemplate.js
+ ┃ ┃ ┣ 📜OtherProperties.js
+ ┃ ┃ ┣ 📜RegexpTemplate.js
+ ┃ ┃ ┣ 📜TextArrayProperties.js
+ ┃ ┃ ┣ 📜TextArrayTemplate.js
+ ┃ ┃ ┣ 📜TextProperties.js
+ ┃ ┃ ┣ 📜TextTemplate.js
+ ┃ ┃ ┣ 📜TypeProperty.js
+ ┃ ┃ ┗ 📜postprocessor.js
+ ┃ ┣ 📜AppBarComponent.js
+ ┃ ┣ 📜BetaEditDialog2.js
+ ┃ ┣ 📜EditDialogTitle.js
+ ┃ ┣ 📜GeneralSidebar.js
+ ┃ ┣ 📜HiddenQuestionIndicator.js
+ ┃ ┣ 📜PrivateRoute.js
+ ┃ ┣ 📜Profile.js
+ ┃ ┣ 📜Question.js
+ ┃ ┣ 📜QuestionArea.js
+ ┃ ┣ 📜QuestionTypes.js
+ ┃ ┣ 📜QuestionsPage.js
+ ┃ ┣ 📜RenderButtons.js
+ ┃ ┣ 📜SaveQuestionnaireDialog.js
+ ┃ ┣ 📜StringifiedJSONCard.js
+ ┃ ┣ 📜Summary.js
+ ┃ ┣ 📜TemporaryDrawer.js
+ ┃ ┣ 📜TestApiSection.js
+ ┃ ┣ 📜index.css
+ ┃ ┗ 📜react-auth0-spa.js
+ ┣ 📂features
+ ┃ ┣ 📂API
+ ┃ ┃ ┣ 📜ApiHandler.js
+ ┃ ┃ ┗ 📜auth_config.js
+ ┃ ┣ 📂question
+ ┃ ┃ ┗ 📜questionSlice.js
+ ┃ ┣ 📂questionnaire
+ ┃ ┃ ┗ 📜questionnaireMetadataSlice.js
+ ┃ ┣ 📂questions
+ ┃ ┃ ┣ 📜QuestionCard.js
+ ┃ ┃ ┗ 📜questionsSlice.js
+ ┃ ┗ 📂utilities
+ ┃ ┃ ┗ 📜utilitiesSlice.js
+ ┣ 📂tests
+ ┃ ┣ 📂question previews
+ ┃ ┃ ┣ 📂__snapshots__
+ ┃ ┃ ┃ ┣ 📜CheckboxPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜DropdownPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜LikertPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜NumberPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜RadioPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜RangePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜TextArea.test.js.snap
+ ┃ ┃ ┃ ┣ 📜TextField.test.js.snap
+ ┃ ┃ ┃ ┗ 📜TimePreview.test.js.snap
+ ┃ ┃ ┣ 📜CheckboxPreview.test.js
+ ┃ ┃ ┣ 📜DropdownPreview.test.js
+ ┃ ┃ ┣ 📜LikertPreview.test.js
+ ┃ ┃ ┣ 📜NumberPreview.test.js
+ ┃ ┃ ┣ 📜RadioPreview.test.js
+ ┃ ┃ ┣ 📜RangePreview.test.js
+ ┃ ┃ ┣ 📜TextArea.test.js
+ ┃ ┃ ┣ 📜TextField.test.js
+ ┃ ┃ ┗ 📜TimePreview.test.js
+ ┃ ┗ 📜App.test.js
+ ┣ 📂utils
+ ┃ ┣ 📜ProcessQuestionnaire.js
+ ┃ ┣ 📜history.js
+ ┃ ┗ 📜index.js
+ ┣ 📜AntSwitch.js
+ ┣ 📜App.js
+ ┣ 📜BottomSection.js
+ ┣ 📜IconUser.js
+ ┣ 📜ScrollArrow.js
+ ┣ 📜Sidebar.js
+ ┣ 📜TopSection.js
+ ┣ 📜WatchTutorial.js
+ ┣ 📜auth0_callback.js
+ ┣ 📜background.css
+ ┣ 📜gatsby-browser.js
+ ┣ 📜gatsby-ssr.js
+ ┣ 📜index.js
+ ┣ 📜scroll.css
+ ┣ 📜serviceWorker.js
+ ┗ 📜useDarkMode.js
+````
