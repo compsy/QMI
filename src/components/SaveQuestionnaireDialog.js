@@ -85,8 +85,8 @@ const DialogHeader = ({state, ...props}) => {
 
 export const SafeQuestionnaireDialog = ({open, setOpen}) => {
     const classes = useStyles();
-    const metadata = useSelector(state => state.questionnaireMetadata);
-    const questions = useSelector(state => state.questions);
+    const metadata = useSelector(stateTwo => stateTwo.questionnaireMetadata);
+    const questions = useSelector(stateThree => stateThree.questions);
     const [name, setName] = useState(metadata.name);
     const [title, setTitle] = useState(metadata.title);
     const [key, setKey] = useState(metadata.key);

@@ -59,8 +59,6 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
         if (questionnaireKey == null || questionnaireState.status === API_STATUS.LOADING) return;
         if (questionnaireState.status === API_STATUS.INIT) {
             retrieveQuestionnaire(questionnaireKey);
-        } else if (questionnaireKeyHasChanged()) {
-            retrieveQuestionnaire(questionnaireKey);
         }
     })
 
