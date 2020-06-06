@@ -112,7 +112,6 @@ const QuestionsPage = () => {
                         <BottomSection/>
 
                         <ScrollArrow/>
-                        {count++}
                     </Grid>
                 </main>
 

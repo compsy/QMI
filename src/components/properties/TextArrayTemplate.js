@@ -4,34 +4,28 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     removeOption,
     selectProperty,
-    setProperty,
     setTextArrayElement,
     setTextArrayField,
 } from "../../features/questionProperties/questionSlice";
 import {
-    Box,
     Button,
     FilledInput,
     FormControl,
     FormControlLabel,
-    Grid,
     IconButton,
     InputAdornment,
     InputLabel,
     makeStyles,
     Menu,
     MenuItem,
-    Paper,
     Switch,
     Tooltip,
-    Typography,
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 import {CLEAN_SUPER_OPTION} from "../../utils";
 import {QuestionnaireContext} from "../../contexts/QuestionnaireContext";
-import EachOption from "./TextArrayTemplate/EachOption";
 
 const useStyles = makeStyles((theme) => ({
     boxy: {

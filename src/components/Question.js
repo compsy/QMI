@@ -165,7 +165,6 @@ const Details = ({question, index}) => {
                         textAlign: "center",
                     }}
                 >
-                    >
                     {renderEditButtons(question, index)}
                 </Grid>
             </Grid>

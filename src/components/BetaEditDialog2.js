@@ -1,5 +1,5 @@
 import React, {createElement, useEffect} from "react";
-import {Box, Button, Dialog, Divider, Grid, makeStyles, Paper, Typography,} from "@material-ui/core";
+import {Box, Button, Dialog, Divider, Grid, Paper, Typography,} from "@material-ui/core";
 import {CLEAN_SUPER_QUESTION, PROPERTIES_BY_QUESTION_TYPE,} from "../utils";
 import {useDispatch, useSelector} from "react-redux";
 import {setQuestion,} from "../features/question/questionSlice";
@@ -8,7 +8,7 @@ import store from "../app/store";
 import {postprocessQuestion} from "./properties/postprocessor";
 import {UPDATE_QUESTION} from "../features/questions/questionsSlice";
 import {SET_UTILITIES} from "../features/utilities/utilitiesSlice";
-import {useStyles} from "../components/SaveQuestionnaireDialog"
+import {useStyles} from "./SaveQuestionnaireDialog"
 
 
 const EditDialog2 = ({question, index, open, setOpen}) => {
@@ -108,7 +108,7 @@ const DialogBody = () => {
     );
 };
 
-const DialogFooter = ({question, handleClose, index}) => {
+const DialogFooter = ({handleClose, index}) => {
     const classes = useStyles();
 
     return (

@@ -33,8 +33,8 @@ export const Auth0Provider = ({
             setIsAuthenticated(isAuthenticated);
 
             if (isAuthenticated) {
-                const user = await auth0FromHook.getUser();
-                setUser(user);
+                const userTwo = await auth0FromHook.getUser();
+                setUser(userTwo);
             }
 
             setLoading(false);
@@ -52,18 +52,18 @@ export const Auth0Provider = ({
         } finally {
             setPopupOpen(false);
         }
-        const user = await auth0Client.getUser();
-        setUser(user);
+        const userThree = await auth0Client.getUser();
+        setUser(userThree);
         setIsAuthenticated(true);
     };
 
     const handleRedirectCallback = async () => {
         setLoading(true);
         await auth0Client.handleRedirectCallback();
-        const user = await auth0Client.getUser();
+        const userFour = await auth0Client.getUser();
         setLoading(false);
         setIsAuthenticated(true);
-        setUser(user);
+        setUser(userFour);
     };
     return (
         <Auth0Context.Provider

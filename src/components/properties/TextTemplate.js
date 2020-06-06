@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {selectProperty, setProperty,} from "../../features/question/questionSlice";
-import {FilledInput, FormControl, InputLabel, makeStyles,} from "@material-ui/core";
+import {FilledInput, FormControl, InputLabel} from "@material-ui/core";
 
 export const TextProperty = ({
                                  name,

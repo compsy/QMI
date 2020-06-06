@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React from 'react'
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import {
     Divider,
@@ -11,7 +11,6 @@ import {
     Paper,
     Typography
 } from "@material-ui/core";
-import {useDispatch} from 'react-redux'
 
 function getStyle(style, snapshot) {
     if (!snapshot.isDropAnimating) {
@@ -19,7 +18,6 @@ function getStyle(style, snapshot) {
     }
     return {
         ...style,
-        // cannot be 0, but make it super tiny
         transitionDuration: `0.00001s`
     };
 }
@@ -43,7 +41,7 @@ export const Sidebar = ({items}) => {
 
     return (
         <Droppable
-            renderClone={getRenderItem(items, "")}
+            renderClone={getRenderItem(items)}
             droppableId="SHOP"
             isDropDisabled={true}
         >
@@ -71,15 +69,15 @@ export const Sidebar = ({items}) => {
                                         </ListItem>
                                     ) : (
                                         <Draggable draggableId={item.id} index={index}>
-                                            {(provided, snapshot) => (
+                                            {(providedTwo, snapshotTwo) => (
                                                 <ListItem
                                                     id={item.label}
                                                     key={item.label}
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
+                                                    ref={providedTwo.innerRef}
+                                                    {...providedTwo.draggableProps}
+                                                    {...providedTwo.dragHandleProps}
                                                     button
-                                                    className={snapshot.isDragging ? "dragging" : ""}
+                                                    className={snapshotTwo.isDragging ? "dragging" : ""}
                                                 >
                                                     <ListItemIcon>{item.icon}</ListItemIcon>
                                                     <ListItemText primary={item.label}/>
@@ -108,11 +106,8 @@ export const Sidebar = ({items}) => {
         </Droppable>
     );
 };
-const getRenderItem = (items, className) => (provided, snapshot, rubric) => {
+const getRenderItem = (items) => (provided, snapshot, rubric) => {
     const item = items[rubric.source.index];
-    const style = {
-        ...provided.draggableProps.style
-    };
     return (
         <Paper
             className={snapshot.isDragging ? "dragging1" : "not-dragging1"}

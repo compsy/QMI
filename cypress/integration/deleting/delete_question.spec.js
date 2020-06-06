@@ -11,7 +11,7 @@ describe('This file contains all tests related to deleting a question ', () => {
 
 
     });
-    it.only('How a user would attempt to delete the a specific question', () => {
+    it('How a user would attempt to delete the a specific question', () => {
         const list = 'div[id="dropzone"]';
         const previousLength = 1;
         cy.get(list).children().should('have.length', previousLength);
