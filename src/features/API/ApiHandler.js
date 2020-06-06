@@ -6,9 +6,4 @@ export const API_STATUS = {
     LOADING: 'loading', // api call is being processed
     NOT_AUTHENTICATED: 'not authenticated',
     ERROR: 'error' // an error has occurred in the api call
-}
-
-
-export const ERROR_MESSAGES = {
-    404: "The page has not been found",
-}
+};

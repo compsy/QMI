@@ -4,16 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import {QuestionnaireDetails} from "./QuestionnaireDetails";
 import {QuestionnaireList} from "./QuestionnaireList";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "flex"
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3)
-    },
-}));
-
 export const HomePage = () => {
 
     const [currentQuestionnaireKey, setCurrentQuestionnaireKey] = useState(null);
