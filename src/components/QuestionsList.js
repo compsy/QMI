@@ -17,6 +17,7 @@ import "./index.css";
 import RawPreview from "./previews/RawTypePreview";
 import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
 import {ExpansionRule} from './ExpansionRule'
+import UnsupportedQuestionTypePreview from "./previews/UnsupportedQuestionTypePreview";
 
 const QuestionsList = ({index, question, ...props}) => {
     const [open, setOpen] = useState(false);
@@ -111,7 +112,7 @@ const renderQuestionDetails = (question, index) => {
         case "raw":
             return <RawPreview question={question}/>;
         default:
-            return <RadioCheckboxTypePreview question={question} index={index}/>;
+            return <UnsupportedQuestionTypePreview/>;
     }
 }
 

@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import {useAuth0} from "./react-auth0-spa";
 import {useDispatch, useSelector} from "react-redux";
 import {API_STATUS} from "../features/API/ApiHandler";
+import {auth_config} from "../features/API/auth_config";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
 import {SET_METADATA} from "../features/questionnaire/questionnaireMetadataSlice";
@@ -85,10 +86,11 @@ const DialogHeader = ({state, ...props}) => {
 export const SafeQuestionnaireDialog = ({open, setOpen}) => {
     const classes = useStyles();
     const metadata = useSelector(stateTwo => stateTwo.questionnaireMetadata);
+    const questions = useSelector(stateThree => stateThree.questions);
     const [name, setName] = useState(metadata.name);
     const [title, setTitle] = useState(metadata.title);
     const [key, setKey] = useState(metadata.key);
-    const {isAuthenticated} = useAuth0();
+    const {isAuthenticated, getIdTokenClaims} = useAuth0();
     const [state, setState] = useState({status: API_STATUS.INIT, body: null});
     const dispatch = useDispatch();
 
@@ -102,17 +104,59 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) => {
         setState({status: API_STATUS.INIT, body: null});
     }
 
-    const callCreateQuestionnaire = async () => {
+    const callCreateQuestionnaire = async (questionnaire) => {
         if (!isAuthenticated) {
             setState({status: API_STATUS.NOT_AUTHENTICATED, body: null});
         }
+
         setState({status: API_STATUS.LOADING, body: null});
+        const itc = await getIdTokenClaims();
+        const unirest = require('unirest');
+        const req = unirest('POST', auth_config.base + '/api/v1/questionnaire')
+            .headers({
+                'Authorization': 'Bearer ' + itc.__raw,
+                'Content-Type': 'application/json'
+            })
+            .send(JSON.stringify({questionnaire: questionnaire}))
+            .end(function (res) {
+                if (res.error && res.error.message.includes("NetworkError")) {
+                    setState({status: API_STATUS.ERROR, body: {special: "The server cannot be reached."}})
+                    return;
+                }
+                responseHandlers[res.code](res);
+            })
+
     }
     const errorInAttribute = (attributeName) => state.status === API_STATUS.ERROR && state.body.hasOwnProperty(attributeName);
 
+    const handleBadRequest = (response) => {
+        setState({status: API_STATUS.ERROR, body: response.body.result});
+    }
+    const handleSuccess = (response) => {
+        setState({status: API_STATUS.IDLE, body: response.body.result});
+    }
+    const handleForbidden = (response) => {
+        setState({status: API_STATUS.ERROR, body: {special: "You need to be an admin to use this feature."}});
+    }
+    const responseHandlers = {
+        400: handleBadRequest,
+        201: handleSuccess,
+        403: handleForbidden
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        callCreateQuestionnaire();
+        const content = {
+            questions: questions,
+            scores: []
+        };
+        const questionnaire = {
+            name: name,
+            content: content,
+            key: key,
+            title: title
+        }
+        callCreateQuestionnaire(questionnaire);
     }
 
     const generateTextField = (attributeName, attributeSetter, attributeState) => {

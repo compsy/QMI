@@ -4,5 +4,6 @@ export const auth_config = {
     "audience": "https://kanadev-dev.eu.auth0.com/api/v2/",
     "base": "http://localhost:3002",
     "responseType": "token id_token",
-    "scope": "openid"
+    "scope": "openid",
+    "default_callback_url": "http://localhost:3000"
 }

@@ -14,10 +14,10 @@ export const Auth0Provider = ({
                               }) => {
     const [isAuthenticated, setIsAuthenticated] = useState();
     const [user, setUser] = useState();
-    const [auth0Client, setAuth0] = useState();
+    const [
+        auth0Client, setAuth0] = useState();
     const [loading, setLoading] = useState(true);
     const [popupOpen, setPopupOpen] = useState(false);
-
     useEffect(() => {
         const initAuth0 = async () => {
             const auth0FromHook = await createAuth0Client(initOptions);
@@ -65,6 +65,8 @@ export const Auth0Provider = ({
         setIsAuthenticated(true);
         setUser(userFour);
     };
+
+
     return (
         <Auth0Context.Provider
             value={{
@@ -74,6 +76,7 @@ export const Auth0Provider = ({
                 popupOpen,
                 loginWithPopup,
                 handleRedirectCallback,
+                buildAuthorizeUrl : (...p) => auth0Client.buildAuthorizeUrl(...p),
                 getIdTokenClaims: (...p) => auth0Client.getIdTokenClaims(...p),
                 loginWithRedirect: (...p) => auth0Client.loginWithRedirect(...p),
                 getTokenSilently: (...p) => auth0Client.getTokenSilently(...p),
