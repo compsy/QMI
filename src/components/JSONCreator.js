@@ -4,12 +4,11 @@ import {useSelector} from 'react-redux';
 import processQuestionnaire from '../utils/ProcessQuestionnaire'
 
 
-const StringifiedJSONCard = () => {
+const JSONCreator = () => {
     const questions = useSelector(state => state.questions);
 
     return (
         <Card
-
             variant="outlined"
             style={{
                 wordWrap: "break-word",
@@ -25,4 +24,4 @@ const StringifiedJSONCard = () => {
     );
 };
 
-export default StringifiedJSONCard;
+export default JSONCreator;

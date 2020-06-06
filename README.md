@@ -91,7 +91,7 @@ Storing `state.question` this way allows us to continuously switch between quest
 
 The object in `state.question` at the point of submission, will contain properties undefined for the final question type. We process `state.question` and remove the unwanted properties using the post-processor located in `src/components/properties/postprocessor.js`. Then, we replace the original question in `state.questions` with the post-processed edited question.
 
-At this point, it's important to note that the `id` property for all questions are mapped to `uuid`'s. These ids are then finally post-processed one last time by the final post-processor located in `src/components/StringifiedJSONCard.js` to the appropriate `id`'s (v1, v2, ...) before being rendered by the frontend system. Having the `id`'s this way helps us show the correct `id`'s for options with the property `shows_questions` and `hides_questions` (showing hidden/hiding shown question functionality). This also means that the object stored in `state.questions` cannot be used as a valid `questions` object to store in u-can-act's backend (a valid one is the one used in `StringifiedJSONCard`).
+At this point, it's important to note that the `id` property for all questions are mapped to `uuid`'s. These ids are then finally post-processed one last time by the final post-processor located in `src/components/JSONCreator.js` to the appropriate `id`'s (v1, v2, ...) before being rendered by the frontend system. Having the `id`'s this way helps us show the correct `id`'s for options with the property `shows_questions` and `hides_questions` (showing hidden/hiding shown question functionality). This also means that the object stored in `state.questions` cannot be used as a valid `questions` object to store in u-can-act's backend (a valid one is the one used in `JSONCreator`).
 
 ### “Shows/hides” functionality - scenarios (and what to do at each case)
 
@@ -118,7 +118,7 @@ At this point, it's important to note that the `id` property for all questions a
   * **Raw** with properties (required) : ContentProperty <br/>
 (optionalProperties) : SectionStartProperty, SectionEndProperty
 
-  * **TextArea** with properties (required) : TitleProperty <br/>
+  * **TextAreaTypePreview** with properties (required) : TitleProperty <br/>
 (optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PlaceholderProperty
 
 
@@ -206,8 +206,8 @@ We have tested the application on the following browsers through browserstack:
  ┣ 📂app
  ┃ ┗ 📜store.js
  ┣ 📂components
- ┃ ┣ 📂LandingPage
- ┃ ┃ ┣ 📜LandingPage.js
+ ┃ ┣ 📂HomePage
+ ┃ ┃ ┣ 📜HomePage.js
  ┃ ┃ ┣ 📜QuestionnaireDetails.js
  ┃ ┃ ┗ 📜QuestionnaireList.js
  ┃ ┣ 📂buttons
@@ -216,17 +216,17 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┣ 📜RemoveQuestionButton.js
  ┃ ┃ ┗ 📜ToggleGridAreasButton.js
  ┃ ┣ 📂previews
- ┃ ┃ ┣ 📜DatePickerPreview.js
- ┃ ┃ ┣ 📜DrawingPreview.js
- ┃ ┃ ┣ 📜DropdownPreview.js
- ┃ ┃ ┣ 📜LikertPreview.js
- ┃ ┃ ┣ 📜NumberPreview.js
- ┃ ┃ ┣ 📜RadioCheckboxPreview.js
- ┃ ┃ ┣ 📜RangePreview.js
- ┃ ┃ ┣ 📜RawPreview.js
- ┃ ┃ ┣ 📜TextArea.js
- ┃ ┃ ┣ 📜TextFieldPreview.js
- ┃ ┃ ┗ 📜TimePickerPreview.js
+ ┃ ┃ ┣ 📜DatePickerTypePreview.js
+ ┃ ┃ ┣ 📜DrawingTypePreview.js
+ ┃ ┃ ┣ 📜DropdownTypePreview.js
+ ┃ ┃ ┣ 📜LikertTypePreview.js
+ ┃ ┃ ┣ 📜NumberTypePreview.js
+ ┃ ┃ ┣ 📜RadioCheckboxTypePreview.js
+ ┃ ┃ ┣ 📜RangeTypePreview.js
+ ┃ ┃ ┣ 📜RawTypePreview.js
+ ┃ ┃ ┣ 📜TextAreaTypePreview.js
+ ┃ ┃ ┣ 📜TextFieldTypePreview.js
+ ┃ ┃ ┗ 📜TimePickerTypePreview.js
  ┃ ┣ 📂properties
  ┃ ┃ ┣ 📂TextArrayTemplate
  ┃ ┃ ┃ ┣ 📜AddOptionButton.js
@@ -251,21 +251,21 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┣ 📜TypeProperty.js
  ┃ ┃ ┗ 📜postprocessor.js
  ┃ ┣ 📜AppBarComponent.js
- ┃ ┣ 📜BetaEditDialog2.js
+ ┃ ┣ 📜EditingFeature.js
  ┃ ┣ 📜EditDialogTitle.js
- ┃ ┣ 📜GeneralSidebar.js
+ ┃ ┣ 📜LeftMenuBar.js
  ┃ ┣ 📜HiddenQuestionIndicator.js
  ┃ ┣ 📜PrivateRoute.js
  ┃ ┣ 📜Profile.js
- ┃ ┣ 📜Question.js
+ ┃ ┣ 📜QuestionsList.js
  ┃ ┣ 📜QuestionArea.js
  ┃ ┣ 📜QuestionTypes.js
- ┃ ┣ 📜QuestionsPage.js
- ┃ ┣ 📜RenderButtons.js
+ ┃ ┣ 📜MainPage.js
+ ┃ ┣ 📜Rendering.js
  ┃ ┣ 📜SaveQuestionnaireDialog.js
- ┃ ┣ 📜StringifiedJSONCard.js
- ┃ ┣ 📜Summary.js
- ┃ ┣ 📜TemporaryDrawer.js
+ ┃ ┣ 📜JSONCreator.js
+ ┃ ┣ 📜ExpansionRule.js
+ ┃ ┣ 📜LeftMenuBarBlueprint.js
  ┃ ┣ 📜TestApiSection.js
  ┃ ┣ 📜index.css
  ┃ ┗ 📜react-auth0-spa.js
@@ -286,21 +286,21 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┣ 📂question previews
  ┃ ┃ ┣ 📂__snapshots__
  ┃ ┃ ┃ ┣ 📜CheckboxPreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜DropdownPreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜LikertPreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜NumberPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜DropdownTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜LikertTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜NumberTypePreview.test.js.snap
  ┃ ┃ ┃ ┣ 📜RadioPreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜RangePreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜TextArea.test.js.snap
+ ┃ ┃ ┃ ┣ 📜RangeTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜TextAreaTypePreview.test.js.snap
  ┃ ┃ ┃ ┣ 📜TextField.test.js.snap
  ┃ ┃ ┃ ┗ 📜TimePreview.test.js.snap
  ┃ ┃ ┣ 📜CheckboxPreview.test.js
- ┃ ┃ ┣ 📜DropdownPreview.test.js
- ┃ ┃ ┣ 📜LikertPreview.test.js
- ┃ ┃ ┣ 📜NumberPreview.test.js
+ ┃ ┃ ┣ 📜DropdownTypePreview.test.js
+ ┃ ┃ ┣ 📜LikertTypePreview.test.js
+ ┃ ┃ ┣ 📜NumberTypePreview.test.js
  ┃ ┃ ┣ 📜RadioPreview.test.js
- ┃ ┃ ┣ 📜RangePreview.test.js
- ┃ ┃ ┣ 📜TextArea.test.js
+ ┃ ┃ ┣ 📜RangeTypePreview.test.js
+ ┃ ┃ ┣ 📜TextAreaTypePreview.test.js
  ┃ ┃ ┣ 📜TextField.test.js
  ┃ ┃ ┗ 📜TimePreview.test.js
  ┃ ┗ 📜App.test.js
@@ -308,14 +308,14 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┣ 📜ProcessQuestionnaire.js
  ┃ ┣ 📜history.js
  ┃ ┗ 📜index.js
- ┣ 📜AntSwitch.js
+ ┣ 📜ModeToggle.js
  ┣ 📜App.js
- ┣ 📜BottomSection.js
- ┣ 📜IconUser.js
- ┣ 📜ScrollArrow.js
- ┣ 📜Sidebar.js
- ┣ 📜TopSection.js
- ┣ 📜WatchTutorial.js
+ ┣ 📜QuestionsArea.js
+ ┣ 📜UserInformation.js
+ ┣ 📜BackToTopArrowButton.js
+ ┣ 📜QuestionTypesMenu.js
+ ┣ 📜JSONTranslationArea.js
+ ┣ 📜VideoTutorialDialog.js
  ┣ 📜auth0_callback.js
  ┣ 📜background.css
  ┣ 📜gatsby-browser.js

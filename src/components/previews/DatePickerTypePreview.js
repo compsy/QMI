@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from "@date-io/date-fns"
 import {KeyboardDatePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
 
-export default function DatePickerPreview() {
+export default function DatePickerTypePreview() {
     const [selectedDate, setSelectedDate] = React.useState(new Date('2020-04-18T21:11:54'));
 
     const handleDateChange = date => {

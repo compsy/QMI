@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const LandingPage = () => {
+export const HomePage = () => {
 
     const [currentQuestionnaireKey, setCurrentQuestionnaireKey] = useState(null);
     return <Grid data-cy="landingPage" container spacing={10} style={{padding: 100}}>

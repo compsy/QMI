@@ -1,14 +1,14 @@
 import {useAuth0} from "./react-auth0-spa";
-import {Header, TemporaryDrawer} from "./TemporaryDrawer";
+import {Header, LeftMenuBarBlueprint} from "./LeftMenuBarBlueprint";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import React from "react";
 import HomeIcon from '@material-ui/icons/Home';
 import EditIcon from '@material-ui/icons/Edit';
 import Grid from "@material-ui/core/Grid";
-import {AntSwitch} from "../AntSwitch";
+import {ModeToggle} from "../ModeToggle";
 
 
-export const GeneralSidebar = ({themeConfig, toggleDarkMode}) => {
+export const LeftMenuBar = ({themeConfig, toggleDarkMode}) => {
     const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
 
     function getUserButton() {
@@ -29,8 +29,8 @@ export const GeneralSidebar = ({themeConfig, toggleDarkMode}) => {
         >
             <Grid item>Light Mode</Grid>
             <Grid item>
-                <AntSwitch data-cy="darkModeSwitcher" mode={themeConfig.palette.type}
-                           checked={themeConfig.palette.type === "dark"} onChange={toggleDarkMode} value="checkedC"/>
+                <ModeToggle data-cy="darkModeSwitcher" mode={themeConfig.palette.type}
+                            checked={themeConfig.palette.type === "dark"} onChange={toggleDarkMode} value="checkedC"/>
             </Grid>
             <Grid item>Dark Mode</Grid>
         </Grid>
@@ -51,7 +51,7 @@ export const GeneralSidebar = ({themeConfig, toggleDarkMode}) => {
 
         ];
     };
-    return <TemporaryDrawer data-cy="openSidebar" layout={generateLayout()}/>
+    return <LeftMenuBarBlueprint data-cy="openSidebar" layout={generateLayout()}/>
 };
 
-export default GeneralSidebar
+export default LeftMenuBar

@@ -44,7 +44,7 @@ const PrettoSlider = withStyles({
 })(Slider);
 
 
-const RangePreview = ({question, index}) => {
+const RangeTypePreview = ({question, index}) => {
     const classes = useStyles();
 
     const marks = [];
@@ -80,4 +80,4 @@ const RangePreview = ({question, index}) => {
     );
 };
 
-export default RangePreview
+export default RangeTypePreview

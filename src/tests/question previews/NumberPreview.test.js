@@ -1,11 +1,11 @@
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import NumberPreview from '../../components/previews/NumberPreview'
+import NumberTypePreview from '../../components/previews/NumberTypePreview'
 
 configure({adapter: new Adapter()});
 
-describe('<NumberPreview/>', () => {
+describe('<NumberTypePreview/>', () => {
     it('renders a number question', () => {
         const question = {
             id: "v9",
@@ -16,7 +16,7 @@ describe('<NumberPreview/>', () => {
             max: 100,
             maxlength: 4,
         };
-        const component = shallow(<NumberPreview question={question}/>);
+        const component = shallow(<NumberTypePreview question={question}/>);
         expect(component).toMatchSnapshot();
     });
 });

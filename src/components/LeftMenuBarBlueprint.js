@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
     cover: {}
 }));
 
-// The default header for a TemporaryDrawer instance. It contains the u-can-act logo and a title.
+// The default header for a LeftMenuBarBlueprint instance. It contains the u-can-act logo and a title.
 export const Header = () => {
     const classes = useStyles();
     return <Card className={classes.header}>
@@ -78,7 +78,7 @@ Layouts are structured in an array containing JSON objects:
 */
 
 
-export const TemporaryDrawer = ({layout}) => {
+export const LeftMenuBarBlueprint = ({layout}) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
 

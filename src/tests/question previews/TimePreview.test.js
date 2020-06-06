@@ -1,7 +1,7 @@
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import TimePickerPreview from '../../components/previews/TimePickerPreview'
+import TimePickerPreview from '../../components/previews/TimePickerTypePreview'
 
 configure({adapter: new Adapter()});
 

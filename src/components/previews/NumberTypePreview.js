@@ -1,7 +1,7 @@
 import TextField from "@material-ui/core/TextField";
 import React, {useState} from "react";
 
-const NumberPreview = ({question}) => {
+const NumberTypePreview = ({question}) => {
 
     const [inputtedNumber, setValue] = useState('');
 
@@ -28,4 +28,4 @@ const NumberPreview = ({question}) => {
 };
 
 
-export default NumberPreview;
+export default NumberTypePreview;

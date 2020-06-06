@@ -30,13 +30,13 @@ const styles = {
 
 
 //simple draw component made in react
-class DrawingPreview extends React.Component {
+class DrawingTypePreview extends React.Component {
 
     componentDidMount() {
         this.reset()
     }
 
-    draw(e) { //response to Draw button click 
+    draw(e) { //response to Draw button click
         this.setState({
             mode: 'draw'
         })
@@ -69,7 +69,7 @@ class DrawingPreview extends React.Component {
             this.ctx.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY); //draw to new position
             this.ctx.stroke();
 
-            this.setState({ //save new position 
+            this.setState({ //save new position
                 penCoords: [e.nativeEvent.offsetX, e.nativeEvent.offsetY]
             })
         }
@@ -157,4 +157,4 @@ class DrawingPreview extends React.Component {
     }
 }
 
-export default DrawingPreview;
+export default DrawingTypePreview;

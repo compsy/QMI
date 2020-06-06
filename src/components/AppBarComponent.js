@@ -1,15 +1,15 @@
 import {AppBar, makeStyles, Toolbar, Typography} from '@material-ui/core'
 import {Route, Router, Switch, useLocation} from 'react-router-dom'
 import history from '../utils/history'
-import GeneralSidebar from './GeneralSidebar'
+import LeftMenuBar from './LeftMenuBar'
 import Grid from '@material-ui/core/Grid'
 import React from 'react'
-import QuestionsPage from './QuestionsPage'
-import {LandingPage} from './LandingPage/LandingPage'
+import MainPage from './MainPage'
+import {HomePage} from './LandingPage/HomePage'
 import {EraseQuestionnaireButton} from '../NavigationBarButtons/EraseQuestionnaireButton'
 import {RenderQuestionnaireButton} from '../NavigationBarButtons/RenderQuestionnaireButton'
 import {SaveQuestionnaireButton} from '../NavigationBarButtons/SaveQuestionnaireButton'
-import UserCard from '../IconUser'
+import UserCard from '../UserInformation'
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -47,7 +47,7 @@ const AppBarComponent = ({theme, themeConfig, toggleDarkMode}) => {
             <AppBar data-cy={theme.palette.type} className={classes.appBar}>
                 <Toolbar>
                     <Router history={history}>
-                        <GeneralSidebar themeConfig={themeConfig} toggleDarkMode={toggleDarkMode}/>
+                        <LeftMenuBar themeConfig={themeConfig} toggleDarkMode={toggleDarkMode}/>
                         <Switch/>
 
                         <Grid container alignContent="center" alignItems="center">
@@ -73,10 +73,10 @@ const AppBarComponent = ({theme, themeConfig, toggleDarkMode}) => {
             </AppBar>
             <Router history={history}>
                 <Route path="/" exact>
-                    <QuestionsPage/>
+                    <MainPage/>
                 </Route>
                 <Route path="/home">
-                    <LandingPage/>
+                    <HomePage/>
                 </Route>
             </Router>
 

@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const Sidebar = ({items}) => {
+export const QuestionTypesMenu = ({items}) => {
     const classes = useStyles();
 
     return (

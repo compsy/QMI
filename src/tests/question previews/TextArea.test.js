@@ -1,11 +1,11 @@
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import TextArea from '../../components/previews/TextArea'
+import TextAreaTypePreview from '../../components/previews/TextAreaTypePreview'
 
 configure({adapter: new Adapter()});
 
-describe('<TextArea/>', () => {
+describe('<TextAreaTypePreview/>', () => {
     it('renders a textarea question', () => {
         const question = {
             section_start: "Tot slot",
@@ -18,7 +18,7 @@ describe('<TextArea/>', () => {
             placeholder: "Place holder",
             section_end: true,
         };
-        const component = shallow(<TextArea question={question}/>);
+        const component = shallow(<TextAreaTypePreview question={question}/>);
         expect(component).toMatchSnapshot();
     });
 });

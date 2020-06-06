@@ -1,11 +1,11 @@
 import LinearProgress from "@material-ui/core/LinearProgress";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {UserInformationCard} from "./components/TemporaryDrawer";
+import {UserInformationCard} from "./components/LeftMenuBarBlueprint";
 import React from 'react';
 import {useAuth0} from "./components/react-auth0-spa";
 import Button from "@material-ui/core/Button";
 
-export default function IconUser() {
+export default function UserInformation() {
     return (
         <div>
             {GetUserCard()}

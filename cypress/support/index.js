@@ -1,2 +1,2 @@
-import "./commands";
+import "./CypressCommands";
 import '@cypress/code-coverage/support'

@@ -4,9 +4,9 @@ import {ExpansionPanelSummary, Grid, Typography} from "@material-ui/core";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
 import EditQuestionTitleField from "./EditDialogTitle";
 import ReactHtmlParser from "react-html-parser";
-import {renderButtons} from "./RenderButtons";
+import {rendering} from "./Rendering";
 
-export const Summary = ({question, provided, ...props}) => {
+export const ExpansionRule = ({question, provided, ...props}) => {
     const questions = useSelector(state => state.questions);
     const [editTitle, setEditTitle] = useState(false);
     const index = questions.indexOf(question);
@@ -68,7 +68,7 @@ export const Summary = ({question, provided, ...props}) => {
                         textAlign: "right",
                     }}
                 >
-                    {renderButtons(question, index)}
+                    {rendering(question, index)}
                 </Grid>
             </Grid>
         </ExpansionPanelSummary>

@@ -2,23 +2,23 @@ import React, {useState} from "react";
 import {Divider, ExpansionPanel, ExpansionPanelDetails, Grid, Typography,} from "@material-ui/core";
 import RemoveQuestionButton from "./buttons/RemoveQuestionButton";
 import EditQuestionButton from "./buttons/EditQuestionButton";
-import RadioCheckboxPreview from "./previews/RadioCheckboxPreview";
-import LikertPreview from "./previews/LikertPreview";
-import RangePreview from "./previews/RangePreview";
-import DropdownPreview from "./previews/DropdownPreview";
-import NumberPreview from "./previews/NumberPreview";
-import DatePickerPreview from "./previews/DatePickerPreview";
-import TimePickerPreview from "./previews/TimePickerPreview";
-import TextArea from "./previews/TextArea";
-import TextFieldPreview from "./previews/TextFieldPreview";
-import DrawingPreview from "./previews/DrawingPreview";
+import RadioCheckboxTypePreview from "./previews/RadioCheckboxTypePreview";
+import LikertTypePreview from "./previews/LikertTypePreview";
+import RangeTypePreview from "./previews/RangeTypePreview";
+import DropdownTypePreview from "./previews/DropdownTypePreview";
+import NumberTypePreview from "./previews/NumberTypePreview";
+import DatePickerTypePreview from "./previews/DatePickerTypePreview";
+import TimePickerPreview from "./previews/TimePickerTypePreview";
+import TextAreaTypePreview from "./previews/TextAreaTypePreview";
+import TextFieldTypePreview from "./previews/TextFieldTypePreview";
+import DrawingTypePreview from "./previews/DrawingTypePreview";
 import {Draggable} from "react-beautiful-dnd";
 import "./index.css";
-import RawPreview from "./previews/RawPreview";
+import RawPreview from "./previews/RawTypePreview";
 import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
-import {Summary} from './Summary'
+import {ExpansionRule} from './ExpansionRule'
 
-const Question = ({index, question, ...props}) => {
+const QuestionsList = ({index, question, ...props}) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -31,7 +31,7 @@ const Question = ({index, question, ...props}) => {
                     style={provided.draggableProps.style}
                 >
                     <ExpansionPanel expanded={open} {...props}>
-                        <Summary
+                        <ExpansionRule
                             onClick={() => {
                                 if (question.type !== "raw") {
                                     setOpen(!open)
@@ -55,15 +55,15 @@ const style = {
     alignItems: "center"
 };
 
-export default Question;
+export default QuestionsList;
 
 const renderQuestionDetails = (question, index) => {
     switch (question.type) {
         case "radio":
         case "checkbox":
-            return <RadioCheckboxPreview question={question} index={index}/>;
+            return <RadioCheckboxTypePreview question={question} index={index}/>;
         case "likert":
-            return <LikertPreview question={question} index={index}/>;
+            return <LikertTypePreview question={question} index={index}/>;
         case "range":
             return (
                 <div
@@ -73,7 +73,7 @@ const renderQuestionDetails = (question, index) => {
                         alignItems: "center"
                     }}
                 >
-                    <RangePreview question={question} index={index}/>
+                    <RangeTypePreview question={question} index={index}/>
                 </div>
             );
         case "dropdown":
@@ -85,33 +85,33 @@ const renderQuestionDetails = (question, index) => {
                         alignItems: "center"
                     }}
                 >
-                    <DropdownPreview question={question}/>
+                    <DropdownTypePreview question={question}/>
                 </div>
             );
         case "textarea":
             return (
                 <div style={style}>
-                    <TextArea question={question}/>
+                    <TextAreaTypePreview question={question}/>
                 </div>
             );
         case "number":
-            return <NumberPreview question={question}/>;
+            return <NumberTypePreview question={question}/>;
         case "date":
-            return <DatePickerPreview question={question}/>;
+            return <DatePickerTypePreview question={question}/>;
         case "time":
             return <TimePickerPreview question={question}/>;
         case "textfield":
-            return <TextFieldPreview question={question}/>;
+            return <TextFieldTypePreview question={question}/>;
         case "drawing":
             return (
                 <div style={style}>
-                    <DrawingPreview question={question}/>
+                    <DrawingTypePreview question={question}/>
                 </div>
             );
         case "raw":
             return <RawPreview question={question}/>;
         default:
-            return <RadioCheckboxPreview question={question} index={index}/>;
+            return <RadioCheckboxTypePreview question={question} index={index}/>;
     }
 }
 

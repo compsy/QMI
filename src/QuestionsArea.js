@@ -1,11 +1,11 @@
 import React from "react";
 import {Box, Container, Typography} from "@material-ui/core";
 import {Droppable} from "react-beautiful-dnd";
-import Question from "./components/Question";
+import QuestionsList from "./components/QuestionsList";
 import {v4 as uuidv1} from "uuid";
 import {useSelector} from "react-redux";
 
-export const BottomSection = () => {
+export const QuestionsArea = () => {
     const questions = useSelector(state => state.questions);
 
     return (
@@ -17,7 +17,7 @@ export const BottomSection = () => {
                 {(provided, snapshot) => (
                     <Box ref={provided.innerRef} id={"dropzone"} className="shopping-bag">
                         {questions.map((question, index) => (
-                            <Question index={index} key={uuidv1()} question={question}/>
+                            <QuestionsList index={index} key={uuidv1()} question={question}/>
                         ))}
                         {provided.placeholder}
                     </Box>

@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const TextFieldPreview = ({question}) => {
+const TextFieldTypePreview = ({question}) => {
     const classes = useStyles();
 
     return (
@@ -33,4 +33,4 @@ const TextFieldPreview = ({question}) => {
     );
 };
 
-export default TextFieldPreview
+export default TextFieldTypePreview

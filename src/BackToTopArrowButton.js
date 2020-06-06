@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {FaArrowCircleUp} from 'react-icons/fa';
 import './scroll.css';
-import WatchTutorial from "./WatchTutorial";
+import VideoTutorialDialog from "./VideoTutorialDialog";
 import HelpIcon from "@material-ui/icons/Help";
 
 const useModal = () => {
@@ -10,8 +10,7 @@ const useModal = () => {
 
 }
 
-const ScrollArrow = () => {
-
+const BackToTopArrowButton = () => {
 
     const [isOpen, onOpenModal] = useModal()
     const [showScroll, setShowScroll] = useState(false);
@@ -35,11 +34,11 @@ const ScrollArrow = () => {
             <FaArrowCircleUp data-cy="scrollToTop" className="scrollTop" onClick={scrollTop}
                              style={{height: 40, display: showScroll ? 'flex' : 'none'}}/>
             <HelpIcon data-cy="openTutorial" onClick={onOpenModal} style={{height: 80}}/>
-            <WatchTutorial data-cy="maybe" isOpen={isOpen} toggleModal={onOpenModal}/>
+            <VideoTutorialDialog data-cy="maybe" isOpen={isOpen} toggleModal={onOpenModal}/>
 
         </div>
 
     );
 };
 
-export default ScrollArrow;
+export default BackToTopArrowButton;

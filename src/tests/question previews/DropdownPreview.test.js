@@ -1,11 +1,11 @@
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import DropdownPreview from '../../components/previews/DropdownPreview'
+import DropdownTypePreview from '../../components/previews/DropdownTypePreview'
 
 configure({adapter: new Adapter()});
 
-describe('<DropdownPreview/>', () => {
+describe('<DropdownTypePreview/>', () => {
     it('renders a dropdown question', () => {
         const question = {
             id: "v5",
@@ -17,7 +17,7 @@ describe('<DropdownPreview/>', () => {
                 {title: "vriendschap", numeric_value: 50},
             ],
         };
-        const component = shallow(<DropdownPreview question={question}/>);
+        const component = shallow(<DropdownTypePreview question={question}/>);
         expect(component).toMatchSnapshot();
     });
 });

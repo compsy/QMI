@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const DropdownPreview = ({question}) => {
+const DropdownTypePreview = ({question}) => {
     const classes = useStyles();
     const [option, setOption] = React.useState("");
     const [open, setOpen] = React.useState(false);
@@ -62,4 +62,4 @@ const DropdownPreview = ({question}) => {
 };
 
 
-export default DropdownPreview
+export default DropdownTypePreview

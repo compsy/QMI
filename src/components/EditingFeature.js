@@ -26,7 +26,7 @@ const EditDialog2 = ({question, index, open, setOpen}) => {
         dispatch(UPDATE_QUESTION({id: question.id, new: newQuestion}))
     };
 
-    // cancel all and return to QuestionsPage
+    // cancel all and return to MainPage
     const handleClose = () => {
         // restore mappings
         dispatch(SET_UTILITIES(store.getState().utilities.saved));

@@ -1,7 +1,7 @@
 import withStyles from "@material-ui/core/styles/withStyles";
 import {Switch} from "@material-ui/core";
 
-export const AntSwitch = withStyles(theme => ({
+export const ModeToggle = withStyles(theme => ({
     root: {
         width: 28,
         height: 16,

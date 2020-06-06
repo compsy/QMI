@@ -1,7 +1,7 @@
 import React from "react";
 import {Grid, Radio, Typography} from "@material-ui/core";
 
-const LikertPreview = ({question, index}) => {
+const LikertTypePreview = ({question, index}) => {
     const renderBox = () =>
         <Grid
             item
@@ -62,4 +62,4 @@ const LikertPreview = ({question, index}) => {
     );
 };
 
-export default LikertPreview;
+export default LikertTypePreview;

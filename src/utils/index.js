@@ -71,21 +71,6 @@ export function capitalize2(text) {
 // chooses divider color for EditorButtonGroup depending on theme
 export const DIVIDER_COLOR = (theme) =>
     theme.palette.type === "dark" ? "rgb(110, 110, 110)" : "rgb(196, 196, 196)";
-
-export const CLEAN_QUESTION = {
-    type: undefined,
-    required: undefined,
-    hidden: undefined,
-    section_start: undefined,
-    title: undefined,
-    tooltip: undefined,
-    options: [],
-    show_otherwise: undefined,
-    otherwise_label: undefined,
-    otherwise_tooltip: undefined,
-    section_end: undefined,
-};
-
 export const CLEAN_SUPER_QUESTION = {
     // date properties
     default_date: undefined,
@@ -145,7 +130,7 @@ export const CLEAN_SUPER_OPTION = {
     numeric_value: undefined,
 };
 
-// Question Preprocessing before edit
+// QuestionsList Preprocessing before edit
 // handles defaults and undefineds
 // converts an option from string to object
 // after done, preprocessed question is given to state.question

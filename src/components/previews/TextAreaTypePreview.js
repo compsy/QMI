@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const TextArea = ({question}) => {
+const TextAreaTypePreview = ({question}) => {
     const classes = useStyles();
 
     return (
@@ -33,4 +33,4 @@ const TextArea = ({question}) => {
     );
 };
 
-export default TextArea
+export default TextAreaTypePreview

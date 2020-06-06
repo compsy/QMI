@@ -5,7 +5,7 @@ import {makeStyles, Typography} from "@material-ui/core";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import React, {useEffect, useState} from "react";
-import {alignInGrid} from "./LandingPage";
+import {alignInGrid} from "./HomePage";
 import {API_STATUS} from "../../features/API/ApiHandler";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {auth_config} from "../../features/API/auth_config";

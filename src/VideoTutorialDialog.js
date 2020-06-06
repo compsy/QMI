@@ -3,7 +3,7 @@ import './scroll.css';
 import ModalVideo from 'react-modal-video';
 import {ResizableBox} from 'react-resizable';
 
-const WatchTutorial = ({isOpen, toggleModal}) => {
+const VideoTutorialDialog = ({isOpen, toggleModal}) => {
     const opts = {
         height: '10',
         width: '20',
@@ -23,4 +23,4 @@ const WatchTutorial = ({isOpen, toggleModal}) => {
     )
 };
 
-export default WatchTutorial;
+export default VideoTutorialDialog;

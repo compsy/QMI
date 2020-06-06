@@ -3,13 +3,13 @@ import {CssBaseline, Grid, makeStyles} from "@material-ui/core";
 import {DragDropContext} from "react-beautiful-dnd";
 import "./index.css";
 import {QUESTION_TYPES} from "./QuestionTypes";
-import {Sidebar} from "../Sidebar";
-import {BottomSection} from "../BottomSection";
-import {TopSection} from "../TopSection";
+import {QuestionTypesMenu} from "../QuestionTypesMenu";
+import {QuestionsArea} from "../QuestionsArea";
+import {JSONTranslationArea} from "../JSONTranslationArea";
 import {useDispatch, useSelector} from "react-redux";
 import {CLONE, REORDER} from "../features/questions/questionsSlice";
 import {addToMap, CLEAR_MAPS} from "../features/utilities/utilitiesSlice";
-import ScrollArrow from "../ScrollArrow";
+import BackToTopArrowButton from "../BackToTopArrowButton";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const QuestionsPage = () => {
+const MainPage = () => {
     const questions = useSelector(state => state.questions);
     const dispatch = useDispatch();
 
@@ -97,7 +97,7 @@ const QuestionsPage = () => {
         <div data-cy="questionsPage" className={classes.root}>
             <CssBaseline/>
             <DragDropContext onDragEnd={onDragEnd}>
-                <Sidebar items={QUESTION_TYPES}/>
+                <QuestionTypesMenu items={QUESTION_TYPES}/>
                 <main className={classes.content}>
                     <Grid
                         container
@@ -108,10 +108,10 @@ const QuestionsPage = () => {
                             margin: "0",
                         }}
                     >
-                        <TopSection/>
-                        <BottomSection/>
+                        <JSONTranslationArea/>
+                        <QuestionsArea/>
 
-                        <ScrollArrow/>
+                        <BackToTopArrowButton/>
                         {count++}
                     </Grid>
                 </main>
@@ -121,6 +121,6 @@ const QuestionsPage = () => {
     );
 };
 
-export default QuestionsPage;
+export default MainPage;
 
 
