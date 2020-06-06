@@ -40,7 +40,7 @@
     "video-react": "^0.14.1"
   },
   "scripts": {
-    "start": "PORT=3000 react-scripts -r @cypress/instrument-cra start",
+    "start": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
