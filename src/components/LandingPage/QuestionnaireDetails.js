@@ -52,8 +52,6 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
             }
         }));
     }
-    const questionnaireKeyHasChanged =
-        () => questionnaireState.status === API_STATUS.IDLE && questionnaireState.body.key !== questionnaireKey;
 
     useEffect(() => {
         if (questionnaireKey == null || questionnaireState.status === API_STATUS.LOADING) return;

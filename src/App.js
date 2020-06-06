@@ -5,7 +5,6 @@ import {Provider} from "react-redux";
 import store from "./app/store";
 import {Auth0Provider} from "./components/react-auth0-spa";
 import history from "./utils/history";
-import {Router} from "react-router-dom";
 import {useDarkMode} from "./useDarkMode";
 import {auth_config} from "./features/API/auth_config";
 import AppBarComponent from './components/AppBarComponent'

@@ -292,22 +292,22 @@ export const clearMapWithQuestion = (question) => {
             const qid = question.id
             const oid = option.id
             if (showsQuestions && showsQuestions.length > 0) {
-                for (let i = 0; i < showsQuestions.length; i++) {
+                for (let j = 0; j < showsQuestions.length; j++) {
                     store.dispatch(
                         removeFromMap({
                             type: 'showsMap',
-                            key: showsQuestions[i],
+                            key: showsQuestions[j],
                             value: {qid, oid},
                         })
                     )
                 }
             }
             if (hidesQuestions && hidesQuestions.length > 0) {
-                for (let i = 0; i < hidesQuestions.length; i++) {
+                for (let k = 0; k < hidesQuestions.length; k++) {
                     store.dispatch(
                         removeFromMap({
                             type: 'hidesMap',
-                            key: hidesQuestions[i],
+                            key: hidesQuestions[k],
                             value: {qid, oid},
                         })
                     )

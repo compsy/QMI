@@ -10,10 +10,6 @@ const processShowHideOption = (idMap, toProcessOption) => {
         for (let k = 0; k < toProcessOption.length; k++) {
             toProcessOption[k] = idMap[toProcessOption[k]]
         }
-    } else {
-        if (toProcessOption !== undefined && toProcessOption.length === 0) {
-            toProcessOption = undefined
-        }
     }
 }
 

@@ -17,7 +17,7 @@ const VideoTutorialDialog = ({isOpen, toggleModal}) => {
 
     return (
         <ResizableBox width={WIDTH} height={HEIGHT}>
-            <ModalVideo cy-data="data" channel='youtube' ratio='2000:10' isOpen={isOpen} opts={opts}
+            <ModalVideo data-cy={"data"} channel='youtube' ratio='2000:10' isOpen={isOpen} opts={opts}
                         videoId='r49ID-R6TyY' onClose={toggleModal}/>
         </ResizableBox>
     )
