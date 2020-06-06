@@ -1,12 +1,11 @@
-// import store from "../../app/store";
-import React, {useContext, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useContext, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
     removeOption,
     selectProperty,
     setTextArrayElement,
     setTextArrayField,
-} from "../../features/questionProperties/questionSlice";
+} from '../../features/question/questionSlice'
 import {
     Button,
     FilledInput,
@@ -20,22 +19,22 @@ import {
     MenuItem,
     Switch,
     Tooltip,
-} from "@material-ui/core";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import DeleteIcon from "@material-ui/icons/Delete";
-import AddIcon from "@material-ui/icons/Add";
-import {CLEAN_SUPER_OPTION} from "../../utils";
-import {QuestionnaireContext} from "../../contexts/QuestionnaireContext";
+} from '@material-ui/core'
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
+import DeleteIcon from '@material-ui/icons/Delete'
+import AddIcon from '@material-ui/icons/Add'
+import { CLEAN_SUPER_OPTION } from '../../utils'
+import { QuestionnaireContext } from '../../contexts/QuestionnaireContext'
 
 const useStyles = makeStyles((theme) => ({
     boxy: {
         borderRadius: 0,
     },
     paper: {
-        height: "250px",
-        overflow: "auto",
-        wordWrap: "break-word",
-        wordBreak: "break-word",
+        height: '250px',
+        overflow: 'auto',
+        wordWrap: 'break-word',
+        wordBreak: 'break-word',
     },
     button: {
         marginTop: theme.spacing(2),

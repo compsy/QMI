@@ -1,31 +1,30 @@
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import InfoIcon from "@material-ui/icons/Info";
-import {makeStyles, Typography} from "@material-ui/core";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
-import React, {useEffect, useState} from "react";
-import {alignInGrid} from "./HomePage";
-import {API_STATUS} from "../../features/API/ApiHandler";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import {auth_config} from "../../features/API/auth_config";
-import {useAuth0} from "../react-auth0-spa";
-import {Link} from "react-router-dom";
-import {SET_QUESTIONS} from "../../features/questions/questionsSlice";
-import {v4 as uuid} from "uuid";
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import InfoIcon from '@material-ui/icons/Info'
+import { makeStyles, Typography } from '@material-ui/core'
+import CardActions from '@material-ui/core/CardActions'
+import Button from '@material-ui/core/Button'
+import React, { useEffect, useState } from 'react'
+import { alignInGrid } from './HomePage'
+import { API_STATUS } from '../../features/API/ApiHandler'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import { auth_config } from '../../features/API/auth_config'
+import { useAuth0 } from '../react-auth0-spa'
+import { Link } from 'react-router-dom'
+import { SET_QUESTIONS } from '../../features/questions/questionsSlice'
+import { v4 as uuid } from 'uuid'
+import { useDispatch } from 'react-redux'
+import { SET_METADATA } from '../../features/questionnaire/questionnaireMetadataSlice'
 
-import {useDispatch} from "react-redux";
-import {SET_METADATA} from "../../features/questionnaire/questionnaireMetadataSlice";
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     card: {
-        height: "100%"
+        height: '100%',
     },
-}));
+}))
 
 const LOCALE_EN = {
-    noQuestionnaireTitle: "No questionnaire is selected.",
+    noQuestionnaireTitle: 'No questionnaire is selected.',
     noQuestionnaireSubtitle: "Please click one of the questionnaires listed on the left to view details.",
     editQuestionnaireButtonText: "Edit Questionnaire",
     questionnaireDetailsTitle: "Questionnaire Details",
@@ -52,8 +51,6 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
     useEffect(() => {
         if(questionnaireKey == null || questionnaireState.status === API_STATUS.LOADING) return;
         if(questionnaireState.status === API_STATUS.INIT){
-            retrieveQuestionnaire(questionnaireKey);
-        }else if(questionnaireKeyHasChanged()){
             retrieveQuestionnaire(questionnaireKey);
         }
     })

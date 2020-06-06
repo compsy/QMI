@@ -4,7 +4,6 @@ body, html {
 
 
 .scrollTop {
-    /*position: fixed;*/
     width: 100%;
     bottom: 0;
     align-items: center;
@@ -18,6 +17,7 @@ body, html {
     display: block;
     margin: 10px;
 }
+
 
 .scrollTop:hover {
     opacity: 1;

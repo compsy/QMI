@@ -1,7 +1,7 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import {HiddenProperty, RequiredProperty, ShowOtherwiseProperty} from "./BooleanProperties";
-import {OtherwiseLabelProperty, OtherwiseTooltipProperty,} from "./TextProperties";
+import React from 'react'
+import Grid from '@material-ui/core/Grid'
+import { HiddenProperty, RequiredProperty, ShowOtherwiseProperty } from './BooleanProperties'
+import { OtherwiseLabelProperty, OtherwiseTooltipProperty } from './TextProperties'
 import {
     DensityProperty,
     HeightProperty,
@@ -14,31 +14,26 @@ import {
     RadiusProperty,
     StepProperty,
     WidthProperty,
-} from "./NumericProperties";
-import {useSelector} from "react-redux";
-import {selectProperty} from "../../features/question/questionSlice";
+} from './NumericProperties'
+import { useSelector } from 'react-redux'
+import { selectProperty } from '../../features/question/questionSlice'
 
-// not in use yet
-export const DataMethodProperty = ({...props}) => {
-    return null;
-};
-export const ExpandableContentProperty = ({...props}) => null;
 
 // Composite properties. These consists of smaller properties, depending on each other:
 export const OtherwiseProperty = () => {
-    const showOtherwise = useSelector(selectProperty("show_otherwise"));
+    const showOtherwise = useSelector(selectProperty('show_otherwise'))
     return (
         <>
             <ShowOtherwiseProperty/>
             {showOtherwise ? (
-                <Grid item xs style={{textAlign: "center", margin: "1em 0"}}>
+                <Grid item xs style={{ textAlign: 'center', margin: '1em 0' }}>
                     <OtherwiseLabelProperty/>
                     <OtherwiseTooltipProperty/>
                 </Grid>
             ) : null}
         </>
-    );
-};
+    )
+}
 
 
 export const CustomMinMaxStepProperty = () => {
@@ -60,8 +55,8 @@ export const CustomMinMaxStepProperty = () => {
                 <StepProperty/>
             </Grid>
         </Grid>
-    );
-};
+    )
+}
 
 export const HoursCompositeProperty = () => {
     return (
@@ -82,8 +77,8 @@ export const HoursCompositeProperty = () => {
                 <HoursStepProperty/>
             </Grid>
         </Grid>
-    );
-};
+    )
+}
 
 export const NumberTypeComposite = () => {
     return (
@@ -104,8 +99,8 @@ export const NumberTypeComposite = () => {
                 <MaxLengthProperty/>
             </Grid>
         </Grid>
-    );
-};
+    )
+}
 
 export const WidthHeightComposite = () => {
     return (
@@ -119,12 +114,12 @@ export const WidthHeightComposite = () => {
             <Grid item xs>
                 <WidthProperty/>
             </Grid>
-            <Grid item xs data-cy={"drawingHeight"}>
+            <Grid item xs data-cy={'drawingHeight'}>
                 <HeightProperty/>
             </Grid>
         </Grid>
-    );
-};
+    )
+}
 
 
 export const RadiusDensityComposite = () => {
@@ -143,8 +138,8 @@ export const RadiusDensityComposite = () => {
                 <DensityProperty/>
             </Grid>
         </Grid>
-    );
-};
+    )
+}
 
 export const HiddenRequiredComposite = () => {
     return (
@@ -161,5 +156,5 @@ export const HiddenRequiredComposite = () => {
                 <RequiredProperty/>
             </Grid>
         </Grid>
-    );
-};
+    )
+}

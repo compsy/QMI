@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 export const utilitiesSlice = createSlice({
     name: 'utilities',
@@ -56,7 +56,6 @@ export const {
     removeByKey,
     SET_UTILITIES,
     SET_SAVED,
-    SET_IDMAP,
     CLEAR_MAPS
 } = utilitiesSlice.actions
 

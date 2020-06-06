@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react'
 
-import {HiddenProperty, SectionEndProperty, TodayProperty,} from "../components/properties/BooleanProperties";
+import { HiddenProperty, SectionEndProperty, TodayProperty } from '../components/properties/BooleanProperties'
 
-import {DefaultDateProperty, MaxDateProperty, MinDateProperty,} from "../components/properties/DateProperties";
+import { DefaultDateProperty, MaxDateProperty, MinDateProperty } from '../components/properties/DateProperties'
 
-import {DefaultExpansionsProperty, MaxExpansionsProperty,} from "../components/properties/NumericProperties";
+import { DefaultExpansionsProperty, MaxExpansionsProperty } from '../components/properties/NumericProperties'
 
-import {LabelOptionsProperty, TextOptionsProperty,} from "../components/properties/TextArrayProperties";
+import { LabelOptionsProperty, TextOptionsProperty } from '../components/properties/TextArrayProperties'
 
 import {
     AddButtonLabelProperty,
@@ -26,7 +26,7 @@ import {
     SectionStartProperty,
     TitleProperty,
     TooltipProperty,
-} from "../components/properties/TextProperties";
+} from '../components/properties/TextProperties'
 import {
     CustomMinMaxStepProperty,
     HiddenRequiredComposite,
@@ -34,43 +34,41 @@ import {
     NumberTypeComposite,
     OtherwiseProperty,
     RadiusDensityComposite,
-    WidthHeightComposite
-} from "../components/properties/OtherProperties";
-import {v4 as uuidv4} from "uuid";
+    WidthHeightComposite,
+} from '../components/properties/OtherProperties'
+import { v4 as uuidv4 } from 'uuid'
 import processQuestionnaire from './ProcessQuestionnaire'
 
 export const QUESTION_TYPES = [
-    {type: "checkbox", disabled: false},
-    {type: "radio", disabled: false},
-    {type: "likert", disabled: false},
-    {type: "range", disabled: false},
-    {type: "raw", disabled: false},
-    {type: "textarea", disabled: false},
-    {type: "textfield", disabled: false},
-    {type: "number", disabled: false},
-    {type: "expandable", disabled: true},
-    {type: "time", disabled: false},
-    {type: "date", disabled: false},
-    {type: "unsubscribe", disabled: true},
-    {type: "dropdown", disabled: false},
-    {type: "drawing", disabled: false},
-];
+    { type: 'checkbox', disabled: false },
+    { type: 'radio', disabled: false },
+    { type: 'likert', disabled: false },
+    { type: 'range', disabled: false },
+    { type: 'raw', disabled: false },
+    { type: 'textarea', disabled: false },
+    { type: 'textfield', disabled: false },
+    { type: 'number', disabled: false },
+    { type: 'expandable', disabled: true },
+    { type: 'time', disabled: false },
+    { type: 'date', disabled: false },
+    { type: 'unsubscribe', disabled: true },
+    { type: 'dropdown', disabled: false },
+    { type: 'drawing', disabled: false },
+]
 
 // converts "section_start" to "Section_start"
 // converts "tooltip" to "Tooltip"
 export function capitalize(text) {
-    return text.charAt(0).toUpperCase() + text.slice(1);
+    return text.charAt(0).toUpperCase() + text.slice(1)
 }
 
 // converts "section_start" to "Section start"
 // converts "tooltip" to "Tooltip"
 export function capitalize2(text) {
-    return capitalize(text).replace("_", " ");
+    return capitalize(text).replace('_', ' ')
 }
 
-// chooses divider color for EditorButtonGroup depending on theme
-export const DIVIDER_COLOR = (theme) =>
-    theme.palette.type === "dark" ? "rgb(110, 110, 110)" : "rgb(196, 196, 196)";
+
 export const CLEAN_SUPER_QUESTION = {
     // date properties
     default_date: undefined,
@@ -119,7 +117,7 @@ export const CLEAN_SUPER_QUESTION = {
     // text array properties
     options: [],
     labels: [],
-};
+}
 
 export const CLEAN_SUPER_OPTION = {
     title: undefined,
@@ -128,7 +126,7 @@ export const CLEAN_SUPER_OPTION = {
     shows_questions: undefined,
     hides_questions: undefined,
     numeric_value: undefined,
-};
+}
 
 // QuestionsList Preprocessing before edit
 // handles defaults and undefineds
@@ -140,7 +138,7 @@ const preprocessCheckbox = (question) => {
         id: question.id,
         type: question.type,
         // required
-        title: question.title !== undefined ? question.title : "untitled checkbox",
+        title: question.title !== undefined ? question.title : 'untitled checkbox',
         options: question.options !== undefined ? question.options : [],
         // optional
         tooltip: question.tooltip !== undefined ? question.tooltip : undefined,
@@ -151,17 +149,14 @@ const preprocessCheckbox = (question) => {
         otherwise_label: question.otherwise_label !== undefined ? question.otherwise_label : undefined,
         otherwise_tooltip: question.otherwise_tooltip !== undefined ? question.otherwise_tooltip : undefined,
         section_end: question.section_end !== undefined ? question.section_end : undefined,
-    };
-};
+    }
+}
 
 const preprocessMap = {
     checkbox: preprocessCheckbox,
     radio: preprocessCheckbox,
-};
+}
 
-export const preprocessQuestion = (question) => {
-    return preprocessMap[question.type](question);
-};
 
 export const PROPERTIES_BY_QUESTION_TYPE = {
     CHECKBOX: {
@@ -316,33 +311,33 @@ export const PROPERTIES_BY_QUESTION_TYPE = {
             RadiusDensityComposite,
         ],
     },
-};
+}
 
 export const GENERATE_INITIAL_QUESTIONNAIRE_METADATA_CONTEXT = () => {
     return {
-        key: uuidv4().replace(/-/g, "_"),
-        name: "Questionnaire " + uuidv4(),
-        title: "Untitled Questionnaire"
-    };
+        key: uuidv4().replace(/-/g, '_'),
+        name: 'Questionnaire ' + uuidv4(),
+        title: 'Untitled Questionnaire',
+    }
 }
 
 
 export const INITIAL_QUESTIONNAIRE_CONTEXT = [
     {
         id: 'v1',
-        type: "raw",
-        content: "<h4>Welcome to your new questionnaire!</h4>\n" +
-            "<p class=\"flow-text\" style='font-size:medium;'>Add questions by dragging a question type over here.</p>\n" +
-            "<p class=\"flow-text\" style='font-size:medium;'>Double click a question title to edit the title.</p>\n" +
-            "<p class=\"flow-textext\" style='font-size:medium;'>Click a question header to show details.</p>\n" +
-            "<p class=\"flow-textext\" style='font-size:medium;'>Click render questionnaire to see the final output</p>\n"
+        type: 'raw',
+        content: '<h4>Welcome to your new questionnaire!</h4>\n' +
+            '<p class="flow-text" style=\'font-size:medium;\'>Add questions by dragging a question type over here.</p>\n' +
+            '<p class="flow-text" style=\'font-size:medium;\'>Double click a question title to edit the title.</p>\n' +
+            '<p class="flow-textext" style=\'font-size:medium;\'>Click a question header to show details.</p>\n' +
+            '<p class="flow-textext" style=\'font-size:medium;\'>Click render questionnaire to see the final output</p>\n',
     },
 
-];
+]
 
 
 export const toPrint = () => {
-    const store = require("../app/store");
-    const questions = store.default.getState().questions;
-    return processQuestionnaire(questions);
+    const store = require('../app/store')
+    const questions = store.default.getState().questions
+    return processQuestionnaire(questions)
 }
