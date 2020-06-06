@@ -91,7 +91,7 @@ Storing `state.question` this way allows us to continuously switch between quest
 
 The object in `state.question` at the point of submission, will contain properties undefined for the final question type. We process `state.question` and remove the unwanted properties using the post-processor located in `src/components/properties/postprocessor.js`. Then, we replace the original question in `state.questions` with the post-processed edited question.
 
-At this point, it's important to note that the `id` property for all questions are mapped to `uuid`'s. These ids are then finally post-processed one last time by the final post-processor located in `src/components/StringifiedJSONCard.js` to the appropriate `id`'s (v1, v2, ...) before being rendered by the frontend system. Having the `id`'s this way helps us show the correct `id`'s for options with the property `shows_questions` and `hides_questions` (showing hidden/hiding shown question functionality). This also means that the object stored in `state.questions` cannot be used as a valid `questions` object to store in u-can-act's backend (a valid one is the one used in `StringifiedJSONCard`).
+At this point, it's important to note that the `id` property for all questions are mapped to `uuid`'s. These ids are then finally post-processed one last time by the final post-processor located in `src/components/JSONCreator.js` to the appropriate `id`'s (v1, v2, ...) before being rendered by the frontend system. Having the `id`'s this way helps us show the correct `id`'s for options with the property `shows_questions` and `hides_questions` (showing hidden/hiding shown question functionality). This also means that the object stored in `state.questions` cannot be used as a valid `questions` object to store in u-can-act's backend (a valid one is the one used in `JSONCreator`).
 
 ### “Shows/hides” functionality - scenarios (and what to do at each case)
 
@@ -118,7 +118,7 @@ At this point, it's important to note that the `id` property for all questions a
   * **Raw** with properties (required) : ContentProperty <br/>
 (optionalProperties) : SectionStartProperty, SectionEndProperty
 
-  * **TextArea** with properties (required) : TitleProperty <br/>
+  * **TextAreaTypePreview** with properties (required) : TitleProperty <br/>
 (optionalProperties) : HiddenProperty, SectionStartProperty, SectionEndProperty, TooltipProperty, PlaceholderProperty
 
 
@@ -196,3 +196,132 @@ We have tested the application on the following browsers through browserstack:
   * Chrome (version 81)
   * Safari (version 5.1)
   * Opera (version 68)
+  
+  ````
+📦src
+ ┣ 📂NavigationBarButtons
+ ┃ ┣ 📜EraseQuestionnaireButton.js
+ ┃ ┣ 📜RenderQuestionnaireButton.js
+ ┃ ┗ 📜SaveQuestionnaireButton.js
+ ┣ 📂app
+ ┃ ┗ 📜store.js
+ ┣ 📂components
+ ┃ ┣ 📂HomePage
+ ┃ ┃ ┣ 📜HomePage.js
+ ┃ ┃ ┣ 📜QuestionnaireDetails.js
+ ┃ ┃ ┗ 📜QuestionnaireList.js
+ ┃ ┣ 📂buttons
+ ┃ ┃ ┣ 📜DuplicateQuestionButton.js
+ ┃ ┃ ┣ 📜EditQuestionButton.js
+ ┃ ┃ ┣ 📜RemoveQuestionButton.js
+ ┃ ┃ ┗ 📜ToggleGridAreasButton.js
+ ┃ ┣ 📂previews
+ ┃ ┃ ┣ 📜DatePickerTypePreview.js
+ ┃ ┃ ┣ 📜DrawingTypePreview.js
+ ┃ ┃ ┣ 📜DropdownTypePreview.js
+ ┃ ┃ ┣ 📜LikertTypePreview.js
+ ┃ ┃ ┣ 📜NumberTypePreview.js
+ ┃ ┃ ┣ 📜RadioCheckboxTypePreview.js
+ ┃ ┃ ┣ 📜RangeTypePreview.js
+ ┃ ┃ ┣ 📜RawTypePreview.js
+ ┃ ┃ ┣ 📜TextAreaTypePreview.js
+ ┃ ┃ ┣ 📜TextFieldTypePreview.js
+ ┃ ┃ ┗ 📜TimePickerTypePreview.js
+ ┃ ┣ 📂properties
+ ┃ ┃ ┣ 📂TextArrayTemplate
+ ┃ ┃ ┃ ┣ 📜AddOptionButton.js
+ ┃ ┃ ┃ ┣ 📜EachOption.js
+ ┃ ┃ ┃ ┣ 📜EachOptionHides.js
+ ┃ ┃ ┃ ┣ 📜EachOptionMenu.js
+ ┃ ┃ ┃ ┣ 📜EachOptionShows.js
+ ┃ ┃ ┃ ┣ 📜LinkQuestions.js
+ ┃ ┃ ┃ ┗ 📜TextArrayTemplate.js
+ ┃ ┃ ┣ 📜BooleanProperties.js
+ ┃ ┃ ┣ 📜BooleanTemplate.js
+ ┃ ┃ ┣ 📜DateProperties.js
+ ┃ ┃ ┣ 📜DateTemplate.js
+ ┃ ┃ ┣ 📜NumericProperties.js
+ ┃ ┃ ┣ 📜NumericTemplate.js
+ ┃ ┃ ┣ 📜OtherProperties.js
+ ┃ ┃ ┣ 📜RegexpTemplate.js
+ ┃ ┃ ┣ 📜TextArrayProperties.js
+ ┃ ┃ ┣ 📜TextArrayTemplate.js
+ ┃ ┃ ┣ 📜TextProperties.js
+ ┃ ┃ ┣ 📜TextTemplate.js
+ ┃ ┃ ┣ 📜TypeProperty.js
+ ┃ ┃ ┗ 📜postprocessor.js
+ ┃ ┣ 📜AppBarComponent.js
+ ┃ ┣ 📜EditingFeature.js
+ ┃ ┣ 📜EditDialogTitle.js
+ ┃ ┣ 📜LeftMenuBar.js
+ ┃ ┣ 📜HiddenQuestionIndicator.js
+ ┃ ┣ 📜PrivateRoute.js
+ ┃ ┣ 📜Profile.js
+ ┃ ┣ 📜QuestionsList.js
+ ┃ ┣ 📜QuestionArea.js
+ ┃ ┣ 📜QuestionTypes.js
+ ┃ ┣ 📜MainPage.js
+ ┃ ┣ 📜Rendering.js
+ ┃ ┣ 📜SaveQuestionnaireDialog.js
+ ┃ ┣ 📜JSONCreator.js
+ ┃ ┣ 📜ExpansionRule.js
+ ┃ ┣ 📜LeftMenuBarBlueprint.js
+ ┃ ┣ 📜TestApiSection.js
+ ┃ ┣ 📜index.css
+ ┃ ┗ 📜react-auth0-spa.js
+ ┣ 📂features
+ ┃ ┣ 📂API
+ ┃ ┃ ┣ 📜ApiHandler.js
+ ┃ ┃ ┗ 📜auth_config.js
+ ┃ ┣ 📂question
+ ┃ ┃ ┗ 📜questionSlice.js
+ ┃ ┣ 📂questionnaire
+ ┃ ┃ ┗ 📜questionnaireMetadataSlice.js
+ ┃ ┣ 📂questions
+ ┃ ┃ ┣ 📜QuestionCard.js
+ ┃ ┃ ┗ 📜questionsSlice.js
+ ┃ ┗ 📂utilities
+ ┃ ┃ ┗ 📜utilitiesSlice.js
+ ┣ 📂tests
+ ┃ ┣ 📂question previews
+ ┃ ┃ ┣ 📂__snapshots__
+ ┃ ┃ ┃ ┣ 📜CheckboxPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜DropdownTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜LikertTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜NumberTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜RadioPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜RangeTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜TextAreaTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜TextField.test.js.snap
+ ┃ ┃ ┃ ┗ 📜TimePreview.test.js.snap
+ ┃ ┃ ┣ 📜CheckboxPreview.test.js
+ ┃ ┃ ┣ 📜DropdownTypePreview.test.js
+ ┃ ┃ ┣ 📜LikertTypePreview.test.js
+ ┃ ┃ ┣ 📜NumberTypePreview.test.js
+ ┃ ┃ ┣ 📜RadioPreview.test.js
+ ┃ ┃ ┣ 📜RangeTypePreview.test.js
+ ┃ ┃ ┣ 📜TextAreaTypePreview.test.js
+ ┃ ┃ ┣ 📜TextField.test.js
+ ┃ ┃ ┗ 📜TimePreview.test.js
+ ┃ ┗ 📜App.test.js
+ ┣ 📂utils
+ ┃ ┣ 📜ProcessQuestionnaire.js
+ ┃ ┣ 📜history.js
+ ┃ ┗ 📜index.js
+ ┣ 📜ModeToggle.js
+ ┣ 📜App.js
+ ┣ 📜QuestionsArea.js
+ ┣ 📜UserInformation.js
+ ┣ 📜BackToTopArrowButton.js
+ ┣ 📜QuestionTypesMenu.js
+ ┣ 📜JSONTranslationArea.js
+ ┣ 📜VideoTutorialDialog.js
+ ┣ 📜auth0_callback.js
+ ┣ 📜background.css
+ ┣ 📜gatsby-browser.js
+ ┣ 📜gatsby-ssr.js
+ ┣ 📜index.js
+ ┣ 📜scroll.css
+ ┣ 📜serviceWorker.js
+ ┗ 📜useDarkMode.js
+````

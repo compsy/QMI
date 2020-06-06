@@ -1,6 +1,6 @@
 import store from '../../app/store'
-import { removeFromMap } from '../../features/utilities/utilitiesSlice'
-import { removeAllWithKey } from '../buttons/RemoveQuestionButton'
+import {removeFromMap} from '../../features/utilities/utilitiesSlice'
+import {removeAllWithKey} from '../buttons/RemoveQuestionButton'
 
 const postprocessCheckbox = (question) => {
     const processedOptionsCheckbox = () => {
@@ -8,10 +8,10 @@ const postprocessCheckbox = (question) => {
             typeof q === 'string'
                 ? q
                 : {
-                      ...q,
-                      numeric_value: undefined,
-                      // id: undefined,
-                  }
+                    ...q,
+                    numeric_value: undefined,
+                    // id: undefined,
+                }
         )
     }
     // prettier-ignore
@@ -60,13 +60,13 @@ const postprocessLikert = (question) => {
             typeof q === 'string'
                 ? q
                 : {
-                      ...q,
-                      tooltip: undefined,
-                      stop_subscription: undefined,
-                      shows_questions: undefined,
-                      hides_questions: undefined,
-                      // id: undefined,
-                  }
+                    ...q,
+                    tooltip: undefined,
+                    stop_subscription: undefined,
+                    shows_questions: undefined,
+                    hides_questions: undefined,
+                    // id: undefined,
+                }
         )
     }
     // prettier-ignore
@@ -196,13 +196,13 @@ const postprocessDropdown = (question) => {
             typeof q === 'string'
                 ? q
                 : {
-                      ...q,
-                      tooltip: undefined,
-                      stop_subscription: undefined,
-                      shows_questions: undefined,
-                      hides_questions: undefined,
-                      // id: undefined,
-                  }
+                    ...q,
+                    tooltip: undefined,
+                    stop_subscription: undefined,
+                    shows_questions: undefined,
+                    hides_questions: undefined,
+                    // id: undefined,
+                }
         )
     }
     // prettier-ignore
@@ -274,7 +274,13 @@ export const postprocessQuestion = (question, index) => {
 
     console.log('showsMap: ', store.getState().utilities.showsMap)
     console.log('hidesMap: ', store.getState().utilities.hidesMap)
-    return postprocessMap[question.type](question)
+
+    let newQuestion = postprocessMap[question.type](question)
+    if (newQuestion.show_otherwise === false) {
+        newQuestion.otherwise_label = undefined
+        newQuestion.otherwise_tooltip = undefined
+    }
+    return newQuestion;
 }
 
 export const clearMapWithQuestion = (question) => {
@@ -286,23 +292,23 @@ export const clearMapWithQuestion = (question) => {
             const qid = question.id
             const oid = option.id
             if (showsQuestions && showsQuestions.length > 0) {
-                for (let i = 0; i < showsQuestions.length; i++) {
+                for (let j = 0; j < showsQuestions.length; j++) {
                     store.dispatch(
                         removeFromMap({
                             type: 'showsMap',
-                            key: showsQuestions[i],
-                            value: { qid, oid },
+                            key: showsQuestions[j],
+                            value: {qid, oid},
                         })
                     )
                 }
             }
             if (hidesQuestions && hidesQuestions.length > 0) {
-                for (let i = 0; i < hidesQuestions.length; i++) {
+                for (let k = 0; k < hidesQuestions.length; k++) {
                     store.dispatch(
                         removeFromMap({
                             type: 'hidesMap',
-                            key: hidesQuestions[i],
-                            value: { qid, oid },
+                            key: hidesQuestions[k],
+                            value: {qid, oid},
                         })
                     )
                 }

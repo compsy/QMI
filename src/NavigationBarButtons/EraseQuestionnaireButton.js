@@ -1,5 +1,6 @@
 import Button from "@material-ui/core/Button";
 import React from "react";
+import DeleteIcon from '@material-ui/icons/Delete';
 import {SafeQuestionnaireDialog} from "../components/SaveQuestionnaireDialog";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -27,8 +28,10 @@ export function EraseQuestionnaireButton() {
     };
     return (
         <div>
-            <Button color="inherit" data-cy={"eraseQuestionnaire"} id={"eraseQuestionnaire"} onClick={handleClickOpen}>
-                Erase Questionnaire</Button>
+            <Button color="inherit" data-cy={"eraseQuestionnaire"} id={"eraseQuestionnaire"} onClick={handleClickOpen}
+                    startIcon={<DeleteIcon/>}
+            >
+                Erase</Button>
 
             <div>
                 <SafeQuestionnaireDialog open={saveQuestionnaireOpen} setOpen={setSafeQuestionnaireOpen}/>

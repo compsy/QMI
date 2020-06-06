@@ -149,14 +149,14 @@ export const questionsSlice = createSlice({
             );
         },
         REMOVE_BY_MAP: (state, action) => {
-            const { type, key, qid, oid } = action.payload;
+            const {type, key, qid, oid} = action.payload;
             const stateLength = state.length;
-            for (let i=0; i<stateLength; i++) {
+            for (let i = 0; i < stateLength; i++) {
                 const question = state[i];
                 if (question.id === qid) {
                     const options = question.options;
                     if (options && options.length > 0) {
-                        for (let j=0; j<options.length; j++) {
+                        for (let j = 0; j < options.length; j++) {
                             const option = options[j];
                             if (option.id === oid) {
                                 if (type === "showsMap") {

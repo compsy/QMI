@@ -9,7 +9,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
-import EditIcon from "@material-ui/icons/Edit";
 import React, {useEffect, useState} from "react";
 import {auth_config} from "../../features/API/auth_config";
 import {useAuth0} from "../react-auth0-spa";
@@ -17,9 +16,6 @@ import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import {useDispatch} from "react-redux";
-import {SET_QUESTIONS} from "../../features/questions/questionsSlice";
-import {SET_METADATA} from "../../features/questionnaire/questionnaireMetadataSlice";
 
 const LOCALE_EN = {
     retrievingQuestionnaires: "Retrieving questionnaires",
@@ -51,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
     const locale = LOCALE_EN;
 
@@ -59,7 +54,7 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
     const {isAuthenticated, getIdTokenClaims, loading} = useAuth0();
     const [questionnaireListState, setQuestionnaireListState] = useState({status: API_STATUS.INIT, body: []});
     useEffect(() => {
-        if(questionnaireListState.status === API_STATUS.INIT){
+        if (questionnaireListState.status === API_STATUS.INIT) {
             retrieveQuestionnaires();
         }
     });
@@ -73,7 +68,7 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
             })
     }
     const retrieveQuestionnaires = () => {
-        if(!isAuthenticated){
+        if (!isAuthenticated) {
             return;
         }
         setQuestionnaireListState({status: API_STATUS.LOADING, body: locale.retrievingQuestionnaires});
@@ -81,36 +76,38 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
             setQuestionnaireListState({status: API_STATUS.ERROR, body: error.message()});
         };
 
-        try{
+        try {
             getAllQuestionnairesAsync()
                 .then(response => {
-                    if(response.error && response.error.message.includes("NetworkError")){
+                    if (response.error && response.error.message.includes("NetworkError")) {
                         setQuestionnaireListState({status: API_STATUS.ERROR, body: locale.serverCannotBeReached});
                         return;
                     }
-                    if(response.error){
-                        setQuestionnaireListState({status: API_STATUS.ERROR, body:
-                            `${locale.noAdminError} (Error code: ${response.code})`});
+                    if (response.error) {
+                        setQuestionnaireListState({
+                            status: API_STATUS.ERROR, body:
+                                `${locale.noAdminError} (Error code: ${response.code})`
+                        });
                         return;
                     }
 
                     setQuestionnaireListState({status: API_STATUS.IDLE, body: response.body});
                 })
-        }catch(error){
+        } catch (error) {
             errorCatcher(error);
         }
 
     }
 
-    const renderStatusMessage = (status) =>{
+    const renderStatusMessage = (status) => {
 
-        if(questionnaireListState.status === API_STATUS.IDLE && questionnaireListState.body === []){
+        if (questionnaireListState.status === API_STATUS.IDLE && questionnaireListState.body === []) {
             return <Alert severity="info">
                 <AlertTitle>{locale.noQuestionnaires}</AlertTitle>
             </Alert>
         }
 
-        if(loading){
+        if (loading) {
             return <Alert severity="info">
                 <AlertTitle>Info </AlertTitle>
                 <Grid container spacing={3}>
@@ -121,7 +118,7 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
             </Alert>
         }
 
-        switch (status){
+        switch (status) {
 
             case API_STATUS.LOADING:
                 return <Alert severity="info">
@@ -133,7 +130,7 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
 
                 </Alert>
             case API_STATUS.ERROR:
-                return  <Alert severity="error">
+                return <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>
                     {questionnaireListState.body}
                 </Alert>
@@ -147,8 +144,8 @@ export const QuestionnaireList = ({setCurrentQuestionnaireKey}) => {
                 return renderQuestionnaires();
         }
     }
-    const renderQuestionnaires = () =>{
-        return<GridList cols={4} spacing={10}>
+    const renderQuestionnaires = () => {
+        return <GridList cols={4} spacing={10}>
             {questionnaireListState.body.map(json =>
                 <GridListTile key={json.key} className={classes.tile}>
                     <QuestionnaireCard questionnaire={json}/>

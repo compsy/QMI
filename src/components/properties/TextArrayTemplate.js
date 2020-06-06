@@ -4,34 +4,28 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     removeOption,
     selectProperty,
-    setProperty,
     setTextArrayElement,
     setTextArrayField,
 } from "../../features/questionProperties/questionSlice";
 import {
-    Box,
     Button,
     FilledInput,
     FormControl,
     FormControlLabel,
-    Grid,
     IconButton,
     InputAdornment,
     InputLabel,
     makeStyles,
     Menu,
     MenuItem,
-    Paper,
     Switch,
     Tooltip,
-    Typography,
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 import {CLEAN_SUPER_OPTION} from "../../utils";
 import {QuestionnaireContext} from "../../contexts/QuestionnaireContext";
-import EachOption from "./TextArrayTemplate/EachOption";
 
 const useStyles = makeStyles((theme) => ({
     boxy: {
@@ -56,66 +50,11 @@ const useStyles = makeStyles((theme) => ({
     },
     showsHidesButtons: {
         transform: "scale(0.8)",
-        // marginLeft: theme.spacing(1),
     },
 }));
 
-export const TextArrayProperty = ({name, propertyName}) => {
-    const property = useSelector(selectProperty(propertyName));
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (property === undefined) {
-            dispatch(setProperty({property: propertyName, value: []}));
-        }
-    }, [property]);
-
-    const handleAddOptionClick = () => {
-        dispatch(
-            setProperty({
-                property: propertyName,
-                value: [...property, ""],
-            })
-        );
-    };
-
-    const classes = useStyles();
-    return (
-        <>
-            <Paper elevation={0} variant="outlined" className={classes.paper}>
-                {property.length > 0 ? (
-                    property.map((_, index) => (
-                        <EachOption
-                            index={index}
-                            name={name}
-                            propertyName={propertyName}
-                        />
-                    ))
-                ) : (
-                    <Grid
-                        className={classes.noneBox}
-                        container
-                        direction="row"
-                        justify="center"
-                        alignItems="center"
-                    >
-                        <Grid item>
-                            <Typography
-                                variant="body1"
-                                style={{userSelect: "none"}}
-                            >{`no ${propertyName} provided`}</Typography>
-                        </Grid>
-                    </Grid>
-                )}
-            </Paper>
-            <Box textAlign="center">
-                <AddOptionButton onClick={handleAddOptionClick}/>
-            </Box>
-        </>
-    );
-};
-
-function EachOptioni({index, name, propertyName}) {
+function EachOption({index, name, propertyName}) {
     const type = useSelector(selectProperty("type"));
     const option = useSelector((state) => state.question[propertyName][index]);
     const dispatch = useDispatch();
@@ -446,7 +385,6 @@ const EachOptionHides = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
                 {shown &&
                 shown.map((item) => {
                     return (

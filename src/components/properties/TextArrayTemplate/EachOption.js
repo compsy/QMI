@@ -28,7 +28,7 @@ export default EachOption
 
 /* ----- USED IN EachOption BELOW ----- */
 
-const OptionInputField = ({ propertyName, index }) => {
+const OptionInputField = ({propertyName, index}) => {
     const option = useSelector((state) => state.question[propertyName][index])
     const dispatch = useDispatch()
 
@@ -74,7 +74,7 @@ const OptionInputField = ({ propertyName, index }) => {
     const classes = useStyles();
     return (
         <FormControl fullWidth required>
-            <InputLabel variant="filled" style={{ userSelect: 'none' }}>
+            <InputLabel variant="filled" style={{userSelect: 'none'}}>
                 {propertyName === 'labels'
                     ? `Label ${index + 1}`
                     : `Option ${index + 1}`}
@@ -103,7 +103,7 @@ const OptionInputField = ({ propertyName, index }) => {
     )
 };
 
-const RemoveButton = ({ propertyName, index }) => {
+const RemoveButton = ({propertyName, index}) => {
     const dispatch = useDispatch();
     const question = useSelector((state) => state.question);
     const qid = question.id;
@@ -153,7 +153,7 @@ const RemoveButton = ({ propertyName, index }) => {
     )
 };
 
-const EndButtons = ({ propertyName, index }) => {
+const EndButtons = ({propertyName, index}) => {
     const showsQuestions = useSelector(
         (state) => state.question[propertyName][index].shows_questions
     );
@@ -179,7 +179,7 @@ const EndButtons = ({ propertyName, index }) => {
                                 }}
                                 overlap="circle"
                             >
-                                <EachOptionShows index={index} />
+                                <EachOptionShows index={index}/>
                             </Badge>
                             <Badge
                                 badgeContent={
@@ -193,7 +193,7 @@ const EndButtons = ({ propertyName, index }) => {
                                 }}
                                 overlap="circle"
                             >
-                                <EachOptionHides index={index} />
+                                <EachOptionHides index={index}/>
                             </Badge>
                         </>
                     )}

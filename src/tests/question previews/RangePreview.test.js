@@ -1,14 +1,13 @@
-import { shallow } from 'enzyme';
-import { configure } from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import RangePreview from '../../components/previews/RangePreview'
+import RangeTypePreview from '../../components/previews/RangeTypePreview'
 
-configure({ adapter: new Adapter() });
+configure({adapter: new Adapter()});
 
-describe('<RangePreview/>', () => {
+describe('<RangeTypePreview/>', () => {
     it('renders a range question', () => {
-        const question= {
+        const question = {
             section_start: "De hoofddoelen",
             hidden: true,
             id: "v7",
@@ -21,7 +20,7 @@ describe('<RangePreview/>', () => {
             labels: ["helemaal niet duidelijk", "heel duidelijk"],
             section_end: true,
         };
-        const component = shallow(<RangePreview question={question}/>);
+        const component = shallow(<RangeTypePreview question={question}/>);
         expect(component).toMatchSnapshot();
     });
 });

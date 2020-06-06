@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {IconButton, Tooltip} from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
-import EditDialog2 from "../BetaEditDialog2";
+import EditDialog2 from "../EditingFeature";
 import store from "../../app/store";
-import { SET_SAVED } from "../../features/utilities/utilitiesSlice";
+import {SET_SAVED} from "../../features/utilities/utilitiesSlice";
 
 
 const EditQuestionButton = ({question, index}) => {
@@ -20,8 +20,7 @@ const EditQuestionButton = ({question, index}) => {
                     <EditIcon/>
                 </IconButton>
             </Tooltip>
-                {/* <BetaEditDialog question={question} open={open} setOpen={setOpen} /> */}
-                {open && <EditDialog2 question={question} index={index} open={open} setOpen={setOpen}/>}
+            {open && <EditDialog2 question={question} index={index} open={open} setOpen={setOpen}/>}
         </>
     );
 };

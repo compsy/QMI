@@ -1,14 +1,13 @@
-import { shallow } from 'enzyme';
-import { configure } from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import LikertPreview from '../../components/previews/LikertPreview'
+import LikertTypePreview from '../../components/previews/LikertTypePreview'
 
-configure({ adapter: new Adapter() });
+configure({adapter: new Adapter()});
 
-describe('<LikertPreview/>', () => {
+describe('<LikertTypePreview/>', () => {
     it('renders a likert question', () => {
-        const question= {
+        const question = {
             id: "v4",
             type: "likert",
             title: "untitled likert",
@@ -18,7 +17,7 @@ describe('<LikertPreview/>', () => {
                 {title: "vriendschap"},
             ],
         };
-        const component = shallow(<LikertPreview question={question}/>);
+        const component = shallow(<LikertTypePreview question={question}/>);
         expect(component).toMatchSnapshot();
     });
 });

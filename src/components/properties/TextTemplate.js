@@ -1,19 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {selectProperty, setProperty,} from "../../features/question/questionSlice";
-import {FilledInput, FormControl, InputLabel, makeStyles,} from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-    boxy: {
-        borderRadius: 0,
-        zIndex: 0
-    },
-    paper: {
-        overflow: "auto",
-        wordWrap: "break-word",
-        wordBreak: "break-word",
-    },
-}));
+import {FilledInput, FormControl, InputLabel} from "@material-ui/core";
 
 export const TextProperty = ({
                                  name,
@@ -34,7 +22,6 @@ export const TextProperty = ({
     };
 
     return (
-        // <Paper className={classes.paper} variant="outlined">
         <FormControl fullWidth required={required}>
             <InputLabel variant="filled" style={{userSelect: "none"}}>{name}</InputLabel>
             <FilledInput
@@ -47,8 +34,6 @@ export const TextProperty = ({
                 onChange={handleChange}
                 {...props}
             />
-            {/* <FormHelperText id="component-error-text">Error</FormHelperText> */}
         </FormControl>
-        // </Paper>
     );
 };
