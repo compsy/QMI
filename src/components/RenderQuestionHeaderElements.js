@@ -6,7 +6,7 @@ import RemoveQuestionButton from "./buttons/RemoveQuestionButton";
 import React from "react";
 import {HiddenQuestionIndicator} from "./HiddenQuestionIndicator";
 
-export function rendering(question, index) {
+export function renderQuestionHeaderElements(question, index) {
     const type = question.type;
     const elements = [];
     elements.push(<Grid item key={elements.length}><HiddenQuestionIndicator question={question} index={index}/></Grid>);
