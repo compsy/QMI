@@ -1,32 +1,21 @@
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import InfoIcon from '@material-ui/icons/Info'
-import { makeStyles, Typography } from '@material-ui/core'
-import CardActions from '@material-ui/core/CardActions'
-import Button from '@material-ui/core/Button'
 import React, { useEffect, useState } from 'react'
-import { alignInGrid } from './HomePage'
 import { API_STATUS } from '../../features/API/ApiHandler'
-import CircularProgress from '@material-ui/core/CircularProgress'
 import { auth_config } from '../../features/API/auth_config'
 import { useAuth0 } from '../react-auth0-spa'
-import { Link } from 'react-router-dom'
 import { SET_QUESTIONS } from '../../features/questions/questionsSlice'
 import { v4 as uuid } from 'uuid'
 import { useDispatch } from 'react-redux'
 import { SET_METADATA } from '../../features/questionnaire/questionnaireMetadataSlice'
+import {
+    QuestionnaireDetailsCard, QuestionnaireDetailsErrorCard,
+    QuestionnaireDetailsLoadingCard,
+    QuestionnaireDetailsNoQuestionnaireCard
+} from "./QuestionnaireDetailsCard";
 
-
-const useStyles = makeStyles(() => ({
-    card: {
-        height: '100%',
-    },
-}))
 const LOCALE_EN = {
     noQuestionnaireTitle: 'No questionnaire is selected.',
     noQuestionnaireSubtitle: "Please click one of the questionnaires listed on the left to view details.",
     editQuestionnaireButtonText: "Edit Questionnaire",
-    questionnaireDetailsTitle: "Questionnaire Details",
     questions: "questions",
     answers: "answers"
 }
@@ -75,72 +64,29 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
             .catch(error => setQuestionnaireState({status: API_STATUS.ERROR, body: error}));
     }
 
-    const getInitWrapper = () =>{
-        return <Wrapper
-            title={locale.noQuestionnaireTitle}
-            subtitle={locale.noQuestionnaireSubtitle}
-        />
-    }
-    const getLoadingWrapper = () =>{
-        return <Wrapper>
-            <CircularProgress />
-        </Wrapper>
-    }
-    const getErrorWrapper = () =>{
-        return <Wrapper
-            title={"An error has occurred"}
-            subtitle={questionnaireState.body}
-        />
-    }
-    const getIdleWrapper = () =>{
+    const getIdleCard = () =>{
         const questionnaire = questionnaireState.body;
-        return <Wrapper
+        return <QuestionnaireDetailsCard
             title={questionnaire.name}
             subtitle={"key: " + questionnaire.key}
             extra={
                 `${questionnaire.content.questions.length} ${locale.questions} | ${questionnaire.content.scores.length} ${locale.answers}.`}
             editAvailable
             onClick={loadQuestionnaireIntoState}
-        > </Wrapper>
+        />
     }
 
     // eslint-disable-next-line default-case
     switch (questionnaireState.status){
         case API_STATUS.INIT:
-            return getInitWrapper();
+            return <QuestionnaireDetailsNoQuestionnaireCard />
         case API_STATUS.LOADING:
-            return getLoadingWrapper();
+            return <QuestionnaireDetailsLoadingCard />
         case API_STATUS.ERROR:
-            return getErrorWrapper();
+            return <QuestionnaireDetailsErrorCard message={questionnaireState.body}/>
         case API_STATUS.IDLE:
-            return getIdleWrapper();
+            return getIdleCard();
     }
 
 };
 
-const Wrapper = ({title = "", subtitle = "", extra = "", editAvailable = false, ...props}) => {
-    const classes = useStyles();
-    const locale = LOCALE_EN;
-
-    return <Card className={classes.card}>
-        <CardContent>
-            {alignInGrid(1, <InfoIcon/>, <Typography color="textSecondary" gutterBottom>
-                {locale.questionnaireDetailsTitle}
-            </Typography>)}
-            <Typography variant="h5" component="h2">
-                {title}
-            </Typography>
-            <Typography color="textSecondary">
-                {subtitle}
-            </Typography>
-            <Typography variant="body2" component="p">
-                {extra}
-            </Typography>
-            {props.children}
-        </CardContent>
-        <CardActions>
-            <Button disabled={!editAvailable} color="primary" component={Link} to="/" {...props}>Edit Questionnaire</Button>
-        </CardActions>
-    </Card>
-
-};
