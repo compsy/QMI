@@ -8,7 +8,7 @@ import { HomePage } from './HomePage/HomePage'
 import { EraseQuestionnaireButton } from '../navigationBarButtons/EraseQuestionnaireButton'
 import { RenderQuestionnaireButton } from '../navigationBarButtons/RenderQuestionnaireButton'
 import { SaveQuestionnaireButton } from '../navigationBarButtons/SaveQuestionnaireButton'
-import UserCard from '../UserCard'
+import UserCard from './UserCard'
 import {Route, Router, Switch, useLocation} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
