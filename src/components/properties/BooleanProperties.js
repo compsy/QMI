@@ -29,7 +29,7 @@ export const TodayProperty = ({...props}) => {
 export const SectionEndProperty = ({...props}) => {
     return (
         <BooleanProperty
-            name={"QuestionsList marks a section end"}
+            name={"Question marks a section end"}
             propertyName={"section_end"}
             {...props}
         />

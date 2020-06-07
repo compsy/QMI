@@ -49,7 +49,7 @@ const OptionInputField = ({propertyName, index}) => {
                 })
             )
         }
-    }, [option]);
+    }, [dispatch, index, option, propertyName]);
 
     const handleChange = (subIndex, event) => {
         if (propertyName === 'options') {

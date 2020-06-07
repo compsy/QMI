@@ -152,6 +152,11 @@ const postprocessNumber = (question) => {
         section_end: question.section_end !== undefined ? question.section_end : undefined,
     };
 }
+const postprocessDate = (question) => {
+    // prettier-ignore
+    return postprocessNumber(question);
+}
+
 
 const postprocessTime = (question) => {
     // prettier-ignore
@@ -169,26 +174,7 @@ const postprocessTime = (question) => {
     };
 }
 
-const postprocessDate = (question) => {
-    // prettier-ignore
-    return {
-        id: question.id,
-        type: question.type,
-        // required
-        title: question.title !== undefined ? question.title : "untitled number",
-        // optional
-        section_start: question.section_start !== undefined ? question.section_start : undefined,
-        hidden: question.hidden !== undefined ? question.hidden : undefined,
-        today: question.today !== undefined ? question.today : undefined,
-        required: question.required !== undefined ? question.required : undefined,
-        tooltip: question.tooltip !== undefined ? question.tooltip : undefined,
-        placeholder: question.placeholder !== undefined ? question.placeholder : undefined,
-        min: question.min !== undefined ? question.min : undefined,
-        max: question.max !== undefined ? question.max : undefined,
-        default_date: question.default_date !== undefined ? question.default_date : undefined,
-        section_end: question.section_end !== undefined ? question.section_end : undefined,
-    };
-}
+
 
 const postprocessDropdown = (question) => {
     const processedOptionsDropdown = () => {

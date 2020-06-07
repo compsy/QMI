@@ -9,6 +9,7 @@ import { EraseQuestionnaireButton } from '../navigationBarButtons/EraseQuestionn
 import { RenderQuestionnaireButton } from '../navigationBarButtons/RenderQuestionnaireButton'
 import { SaveQuestionnaireButton } from '../navigationBarButtons/SaveQuestionnaireButton'
 import UserCard from '../UserInformation'
+import {Route, Router, Switch, useLocation} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {

@@ -55,33 +55,6 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 
-const DialogHeader = ({state, ...props}) => {
-    const classes = useStyles();
-
-    return (
-        <div className={classes.stickyTop}>
-            <Grid
-                container
-                direction="row"
-                justify="space-between"
-                alignItems="center"
-                {...props}
-            >
-                <Grid item>
-                    <Typography variant="h6" style={{userSelect: "none"}}>Save questionnaire</Typography>
-                </Grid>
-                {state.status === API_STATUS.LOADING ?
-                    <Grid item>
-                        <CircularProgress/>
-                    </Grid>
-                    : null
-                }
-            </Grid>
-            <Divider/>
-        </div>
-    );
-};
-
 
 export const SafeQuestionnaireDialog = ({open, setOpen}) => {
     const classes = useStyles();
@@ -159,19 +132,19 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) => {
         callCreateQuestionnaire(questionnaire);
     }
 
-    const generateTextField = (attributeName, attributeSetter, attributeState) => {
-        return <TextField fullWidth id="filled-basic" label={attributeName} variant="filled"
-                          required
-                          error={errorInAttribute(attributeName)}
-                          helperText={errorInAttribute(attributeName) ? state.body[attributeName] : null}
-                          defaultValue={attributeState}
-                          onChange={(
-                              e) => {
-                              attributeSetter(e.target.value)
-                          }}
+    const generateAttributeTextField = (attributeName, attributeSetter, attributeState) => {
+        return <TextField
+            fullWidth
+            required
+            variant="filled"
+            id="filled-basic"
+            label={attributeName}
+            defaultValue={attributeState}
+            error={errorInAttribute(attributeName)}
+            helperText={errorInAttribute(attributeName) ? state.body[attributeName] : null}
+            onChange={(e) => {attributeSetter(e.target.value)}}
         />
     }
-
     const generateStatusFeedback = () => {
         if (state.status === API_STATUS.ERROR && state.body.hasOwnProperty('special'))
             return <Alert severity="error">{state.body.special}</Alert>
@@ -189,14 +162,14 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) => {
                     justify="center"
                     alignItems="stretch"
                 >
-                    <DialogHeader className={classes.header} state={state}/>
+                    <DialogHeader className={classes.header} state={state} />
                     <Box p={2.5}>
-                        {generateTextField('name', setName, name)}
-                        {generateTextField('key', setKey, key)}
-                        {generateTextField('title', setTitle, title)}
+                        {generateAttributeTextField('name', setName, name)}
+                        {generateAttributeTextField('key', setKey, key)}
+                        {generateAttributeTextField('title', setTitle, title)}
                         {generateStatusFeedback()}
                     </Box>
-                    <DialogFooter handleClose={handleClose} state={state} isAuthenticated={isAuthenticated}/>
+                    <DialogFooter handleClose={handleClose} state={state} isAuthenticated={isAuthenticated} />
                 </Grid>
             </form>
         </Dialog>
@@ -204,6 +177,33 @@ export const SafeQuestionnaireDialog = ({open, setOpen}) => {
 }
 
 
+
+const DialogHeader = ({state, ...props}) => {
+    const classes = useStyles();
+
+    return (
+        <div className={classes.stickyTop}>
+            <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+                {...props}
+            >
+                <Grid item>
+                    <Typography variant="h6" style={{userSelect: "none"}}>Save questionnaire</Typography>
+                </Grid>
+                {state.status === API_STATUS.LOADING ?
+                    <Grid item>
+                        <CircularProgress/>
+                    </Grid>
+                    : null
+                }
+            </Grid>
+            <Divider/>
+        </div>
+    );
+};
 const DialogFooter = ({handleClose, isAuthenticated}) => {
     const classes = useStyles();
 

@@ -22,7 +22,6 @@ const useStyles = makeStyles(() => ({
         height: '100%',
     },
 }))
-
 const LOCALE_EN = {
     noQuestionnaireTitle: 'No questionnaire is selected.',
     noQuestionnaireSubtitle: "Please click one of the questionnaires listed on the left to view details.",
@@ -37,6 +36,15 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
     const {getIdTokenClaims, isAuthenticated} = useAuth0();
     const [questionnaireState, setQuestionnaireState] = useState({status: API_STATUS.INIT, body: null});
     const dispatch = useDispatch();
+    useEffect(() => {
+        if(questionnaireKey == null || questionnaireState.status === API_STATUS.LOADING) return;
+        if(questionnaireState.status === API_STATUS.INIT || questionnaireKeyHasChanged()){
+            retrieveQuestionnaire(questionnaireKey);
+        }
+    })
+
+    const questionnaireKeyHasChanged =
+        () => questionnaireState.status === API_STATUS.IDLE && questionnaireState.body.key !== questionnaireKey;
 
     const loadQuestionnaireIntoState = () => {
         localStorage.clear();
@@ -45,16 +53,6 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
         dispatch(SET_QUESTIONS({questions: questionnaire.content.questions}));
         dispatch(SET_METADATA({metadata: {key: questionnaire.key, name: questionnaire.name, title: questionnaire.title}}));
     }
-    const questionnaireKeyHasChanged =
-        () => questionnaireState.status === API_STATUS.IDLE && questionnaireState.body.key !== questionnaireKey;
-
-    useEffect(() => {
-        if(questionnaireKey == null || questionnaireState.status === API_STATUS.LOADING) return;
-        if(questionnaireState.status === API_STATUS.INIT){
-            retrieveQuestionnaire(questionnaireKey);
-        }
-    })
-
     const getQuestionnaireByKeyAsync = async (key) => {
         const itc = await getIdTokenClaims();
         const unirest = require('unirest');
@@ -77,32 +75,45 @@ export const QuestionnaireDetails = ({questionnaireKey}) => {
             .catch(error => setQuestionnaireState({status: API_STATUS.ERROR, body: error}));
     }
 
+    const getInitWrapper = () =>{
+        return <Wrapper
+            title={locale.noQuestionnaireTitle}
+            subtitle={locale.noQuestionnaireSubtitle}
+        />
+    }
+    const getLoadingWrapper = () =>{
+        return <Wrapper>
+            <CircularProgress />
+        </Wrapper>
+    }
+    const getErrorWrapper = () =>{
+        return <Wrapper
+            title={"An error has occurred"}
+            subtitle={questionnaireState.body}
+        />
+    }
+    const getIdleWrapper = () =>{
+        const questionnaire = questionnaireState.body;
+        return <Wrapper
+            title={questionnaire.name}
+            subtitle={"key: " + questionnaire.key}
+            extra={
+                `${questionnaire.content.questions.length} ${locale.questions} | ${questionnaire.content.scores.length} ${locale.answers}.`}
+            editAvailable
+            onClick={loadQuestionnaireIntoState}
+        > </Wrapper>
+    }
+
+    // eslint-disable-next-line default-case
     switch (questionnaireState.status){
         case API_STATUS.INIT:
-            return <Wrapper
-                title={locale.noQuestionnaireTitle}
-                subtitle={locale.noQuestionnaireSubtitle}
-            />
+            return getInitWrapper();
         case API_STATUS.LOADING:
-            return <Wrapper>
-                <CircularProgress />
-            </Wrapper>
+            return getLoadingWrapper();
         case API_STATUS.ERROR:
-            return <Wrapper
-                title={"An error has occurred"}
-                subtitle={questionnaireState.body}
-            />
+            return getErrorWrapper();
         case API_STATUS.IDLE:
-            const questionnaire = questionnaireState.body;
-            console.log(questionnaire);
-            return <Wrapper
-                title={questionnaire.name}
-                subtitle={"key: " + questionnaire.key}
-                extra={
-                    `${questionnaire.content.questions.length} ${locale.questions} | ${questionnaire.content.scores.length} ${locale.answers}.`}
-                editAvailable
-                onClick={loadQuestionnaireIntoState}
-            > </Wrapper>
+            return getIdleWrapper();
     }
 
 };

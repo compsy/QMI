@@ -8,14 +8,14 @@ import Button from "@material-ui/core/Button";
 export default function UserInformation() {
     return (
         <div>
-            {GetUserCard()}
+            <UserCard/>
         </div>
     );
 }
 
-function GetUserCard() {
+function UserCard() {
     const {isAuthenticated, user, loading, loginWithRedirect} = useAuth0();
-    if (loading) return <div key="loading-icon" justifyContent="center"><LinearProgress variant="query"/></div>
+    if (loading) return <div key="loading-icon"><LinearProgress variant="query"/></div>
     return isAuthenticated ? <UserInformationCard key={"user information card"} user={user}/>
         : <Button startIcon={<ExitToAppIcon/>} onClick={loginWithRedirect}>Log in</Button>
 }

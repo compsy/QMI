@@ -152,10 +152,6 @@ const preprocessCheckbox = (question) => {
     }
 }
 
-const preprocessMap = {
-    checkbox: preprocessCheckbox,
-    radio: preprocessCheckbox,
-}
 
 
 export const PROPERTIES_BY_QUESTION_TYPE = {
