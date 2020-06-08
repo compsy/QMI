@@ -2,13 +2,13 @@ describe('This file contains all tests related to edit a question through the ed
     beforeEach(() => {
         cy.visit("/")
     });
-    it('How a user would cancel the edit dialog after opening it for a specific question', () => {
-        const questionTypes = ['checkbox', 'radio'];
+    it('How a user would delete an option of a specific question', () => {
+        const questionTypes = ['checkbox', 'radio']
         //write tests for range and dropdown also
         for (let i = 0; i < questionTypes.length; i++) {
-            cy.deleteAnOption(questionTypes[i]);
+            cy.deleteAnOption(questionTypes[i])
         }
-    });
+    })
     it('How a user would delete an option of a range question', () => {
         cy.dragFromSidebar('range');
         const option3 = "option 3";

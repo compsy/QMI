@@ -2,12 +2,12 @@ describe('This file contains all tests related to edit a question through the ed
     beforeEach(() => {
         cy.visit("/")
     });
-    it('How a user would cancel the edit dialog after opening it for a specific question', () => {
-        const questionTypes = ['checkbox', 'date', 'number', 'radio'];
+    it('How a user would enable a required question property for a specific question', () => {
+        const questionTypes = ['checkbox', 'date', 'number', 'radio']
         for (let i = 0; i < questionTypes.length; i++) {
-            cy.enableRequiredProperty(questionTypes[i]);
+            cy.enableRequiredProperty(questionTypes[i])
         }
-    });
+    })
 });
 
 
