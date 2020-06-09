@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { API_STATUS } from '../../features/API/ApiHandler'
 import { auth_config } from '../../features/API/auth_config'
-import { useAuth0 } from '../react-auth0-spa'
+import { useAuth0 } from '../Authentication Dialog/react-auth0-spa'
 import { SET_QUESTIONS } from '../../features/questions/questionsSlice'
 import { v4 as uuid } from 'uuid'
 import { useDispatch } from 'react-redux'

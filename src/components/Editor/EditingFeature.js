@@ -8,7 +8,7 @@ import store from "../../store";
 import {postprocessQuestion} from "../properties/postprocessor";
 import {UPDATE_QUESTION} from "../../features/questions/questionsSlice";
 import {SET_UTILITIES} from "../../features/utilities/utilitiesSlice";
-import {useStyles} from "../SaveQuestionnaireDialog"
+import {useStyles} from "../Home Page/SaveQuestionnaireDialog"
 
 
 const EditDialog2 = ({question, index, open, setOpen}) => {
@@ -26,7 +26,7 @@ const EditDialog2 = ({question, index, open, setOpen}) => {
         dispatch(UPDATE_QUESTION({id: question.id, new: newQuestion}))
     };
 
-    // cancel all and return to MainPage
+    // cancel all and return to Editor
     const handleClose = () => {
         // restore mappings
         dispatch(SET_UTILITIES(store.getState().utilities.saved));

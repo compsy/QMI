@@ -1,4 +1,4 @@
-import { toPrint } from '../utils'
+import { toPrint } from '../../../utils'
 import ImageIcon from '@material-ui/icons/Image'
 import Button from '@material-ui/core/Button'
 import React from 'react'

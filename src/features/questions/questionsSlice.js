@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import uuid from 'uuid/v1'
-import { QUESTION_TYPES } from '../../components/MainPage/QuestionTypes'
+import { QUESTION_TYPES } from '../../components/Editor/QuestionTypes'
 import { INITIAL_QUESTIONNAIRE_CONTEXT } from '../../utils'
 
 const reorder = (list, startIndex, endIndex) => {

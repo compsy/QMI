@@ -1,14 +1,14 @@
 import {Box, Button, Dialog, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
 import React, {useState} from "react";
 import TextField from "@material-ui/core/TextField";
-import {useAuth0} from "./react-auth0-spa";
+import {useAuth0} from "../Authentication Dialog/react-auth0-spa";
 import {useDispatch, useSelector} from "react-redux";
-import {API_STATUS} from "../features/API/ApiHandler";
-import {auth_config} from "../features/API/auth_config";
+import {API_STATUS} from "../../features/API/ApiHandler";
+import {auth_config} from "../../features/API/auth_config";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
-import {SET_METADATA} from "../features/questionnaire/questionnaireMetadataSlice";
-import {GENERATE_INITIAL_QUESTIONNAIRE_METADATA_CONTEXT} from "../utils";
+import {SET_METADATA} from "../../features/questionnaire/questionnaireMetadataSlice";
+import {GENERATE_INITIAL_QUESTIONNAIRE_METADATA_CONTEXT} from "../../utils";
 
 export const useStyles = makeStyles((theme) => ({
     body: {

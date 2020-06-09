@@ -1,14 +1,14 @@
 import Button from '@material-ui/core/Button'
 import React from 'react'
 import DeleteIcon from '@material-ui/icons/Delete'
-import { SafeQuestionnaireDialog } from '../components/SaveQuestionnaireDialog'
+import { SafeQuestionnaireDialog } from '../../Home Page/SaveQuestionnaireDialog'
 import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogActions from '@material-ui/core/DialogActions'
-import { SET_UTILITIES } from '../features/utilities/utilitiesSlice'
-import { REMOVE_ALL } from '../features/questions/questionsSlice'
+import { SET_UTILITIES } from '../../../features/utilities/utilitiesSlice'
+import { REMOVE_ALL } from '../../../features/questions/questionsSlice'
 import { useDispatch } from 'react-redux'
 
 

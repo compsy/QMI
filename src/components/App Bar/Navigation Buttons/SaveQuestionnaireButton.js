@@ -1,7 +1,7 @@
 import Button from '@material-ui/core/Button'
 import React from 'react'
 import SaveIcon from '@material-ui/icons/Save'
-import { SafeQuestionnaireDialog } from '../components/SaveQuestionnaireDialog'
+import { SafeQuestionnaireDialog } from '../../Home Page/SaveQuestionnaireDialog'
 
 export function SaveQuestionnaireButton() {
     const [saveQuestionnaireOpen, setSafeQuestionnaireOpen] = React.useState(false)

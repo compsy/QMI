@@ -1,7 +1,7 @@
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import TextFieldTypePreview from '../../components/previews/TextFieldTypePreview'
+import TextFieldTypePreview from '../../src/components/Editor/Question Previews/TextFieldTypePreview'
 
 configure({adapter: new Adapter()});
 

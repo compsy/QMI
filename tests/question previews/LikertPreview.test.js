@@ -1,7 +1,7 @@
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import LikertTypePreview from '../../components/previews/LikertTypePreview'
+import LikertTypePreview from '../../src/components/Editor/Question Previews/LikertTypePreview'
 
 configure({adapter: new Adapter()});
 
