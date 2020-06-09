@@ -1,7 +1,7 @@
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import NumberTypePreview from '../../src/components/Editor/Question Previews/NumberTypePreview'
+import NumberTypePreview from '../../components/Editor/Question Previews/NumberTypePreview'
 
 configure({adapter: new Adapter()});
 
