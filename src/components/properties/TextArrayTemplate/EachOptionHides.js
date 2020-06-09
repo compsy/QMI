@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import {Box, Button, Checkbox, Grid, makeStyles, Menu, MenuItem, Typography, useTheme,} from '@material-ui/core'
-import {useDispatch, useSelector} from 'react-redux'
-import {addToMap, removeFromMap,} from '../../../features/utilities/utilitiesSlice'
-import {setTextArrayElement,} from '../../../features/question/questionSlice'
+import React, { useEffect, useState } from 'react'
+import { Box, Button, Checkbox, Grid, makeStyles, Menu, MenuItem, Typography, useTheme } from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToMap, removeFromMap } from '../../../features/utilities/utilitiesSlice'
+import { setTextArrayElement } from '../../../features/question/questionSlice'
 
 const useStyles = makeStyles((theme) => ({
     showsHidesButtons: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const EachOptionHides = ({index}) => {
+const EachOptionHides = ({ index }) => {
     const [anchorEl, setAnchorEl] = React.useState(null)
 
     const handleClick = (event) => {
@@ -106,12 +106,12 @@ const EachOptionHides = ({index}) => {
                 onClose={handleClose}
             >
                 {shown && shown.length > 0 ? (
-                    shown.map((item, i) => {
+                    shown.map((item) => {
                         const title = item.title !== undefined ? (
                             item.title.length > 30
                                 ? `${item.title.slice(0, 29)}...`
                                 : item.title
-                        ) : "untitled"
+                        ) : 'untitled'
                         const menuItemStyle = {
                             paddingLeft: theme.spacing(1),
                             paddingRight: theme.spacing(3),

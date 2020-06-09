@@ -1,12 +1,12 @@
-import React from "react";
-import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
-import "./background.css";
-import {Provider} from "react-redux";
-import store from "./app/store";
-import {Auth0Provider} from "./components/react-auth0-spa";
-import history from "./utils/history";
-import {useDarkMode} from "./useDarkMode";
-import {auth_config} from "./features/API/auth_config";
+import React from 'react'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
+import './components/MainPage/background.css'
+import { Provider } from 'react-redux'
+import store from './store'
+import { Auth0Provider } from './components/react-auth0-spa'
+import history from './utils/history'
+import { useDarkMode } from './customHooks/useDarkMode'
+import { auth_config } from './features/API/auth_config'
 import AppBarComponent from './components/AppBarComponent'
 
 // A function that routes the user to the right place
@@ -16,7 +16,7 @@ const onRedirectCallback = (appState) => {
     history.push(
         appState && appState.targetUrl
             ? appState.targetUrl
-            : window.location.pathname
+            : window.location.pathname,
     );
 };
 

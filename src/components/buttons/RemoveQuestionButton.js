@@ -1,21 +1,21 @@
-import React from "react";
-import {IconButton, Tooltip} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import {useDispatch} from "react-redux";
-import {REMOVE_BY_MAP, REMOVE_QUESTION} from "../../features/questions/questionsSlice";
-import {clearMapWithQuestion} from "../properties/postprocessor";
-import store from "../../app/store";
-import {removeByKey} from "../../features/utilities/utilitiesSlice";
+import React from 'react'
+import { IconButton, Tooltip } from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
+import { useDispatch } from 'react-redux'
+import { REMOVE_BY_MAP, REMOVE_QUESTION } from '../../features/questions/questionsSlice'
+import { clearMapWithQuestion } from '../properties/postprocessor'
+import store from '../../store'
+import { removeByKey } from '../../features/utilities/utilitiesSlice'
 
-const RemoveQuestionButton = ({question, index}) => {
-    const dispatch = useDispatch();
-    const handleClick = (event) => {
-        removeAllWithKey(question);
-        clearMapWithQuestion(question);
+const RemoveQuestionButton = ({ question, index }) => {
+    const dispatch = useDispatch()
+    const handleClick = () => {
+        removeAllWithKey(question)
+        clearMapWithQuestion(question)
         console.log('showsMap: ', store.getState().utilities.showsMap)
         console.log('hidesMap: ', store.getState().utilities.hidesMap)
-        dispatch(REMOVE_QUESTION({id: question.id}));
-    };
+        dispatch(REMOVE_QUESTION({ id: question.id }))
+    }
     return (
         <Tooltip data-cy={"remove" + (index + 1)} title="remove">
             <IconButton onClick={handleClick}>

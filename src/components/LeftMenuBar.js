@@ -5,7 +5,7 @@ import React from "react";
 import HomeIcon from '@material-ui/icons/Home';
 import EditIcon from '@material-ui/icons/Edit';
 import Grid from "@material-ui/core/Grid";
-import {ModeToggle} from "../ModeToggle";
+import {ModeToggle} from "./MainPage/ModeToggle";
 
 
 export const LeftMenuBar = ({themeConfig, toggleDarkMode}) => {

@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 export const utilitiesSlice = createSlice({
     name: 'utilities',
@@ -56,8 +56,43 @@ export const {
     removeByKey,
     SET_UTILITIES,
     SET_SAVED,
-    SET_IDMAP,
     CLEAR_MAPS
 } = utilitiesSlice.actions
+
+export const initializeMaps = questions => dispatch => {
+    // computeMaps
+    dispatch(CLEAR_MAPS());
+    // 1) go through the questionnaire
+    for (let i = 0; i < questions.length; i++) {
+        // 2) check if "radio" or "checkbox" type
+        if (questions[i].type === "radio" || questions[i].type === "checkbox") {
+            // 3) go through the question's options
+            for (let j = 0; j < questions[i].options.length; j++) {
+                // 4) check if "string" or "object" type
+                if (typeof (questions[i].options[j]) === "object") {
+                    // 5) check if "shows_questions" or "hides_questions" is not undefined
+                    if (questions[i].options[j].shows_questions !== undefined && questions[i].options[j].shows_questions.length > 0) {
+                        // 6) go through the shows_questions and add to correct map
+                        for (let k = 0; k < questions[i].options[j].shows_questions.length; k++) {
+                            dispatch(addToMap({
+                                type: 'showsMap',
+                                key: questions[i].options[j].shows_questions[k],
+                                value: {qid: questions[i].id, oid: questions[i].options[j].id},
+                            }))
+                        }
+                        // 7) go through the hides_questions and add to correct map
+                        for (let k = 0; k < questions[i].options[j].hides_questions.length; k++) {
+                            dispatch(addToMap({
+                                type: 'hidesMap',
+                                key: questions[i].options[j].hides_questions[k],
+                                value: {qid: questions[i].id, oid: questions[i].options[j].id},
+                            }))
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
 
 export default utilitiesSlice.reducer

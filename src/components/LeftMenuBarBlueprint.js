@@ -12,10 +12,7 @@ import List from "@material-ui/core/List";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
-import CardHeader from "@material-ui/core/CardHeader";
-import Avatar from "@material-ui/core/Avatar";
 import {NavLink} from "react-router-dom";
-import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(() => ({
     list: {
@@ -52,20 +49,6 @@ export const Header = () => {
     </Card>
 };
 
-// The default card for showing basic user information in the sidebar.
-export const UserInformationCard = ({user}) => {
-    const classes = useStyles();
-    return <Box className={classes.header}>
-        <CardHeader
-            avatar={
-                <Avatar aria-label="recipe" className={classes.avatar} src={user.picture} alt="Avatar"/>
-            }
-            title={user.name + ` (${user.nickname})`}
-            subheader={user.email}
-        />
-    </Box>
-}
-
 
 /* The left sidebar.
 Layouts are structured in an array containing JSON objects:
@@ -75,9 +58,9 @@ Layouts are structured in an array containing JSON objects:
   Special types:
      {isDivider: true}                  : For adding a divider to the layout
      {custom: <RenderedReactComponent>} : For adding a custom react component or sub-layout.
+     customWrapped: wrapping a custom item in a ListItem
+     redirect: support for react-router-dom
 */
-
-
 export const LeftMenuBarBlueprint = ({layout}) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);

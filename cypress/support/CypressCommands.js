@@ -70,8 +70,8 @@ Cypress.Commands.add('dragAndDrop', (subject, target, dragIndex, dropIndex) => {
         });
 });
 Cypress.Commands.add('dragFromSidebar', (itemToDrag) => {
-    const dropzone = 'div[id="dropzone"]';
-    let output = null;
+    const dropzone = 'div[id="dropzone"]'
+    let output
     cy.dragAndDrop('#' + itemToDrag, dropzone, 0, 0);
     if (itemToDrag !== "raw") {
         output = `untitled ${itemToDrag}`

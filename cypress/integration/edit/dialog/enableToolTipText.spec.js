@@ -2,13 +2,13 @@ describe('This file contains all tests related to edit a question through the ed
     beforeEach(() => {
         cy.visit("/")
     });
-    it('How a user would cancel the edit dialog after opening it for a specific question', () => {
+    it('How a user would enable the tooltip for a specific question', () => {
         const questionTypes = ['checkbox', 'date', 'drawing', 'dropdown', 'likert', 'number', 'radio', 'range',
-            'textarea', 'textfield'];
+            'textarea', 'textfield']
         for (let i = 0; i < questionTypes.length; i++) {
-            cy.enableToolTipText(questionTypes[i]);
+            cy.enableToolTipText(questionTypes[i])
         }
-    });
+    })
 });
 
 

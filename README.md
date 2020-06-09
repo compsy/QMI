@@ -311,7 +311,7 @@ We have tested the application on the following browsers through browserstack:
  ┣ 📜ModeToggle.js
  ┣ 📜App.js
  ┣ 📜QuestionsArea.js
- ┣ 📜UserInformation.js
+ ┣ 📜UserCard.js
  ┣ 📜BackToTopArrowButton.js
  ┣ 📜QuestionTypesMenu.js
  ┣ 📜JSONTranslationArea.js

@@ -1,16 +1,16 @@
-import {createSlice} from "@reduxjs/toolkit";
-import uuid from "uuid/v1";
-import {QUESTION_TYPES} from "../../components/QuestionTypes";
-import {INITIAL_QUESTIONNAIRE_CONTEXT} from "../../utils";
+import { createSlice } from '@reduxjs/toolkit'
+import uuid from 'uuid/v1'
+import { QUESTION_TYPES } from '../../components/MainPage/QuestionTypes'
+import { INITIAL_QUESTIONNAIRE_CONTEXT } from '../../utils'
 
 const reorder = (list, startIndex, endIndex) => {
-    let newList = list.slice(0, list.length);
-    const [removed] = newList.splice(startIndex, 1);
-    newList.splice(endIndex, 0, removed);
-    return newList;
-};
+    let newList = list.slice(0, list.length)
+    const [removed] = newList.splice(startIndex, 1)
+    newList.splice(endIndex, 0, removed)
+    return newList
+}
 
-const initialTextOptions = ["option 1", "option 2", "option 3", "option 4"];
+const initialTextOptions = ['option 1', 'option 2', 'option 3', 'option 4']
 
 const copy = (source, destination, droppableSource, droppableDestination) => {
     let newDestination = destination.slice(0, destination.length);
@@ -179,7 +179,6 @@ export const {
     REORDER,
     CLONE,
     SET_QUESTIONS,
-    ADD_QUESTION,
     DUPLICATE_QUESTION,
     REMOVE_QUESTION,
     REMOVE_ALL,

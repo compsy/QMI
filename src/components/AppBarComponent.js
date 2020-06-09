@@ -1,15 +1,15 @@
-import {AppBar, makeStyles, Toolbar, Typography} from '@material-ui/core'
-import {Route, Router, Switch, useLocation} from 'react-router-dom'
+import { AppBar, makeStyles, Toolbar, Typography } from '@material-ui/core'
 import history from '../utils/history'
 import LeftMenuBar from './LeftMenuBar'
 import Grid from '@material-ui/core/Grid'
 import React from 'react'
-import MainPage from './MainPage'
-import {HomePage} from './LandingPage/HomePage'
-import {EraseQuestionnaireButton} from '../NavigationBarButtons/EraseQuestionnaireButton'
-import {RenderQuestionnaireButton} from '../NavigationBarButtons/RenderQuestionnaireButton'
-import {SaveQuestionnaireButton} from '../NavigationBarButtons/SaveQuestionnaireButton'
-import UserCard from '../UserInformation'
+import MainPage from './MainPage/MainPage'
+import { HomePage } from './HomePage/HomePage'
+import { EraseQuestionnaireButton } from '../navigationBarButtons/EraseQuestionnaireButton'
+import { RenderQuestionnaireButton } from '../navigationBarButtons/RenderQuestionnaireButton'
+import { SaveQuestionnaireButton } from '../navigationBarButtons/SaveQuestionnaireButton'
+import UserCard from './UserCard'
+import {Route, Router, Switch, useLocation} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
