@@ -12,6 +12,7 @@
   * [Contact](#contact)
   * [Redux](#redux)
   * [Testing](#testing)
+  * [File structure](#file-structure)
 
 ## General info
 blah blah
@@ -197,24 +198,41 @@ We have tested the application on the following browsers through browserstack:
   * Safari (version 5.1)
   * Opera (version 68)
   
+  
+## File structure 
+  
   ````
 📦src
- ┣ 📂NavigationBarButtons
- ┃ ┣ 📜EraseQuestionnaireButton.js
- ┃ ┣ 📜RenderQuestionnaireButton.js
- ┃ ┗ 📜SaveQuestionnaireButton.js
- ┣ 📂app
- ┃ ┗ 📜store.js
  ┣ 📂components
  ┃ ┣ 📂HomePage
  ┃ ┃ ┣ 📜HomePage.js
+ ┃ ┃ ┣ 📜QuestionnaireCard.js
  ┃ ┃ ┣ 📜QuestionnaireDetails.js
- ┃ ┃ ┗ 📜QuestionnaireList.js
+ ┃ ┃ ┣ 📜QuestionnaireDetailsCard.js
+ ┃ ┃ ┣ 📜QuestionnaireList.js
+ ┃ ┃ ┗ 📜QuestionnaireListStatusMessage.js
+ ┃ ┣ 📂MainPage
+ ┃ ┃ ┣ 📜BackToTopArrowButton.js
+ ┃ ┃ ┣ 📜EditDialogTitle.js
+ ┃ ┃ ┣ 📜EditingFeature.js
+ ┃ ┃ ┣ 📜ExpansionRule.js
+ ┃ ┃ ┣ 📜HiddenQuestionIndicator.js
+ ┃ ┃ ┣ 📜JSONCreator.js
+ ┃ ┃ ┣ 📜JSONTranslationArea.js
+ ┃ ┃ ┣ 📜MainPage.js
+ ┃ ┃ ┣ 📜ModeToggle.js
+ ┃ ┃ ┣ 📜QuestionTypes.js
+ ┃ ┃ ┣ 📜QuestionTypesMenu.js
+ ┃ ┃ ┣ 📜QuestionsArea.js
+ ┃ ┃ ┣ 📜QuestionsList.js
+ ┃ ┃ ┣ 📜RenderQuestionHeaderElements.js
+ ┃ ┃ ┣ 📜VideoTutorialDialog.js
+ ┃ ┃ ┣ 📜background.css
+ ┃ ┃ ┗ 📜scroll.css
  ┃ ┣ 📂buttons
  ┃ ┃ ┣ 📜DuplicateQuestionButton.js
  ┃ ┃ ┣ 📜EditQuestionButton.js
- ┃ ┃ ┣ 📜RemoveQuestionButton.js
- ┃ ┃ ┗ 📜ToggleGridAreasButton.js
+ ┃ ┃ ┗ 📜RemoveQuestionButton.js
  ┃ ┣ 📂previews
  ┃ ┃ ┣ 📜DatePickerTypePreview.js
  ┃ ┃ ┣ 📜DrawingTypePreview.js
@@ -226,7 +244,8 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┣ 📜RawTypePreview.js
  ┃ ┃ ┣ 📜TextAreaTypePreview.js
  ┃ ┃ ┣ 📜TextFieldTypePreview.js
- ┃ ┃ ┗ 📜TimePickerTypePreview.js
+ ┃ ┃ ┣ 📜TimePickerTypePreview.js
+ ┃ ┃ ┗ 📜UnsupportedQuestionTypePreview.js
  ┃ ┣ 📂properties
  ┃ ┃ ┣ 📂TextArrayTemplate
  ┃ ┃ ┃ ┣ 📜AddOptionButton.js
@@ -234,7 +253,6 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┃ ┣ 📜EachOptionHides.js
  ┃ ┃ ┃ ┣ 📜EachOptionMenu.js
  ┃ ┃ ┃ ┣ 📜EachOptionShows.js
- ┃ ┃ ┃ ┣ 📜LinkQuestions.js
  ┃ ┃ ┃ ┗ 📜TextArrayTemplate.js
  ┃ ┃ ┣ 📜BooleanProperties.js
  ┃ ┃ ┣ 📜BooleanTemplate.js
@@ -243,7 +261,6 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┣ 📜NumericProperties.js
  ┃ ┃ ┣ 📜NumericTemplate.js
  ┃ ┃ ┣ 📜OtherProperties.js
- ┃ ┃ ┣ 📜RegexpTemplate.js
  ┃ ┃ ┣ 📜TextArrayProperties.js
  ┃ ┃ ┣ 📜TextArrayTemplate.js
  ┃ ┃ ┣ 📜TextProperties.js
@@ -251,24 +268,15 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┣ 📜TypeProperty.js
  ┃ ┃ ┗ 📜postprocessor.js
  ┃ ┣ 📜AppBarComponent.js
- ┃ ┣ 📜EditingFeature.js
- ┃ ┣ 📜EditDialogTitle.js
  ┃ ┣ 📜LeftMenuBar.js
- ┃ ┣ 📜HiddenQuestionIndicator.js
- ┃ ┣ 📜PrivateRoute.js
- ┃ ┣ 📜Profile.js
- ┃ ┣ 📜QuestionsList.js
- ┃ ┣ 📜QuestionArea.js
- ┃ ┣ 📜QuestionTypes.js
- ┃ ┣ 📜MainPage.js
- ┃ ┣ 📜Rendering.js
- ┃ ┣ 📜SaveQuestionnaireDialog.js
- ┃ ┣ 📜JSONCreator.js
- ┃ ┣ 📜ExpansionRule.js
  ┃ ┣ 📜LeftMenuBarBlueprint.js
- ┃ ┣ 📜TestApiSection.js
+ ┃ ┣ 📜SaveQuestionnaireDialog.js
+ ┃ ┣ 📜UserCard.js
  ┃ ┣ 📜index.css
  ┃ ┗ 📜react-auth0-spa.js
+ ┣ 📂customHooks
+ ┃ ┣ 📜useDarkMode.js
+ ┃ ┗ 📜useDrag.js
  ┣ 📂features
  ┃ ┣ 📂API
  ┃ ┃ ┣ 📜ApiHandler.js
@@ -278,50 +286,41 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┣ 📂questionnaire
  ┃ ┃ ┗ 📜questionnaireMetadataSlice.js
  ┃ ┣ 📂questions
- ┃ ┃ ┣ 📜QuestionCard.js
  ┃ ┃ ┗ 📜questionsSlice.js
  ┃ ┗ 📂utilities
  ┃ ┃ ┗ 📜utilitiesSlice.js
+ ┣ 📂navigationBarButtons
+ ┃ ┣ 📜EraseQuestionnaireButton.js
+ ┃ ┣ 📜RenderQuestionnaireButton.js
+ ┃ ┗ 📜SaveQuestionnaireButton.js
  ┣ 📂tests
- ┃ ┣ 📂question previews
+ ┃ ┗ 📂question previews
  ┃ ┃ ┣ 📂__snapshots__
  ┃ ┃ ┃ ┣ 📜CheckboxPreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜DropdownTypePreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜LikertTypePreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜NumberTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜DropdownPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜LikertPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜NumberPreview.test.js.snap
  ┃ ┃ ┃ ┣ 📜RadioPreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜RangeTypePreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜TextAreaTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜RangePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜TextArea.test.js.snap
  ┃ ┃ ┃ ┣ 📜TextField.test.js.snap
  ┃ ┃ ┃ ┗ 📜TimePreview.test.js.snap
  ┃ ┃ ┣ 📜CheckboxPreview.test.js
- ┃ ┃ ┣ 📜DropdownTypePreview.test.js
- ┃ ┃ ┣ 📜LikertTypePreview.test.js
- ┃ ┃ ┣ 📜NumberTypePreview.test.js
+ ┃ ┃ ┣ 📜DropdownPreview.test.js
+ ┃ ┃ ┣ 📜LikertPreview.test.js
+ ┃ ┃ ┣ 📜NumberPreview.test.js
  ┃ ┃ ┣ 📜RadioPreview.test.js
- ┃ ┃ ┣ 📜RangeTypePreview.test.js
- ┃ ┃ ┣ 📜TextAreaTypePreview.test.js
+ ┃ ┃ ┣ 📜RangePreview.test.js
+ ┃ ┃ ┣ 📜TextArea.test.js
  ┃ ┃ ┣ 📜TextField.test.js
  ┃ ┃ ┗ 📜TimePreview.test.js
- ┃ ┗ 📜App.test.js
  ┣ 📂utils
  ┃ ┣ 📜ProcessQuestionnaire.js
+ ┃ ┣ 📜formatting_utils.js
  ┃ ┣ 📜history.js
  ┃ ┗ 📜index.js
- ┣ 📜ModeToggle.js
  ┣ 📜App.js
- ┣ 📜QuestionsArea.js
- ┣ 📜UserCard.js
- ┣ 📜BackToTopArrowButton.js
- ┣ 📜QuestionTypesMenu.js
- ┣ 📜JSONTranslationArea.js
- ┣ 📜VideoTutorialDialog.js
- ┣ 📜auth0_callback.js
- ┣ 📜background.css
- ┣ 📜gatsby-browser.js
- ┣ 📜gatsby-ssr.js
  ┣ 📜index.js
- ┣ 📜scroll.css
  ┣ 📜serviceWorker.js
- ┗ 📜useDarkMode.js
+ ┗ 📜store.js
 ````
