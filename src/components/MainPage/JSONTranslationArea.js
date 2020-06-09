@@ -1,5 +1,5 @@
 import {Container} from "@material-ui/core";
-import JSONCreator from "./components/JSONCreator";
+import JSONCreator from "./JSONCreator";
 import React from "react";
 
 export const JSONTranslationArea = () => {

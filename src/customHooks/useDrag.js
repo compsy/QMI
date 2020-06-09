@@ -1,6 +1,6 @@
 import React from 'react'
 import { CLONE, REORDER } from '../features/questions/questionsSlice'
-import store from '../app/store'
+import store from '../store'
 
 function useDrag() {
     const onDragEnd = React.useCallback(result => {

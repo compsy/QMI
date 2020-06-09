@@ -1,8 +1,8 @@
 import {Grid} from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import EditQuestionButton from "./buttons/EditQuestionButton";
-import DuplicateQuestionButton from "./buttons/DuplicateQuestionButton";
-import RemoveQuestionButton from "./buttons/RemoveQuestionButton";
+import EditQuestionButton from "../buttons/EditQuestionButton";
+import DuplicateQuestionButton from "../buttons/DuplicateQuestionButton";
+import RemoveQuestionButton from "../buttons/RemoveQuestionButton";
 import React from "react";
 import {HiddenQuestionIndicator} from "./HiddenQuestionIndicator";
 

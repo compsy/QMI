@@ -1,4 +1,4 @@
-import store from "../app/store";
+import store from "../../store";
 import {Badge} from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";

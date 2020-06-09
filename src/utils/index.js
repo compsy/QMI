@@ -333,7 +333,7 @@ export const INITIAL_QUESTIONNAIRE_CONTEXT = [
 
 
 export const toPrint = () => {
-    const store = require('../app/store')
+    const store = require('../store')
     const questions = store.default.getState().questions
     return processQuestionnaire(questions)
 }

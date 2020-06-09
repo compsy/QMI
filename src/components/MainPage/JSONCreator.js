@@ -1,7 +1,7 @@
 import React from 'react'
 import {Card, Typography} from '@material-ui/core';
 import {useSelector} from 'react-redux';
-import processQuestionnaire from '../utils/ProcessQuestionnaire'
+import processQuestionnaire from '../../utils/ProcessQuestionnaire'
 
 
 const JSONCreator = () => {

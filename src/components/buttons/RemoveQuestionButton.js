@@ -4,7 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import { useDispatch } from 'react-redux'
 import { REMOVE_BY_MAP, REMOVE_QUESTION } from '../../features/questions/questionsSlice'
 import { clearMapWithQuestion } from '../properties/postprocessor'
-import store from '../../app/store'
+import store from '../../store'
 import { removeByKey } from '../../features/utilities/utilitiesSlice'
 
 const RemoveQuestionButton = ({ question, index }) => {

@@ -1,4 +1,4 @@
-import store from '../../app/store'
+import store from '../../store'
 import {removeFromMap} from '../../features/utilities/utilitiesSlice'
 import {removeAllWithKey} from '../buttons/RemoveQuestionButton'
 
