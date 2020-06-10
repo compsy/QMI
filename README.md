@@ -204,15 +204,33 @@ We have tested the application on the following browsers through browserstack:
   ````
 📦src
  ┣ 📂components
- ┃ ┣ 📂HomePage
- ┃ ┃ ┣ 📜HomePage.js
- ┃ ┃ ┣ 📜QuestionnaireCard.js
- ┃ ┃ ┣ 📜QuestionnaireDetails.js
- ┃ ┃ ┣ 📜QuestionnaireDetailsCard.js
- ┃ ┃ ┣ 📜QuestionnaireList.js
- ┃ ┃ ┗ 📜QuestionnaireListStatusMessage.js
- ┃ ┣ 📂MainPage
- ┃ ┃ ┣ 📜BackToTopArrowButton.js
+ ┃ ┣ 📂App Bar
+ ┃ ┃ ┣ 📂Navigation Buttons
+ ┃ ┃ ┃ ┣ 📜EraseQuestionnaireButton.js           # Button to erase current questionnaire
+ ┃ ┃ ┃ ┣ 📜RenderQuestionnaireButton.js          # Button to render current questionnaire 
+ ┃ ┃ ┃ ┗ 📜SaveQuestionnaireButton.js            # Button to save current questionnaire 
+ ┃ ┃ ┗ 📜AppBarComponent.js                      # This file contains the rendering of the buttons in the app bar
+ ┃ ┣ 📂Authentication Dialog                     #
+ ┃ ┃ ┗ 📜react-auth0-spa.js                      #
+ ┃ ┣ 📂Editor
+ ┃ ┃ ┣ 📂Question Buttons
+ ┃ ┃ ┃ ┣ 📜DuplicateQuestionButton.js            # Button to duplicate a question
+ ┃ ┃ ┃ ┣ 📜EditQuestionButton.js                 # Button to edit a question
+ ┃ ┃ ┃ ┗ 📜RemoveQuestionButton.js               # Button to delete a question
+ ┃ ┃ ┣ 📂Question Previews
+ ┃ ┃ ┃ ┣ 📜DatePickerTypePreview.js              # This file renders the layout of a date question
+ ┃ ┃ ┃ ┣ 📜DrawingTypePreview.js                 # This file renders the layout of a drawing question
+ ┃ ┃ ┃ ┣ 📜DropdownTypePreview.js                # This file renders the layout of a dropdown question
+ ┃ ┃ ┃ ┣ 📜LikertTypePreview.js                  # This file renders the layout of a likert question
+ ┃ ┃ ┃ ┣ 📜NumberTypePreview.js                  # This file renders the layout of a number question
+ ┃ ┃ ┃ ┣ 📜RadioCheckboxTypePreview.js           # This file renders the layout of a radio/checkbox question
+ ┃ ┃ ┃ ┣ 📜RangeTypePreview.js                   # This file renders the layout of a range question
+ ┃ ┃ ┃ ┣ 📜RawTypePreview.js                     # This file renders the layout of a raw question
+ ┃ ┃ ┃ ┣ 📜TextAreaTypePreview.js                # This file renders the layout of a textarea question
+ ┃ ┃ ┃ ┣ 📜TextFieldTypePreview.js               # This file renders the layout of a textfield question
+ ┃ ┃ ┃ ┣ 📜TimePickerTypePreview.js              # This file renders the layout of a time question
+ ┃ ┃ ┃ ┗ 📜UnsupportedQuestionTypePreview.js     # This file renders the layout of an unsupported question type
+ ┃ ┃ ┣ 📜BackToTopArrowButton.js                 # Button to scroll to top of a page
  ┃ ┃ ┣ 📜EditDialogTitle.js
  ┃ ┃ ┣ 📜EditingFeature.js
  ┃ ┃ ┣ 📜ExpansionRule.js
@@ -229,23 +247,18 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┣ 📜VideoTutorialDialog.js
  ┃ ┃ ┣ 📜background.css
  ┃ ┃ ┗ 📜scroll.css
- ┃ ┣ 📂buttons
- ┃ ┃ ┣ 📜DuplicateQuestionButton.js
- ┃ ┃ ┣ 📜EditQuestionButton.js
- ┃ ┃ ┗ 📜RemoveQuestionButton.js
- ┃ ┣ 📂previews
- ┃ ┃ ┣ 📜DatePickerTypePreview.js
- ┃ ┃ ┣ 📜DrawingTypePreview.js
- ┃ ┃ ┣ 📜DropdownTypePreview.js
- ┃ ┃ ┣ 📜LikertTypePreview.js
- ┃ ┃ ┣ 📜NumberTypePreview.js
- ┃ ┃ ┣ 📜RadioCheckboxTypePreview.js
- ┃ ┃ ┣ 📜RangeTypePreview.js
- ┃ ┃ ┣ 📜RawTypePreview.js
- ┃ ┃ ┣ 📜TextAreaTypePreview.js
- ┃ ┃ ┣ 📜TextFieldTypePreview.js
- ┃ ┃ ┣ 📜TimePickerTypePreview.js
- ┃ ┃ ┗ 📜UnsupportedQuestionTypePreview.js
+ ┃ ┣ 📂Home Page
+ ┃ ┃ ┣ 📜HomePage.js
+ ┃ ┃ ┣ 📜QuestionnaireCard.js
+ ┃ ┃ ┣ 📜QuestionnaireDetails.js
+ ┃ ┃ ┣ 📜QuestionnaireDetailsCard.js
+ ┃ ┃ ┣ 📜QuestionnaireList.js
+ ┃ ┃ ┣ 📜QuestionnaireListStatusMessage.js
+ ┃ ┃ ┗ 📜SaveQuestionnaireDialog.js
+ ┃ ┣ 📂Left Menu Bar
+ ┃ ┃ ┣ 📜LeftMenuBar.js
+ ┃ ┃ ┣ 📜LeftMenuBarBlueprint.js
+ ┃ ┃ ┗ 📜UserCard.js
  ┃ ┣ 📂properties
  ┃ ┃ ┣ 📂TextArrayTemplate
  ┃ ┃ ┃ ┣ 📜AddOptionButton.js
@@ -267,13 +280,7 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┣ 📜TextTemplate.js
  ┃ ┃ ┣ 📜TypeProperty.js
  ┃ ┃ ┗ 📜postprocessor.js
- ┃ ┣ 📜AppBarComponent.js
- ┃ ┣ 📜LeftMenuBar.js
- ┃ ┣ 📜LeftMenuBarBlueprint.js
- ┃ ┣ 📜SaveQuestionnaireDialog.js
- ┃ ┣ 📜UserCard.js
- ┃ ┣ 📜index.css
- ┃ ┗ 📜react-auth0-spa.js
+ ┃ ┗ 📜index.css
  ┣ 📂customHooks
  ┃ ┣ 📜useDarkMode.js
  ┃ ┗ 📜useDrag.js
@@ -289,10 +296,6 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┗ 📜questionsSlice.js
  ┃ ┗ 📂utilities
  ┃ ┃ ┗ 📜utilitiesSlice.js
- ┣ 📂navigationBarButtons
- ┃ ┣ 📜EraseQuestionnaireButton.js
- ┃ ┣ 📜RenderQuestionnaireButton.js
- ┃ ┗ 📜SaveQuestionnaireButton.js
  ┣ 📂tests
  ┃ ┗ 📂question previews
  ┃ ┃ ┣ 📂__snapshots__
