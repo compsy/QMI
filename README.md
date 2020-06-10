@@ -15,8 +15,9 @@
   * [File structure](#file-structure)
 
 ## General info
-blah blah
-	
+A questionnaire is a research instrument consisting of a series of questions for the purpose of gathering information from respondents. The goal for this was project to build a front-end interface for the questionnaire engine,that enables users to define their questionnaires. Previously, users would have to edit a JSON format text to create a new questionnaire, which wasn't user friendly at all. 
+We have been able to create an elegant and much more user-friendly interface which enables users to create questionnaires by using different question types. For more details on how to get the app started, on what was implemented and more, please refer to the different sections below. 
+
 ## How to run it
 In the project directory, you can run:
 
