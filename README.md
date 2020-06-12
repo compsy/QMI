@@ -196,7 +196,7 @@ How to run tests?
   * [Cypress](https://www.cypress.io) -> ```cypress open``` (To open cypress dashboard) OR ```cypress run``` (To run all tests)
 
 ## Status
-Project is: **Completed **
+Project is: **Completed**
 
 ## Contributing
 Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits.
