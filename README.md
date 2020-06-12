@@ -71,7 +71,13 @@ const duplicateQuestion = (action, state) => {
 
   * **Editing questions** This feature enables the user to edit any question which has been previously created. Any corresponding fields to the type can be edited through this feature.
 
-### A question is loaded into `state.question`
+  * **Clickable Title** The title of any current question can be edited by being clicked on.  
+
+  * **Dark Mode** The theme of the page can be switched to a darker tone if desired by clciking on the toggle situated at the top right of the page. 
+
+  * **Authenticate/Log in** This feature enables the user to log in into the app (or register if needed). By doing this he/she is able to then save his/her current list of questionnaire and come back to it at a later time in order to edit it if needed. 
+
+### What happens when a question is loaded into `state.question`?
 
 Every time the EditDialog is opened, `state.question` is initialized as:
 ```
@@ -98,11 +104,26 @@ At this point, it's important to note that the `id` property for all questions a
 
 ### “Shows/hides” functionality - scenarios (and what to do at each case)
 
-  * **Clickable Title** The title of any current question can be edited by being clicked on.  
+When an option is selected to "show" or "hide" a question,
+- a key-value pair is added to either `state.utilities.showsMap` or `state.utilities.hidesMap`
 
-  * **Dark Mode** The theme of the page can be switched to a darker tone if desired by clciking on the toggle situated at the top right of the page. 
+When an option is deselected to "show" or "hide" a question,
+- a key-value pair is removed from either `state.utilities.showsMap` or `state.utilities.hidesMap`
 
-  * **Authenticate/Log in** This feature enables the user to log in into the app (or register if needed). By doing this he/she is able to then save his/her current list of questionnaire and come back to it at a later time in order to edit it if needed. 
+When a question is removed,
+- go through all options belonging to the question and for each option
+ - go through the option's `show_questions` and `hides_questions` properties (which will contain the hidden/shown question's id in `uuid` format) and remove from both `state.utilities.showsMap` and `state.utilities.hidesMap` the associated key-value pairs
+
+When a question changes type,
+- go through all options belonging to the question and for each option
+ - go through the option's `show_questions` and `hides_questions` properties (which will contain the hidden/shown question's id in `uuid` format) and remove from both `state.utilities.showsMap` and `state.utilities.hidesMap` the associated key-value pairs
+
+When a question's hidden property is toggled,
+- go through all options belonging to the question and for each option
+ - go through the option's `show_questions` and `hides_questions` properties (which will contain the hidden/shown question's id in `uuid` format) and remove from both `state.utilities.showsMap` and `state.utilities.hidesMap` the associated key-value pairs
+
+When a question that is hidden/shown is moved,
+- `uuid`s are mapped at render to the correct `id`s (v1, v2, etc...)
 
 ## Available question types (in the latest version) and their respective properties 
 
