@@ -196,12 +196,12 @@ How to run tests?
   * [Cypress](https://www.cypress.io) -> ```cypress open``` (To open cypress dashboard) OR ```cypress run``` (To run all tests)
 
 ## Status
-Project is: **In progress**
+Project is: **Completed **
 
 ## Contributing
 Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits.
 
-1. Fork it: git clone https://github.com/AlexFyod/QMI.git
+1. Fork it: git clone https://github.com/QuestionnaireInterfaceManagement/QMI.git
 2. Create your feature branch: git checkout -b my-new-feature
 3. Commit your changes: git commit -am 'Add some feature'
 4. Push to the branch: git push origin my-new-feature
