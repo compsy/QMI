@@ -315,9 +315,9 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┣ 📜questionSlice.js                        # ...Question properties for a question opened in the edit dialog
  ┃ ┃ ┣ 📜questionsSlice.js                       # ...The list of current questionnaires
  ┃ ┃ ┗ 📜utilitiesSlice.js                       # ...misc utilities (shows/hides questions)
- ┣ 📂tests
- ┃ ┗ 📂question previews
- ┃ ┃ ┣ 📂__snapshots__
+ ┣ 📂tests                                       # This folder contains unit tests
+ ┃ ┗ 📂question previews                    
+ ┃ ┃ ┣ 📂__snapshots__                           # This file contains snapshots of the question previews                   
  ┃ ┃ ┃ ┣ 📜CheckboxPreview.test.js.snap
  ┃ ┃ ┃ ┣ 📜DropdownPreview.test.js.snap
  ┃ ┃ ┃ ┣ 📜LikertPreview.test.js.snap
@@ -327,15 +327,15 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┃ ┣ 📜TextArea.test.js.snap
  ┃ ┃ ┃ ┣ 📜TextField.test.js.snap
  ┃ ┃ ┃ ┗ 📜TimePreview.test.js.snap
- ┃ ┃ ┣ 📜CheckboxPreview.test.js
- ┃ ┃ ┣ 📜DropdownPreview.test.js
- ┃ ┃ ┣ 📜LikertPreview.test.js
- ┃ ┃ ┣ 📜NumberPreview.test.js
- ┃ ┃ ┣ 📜RadioPreview.test.js
- ┃ ┃ ┣ 📜RangePreview.test.js
- ┃ ┃ ┣ 📜TextArea.test.js
- ┃ ┃ ┣ 📜TextField.test.js
- ┃ ┃ ┗ 📜TimePreview.test.js
+ ┃ ┃ ┣ 📜CheckboxPreview.test.js                 # This file contains snapshot test for checkbox question
+ ┃ ┃ ┣ 📜DropdownPreview.test.js                 # This file contains snapshot test for dropdown question
+ ┃ ┃ ┣ 📜LikertPreview.test.js                   # This file contains snapshot test for likert question
+ ┃ ┃ ┣ 📜NumberPreview.test.js                   # This file contains snapshot test for number question
+ ┃ ┃ ┣ 📜RadioPreview.test.js                    # This file contains snapshot test for radio question
+ ┃ ┃ ┣ 📜RangePreview.test.js                    # This file contains snapshot test for range question
+ ┃ ┃ ┣ 📜TextArea.test.js                        # This file contains snapshot test for textarea question
+ ┃ ┃ ┣ 📜TextField.test.js                       # This file contains snapshot test for textfield question
+ ┃ ┃ ┗ 📜TimePreview.test.js                     # This file contains snapshot test for time question
  ┣ 📂utils
  ┃ ┣ 📜ProcessQuestionnaire.js
  ┃ ┣ 📜formatting_utils.js                       # Global functions used for formatting
