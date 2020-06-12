@@ -2,7 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {Button, makeStyles, Tooltip} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import {selectProperty,} from "../../../features/question/questionSlice";
+import {selectProperty,} from "../../../features/State Management/questionSlice";
 
 const useStyles = makeStyles((theme) => ({
     button: {

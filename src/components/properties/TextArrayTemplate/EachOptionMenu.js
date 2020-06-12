@@ -13,7 +13,7 @@ import {
     Switch,
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import {setTextArrayElement} from "../../../features/question/questionSlice";
+import {setTextArrayElement} from "../../../features/State Management/questionSlice";
 
 const useStyles = makeStyles((theme) => ({
     menuItem: {

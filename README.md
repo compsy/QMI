@@ -1,5 +1,6 @@
-[![CircleCI](https://circleci.com/gh/AlexFyod/QMI.svg?style=shield&circle-token=0404cd32f16e9f84c1a7e3e4ee31bc52d0508afa)](https://circleci.com/gh/AlexFyod/QMI) 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/434fd58f-4250-47a2-b6ce-abf995ad02aa/deploy-status)](https://app.netlify.com/sites/qmi/deploys)
+[![CircleCI](https://circleci.com/gh/QuestionnaireInterfaceManagement/QMI.svg?style=shield&circle-token=0404cd32f16e9f84c1a7e3e4ee31bc52d0508afa)](https://circleci.com/gh/QuestionnaireInterfaceManagement/QMI) 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/809d6385-7c0e-4b49-96d2-a8a4833fb566/deploy-status)](https://app.netlify.com/sites/qmi/deploys)
+[![CodeFactor](https://www.codefactor.io/repository/github/questionnaireinterfacemanagement/qmi/badge)](https://www.codefactor.io/repository/github/questionnaireinterfacemanagement/qmi)
  # Questionnaire Managment Interface
  
  ## Table of contents
@@ -12,10 +13,12 @@
   * [Contact](#contact)
   * [Redux](#redux)
   * [Testing](#testing)
+  * [File structure](#file-structure)
 
 ## General info
-blah blah
-	
+A questionnaire is a research instrument consisting of a series of questions for the purpose of gathering information from respondents. The goal for this was project to build a front-end interface for the questionnaire engine,that enables users to define their questionnaires. Previously, users would have to edit a JSON format text to create a new questionnaire, which wasn't user friendly at all. 
+We have been able to create an elegant and much more user-friendly interface which enables users to create questionnaires by using different question types. For more details on how to get the app started, on what was implemented and more, please refer to the different sections below. 
+
 ## How to run it
 In the project directory, you can run:
 
@@ -68,7 +71,13 @@ const duplicateQuestion = (action, state) => {
 
   * **Editing questions** This feature enables the user to edit any question which has been previously created. Any corresponding fields to the type can be edited through this feature.
 
-### A question is loaded into `state.question`
+  * **Clickable Title** The title of any current question can be edited by being clicked on.  
+
+  * **Dark Mode** The theme of the page can be switched to a darker tone if desired by clciking on the toggle situated at the top right of the page. 
+
+  * **Authenticate/Log in** This feature enables the user to log in into the app (or register if needed). By doing this he/she is able to then save his/her current list of questionnaire and come back to it at a later time in order to edit it if needed. 
+
+### What happens when a question is loaded into `state.question`?
 
 Every time the EditDialog is opened, `state.question` is initialized as:
 ```
@@ -95,11 +104,26 @@ At this point, it's important to note that the `id` property for all questions a
 
 ### “Shows/hides” functionality - scenarios (and what to do at each case)
 
-  * **Clickable Title** The title of any current question can be edited by being clicked on.  
+When an option is selected to "show" or "hide" a question,
+- a key-value pair is added to either `state.utilities.showsMap` or `state.utilities.hidesMap`
 
-  * **Dark Mode** The theme of the page can be switched to a darker tone if desired by clciking on the toggle situated at the top right of the page. 
+When an option is deselected to "show" or "hide" a question,
+- a key-value pair is removed from either `state.utilities.showsMap` or `state.utilities.hidesMap`
 
-  * **Authenticate/Log in** This feature enables the user to log in into the app (or register if needed). By doing this he/she is able to then save his/her current list of questionnaire and come back to it at a later time in order to edit it if needed. 
+When a question is removed,
+- go through all options belonging to the question and for each option
+ - go through the option's `show_questions` and `hides_questions` properties (which will contain the hidden/shown question's id in `uuid` format) and remove from both `state.utilities.showsMap` and `state.utilities.hidesMap` the associated key-value pairs
+
+When a question changes type,
+- go through all options belonging to the question and for each option
+ - go through the option's `show_questions` and `hides_questions` properties (which will contain the hidden/shown question's id in `uuid` format) and remove from both `state.utilities.showsMap` and `state.utilities.hidesMap` the associated key-value pairs
+
+When a question's hidden property is toggled,
+- go through all options belonging to the question and for each option
+ - go through the option's `show_questions` and `hides_questions` properties (which will contain the hidden/shown question's id in `uuid` format) and remove from both `state.utilities.showsMap` and `state.utilities.hidesMap` the associated key-value pairs
+
+When a question that is hidden/shown is moved,
+- `uuid`s are mapped at render to the correct `id`s (v1, v2, etc...)
 
 ## Available question types (in the latest version) and their respective properties 
 
@@ -172,12 +196,12 @@ How to run tests?
   * [Cypress](https://www.cypress.io) -> ```cypress open``` (To open cypress dashboard) OR ```cypress run``` (To run all tests)
 
 ## Status
-Project is: **In progress**
+Project is: **Completed**
 
 ## Contributing
 Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits.
 
-1. Fork it: git clone https://github.com/AlexFyod/QMI.git
+1. Fork it: git clone https://github.com/QuestionnaireInterfaceManagement/QMI.git
 2. Create your feature branch: git checkout -b my-new-feature
 3. Commit your changes: git commit -am 'Add some feature'
 4. Push to the branch: git push origin my-new-feature
@@ -197,131 +221,128 @@ We have tested the application on the following browsers through browserstack:
   * Safari (version 5.1)
   * Opera (version 68)
   
+  
+## File structure 
+  
   ````
 📦src
- ┣ 📂NavigationBarButtons
- ┃ ┣ 📜EraseQuestionnaireButton.js
- ┃ ┣ 📜RenderQuestionnaireButton.js
- ┃ ┗ 📜SaveQuestionnaireButton.js
- ┣ 📂app
- ┃ ┗ 📜store.js
  ┣ 📂components
- ┃ ┣ 📂HomePage
- ┃ ┃ ┣ 📜HomePage.js
- ┃ ┃ ┣ 📜QuestionnaireDetails.js
- ┃ ┃ ┗ 📜QuestionnaireList.js
- ┃ ┣ 📂buttons
- ┃ ┃ ┣ 📜DuplicateQuestionButton.js
- ┃ ┃ ┣ 📜EditQuestionButton.js
- ┃ ┃ ┣ 📜RemoveQuestionButton.js
- ┃ ┃ ┗ 📜ToggleGridAreasButton.js
- ┃ ┣ 📂previews
- ┃ ┃ ┣ 📜DatePickerTypePreview.js
- ┃ ┃ ┣ 📜DrawingTypePreview.js
- ┃ ┃ ┣ 📜DropdownTypePreview.js
- ┃ ┃ ┣ 📜LikertTypePreview.js
- ┃ ┃ ┣ 📜NumberTypePreview.js
- ┃ ┃ ┣ 📜RadioCheckboxTypePreview.js
- ┃ ┃ ┣ 📜RangeTypePreview.js
- ┃ ┃ ┣ 📜RawTypePreview.js
- ┃ ┃ ┣ 📜TextAreaTypePreview.js
- ┃ ┃ ┣ 📜TextFieldTypePreview.js
- ┃ ┃ ┗ 📜TimePickerTypePreview.js
- ┃ ┣ 📂properties
- ┃ ┃ ┣ 📂TextArrayTemplate
- ┃ ┃ ┃ ┣ 📜AddOptionButton.js
- ┃ ┃ ┃ ┣ 📜EachOption.js
- ┃ ┃ ┃ ┣ 📜EachOptionHides.js
- ┃ ┃ ┃ ┣ 📜EachOptionMenu.js
- ┃ ┃ ┃ ┣ 📜EachOptionShows.js
- ┃ ┃ ┃ ┣ 📜LinkQuestions.js
- ┃ ┃ ┃ ┗ 📜TextArrayTemplate.js
- ┃ ┃ ┣ 📜BooleanProperties.js
- ┃ ┃ ┣ 📜BooleanTemplate.js
- ┃ ┃ ┣ 📜DateProperties.js
- ┃ ┃ ┣ 📜DateTemplate.js
- ┃ ┃ ┣ 📜NumericProperties.js
- ┃ ┃ ┣ 📜NumericTemplate.js
- ┃ ┃ ┣ 📜OtherProperties.js
- ┃ ┃ ┣ 📜RegexpTemplate.js
- ┃ ┃ ┣ 📜TextArrayProperties.js
- ┃ ┃ ┣ 📜TextArrayTemplate.js
- ┃ ┃ ┣ 📜TextProperties.js
- ┃ ┃ ┣ 📜TextTemplate.js
- ┃ ┃ ┣ 📜TypeProperty.js
- ┃ ┃ ┗ 📜postprocessor.js
- ┃ ┣ 📜AppBarComponent.js
- ┃ ┣ 📜EditingFeature.js
- ┃ ┣ 📜EditDialogTitle.js
- ┃ ┣ 📜LeftMenuBar.js
- ┃ ┣ 📜HiddenQuestionIndicator.js
- ┃ ┣ 📜PrivateRoute.js
- ┃ ┣ 📜Profile.js
- ┃ ┣ 📜QuestionsList.js
- ┃ ┣ 📜QuestionArea.js
- ┃ ┣ 📜QuestionTypes.js
- ┃ ┣ 📜MainPage.js
- ┃ ┣ 📜Rendering.js
- ┃ ┣ 📜SaveQuestionnaireDialog.js
- ┃ ┣ 📜JSONCreator.js
- ┃ ┣ 📜ExpansionRule.js
- ┃ ┣ 📜LeftMenuBarBlueprint.js
- ┃ ┣ 📜TestApiSection.js
- ┃ ┣ 📜index.css
- ┃ ┗ 📜react-auth0-spa.js
+ ┃ ┣ 📂App Bar
+ ┃ ┃ ┣ 📂Navigation Buttons
+ ┃ ┃ ┃ ┣ 📜EraseQuestionnaireButton.js           # Button to erase current questionnaire
+ ┃ ┃ ┃ ┣ 📜RenderQuestionnaireButton.js          # Button to render current questionnaire 
+ ┃ ┃ ┃ ┗ 📜SaveQuestionnaireButton.js            # Button to save current questionnaire 
+ ┃ ┃ ┗ 📜AppBarComponent.js                      # This file contains the rendering of the buttons in the app bar
+ ┃ ┣ 📂Authentication Dialog                     
+ ┃ ┃ ┗ 📜react-auth0-spa.js                      # The API used for Auth0's login mechanism, provided by Auth0
+ ┃ ┣ 📂Editor
+ ┃ ┃ ┣ 📂Question Buttons
+ ┃ ┃ ┃ ┣ 📜DuplicateQuestionButton.js            # Button to duplicate a question
+ ┃ ┃ ┃ ┣ 📜EditQuestionButton.js                 # Button to edit a question
+ ┃ ┃ ┃ ┗ 📜RemoveQuestionButton.js               # Button to delete a question
+ ┃ ┃ ┣ 📂Question Previews
+ ┃ ┃ ┃ ┣ 📜DatePickerTypePreview.js              # This file renders the layout of a date question
+ ┃ ┃ ┃ ┣ 📜DrawingTypePreview.js                 # This file renders the layout of a drawing question
+ ┃ ┃ ┃ ┣ 📜DropdownTypePreview.js                # This file renders the layout of a dropdown question
+ ┃ ┃ ┃ ┣ 📜LikertTypePreview.js                  # This file renders the layout of a likert question
+ ┃ ┃ ┃ ┣ 📜NumberTypePreview.js                  # This file renders the layout of a number question
+ ┃ ┃ ┃ ┣ 📜RadioCheckboxTypePreview.js           # This file renders the layout of a radio/checkbox question
+ ┃ ┃ ┃ ┣ 📜RangeTypePreview.js                   # This file renders the layout of a range question
+ ┃ ┃ ┃ ┣ 📜RawTypePreview.js                     # This file renders the layout of a raw question
+ ┃ ┃ ┃ ┣ 📜TextAreaTypePreview.js                # This file renders the layout of a textarea question
+ ┃ ┃ ┃ ┣ 📜TextFieldTypePreview.js               # This file renders the layout of a textfield question
+ ┃ ┃ ┃ ┣ 📜TimePickerTypePreview.js              # This file renders the layout of a time question
+ ┃ ┃ ┃ ┗ 📜UnsupportedQuestionTypePreview.js     # This file renders the layout of an unsupported question type
+ ┃ ┃ ┣ 📜BackToTopArrowButton.js                 # Button to scroll to top of a page
+ ┃ ┃ ┣ 📜EditDialogTitle.js                      # The clickable lable for question titles
+ ┃ ┃ ┣ 📜EditingFeature.js                       # The edit dialog
+ ┃ ┃ ┣ 📜ExpansionRule.js                        # Containing the expansion mechanism for question previews
+ ┃ ┃ ┣ 📜HiddenQuestionIndicator.js              # Icon for question preview, showed when a question is set to 'hidden'
+ ┃ ┃ ┣ 📜JSONCreator.js                          # Converts the current questions list in an accepted JSON format
+ ┃ ┃ ┣ 📜JSONTranslationArea.js                  # Wrapper for JSONCreator.js
+ ┃ ┃ ┣ 📜MainPage.js                             # '/': The editor page
+ ┃ ┃ ┣ 📜ModeToggle.js                           # Switch for dark/light mode over the app
+ ┃ ┃ ┣ 📜QuestionTypes.js                        # Utility for question type toolbar
+ ┃ ┃ ┣ 📜QuestionTypesMenu.js                    # Toolbar containing available question types
+ ┃ ┃ ┣ 📜QuestionsArea.js                        # Wrapper for questions area
+ ┃ ┃ ┣ 📜QuestionsList.js                        # List that renders appropriate question previews depending on the question type
+ ┃ ┃ ┣ 📜SaveQuestionnaireDialog.js              # Dialog for saving questionnaires
+ ┃ ┃ ┣ 📜RenderQuestionHeaderElements.js         # Function for rendering buttons in a question preview header
+ ┃ ┃ ┣ 📜VideoTutorialDialog.js                  # Tutorial pop up
+ ┃ ┃ ┣ 📜background.css
+ ┃ ┃ ┗ 📜scroll.css
+ ┃ ┣ 📂Home Page
+ ┃ ┃ ┣ 📜HomePage.js                             # '/home': The home page
+ ┃ ┃ ┣ 📜QuestionnaireCard.js                    # A card for showing a questionnaire in the questionnaire list
+ ┃ ┃ ┣ 📜QuestionnaireDetails.js                 # Entrypoint for 'right side' of the home page, handling retrieval of a questionnaire
+ ┃ ┃ ┣ 📜QuestionnaireDetailsCard.js             # The view for QuestionnaireDetails.js, showing the actual details of a selected questionnaire
+ ┃ ┃ ┣ 📜QuestionnaireList.js                    # Entrypoint for 'left side' of the home page, showing available questionnaires 
+ ┃ ┃ ┗ 📜QuestionnaireListStatusMessage.js       # Style component for status messages for the questionnaire list
+ ┃ ┣ 📂Left Menu Bar
+ ┃ ┃ ┣ 📜LeftMenuBar.js                          # Actual left menu bar, with its buttons set
+ ┃ ┃ ┣ 📜LeftMenuBarBlueprint.js                 # Skeleton for a left menu bar
+ ┃ ┃ ┗ 📜UserCard.js                             # Style component for basic user information, using Auth0
+ ┃ ┣ 📂properties                                # contains components that control specific fields in the question editor dialog
+ ┃ ┃ ┣ 📂TextArrayTemplate                       # This directory contains the template for TextArray type properties
+ ┃ ┃ ┃ ┣ 📜AddOptionButton.js                    # This file contains the implementation for add option/label button
+ ┃ ┃ ┃ ┣ 📜EachOption.js                         # This file describes how each option is rendered
+ ┃ ┃ ┃ ┣ 📜EachOptionHides.js                    # This file contains the "hide" (a question) button and corresponding menu
+ ┃ ┃ ┃ ┣ 📜EachOptionMenu.js                     # This file contains the additional menu for each option
+ ┃ ┃ ┃ ┣ 📜EachOptionShows.js                    # This file contains the "show" (a question) button and corresponding menu
+ ┃ ┃ ┃ ┗ 📜TextArrayTemplate.js                  # This file is the main entry-point for options/labels property rendering
+ ┃ ┃ ┣ 📜BooleanProperties.js                    # This file contains properties that use the BooleanTemplate
+ ┃ ┃ ┣ 📜BooleanTemplate.js                      # This file contains the template for Boolean type properties
+ ┃ ┃ ┣ 📜DateProperties.js                       # This file contains properties that use the DateTemplate
+ ┃ ┃ ┣ 📜DateTemplate.js                         # This file contains the template for Date type properties
+ ┃ ┃ ┣ 📜NumericProperties.js                    # This file contains properties that use the NumericTemplate
+ ┃ ┃ ┣ 📜NumericTemplate.js                      # This file contains the template for Numeric type properties
+ ┃ ┃ ┣ 📜OtherProperties.js                      # This file contains "other" properties
+ ┃ ┃ ┣ 📜TextArrayProperties.js                  # This file contains properties that use the TextArrayTemplate
+ ┃ ┃ ┣ 📜TextProperties.js                       # This file contains properties that use the TextProperty
+ ┃ ┃ ┣ 📜TextTemplate.js                         # This file contains the template for Text type properties
+ ┃ ┃ ┣ 📜TypeProperty.js                         # This file contains the implementation for the "type" property
+ ┃ ┃ ┗ 📜postprocessor.js                        # This file contains the post-processor used when the question editor dialog is submitted
+ ┃ ┗ 📜index.css
+ ┣ 📂customHooks
+ ┃ ┣ 📜useDarkMode.js                            # Configuration for dark mode theme
+ ┃ ┗ 📜useDrag.js                                # Configuration for Drag and Drop
  ┣ 📂features
  ┃ ┣ 📂API
- ┃ ┃ ┣ 📜ApiHandler.js
- ┃ ┃ ┗ 📜auth_config.js
- ┃ ┣ 📂question
- ┃ ┃ ┗ 📜questionSlice.js
- ┃ ┣ 📂questionnaire
- ┃ ┃ ┗ 📜questionnaireMetadataSlice.js
- ┃ ┣ 📂questions
- ┃ ┃ ┣ 📜QuestionCard.js
- ┃ ┃ ┗ 📜questionsSlice.js
- ┃ ┗ 📂utilities
- ┃ ┃ ┗ 📜utilitiesSlice.js
- ┣ 📂tests
- ┃ ┣ 📂question previews
- ┃ ┃ ┣ 📂__snapshots__
+ ┃ ┃ ┣ 📜ApiHandler.js                           # Containing API status messages
+ ┃ ┃ ┗ 📜auth_config.js                          # Containing variables for Auth0 configuration
+ ┃ ┣ 📂State Management                          # Contains Redux state management for...
+ ┃ ┃ ┣ 📜questionnaireMetadataSlice.js           # ...Questionnaire metadata for loaded questionnaires (in the editor)
+ ┃ ┃ ┣ 📜questionSlice.js                        # ...Question properties for a question opened in the edit dialog
+ ┃ ┃ ┣ 📜questionsSlice.js                       # ...The list of current questionnaires
+ ┃ ┃ ┗ 📜utilitiesSlice.js                       # ...misc utilities (shows/hides questions)
+ ┣ 📂tests                                       # This folder contains unit tests
+ ┃ ┗ 📂question previews                    
+ ┃ ┃ ┣ 📂__snapshots__                           # This file contains snapshots of the question previews                   
  ┃ ┃ ┃ ┣ 📜CheckboxPreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜DropdownTypePreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜LikertTypePreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜NumberTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜DropdownPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜LikertPreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜NumberPreview.test.js.snap
  ┃ ┃ ┃ ┣ 📜RadioPreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜RangeTypePreview.test.js.snap
- ┃ ┃ ┃ ┣ 📜TextAreaTypePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜RangePreview.test.js.snap
+ ┃ ┃ ┃ ┣ 📜TextArea.test.js.snap
  ┃ ┃ ┃ ┣ 📜TextField.test.js.snap
  ┃ ┃ ┃ ┗ 📜TimePreview.test.js.snap
- ┃ ┃ ┣ 📜CheckboxPreview.test.js
- ┃ ┃ ┣ 📜DropdownTypePreview.test.js
- ┃ ┃ ┣ 📜LikertTypePreview.test.js
- ┃ ┃ ┣ 📜NumberTypePreview.test.js
- ┃ ┃ ┣ 📜RadioPreview.test.js
- ┃ ┃ ┣ 📜RangeTypePreview.test.js
- ┃ ┃ ┣ 📜TextAreaTypePreview.test.js
- ┃ ┃ ┣ 📜TextField.test.js
- ┃ ┃ ┗ 📜TimePreview.test.js
- ┃ ┗ 📜App.test.js
+ ┃ ┃ ┣ 📜CheckboxPreview.test.js                 # This file contains snapshot test for checkbox question
+ ┃ ┃ ┣ 📜DropdownPreview.test.js                 # This file contains snapshot test for dropdown question
+ ┃ ┃ ┣ 📜LikertPreview.test.js                   # This file contains snapshot test for likert question
+ ┃ ┃ ┣ 📜NumberPreview.test.js                   # This file contains snapshot test for number question
+ ┃ ┃ ┣ 📜RadioPreview.test.js                    # This file contains snapshot test for radio question
+ ┃ ┃ ┣ 📜RangePreview.test.js                    # This file contains snapshot test for range question
+ ┃ ┃ ┣ 📜TextArea.test.js                        # This file contains snapshot test for textarea question
+ ┃ ┃ ┣ 📜TextField.test.js                       # This file contains snapshot test for textfield question
+ ┃ ┃ ┗ 📜TimePreview.test.js                     # This file contains snapshot test for time question
  ┣ 📂utils
  ┃ ┣ 📜ProcessQuestionnaire.js
- ┃ ┣ 📜history.js
- ┃ ┗ 📜index.js
- ┣ 📜ModeToggle.js
- ┣ 📜App.js
- ┣ 📜QuestionsArea.js
- ┣ 📜UserCard.js
- ┣ 📜BackToTopArrowButton.js
- ┣ 📜QuestionTypesMenu.js
- ┣ 📜JSONTranslationArea.js
- ┣ 📜VideoTutorialDialog.js
- ┣ 📜auth0_callback.js
- ┣ 📜background.css
- ┣ 📜gatsby-browser.js
- ┣ 📜gatsby-ssr.js
+ ┃ ┣ 📜formatting_utils.js                       # Global functions used for formatting
+ ┃ ┣ 📜history.js                                
+ ┃ ┗ 📜index.js                                  # Question configurations
+ ┣ 📜App.js                                      # Entrypoint for the web app
  ┣ 📜index.js
- ┣ 📜scroll.css
  ┣ 📜serviceWorker.js
- ┗ 📜useDarkMode.js
+ ┗ 📜store.js
 ````

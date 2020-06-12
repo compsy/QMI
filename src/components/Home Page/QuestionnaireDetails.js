@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { API_STATUS } from '../../features/API/ApiHandler'
 import { auth_config } from '../../features/API/auth_config'
-import { useAuth0 } from '../react-auth0-spa'
-import { SET_QUESTIONS } from '../../features/questions/questionsSlice'
+import { useAuth0 } from '../Authentication Dialog/react-auth0-spa'
+import { SET_QUESTIONS } from '../../features/State Management/questionsSlice'
 import { v4 as uuid } from 'uuid'
 import { useDispatch } from 'react-redux'
-import { SET_METADATA } from '../../features/questionnaire/questionnaireMetadataSlice'
+import { SET_METADATA } from '../../features/State Management/questionnaireMetadataSlice'
 import {
     QuestionnaireDetailsCard, QuestionnaireDetailsErrorCard,
     QuestionnaireDetailsLoadingCard,

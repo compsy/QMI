@@ -3,7 +3,7 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import React, {useEffect, useState} from "react";
 import {auth_config} from "../../features/API/auth_config";
-import {useAuth0} from "../react-auth0-spa";
+import {useAuth0} from "../Authentication Dialog/react-auth0-spa";
 import {QuestionnaireCard} from "./QuestionnaireCard";
 import {generateQuestionnaireListStatusMessage} from "./QuestionnaireListStatusMessage";
 

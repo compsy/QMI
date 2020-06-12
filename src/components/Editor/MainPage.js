@@ -7,7 +7,7 @@ import {QuestionTypesMenu} from "./QuestionTypesMenu";
 import {QuestionsArea} from "./QuestionsArea";
 import {JSONTranslationArea} from "./JSONTranslationArea";
 import {useDispatch, useSelector} from "react-redux";
-import { CLEAR_MAPS, initializeMaps } from '../../features/utilities/utilitiesSlice'
+import { CLEAR_MAPS, initializeMaps } from '../../features/State Management/utilitiesSlice'
 import BackToTopArrowButton from "./BackToTopArrowButton";
 import useDrag from '../../customHooks/useDrag'
 

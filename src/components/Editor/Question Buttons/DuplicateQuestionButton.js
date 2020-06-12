@@ -2,7 +2,7 @@ import React from "react";
 import {IconButton, Tooltip} from "@material-ui/core";
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import {useDispatch} from "react-redux";
-import {DUPLICATE_QUESTION} from "../../features/questions/questionsSlice";
+import {DUPLICATE_QUESTION} from "../../../features/State Management/questionsSlice";
 
 
 const DuplicateQuestionButton = ({question, index}) => {

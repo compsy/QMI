@@ -1,5 +1,4 @@
 import React from "react";
-// import { TextArrayProperty } from "./TextArrayTemplate";
 import TextArrayTemplate from "./TextArrayTemplate/TextArrayTemplate";
 
 // TextArray properties

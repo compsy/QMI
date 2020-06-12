@@ -2,10 +2,10 @@ import React from 'react'
 import { IconButton, Tooltip } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { useDispatch } from 'react-redux'
-import { REMOVE_BY_MAP, REMOVE_QUESTION } from '../../features/questions/questionsSlice'
-import { clearMapWithQuestion } from '../properties/postprocessor'
-import store from '../../store'
-import { removeByKey } from '../../features/utilities/utilitiesSlice'
+import { REMOVE_BY_MAP, REMOVE_QUESTION } from '../../../features/State Management/questionsSlice'
+import { clearMapWithQuestion } from '../../properties/postprocessor'
+import store from '../../../store'
+import { removeByKey } from '../../../features/State Management/utilitiesSlice'
 
 const RemoveQuestionButton = ({ question, index }) => {
     const dispatch = useDispatch()
