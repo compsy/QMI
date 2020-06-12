@@ -1,8 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
-import questionReducer from './features/question/questionSlice';
-import questionsReducer from './features/questions/questionsSlice';
-import utilitiesReducer from './features/utilities/utilitiesSlice';
-import questionnaireMetadataReducer from "./features/questionnaire/questionnaireMetadataSlice";
+import questionReducer from './features/State Management/questionSlice';
+import questionsReducer from './features/State Management/questionsSlice';
+import utilitiesReducer from './features/State Management/utilitiesSlice';
+import questionnaireMetadataReducer from "./features/State Management/questionnaireMetadataSlice";
 
 export default configureStore({
     reducer: {

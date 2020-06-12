@@ -211,8 +211,8 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┃ ┣ 📜RenderQuestionnaireButton.js          # Button to render current questionnaire 
  ┃ ┃ ┃ ┗ 📜SaveQuestionnaireButton.js            # Button to save current questionnaire 
  ┃ ┃ ┗ 📜AppBarComponent.js                      # This file contains the rendering of the buttons in the app bar
- ┃ ┣ 📂Authentication Dialog                     #
- ┃ ┃ ┗ 📜react-auth0-spa.js                      #
+ ┃ ┣ 📂Authentication Dialog                     
+ ┃ ┃ ┗ 📜react-auth0-spa.js                      # The API used for Auth0's login mechanism, provided by Auth0
  ┃ ┣ 📂Editor
  ┃ ┃ ┣ 📂Question Buttons
  ┃ ┃ ┃ ┣ 📜DuplicateQuestionButton.js            # Button to duplicate a question
@@ -232,34 +232,34 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┃ ┣ 📜TimePickerTypePreview.js              # This file renders the layout of a time question
  ┃ ┃ ┃ ┗ 📜UnsupportedQuestionTypePreview.js     # This file renders the layout of an unsupported question type
  ┃ ┃ ┣ 📜BackToTopArrowButton.js                 # Button to scroll to top of a page
- ┃ ┃ ┣ 📜EditDialogTitle.js
- ┃ ┃ ┣ 📜EditingFeature.js
- ┃ ┃ ┣ 📜ExpansionRule.js
- ┃ ┃ ┣ 📜HiddenQuestionIndicator.js
- ┃ ┃ ┣ 📜JSONCreator.js
- ┃ ┃ ┣ 📜JSONTranslationArea.js
- ┃ ┃ ┣ 📜MainPage.js
- ┃ ┃ ┣ 📜ModeToggle.js
- ┃ ┃ ┣ 📜QuestionTypes.js
- ┃ ┃ ┣ 📜QuestionTypesMenu.js
- ┃ ┃ ┣ 📜QuestionsArea.js
- ┃ ┃ ┣ 📜QuestionsList.js
- ┃ ┃ ┣ 📜RenderQuestionHeaderElements.js
- ┃ ┃ ┣ 📜VideoTutorialDialog.js
+ ┃ ┃ ┣ 📜EditDialogTitle.js                      # The clickable lable for question titles
+ ┃ ┃ ┣ 📜EditingFeature.js                       # The edit dialog
+ ┃ ┃ ┣ 📜ExpansionRule.js                        # Containing the expansion mechanism for question previews
+ ┃ ┃ ┣ 📜HiddenQuestionIndicator.js              # Icon for question preview, showed when a question is set to 'hidden'
+ ┃ ┃ ┣ 📜JSONCreator.js                          # Converts the current questions list in an accepted JSON format
+ ┃ ┃ ┣ 📜JSONTranslationArea.js                  # Wrapper for JSONCreator.js
+ ┃ ┃ ┣ 📜MainPage.js                             # '/': The editor page
+ ┃ ┃ ┣ 📜ModeToggle.js                           # Switch for dark/light mode over the app
+ ┃ ┃ ┣ 📜QuestionTypes.js                        # Utility for question type toolbar
+ ┃ ┃ ┣ 📜QuestionTypesMenu.js                    # Toolbar containing available question types
+ ┃ ┃ ┣ 📜QuestionsArea.js                        # Wrapper for questions area
+ ┃ ┃ ┣ 📜QuestionsList.js                        # List that renders appropriate question previews depending on the question type
+ ┃ ┃ ┣ 📜SaveQuestionnaireDialog.js              # Dialog for saving questionnaires
+ ┃ ┃ ┣ 📜RenderQuestionHeaderElements.js         # Function for rendering buttons in a question preview header
+ ┃ ┃ ┣ 📜VideoTutorialDialog.js                  # Tutorial pop up
  ┃ ┃ ┣ 📜background.css
  ┃ ┃ ┗ 📜scroll.css
  ┃ ┣ 📂Home Page
- ┃ ┃ ┣ 📜HomePage.js
- ┃ ┃ ┣ 📜QuestionnaireCard.js
- ┃ ┃ ┣ 📜QuestionnaireDetails.js
- ┃ ┃ ┣ 📜QuestionnaireDetailsCard.js
- ┃ ┃ ┣ 📜QuestionnaireList.js
- ┃ ┃ ┣ 📜QuestionnaireListStatusMessage.js
- ┃ ┃ ┗ 📜SaveQuestionnaireDialog.js
+ ┃ ┃ ┣ 📜HomePage.js                             # '/home': The home page
+ ┃ ┃ ┣ 📜QuestionnaireCard.js                    # A card for showing a questionnaire in the questionnaire list
+ ┃ ┃ ┣ 📜QuestionnaireDetails.js                 # Entrypoint for 'right side' of the home page, handling retrieval of a questionnaire
+ ┃ ┃ ┣ 📜QuestionnaireDetailsCard.js             # The view for QuestionnaireDetails.js, showing the actual details of a selected questionnaire
+ ┃ ┃ ┣ 📜QuestionnaireList.js                    # Entrypoint for 'left side' of the home page, showing available questionnaires 
+ ┃ ┃ ┗ 📜QuestionnaireListStatusMessage.js       # Style component for status messages for the questionnaire list
  ┃ ┣ 📂Left Menu Bar
- ┃ ┃ ┣ 📜LeftMenuBar.js
- ┃ ┃ ┣ 📜LeftMenuBarBlueprint.js
- ┃ ┃ ┗ 📜UserCard.js
+ ┃ ┃ ┣ 📜LeftMenuBar.js                          # Actual left menu bar, with its buttons set
+ ┃ ┃ ┣ 📜LeftMenuBarBlueprint.js                 # Skeleton for a left menu bar
+ ┃ ┃ ┗ 📜UserCard.js                             # Style component for basic user information, using Auth0
  ┃ ┣ 📂properties
  ┃ ┃ ┣ 📂TextArrayTemplate
  ┃ ┃ ┃ ┣ 📜AddOptionButton.js
@@ -283,20 +283,17 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┗ 📜postprocessor.js
  ┃ ┗ 📜index.css
  ┣ 📂customHooks
- ┃ ┣ 📜useDarkMode.js
- ┃ ┗ 📜useDrag.js
+ ┃ ┣ 📜useDarkMode.js                            # Configuration for dark mode theme
+ ┃ ┗ 📜useDrag.js                                # Configuration for Drag and Drop
  ┣ 📂features
  ┃ ┣ 📂API
- ┃ ┃ ┣ 📜ApiHandler.js
- ┃ ┃ ┗ 📜auth_config.js
- ┃ ┣ 📂question
- ┃ ┃ ┗ 📜questionSlice.js
- ┃ ┣ 📂questionnaire
- ┃ ┃ ┗ 📜questionnaireMetadataSlice.js
- ┃ ┣ 📂questions
- ┃ ┃ ┗ 📜questionsSlice.js
- ┃ ┗ 📂utilities
- ┃ ┃ ┗ 📜utilitiesSlice.js
+ ┃ ┃ ┣ 📜ApiHandler.js                           # Containing API status messages
+ ┃ ┃ ┗ 📜auth_config.js                          # Containing variables for Auth0 configuration
+ ┃ ┣ 📂State Management                          # Contains Redux state management for...
+ ┃ ┃ ┣ 📜questionnaireMetadataSlice.js           # ...Questionnaire metadata for loaded questionnaires (in the editor)
+ ┃ ┃ ┣ 📜questionSlice.js                        # ...Question properties for a question opened in the edit dialog
+ ┃ ┃ ┣ 📜questionsSlice.js                       # ...The list of current questionnaires
+ ┃ ┃ ┗ 📜utilitiesSlice.js                       # ...misc utilities (shows/hides questions)
  ┣ 📂tests
  ┃ ┗ 📂question previews
  ┃ ┃ ┣ 📂__snapshots__
@@ -320,10 +317,10 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┗ 📜TimePreview.test.js
  ┣ 📂utils
  ┃ ┣ 📜ProcessQuestionnaire.js
- ┃ ┣ 📜formatting_utils.js
- ┃ ┣ 📜history.js
- ┃ ┗ 📜index.js
- ┣ 📜App.js
+ ┃ ┣ 📜formatting_utils.js                       # Global functions used for formatting
+ ┃ ┣ 📜history.js                                
+ ┃ ┗ 📜index.js                                  # Question configurations
+ ┣ 📜App.js                                      # Entrypoint for the web app
  ┣ 📜index.js
  ┣ 📜serviceWorker.js
  ┗ 📜store.js

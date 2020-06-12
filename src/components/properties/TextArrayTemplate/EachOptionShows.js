@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {Box, Button, Checkbox, Grid, makeStyles, Menu, MenuItem, Typography, useTheme,} from '@material-ui/core'
 import {useDispatch, useSelector} from 'react-redux'
-import {addToMap, removeFromMap} from '../../../features/utilities/utilitiesSlice'
-import {setTextArrayElement,} from '../../../features/question/questionSlice'
+import {addToMap, removeFromMap} from '../../../features/State Management/utilitiesSlice'
+import {setTextArrayElement,} from '../../../features/State Management/questionSlice'
 
 const useStyles = makeStyles((theme) => ({
     showsHidesButtons: {

@@ -7,7 +7,7 @@ import {API_STATUS} from "../../features/API/ApiHandler";
 import {auth_config} from "../../features/API/auth_config";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
-import {SET_METADATA} from "../../features/questionnaire/questionnaireMetadataSlice";
+import {SET_METADATA} from "../../features/State Management/questionnaireMetadataSlice";
 import {GENERATE_INITIAL_QUESTIONNAIRE_METADATA_CONTEXT} from "../../utils";
 
 export const useStyles = makeStyles((theme) => ({

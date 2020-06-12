@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
-import {UPDATE_QUESTION} from "../../features/questions/questionsSlice";
+import {UPDATE_QUESTION} from "../../features/State Management/questionsSlice";
 import store from "../../store";
 import {CLEAN_SUPER_QUESTION} from "../../utils";
 import {postprocessQuestion} from "../properties/postprocessor";
 import {TitleProperty} from "../properties/TextProperties";
-import {setQuestion} from "../../features/question/questionSlice";
+import {setQuestion} from "../../features/State Management/questionSlice";
 
 /**
  * In general, this is a stripped down version of the edit dialog, containing one property: title.

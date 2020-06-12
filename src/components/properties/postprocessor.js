@@ -1,5 +1,5 @@
 import store from '../../store'
-import {removeFromMap} from '../../features/utilities/utilitiesSlice'
+import {removeFromMap} from '../../features/State Management/utilitiesSlice'
 import {removeAllWithKey} from '../Editor/Question Buttons/RemoveQuestionButton'
 
 const postprocessCheckbox = (question) => {

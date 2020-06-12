@@ -3,11 +3,11 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Badge, FilledInput, FormControl, IconButton, InputAdornment, InputLabel, makeStyles,} from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EachOptionMenu from './EachOptionMenu'
-import {removeOption, setTextArrayElement, setTextArrayField,} from '../../../features/question/questionSlice'
+import {removeOption, setTextArrayElement, setTextArrayField,} from '../../../features/State Management/questionSlice'
 import {CLEAN_SUPER_OPTION} from '../../../utils'
 import {v4 as uuidv4} from 'uuid'
 import EachOptionShows from './EachOptionShows'
-import {removeFromMap} from '../../../features/utilities/utilitiesSlice'
+import {removeFromMap} from '../../../features/State Management/utilitiesSlice'
 import EachOptionHides from './EachOptionHides'
 
 const useStyles = makeStyles((theme) => ({
