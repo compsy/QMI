@@ -261,27 +261,26 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┣ 📜LeftMenuBar.js                          # Actual left menu bar, with its buttons set
  ┃ ┃ ┣ 📜LeftMenuBarBlueprint.js                 # Skeleton for a left menu bar
  ┃ ┃ ┗ 📜UserCard.js                             # Style component for basic user information, using Auth0
- ┃ ┣ 📂properties
- ┃ ┃ ┣ 📂TextArrayTemplate
- ┃ ┃ ┃ ┣ 📜AddOptionButton.js
- ┃ ┃ ┃ ┣ 📜EachOption.js
- ┃ ┃ ┃ ┣ 📜EachOptionHides.js
- ┃ ┃ ┃ ┣ 📜EachOptionMenu.js
- ┃ ┃ ┃ ┣ 📜EachOptionShows.js
- ┃ ┃ ┃ ┗ 📜TextArrayTemplate.js
- ┃ ┃ ┣ 📜BooleanProperties.js
- ┃ ┃ ┣ 📜BooleanTemplate.js
- ┃ ┃ ┣ 📜DateProperties.js
- ┃ ┃ ┣ 📜DateTemplate.js
- ┃ ┃ ┣ 📜NumericProperties.js
- ┃ ┃ ┣ 📜NumericTemplate.js
- ┃ ┃ ┣ 📜OtherProperties.js
- ┃ ┃ ┣ 📜TextArrayProperties.js
- ┃ ┃ ┣ 📜TextArrayTemplate.js
- ┃ ┃ ┣ 📜TextProperties.js
- ┃ ┃ ┣ 📜TextTemplate.js
- ┃ ┃ ┣ 📜TypeProperty.js
- ┃ ┃ ┗ 📜postprocessor.js
+ ┃ ┣ 📂properties                                # contains components that control specific fields in the question editor dialog
+ ┃ ┃ ┣ 📂TextArrayTemplate                       # This directory contains the template for TextArray type properties
+ ┃ ┃ ┃ ┣ 📜AddOptionButton.js                    # This file contains the implementation for add option/label button
+ ┃ ┃ ┃ ┣ 📜EachOption.js                         # This file describes how each option is rendered
+ ┃ ┃ ┃ ┣ 📜EachOptionHides.js                    # This file contains the "hide" (a question) button and corresponding menu
+ ┃ ┃ ┃ ┣ 📜EachOptionMenu.js                     # This file contains the additional menu for each option
+ ┃ ┃ ┃ ┣ 📜EachOptionShows.js                    # This file contains the "show" (a question) button and corresponding menu
+ ┃ ┃ ┃ ┗ 📜TextArrayTemplate.js                  # This file is the main entry-point for options/labels property rendering
+ ┃ ┃ ┣ 📜BooleanProperties.js                    # This file contains properties that use the BooleanTemplate
+ ┃ ┃ ┣ 📜BooleanTemplate.js                      # This file contains the template for Boolean type properties
+ ┃ ┃ ┣ 📜DateProperties.js                       # This file contains properties that use the DateTemplate
+ ┃ ┃ ┣ 📜DateTemplate.js                         # This file contains the template for Date type properties
+ ┃ ┃ ┣ 📜NumericProperties.js                    # This file contains properties that use the NumericTemplate
+ ┃ ┃ ┣ 📜NumericTemplate.js                      # This file contains the template for Numeric type properties
+ ┃ ┃ ┣ 📜OtherProperties.js                      # This file contains "other" properties
+ ┃ ┃ ┣ 📜TextArrayProperties.js                  # This file contains properties that use the TextArrayTemplate
+ ┃ ┃ ┣ 📜TextProperties.js                       # This file contains properties that use the TextProperty
+ ┃ ┃ ┣ 📜TextTemplate.js                         # This file contains the template for Text type properties
+ ┃ ┃ ┣ 📜TypeProperty.js                         # This file contains the implementation for the "type" property
+ ┃ ┃ ┗ 📜postprocessor.js                        # This file contains the post-processor used when the question editor dialog is submitted
  ┃ ┗ 📜index.css
  ┣ 📂customHooks
  ┃ ┣ 📜useDarkMode.js                            # Configuration for dark mode theme
