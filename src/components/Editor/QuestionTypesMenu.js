@@ -1,7 +1,6 @@
 import React from 'react'
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import {
-    Divider,
     Drawer,
     List,
     ListItem,
