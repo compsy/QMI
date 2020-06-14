@@ -89,17 +89,6 @@ export const QuestionTypesMenu = ({items}) => {
                             );
                         })}
                         <div className={classes.toolbar}/>
-                        <Divider/>
-                        <ListItem
-                            button
-                            onClick={() => {
-                                localStorage.clear();
-                                window.location.reload(true)
-                            }}
-                        >
-                            <ListItemText primary="delete data"/>
-                        </ListItem>
-
                     </List>
                 </Drawer>
             )}
