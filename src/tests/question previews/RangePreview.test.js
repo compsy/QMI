@@ -1,7 +1,7 @@
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import RangeTypePreview from '../../components/Editor/Question Previews/RangeTypePreview'
+import RangeTypePreview from '../../components/Atoms/Previews/RangeTypePreview'
 
 configure({adapter: new Adapter()});
 

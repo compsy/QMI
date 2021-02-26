@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { HiddenProperty, SectionEndProperty, TodayProperty } from '../components/properties/BooleanProperties'
+import { HiddenProperty, SectionEndProperty, TodayProperty } from '../components/Properties/BooleanProperties'
 
-import { DefaultDateProperty, MaxDateProperty, MinDateProperty } from '../components/properties/DateProperties'
+import { DefaultDateProperty, MaxDateProperty, MinDateProperty } from '../components/Properties/DateProperties'
 
-import { DefaultExpansionsProperty, MaxExpansionsProperty } from '../components/properties/NumericProperties'
+import { DefaultExpansionsProperty, MaxExpansionsProperty } from '../components/Properties/NumericProperties'
 
-import { LabelOptionsProperty, TextOptionsProperty } from '../components/properties/TextArrayProperties'
+import { LabelOptionsProperty, TextOptionsProperty } from '../components/Properties/TextArrayProperties'
 
 import {
     AddButtonLabelProperty,
@@ -26,7 +26,7 @@ import {
     SectionStartProperty,
     TitleProperty,
     TooltipProperty,
-} from '../components/properties/TextProperties'
+} from '../components/Properties/TextProperties'
 import {
     CustomMinMaxStepProperty,
     HiddenRequiredComposite,
@@ -35,7 +35,7 @@ import {
     OtherwiseProperty,
     RadiusDensityComposite,
     WidthHeightComposite,
-} from '../components/properties/OtherProperties'
+} from '../components/Properties/OtherProperties'
 import { v4 as uuidv4 } from 'uuid'
 import processQuestionnaire from './ProcessQuestionnaire'
 
@@ -70,17 +70,17 @@ export function capitalize2(text) {
 
 
 export const CLEAN_SUPER_QUESTION = {
-    // date properties
+    // date Properties
     default_date: undefined,
     // min_date: undefined,
     // max_date: undefined,
-    // boolean properties
+    // boolean Properties
     hidden: undefined,
     show_otherwise: undefined,
     required: undefined,
     today: undefined,
     section_end: undefined,
-    // numeric properties
+    // numeric Properties
     min: undefined,
     max: undefined,
     step: undefined,
@@ -94,7 +94,7 @@ export const CLEAN_SUPER_QUESTION = {
     height: undefined,
     radius: undefined,
     density: undefined,
-    // text properties
+    // text Properties
     title: undefined,
     tooltip: undefined,
     otherwise_label: undefined,
@@ -114,7 +114,7 @@ export const CLEAN_SUPER_QUESTION = {
     links_to_expandable: undefined,
     pattern: undefined,
     color: undefined,
-    // text array properties
+    // text array Properties
     options: [],
     labels: [],
 }
