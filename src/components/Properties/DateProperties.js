@@ -2,7 +2,7 @@ import React from "react";
 import {DateProperty} from "./DateTemplate";
 import {useSelector} from "react-redux";
 
-// Date Properties
+// Date properties
 export const DefaultDateProperty = ({...props}) => {
     const today = useSelector((state) => state.question.today);
     return (

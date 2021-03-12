@@ -70,17 +70,17 @@ export function capitalize2(text) {
 
 
 export const CLEAN_SUPER_QUESTION = {
-    // date Properties
+    // date properties
     default_date: undefined,
     // min_date: undefined,
     // max_date: undefined,
-    // boolean Properties
+    // boolean properties
     hidden: undefined,
     show_otherwise: undefined,
     required: undefined,
     today: undefined,
     section_end: undefined,
-    // numeric Properties
+    // numeric properties
     min: undefined,
     max: undefined,
     step: undefined,
@@ -94,7 +94,7 @@ export const CLEAN_SUPER_QUESTION = {
     height: undefined,
     radius: undefined,
     density: undefined,
-    // text Properties
+    // text properties
     title: undefined,
     tooltip: undefined,
     otherwise_label: undefined,
@@ -114,7 +114,7 @@ export const CLEAN_SUPER_QUESTION = {
     links_to_expandable: undefined,
     pattern: undefined,
     color: undefined,
-    // text array Properties
+    // text array properties
     options: [],
     labels: [],
 }

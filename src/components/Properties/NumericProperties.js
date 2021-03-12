@@ -1,7 +1,7 @@
 import React from "react";
 import {NumericProperty} from "./NumericTemplate";
 
-// Numeric Properties
+// Numeric properties
 export const MinProperty = ({...props}) => {
     return (
         <div data-cy={"min"}>

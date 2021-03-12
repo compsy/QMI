@@ -1,7 +1,7 @@
 import React from "react";
 import {TextProperty} from "./TextTemplate";
 
-// Text Properties
+// Text properties
 export const TitleProperty = ({...props}) => {
     return (
         <div data-cy={"title"}>

@@ -19,7 +19,7 @@ import { useSelector } from 'react-redux'
 import { selectProperty } from '../../features/State Management/questionSlice'
 
 
-// Composite Properties. These consists of smaller Properties, depending on each other:
+// Composite properties. These consists of smaller properties, depending on each other:
 export const OtherwiseProperty = () => {
     const showOtherwise = useSelector(selectProperty('show_otherwise'))
     return (

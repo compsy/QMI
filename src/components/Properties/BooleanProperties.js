@@ -1,7 +1,7 @@
 import React from "react";
 import {BooleanProperty} from "./BooleanTemplate";
 
-// Boolean Properties
+// Boolean properties
 export const HiddenProperty = ({...props}) => {
     return <BooleanProperty name={"Hidden"} propertyName={"hidden"} {...props} />;
 };

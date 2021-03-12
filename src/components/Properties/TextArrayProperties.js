@@ -1,7 +1,7 @@
 import React from "react";
 import TextArrayTemplate from "./TextArrayTemplate/TextArrayTemplate";
 
-// TextArray Properties
+// TextArray properties
 export const TextOptionsProperty = () => {
     return <TextArrayTemplate propertyName="options" name="Options"/>;
 };
