@@ -4,8 +4,8 @@ import {DragDropContext} from "react-beautiful-dnd";
 import "../index.css";
 import {QUESTION_TYPES} from "../QuestionTypes";
 import {QuestionTypesMenu} from "../Molecules/QuestionTypesMenu";
-import {QuestionsArea} from "../Molecules/QuestionsArea";
-import {JSONTranslationArea} from "../Molecules/JSONTranslationArea";
+import {QuestionsArea} from "../Organisms/QuestionsArea";
+import {JSONTranslationArea} from "../Organisms/JSONTranslationArea";
 import {useDispatch, useSelector} from "react-redux";
 import { CLEAR_MAPS, initializeMaps } from '../../features/State Management/utilitiesSlice'
 import BackToTopArrowButton from "../Atoms/Buttons/BackToTopArrowButton";
