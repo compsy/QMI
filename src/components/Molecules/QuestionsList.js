@@ -16,7 +16,7 @@ import {Draggable} from "react-beautiful-dnd";
 import "../index.css";
 import RawPreview from "../Atoms/Previews/RawTypePreview";
 import DuplicateQuestionButton from "../Atoms/Buttons/DuplicateQuestionButton";
-import {ExpansionRule} from '../ExpansionRule'
+import {ExpansionRule} from '../Organisms/ExpansionRule'
 import UnsupportedQuestionTypePreview from "../Atoms/Previews/UnsupportedQuestionTypePreview";
 
 const QuestionsList = ({index, question, ...props}) => {

@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react'
 import {CssBaseline, Grid, makeStyles} from "@material-ui/core";
 import {DragDropContext} from "react-beautiful-dnd";
-import "./index.css";
-import {QUESTION_TYPES} from "./QuestionTypes";
-import {QuestionTypesMenu} from "./Molecules/QuestionTypesMenu";
-import {QuestionsArea} from "./Organisms/QuestionsArea";
-import {JSONTranslationArea} from "./Organisms/JSONTranslationArea";
+import "../index.css";
+import {QUESTION_TYPES} from "../QuestionTypes";
+import {QuestionTypesMenu} from "../Molecules/QuestionTypesMenu";
+import {QuestionsArea} from "../Molecules/QuestionsArea";
+import {JSONTranslationArea} from "../Molecules/JSONTranslationArea";
 import {useDispatch, useSelector} from "react-redux";
-import { CLEAR_MAPS, initializeMaps } from '../features/State Management/utilitiesSlice'
-import BackToTopArrowButton from "./Atoms/Buttons/BackToTopArrowButton";
-import useDrag from '../customHooks/useDrag'
+import { CLEAR_MAPS, initializeMaps } from '../../features/State Management/utilitiesSlice'
+import BackToTopArrowButton from "../Atoms/Buttons/BackToTopArrowButton";
+import useDrag from '../../customHooks/useDrag'
 
 const useStyles = makeStyles(theme => ({
     root: {
