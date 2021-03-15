@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
-import {QuestionnaireDetails} from "./QuestionnaireDetails";
-import {QuestionnaireList} from "./QuestionnaireList";
+import {QuestionnaireDetails} from "../Molecules/QuestionnaireDetails";
+import {QuestionnaireList} from "../Molecules/QuestionnaireList";
 
 export const HomePage = () => {
     const [currentQuestionnaireKey, setCurrentQuestionnaireKey] = useState(null);

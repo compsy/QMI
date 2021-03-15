@@ -3,7 +3,7 @@ import { IconButton, Tooltip } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { useDispatch } from 'react-redux'
 import { REMOVE_BY_MAP, REMOVE_QUESTION } from '../../../features/State Management/questionsSlice'
-import { clearMapWithQuestion } from '../../properties/postprocessor'
+import { clearMapWithQuestion } from '../../Properties/postprocessor'
 import store from '../../../store'
 import { removeByKey } from '../../../features/State Management/utilitiesSlice'
 

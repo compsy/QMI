@@ -1,5 +1,5 @@
 import React from 'react'
-import './scroll.css';
+import '../scroll.css';
 import ModalVideo from 'react-modal-video';
 import {ResizableBox} from 'react-resizable';
 

@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {API_STATUS} from "../../features/API/ApiHandler";
 import React from "react";
-import {LOCALE_EN as locale} from "./QuestionnaireList";
+import {LOCALE_EN as locale} from "../Molecules/QuestionnaireList";
 
 /*
 * generates a status mesasge according to the current state

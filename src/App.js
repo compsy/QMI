@@ -1,13 +1,13 @@
 import React from 'react'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
-import './components/Editor/background.css'
+import './components/background.css'
 import { Provider } from 'react-redux'
 import store from './store'
-import { Auth0Provider } from './components/Authentication Dialog/react-auth0-spa'
+import { Auth0Provider } from './components/Organisms/Authentication Dialog/react-auth0-spa'
 import history from './utils/history'
 import { useDarkMode } from './customHooks/useDarkMode'
 import { auth_config } from './features/API/auth_config'
-import AppBarComponent from './components/App Bar/AppBarComponent'
+import AppBarComponent from './components/Organisms/AppBarComponent'
 
 // A function that routes the user to the right place
 // after login

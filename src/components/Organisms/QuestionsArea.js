@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Container, Typography } from '@material-ui/core'
 import { Droppable } from 'react-beautiful-dnd'
-import QuestionsList from './QuestionsList'
+import QuestionsList from '../Molecules/QuestionsList'
 import { v4 as uuidv1 } from 'uuid'
 import { useSelector } from 'react-redux'
 

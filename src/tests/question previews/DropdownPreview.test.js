@@ -1,7 +1,7 @@
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react'
-import DropdownTypePreview from '../../components/Editor/Question Previews/DropdownTypePreview'
+import DropdownTypePreview from '../../components/Atoms/Previews/DropdownTypePreview'
 
 configure({adapter: new Adapter()});
 

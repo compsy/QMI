@@ -1,7 +1,7 @@
 import {Box, Button, Dialog, Divider, Grid, makeStyles, Typography} from "@material-ui/core";
 import React, {useState} from "react";
 import TextField from "@material-ui/core/TextField";
-import {useAuth0} from "../Authentication Dialog/react-auth0-spa";
+import {useAuth0} from "../Organisms/Authentication Dialog/react-auth0-spa";
 import {useDispatch, useSelector} from "react-redux";
 import {API_STATUS} from "../../features/API/ApiHandler";
 import {auth_config} from "../../features/API/auth_config";

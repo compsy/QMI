@@ -1,10 +1,10 @@
 import {Grid} from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import EditQuestionButton from "./Question Buttons/EditQuestionButton";
-import DuplicateQuestionButton from "./Question Buttons/DuplicateQuestionButton";
-import RemoveQuestionButton from "./Question Buttons/RemoveQuestionButton";
+import EditQuestionButton from "../Atoms/Buttons/EditQuestionButton";
+import DuplicateQuestionButton from "../Atoms/Buttons/DuplicateQuestionButton";
+import RemoveQuestionButton from "../Atoms/Buttons/RemoveQuestionButton";
 import React from "react";
-import {HiddenQuestionIndicator} from "./HiddenQuestionIndicator";
+import {HiddenQuestionIndicator} from "../Atoms/HiddenQuestionIndicator";
 
 export function renderQuestionHeaderElements(question, index) {
     const type = question.type;

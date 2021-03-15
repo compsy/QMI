@@ -2,9 +2,9 @@ import {useSelector} from "react-redux";
 import React, {useState} from "react";
 import {ExpansionPanelSummary, Grid, Typography} from "@material-ui/core";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
-import EditQuestionTitleField from "./EditDialogTitle";
+import EditQuestionTitleField from "../Molecules/EditDialogTitle";
 import ReactHtmlParser from "react-html-parser";
-import {renderQuestionHeaderElements} from "./RenderQuestionHeaderElements";
+import {renderQuestionHeaderElements} from "../Molecules/RenderQuestionHeaderElements";
 
 export const ExpansionRule = ({question, provided, ...props}) => {
     const questions = useSelector(state => state.questions);

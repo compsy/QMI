@@ -3,8 +3,8 @@ import {useDispatch} from "react-redux";
 import {UPDATE_QUESTION} from "../../features/State Management/questionsSlice";
 import store from "../../store";
 import {CLEAN_SUPER_QUESTION} from "../../utils";
-import {postprocessQuestion} from "../properties/postprocessor";
-import {TitleProperty} from "../properties/TextProperties";
+import {postprocessQuestion} from "../Properties/postprocessor";
+import {TitleProperty} from "../Properties/TextProperties";
 import {setQuestion} from "../../features/State Management/questionSlice";
 
 /**

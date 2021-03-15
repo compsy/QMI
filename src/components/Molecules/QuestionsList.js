@@ -1,23 +1,23 @@
 import React, {useState} from "react";
 import {Divider, ExpansionPanel, ExpansionPanelDetails, Grid, Typography,} from "@material-ui/core";
-import RemoveQuestionButton from "./Question Buttons/RemoveQuestionButton";
-import EditQuestionButton from "./Question Buttons/EditQuestionButton";
-import RadioCheckboxTypePreview from "./Question Previews/RadioCheckboxTypePreview";
-import LikertTypePreview from "./Question Previews/LikertTypePreview";
-import RangeTypePreview from "./Question Previews/RangeTypePreview";
-import DropdownTypePreview from "./Question Previews/DropdownTypePreview";
-import NumberTypePreview from "./Question Previews/NumberTypePreview";
-import DatePickerTypePreview from "./Question Previews/DatePickerTypePreview";
-import TimePickerPreview from "./Question Previews/TimePickerTypePreview";
-import TextAreaTypePreview from "./Question Previews/TextAreaTypePreview";
-import TextFieldTypePreview from "./Question Previews/TextFieldTypePreview";
-import DrawingTypePreview from "./Question Previews/DrawingTypePreview";
+import RemoveQuestionButton from "../Atoms/Buttons/RemoveQuestionButton";
+import EditQuestionButton from "../Atoms/Buttons/EditQuestionButton";
+import RadioCheckboxTypePreview from "../Atoms/Previews/RadioCheckboxTypePreview";
+import LikertTypePreview from "../Atoms/Previews/LikertTypePreview";
+import RangeTypePreview from "../Atoms/Previews/RangeTypePreview";
+import DropdownTypePreview from "../Atoms/Previews/DropdownTypePreview";
+import NumberTypePreview from "../Atoms/Previews/NumberTypePreview";
+import DatePickerTypePreview from "../Atoms/Previews/DatePickerTypePreview";
+import TimePickerPreview from "../Atoms/Previews/TimePickerTypePreview";
+import TextAreaTypePreview from "../Atoms/Previews/TextAreaTypePreview";
+import TextFieldTypePreview from "../Atoms/Previews/TextFieldTypePreview";
+import DrawingTypePreview from "../Atoms/Previews/DrawingTypePreview";
 import {Draggable} from "react-beautiful-dnd";
 import "../index.css";
-import RawPreview from "./Question Previews/RawTypePreview";
-import DuplicateQuestionButton from "./Question Buttons/DuplicateQuestionButton";
-import {ExpansionRule} from './ExpansionRule'
-import UnsupportedQuestionTypePreview from "./Question Previews/UnsupportedQuestionTypePreview";
+import RawPreview from "../Atoms/Previews/RawTypePreview";
+import DuplicateQuestionButton from "../Atoms/Buttons/DuplicateQuestionButton";
+import {ExpansionRule} from '../Organisms/ExpansionRule'
+import UnsupportedQuestionTypePreview from "../Atoms/Previews/UnsupportedQuestionTypePreview";
 
 const QuestionsList = ({index, question, ...props}) => {
     const [open, setOpen] = useState(false);

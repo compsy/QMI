@@ -1,11 +1,11 @@
-import {useAuth0} from "../Authentication Dialog/react-auth0-spa";
+import {useAuth0} from "./Authentication Dialog/react-auth0-spa";
 import {Header, LeftMenuBarBlueprint} from "./LeftMenuBarBlueprint";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import React from "react";
 import HomeIcon from '@material-ui/icons/Home';
 import EditIcon from '@material-ui/icons/Edit';
 import Grid from "@material-ui/core/Grid";
-import {ModeToggle} from "../Editor/ModeToggle";
+import {ModeToggle} from "../Atoms/ModeToggle";
 
 
 export const LeftMenuBar = ({themeConfig, toggleDarkMode}) => {

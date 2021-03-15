@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {FaArrowCircleUp} from 'react-icons/fa';
-import './scroll.css';
-import VideoTutorialDialog from "./VideoTutorialDialog";
+import '../../scroll.css';
+import VideoTutorialDialog from "../../Molecules/VideoTutorialDialog";
 import HelpIcon from "@material-ui/icons/Help";
 
 const useModal = () => {

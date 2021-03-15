@@ -1,14 +1,14 @@
 import React, {createElement, useEffect} from "react";
 import {Box, Button, Dialog, Divider, Grid, Paper, Typography,} from "@material-ui/core";
-import {CLEAN_SUPER_QUESTION, PROPERTIES_BY_QUESTION_TYPE,} from "../../utils";
+import {CLEAN_SUPER_QUESTION, PROPERTIES_BY_QUESTION_TYPE,} from "../utils";
 import {useDispatch, useSelector} from "react-redux";
-import {setQuestion,} from "../../features/State Management/questionSlice";
-import TypeProperty from "../properties/TypeProperty";
-import store from "../../store";
-import {postprocessQuestion} from "../properties/postprocessor";
-import {UPDATE_QUESTION} from "../../features/State Management/questionsSlice";
-import {SET_UTILITIES} from "../../features/State Management/utilitiesSlice";
-import {useStyles} from "./SaveQuestionnaireDialog"
+import {setQuestion,} from "../features/State Management/questionSlice";
+import TypeProperty from "./Properties/TypeProperty";
+import store from "../store";
+import {postprocessQuestion} from "./Properties/postprocessor";
+import {UPDATE_QUESTION} from "../features/State Management/questionsSlice";
+import {SET_UTILITIES} from "../features/State Management/utilitiesSlice";
+import {useStyles} from "./Molecules/SaveQuestionnaireDialog"
 
 
 const EditDialog2 = ({question, index, open, setOpen}) => {
