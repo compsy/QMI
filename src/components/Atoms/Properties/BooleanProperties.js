@@ -1,5 +1,5 @@
 import React from "react";
-import {BooleanProperty} from "./BooleanTemplate";
+import {BooleanProperty} from "./Templates/BooleanTemplate";
 
 // Boolean properties
 export const HiddenProperty = ({...props}) => {

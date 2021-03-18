@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Box, Grid, makeStyles, Paper, Typography} from "@material-ui/core";
 import {selectProperty, setProperty,} from "../../../features/State Management/questionSlice";
 import EachOption from "./EachOption";
-import AddOptionButton from "./AddOptionButton";
+import AddOptionButton from "../Buttons/AddOptionButton";
 
 const useStyles = makeStyles((theme) => ({
     paper: {

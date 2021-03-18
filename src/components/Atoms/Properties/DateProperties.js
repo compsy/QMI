@@ -1,5 +1,5 @@
 import React from "react";
-import {DateProperty} from "./DateTemplate";
+import {DateProperty} from "./Templates/DateTemplate";
 import {useSelector} from "react-redux";
 
 // Date properties

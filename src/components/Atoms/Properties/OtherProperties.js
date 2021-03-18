@@ -16,7 +16,7 @@ import {
     WidthProperty,
 } from './NumericProperties'
 import { useSelector } from 'react-redux'
-import { selectProperty } from '../../features/State Management/questionSlice'
+import { selectProperty } from '../../../features/State Management/questionSlice'
 
 
 // Composite properties. These consists of smaller properties, depending on each other:

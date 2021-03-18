@@ -1,6 +1,6 @@
-import store from '../../store'
-import {removeFromMap} from '../../features/State Management/utilitiesSlice'
-import {removeAllWithKey} from '../Atoms/Buttons/RemoveQuestionButton'
+import store from '../store'
+import {removeFromMap} from '../features/State Management/utilitiesSlice'
+import {removeAllWithKey} from '../components/Atoms/Buttons/RemoveQuestionButton'
 
 const postprocessCheckbox = (question) => {
     const processedOptionsCheckbox = () => {
