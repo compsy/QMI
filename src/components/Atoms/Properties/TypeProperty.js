@@ -1,8 +1,8 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {FormControl, InputLabel, makeStyles, MenuItem, Paper, Select,} from "@material-ui/core";
-import {capitalize, QUESTION_TYPES} from "../../utils";
-import {setProperty} from "../../features/State Management/questionSlice";
+import {capitalize, QUESTION_TYPES} from "../../../utils";
+import {setProperty} from "../../../features/State Management/questionSlice";
 
 const useStyles = makeStyles((theme) => ({
     paper: {

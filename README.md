@@ -255,7 +255,7 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┃ ┃ ┗ 📜UnsupportedQuestionTypePreview.js     # This file renders the layout of an unsupported question type
  ┃ ┃ ┣ 📜BackToTopArrowButton.js                 # Button to scroll to top of a page
  ┃ ┃ ┣ 📜EditDialogTitle.js                      # The clickable lable for question titles
- ┃ ┃ ┣ 📜EditingFeature.js                       # The edit dialog
+ ┃ ┃ ┣ 📜EditDialog.js                       # The edit dialog
  ┃ ┃ ┣ 📜ExpansionRule.js                        # Containing the expansion mechanism for question previews
  ┃ ┃ ┣ 📜HiddenQuestionIndicator.js              # Icon for question preview, showed when a question is set to 'hidden'
  ┃ ┃ ┣ 📜JSONCreator.js                          # Converts the current questions list in an accepted JSON format

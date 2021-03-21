@@ -1,5 +1,5 @@
 import React from "react";
-import {NumericProperty} from "./NumericTemplate";
+import {NumericProperty} from "./Templates/NumericTemplate";
 
 // Numeric properties
 export const MinProperty = ({...props}) => {

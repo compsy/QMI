@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { HiddenProperty, SectionEndProperty, TodayProperty } from '../components/Properties/BooleanProperties'
+import { HiddenProperty, SectionEndProperty, TodayProperty } from '../components/Atoms/Properties/BooleanProperties'
 
-import { DefaultDateProperty, MaxDateProperty, MinDateProperty } from '../components/Properties/DateProperties'
+import { DefaultDateProperty, MaxDateProperty, MinDateProperty } from '../components/Atoms/Properties/DateProperties'
 
-import { DefaultExpansionsProperty, MaxExpansionsProperty } from '../components/Properties/NumericProperties'
+import { DefaultExpansionsProperty, MaxExpansionsProperty } from '../components/Atoms/Properties/NumericProperties'
 
-import { LabelOptionsProperty, TextOptionsProperty } from '../components/Properties/TextArrayProperties'
+import { LabelOptionsProperty, TextOptionsProperty } from '../components/Atoms/Properties/TextArrayProperties'
 
 import {
     AddButtonLabelProperty,
@@ -26,7 +26,7 @@ import {
     SectionStartProperty,
     TitleProperty,
     TooltipProperty,
-} from '../components/Properties/TextProperties'
+} from '../components/Atoms/Properties/TextProperties'
 import {
     CustomMinMaxStepProperty,
     HiddenRequiredComposite,
@@ -35,7 +35,7 @@ import {
     OtherwiseProperty,
     RadiusDensityComposite,
     WidthHeightComposite,
-} from '../components/Properties/OtherProperties'
+} from '../components/Atoms/Properties/OtherProperties'
 import { v4 as uuidv4 } from 'uuid'
 import processQuestionnaire from './ProcessQuestionnaire'
 

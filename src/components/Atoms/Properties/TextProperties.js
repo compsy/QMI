@@ -1,5 +1,5 @@
 import React from "react";
-import {TextProperty} from "./TextTemplate";
+import {TextProperty} from "./Templates/TextTemplate";
 
 // Text properties
 export const TitleProperty = ({...props}) => {

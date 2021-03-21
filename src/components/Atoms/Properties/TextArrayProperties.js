@@ -1,5 +1,5 @@
 import React from "react";
-import TextArrayTemplate from "./TextArrayTemplate/TextArrayTemplate";
+import TextArrayTemplate from "../TextArrayTemplate/TextArrayTemplate";
 
 // TextArray properties
 export const TextOptionsProperty = () => {

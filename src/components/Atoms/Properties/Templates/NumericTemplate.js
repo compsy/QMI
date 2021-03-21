@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectProperty, setProperty,} from "../../features/State Management/questionSlice";
+import {selectProperty, setProperty,} from "../../../../features/State Management/questionSlice";
 import {TextField} from "@material-ui/core";
 
 export const NumericProperty = ({name, propertyName, ...props}) => {
