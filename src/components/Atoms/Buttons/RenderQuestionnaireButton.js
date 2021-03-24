@@ -17,7 +17,12 @@ export function RenderQuestionnaireButton() {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     Authorization: 'Bearer my-token',
-                    body: JSON.stringify(toPrint()),
+                    body: {
+                        'name': '',
+                        'content': JSON.stringify(toPrint()),
+                        'key': '',
+                        'title': '',
+                    },
                 };
                 fetch('http://app.u-can-act.nl/basic_auth_api/questionnaires', options)
                     .then(response => response.json())
