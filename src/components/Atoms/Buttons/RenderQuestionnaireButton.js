@@ -11,9 +11,19 @@ export function RenderQuestionnaireButton() {
             id={'renderQuestionnaire'}
             startIcon={<ImageIcon/>}
             onClick={() => {
-                let x = JSON.stringify(toPrint())
-                x = Buffer.from(x).toString("base64");
-                window.open("http://app.u-can-act.nl/questionnaire/interactive?content=" + x);
+                // let x = JSON.stringify(toPrint())
+                // x = Buffer.from(x).toString("base64");
+                const options = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    Authorization: 'Bearer my-token',
+                    body: JSON.stringify(toPrint()),
+                };
+                fetch('http://app.u-can-act.nl/basic_auth_api/questionnaires', options)
+                    .then(response => response.json())
+                    .then(data => {
+                        window.open(data.url);
+                    })
             }}
         >Render</Button>
     );
