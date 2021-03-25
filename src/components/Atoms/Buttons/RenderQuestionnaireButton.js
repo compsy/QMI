@@ -1,35 +1,30 @@
-import { toPrint } from '../../../utils'
 import ImageIcon from '@material-ui/icons/Image'
 import Button from '@material-ui/core/Button'
 import React from 'react'
+import RenderQuestionnaireDialog from '../../Molecules/RenderQuestionnaireDialog'
 
 export function RenderQuestionnaireButton() {
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    }
+
+    const handleClose = () => {
+        setOpen(false);
+    }
+
     return (
-        <Button
-            color="inherit"
-            data-cy={'renderQuestionnaire'}
-            id={'renderQuestionnaire'}
-            startIcon={<ImageIcon/>}
-            onClick={() => {
-                // let x = JSON.stringify(toPrint())
-                // x = Buffer.from(x).toString("base64");
-                const options = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    Authorization: 'Bearer my-token',
-                    body: {
-                        'name': '',
-                        'content': JSON.stringify(toPrint()),
-                        'key': '',
-                        'title': '',
-                    },
-                };
-                fetch('http://app.u-can-act.nl/basic_auth_api/questionnaires', options)
-                    .then(response => response.json())
-                    .then(data => {
-                        window.open(data.url);
-                    })
-            }}
-        >Render</Button>
+        <div>
+            <Button
+                color="inherit"
+                data-cy={'renderQuestionnaire'}
+                id={'renderQuestionnaire'}
+                startIcon={<ImageIcon/>}
+                onClick={handleClickOpen}
+            >Render</Button>
+            <RenderQuestionnaireDialog open={open} onClose={handleClose}/>
+        </div>
     );
 }
