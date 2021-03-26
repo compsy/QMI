@@ -1,7 +1,7 @@
 import { toPrint } from '../../utils'
 import Button from '@material-ui/core/Button'
 import React, { useState } from 'react'
-import { Dialog, DialogActions, DialogContent, TextField } from '@material-ui/core'
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core'
 
 export default function RenderQuestionnaireDialog({open, onClose}) {
 
@@ -11,25 +11,28 @@ export default function RenderQuestionnaireDialog({open, onClose}) {
     const submitQuestionnaire = () => {
         const options = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            Authorization: 'Bearer my-token',
-            body: {
-                'name': name,
-                'content': JSON.stringify(toPrint()),
-                'key': '',
-                'title': title,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${btoa("admin:admin")}`,
             },
+            body: JSON.stringify({
+                'name': name,
+                'content': toPrint(),
+                'key': 'uniquekey',
+                'title': title,
+            }),
         };
-        fetch('http://localhost:3002/basic_auth_api/questionnaires', options)
+        fetch('http://localhost:3002/api/v1/basic_auth_api/questionnaires', options)
             .then(response => response.json())
             .then(data => {
-                window.open(data.url);
+                console.log(data);
             })
         onClose();
     }
 
     return (
         <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
+            <DialogTitle>Submit Questionnaire</DialogTitle>
             <DialogContent>
                 <TextField
                     autoFocus
