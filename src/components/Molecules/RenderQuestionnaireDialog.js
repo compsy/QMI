@@ -7,13 +7,15 @@ export default function RenderQuestionnaireDialog({open, onClose}) {
 
     const [name, setName] = useState('');
     const [title, setTitle] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const submitQuestionnaire = () => {
         const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Basic ${btoa("admin:admin")}`,
+                'Authorization': `Basic ${btoa(`${username}:${password}`)}`,
             },
             body: JSON.stringify({
                 'name': name,
@@ -34,6 +36,24 @@ export default function RenderQuestionnaireDialog({open, onClose}) {
         <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
             <DialogTitle>Submit Questionnaire</DialogTitle>
             <DialogContent>
+                <TextField
+                    autoFocus
+                    fullWidth
+                    margin="dense"
+                    label="Username"
+                    id="username"
+                    value={username}
+                    onChange={(e) => {setUsername(e.target.value)}}
+                />
+                <TextField
+                    autoFocus
+                    fullWidth
+                    margin="dense"
+                    label="Password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => {setPassword(e.target.value)}}
+                />
                 <TextField
                     autoFocus
                     fullWidth
