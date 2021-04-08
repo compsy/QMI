@@ -9,8 +9,11 @@ export default function RenderQuestionnaireDialog({open, onClose}) {
     const [title, setTitle] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    let error = false, loading = false;
+
 
     const submitQuestionnaire = () => {
+        loading = true;
         const options = {
             method: 'POST',
             headers: {
@@ -20,16 +23,23 @@ export default function RenderQuestionnaireDialog({open, onClose}) {
             body: JSON.stringify({
                 'name': name,
                 'content': toPrint(),
-                'key': 'uniquekey',
+                'key': name.toLowerCase().replace(/\s/g, '-'),
                 'title': title,
             }),
         };
-        fetch('http://localhost:3002/api/v1/basic_auth_api/questionnaires', options)
-            .then(response => response.json())
-            .then(data => {
+
+      fetch('http://localhost:3002/api/v1/basic_auth_api/questionnaires', options)
+          .then(response => response.json())
+          .then(
+              (data) => {
                 console.log(data);
-            })
-        onClose();
+              },
+              (error) => {
+                console.log(error);
+              } 
+          )
+      loading = false;
+      onClose();
     }
 
     return (
