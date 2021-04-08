@@ -230,7 +230,7 @@ We have tested the application on the following browsers through browserstack:
  ┃ ┣ 📂App Bar
  ┃ ┃ ┣ 📂Navigation Buttons
  ┃ ┃ ┃ ┣ 📜EraseQuestionnaireButton.js           # Button to erase current questionnaire
- ┃ ┃ ┃ ┣ 📜RenderQuestionnaireButton.js          # Button to render current questionnaire 
+ ┃ ┃ ┃ ┣ 📜SubmitQuestionnaireButton.js          # Button to render current questionnaire 
  ┃ ┃ ┃ ┗ 📜SaveQuestionnaireButton.js            # Button to save current questionnaire 
  ┃ ┃ ┗ 📜AppBarComponent.js                      # This file contains the rendering of the buttons in the app bar
  ┃ ┣ 📂Authentication Dialog                     

@@ -6,7 +6,7 @@ import React from 'react'
 import MainPage from '../Pages/MainPage'
 import { HomePage } from '../Pages/HomePage'
 import { EraseQuestionnaireButton } from '../Atoms/Buttons/EraseQuestionnaireButton'
-import { RenderQuestionnaireButton } from '../Atoms/Buttons/RenderQuestionnaireButton'
+import { SubmitQuestionnaireButton } from '../Atoms/Buttons/SubmitQuestionnaireButton'
 import { SaveQuestionnaireButton } from '../Atoms/Buttons/SaveQuestionnaireButton'
 import UserCard from '../Molecules/UserCard'
 import {Route, Router, Switch, useLocation} from 'react-router-dom'
@@ -32,7 +32,7 @@ const AuxiliaryButtons = () => {
 
     const elements = [
         <SaveQuestionnaireButton/>,
-        <RenderQuestionnaireButton/>,
+        <SubmitQuestionnaireButton/>,
         <EraseQuestionnaireButton/>
     ];
     return elements.map(element => <Grid item>{element}</Grid>)

@@ -1,9 +1,9 @@
 import ImageIcon from '@material-ui/icons/Image'
 import Button from '@material-ui/core/Button'
 import React from 'react'
-import RenderQuestionnaireDialog from '../../Molecules/RenderQuestionnaireDialog'
+import SubmitQuestionnaireDialog from '../../Molecules/SubmitQuestionnaireDialog'
 
-export function RenderQuestionnaireButton() {
+export function SubmitQuestionnaireButton() {
 
     const [open, setOpen] = React.useState(false);
 
@@ -23,8 +23,8 @@ export function RenderQuestionnaireButton() {
                 id={'renderQuestionnaire'}
                 startIcon={<ImageIcon/>}
                 onClick={handleClickOpen}
-            >Render</Button>
-            <RenderQuestionnaireDialog open={open} onClose={handleClose}/>
+            >Submit</Button>
+            <SubmitQuestionnaireDialog open={open} onClose={handleClose}/>
         </div>
     );
 }
