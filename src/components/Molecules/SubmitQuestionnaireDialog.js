@@ -40,13 +40,13 @@ export default function SubmitQuestionnaireDialog({ open, onClose }) {
             }),
         }
 
-        fetch('http://localhost:3002/api/v1/basic_auth_api/questionnaires', options)
+        fetch('http://app.u-can-act.nl/api/v1/basic_auth_api/questionnaires', options)
             .then(handleError)
-            .then((data) => {
+            .then(() => {
                 setSuccess(true)
                 setTimeout(() => {
                     onClose()
-                }, 2000)
+                }, 1000)
             })
             .catch((error) => {
                 if (error.message === 'Unauthorized') {
