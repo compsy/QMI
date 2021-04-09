@@ -24,7 +24,7 @@ export default function SubmitQuestionnaireDialog({ open, onClose }) {
     const submitQuestionnaire = () => {
         setError(false)
         setBadLogin(false)
-        const key = name.toLowerCase().replace(/\s/g, '-')
+        const key = `${name.toLowerCase().replace(/\s/g, '-')}${Date.now().toString().slice(-4)}` // Create Unique key from given name
         console.log(key)
         const options = {
             method: 'POST',
