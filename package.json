@@ -72,7 +72,7 @@
     "@material-ui/pickers": "^3.2.10",
     "@testing-library/dom": "^7.10.0",
     "babel-plugin-istanbul": "^6.0.0",
-    "cypress": "^4.7.0",
+    "cypress": "^4.12.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "istanbul-lib-coverage": "^3.0.0",
